@@ -4,65 +4,118 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const THUMBNAILS = [
+const HERO_VIDEOS = [
   {
     id: 0,
-    src: "/Hero/thumb1.jpg",
-    alt: "Team meeting and agenda discussion",
+    videoSrc: "/Hero/hero-video-1.mp4",
+    poster: "/Hero/poster1.jpg",
+    thumb: "/Hero/thumb_video1.jpg",
+    alt: "Strategic planning and team transformation session",
   },
   {
     id: 1,
-    src: "/Hero/thumb2.jpg",
-    alt: "Leadership presentation session",
+    videoSrc: "/Hero/hero-video-2.mp4",
+    poster: "/Hero/poster2.jpg",
+    thumb: "/Hero/thumb_video2.jpg",
+    alt: "Executive leadership discussion",
   },
   {
     id: 2,
-    src: "/Hero/thumb3.jpg",
-    alt: "Collaborative team workshop",
+    videoSrc: "/Hero/hero-video-3.mp4",
+    poster: "/Hero/poster3.jpg",
+    thumb: "/Hero/thumb_video3.jpg",
+    alt: "Collaborative team workshop session",
   },
 ];
 
 export default function Hero() {
   const [activeThumb, setActiveThumb] = useState(0);
-  const videoRef = useRef(null);
+  const videoRefs = useRef([]);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Autoplay policy fallback
-      });
-    }
-  }, []);
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return;
+      if (index === activeThumb) {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, [activeThumb]);
+
+  const handleEnded = () => {
+    setActiveThumb((prev) => (prev + 1) % HERO_VIDEOS.length);
+  };
 
   const handleThumbClick = (index) => {
     setActiveThumb(index);
-    if (videoRef.current && index === 0) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {});
-    }
   };
 
   return (
     <section className="relative w-full min-h-[640px] sm:min-h-[720px] h-[92vh] max-h-[1020px] flex flex-col justify-end overflow-hidden bg-[#1f1e1d]">
-      {/* Background Video */}
+      {/* Background Videos with Smooth Cross-fade */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster="/Hero/video_poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        >
-          <source src="/Hero/HeroVideo.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {HERO_VIDEOS.map((item, index) => (
+          <video
+            key={item.id}
+            ref={(el) => {
+              videoRefs.current[index] = el;
+            }}
+            autoPlay={index === 0}
+            muted
+            playsInline
+            onEnded={handleEnded}
+            preload={index === 0 ? "auto" : "metadata"}
+            poster={item.poster}
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ease-in-out ${
+              activeThumb === index
+                ? "opacity-100 z-10"
+                : "opacity-0 z-0 pointer-events-none"
+            }`}
+          >
+            <source src={item.videoSrc} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ))}
       </div>
 
+      {/* Left Dark Shade */}
+      <div
+        className="absolute top-1/2 left-[-90px] -mt-[645px] pointer-events-none z-20"
+        style={{
+          width: "1109px",
+          height: "1290px",
+          transform: "rotate(90deg) scaleX(-1)",
+          transformOrigin: "center center",
+          flexShrink: 0,
+          background:
+            "linear-gradient(0deg, #000 0.02%, rgba(0, 0, 0, 0.00) 80.26%)",
+        }}
+      />
+
+      {/* Right Dark Shade */}
+      <div
+        className="absolute top-1/2 right-[-90px] -mt-[645px] pointer-events-none z-20"
+        style={{
+          width: "1109px",
+          height: "1290px",
+          transform: "rotate(-90deg)",
+          transformOrigin: "center center",
+          flexShrink: 0,
+          background:
+            "linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.00) 62.98%)",
+        }}
+      />
+
       {/* Soft bottom edge transition to white */}
-      <div className="absolute inset-x-0 bottom-0 h-12 sm:h-20 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none z-20" />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-5 sm:h-7 md:h-9 pointer-events-none z-20"
+        style={{
+          background:
+            "linear-gradient(0deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%)",
+        }}
+      />
 
       {/* Hero Content Layer */}
       <div className="relative z-30 w-full max-w-[1783px] mx-auto px-4 sm:px-6 lg:px-12 pb-12 sm:pb-16 pt-28">
@@ -102,11 +155,11 @@ export default function Hero() {
 
           {/* Right Column: Video Thumbnails */}
           <div className="flex items-center gap-2.5 sm:gap-3.5 self-end lg:self-end pb-1">
-            {THUMBNAILS.map((thumb, index) => {
+            {HERO_VIDEOS.map((item, index) => {
               const isActive = activeThumb === index;
               return (
                 <button
-                  key={thumb.id}
+                  key={item.id}
                   type="button"
                   onClick={() => handleThumbClick(index)}
                   className={`group relative w-[72px] h-[44px] sm:w-[84px] sm:h-[52px] md:w-[96px] md:h-[58px] rounded-[6px] overflow-hidden transition-all duration-200 cursor-pointer ${
@@ -114,11 +167,11 @@ export default function Hero() {
                       ? "ring-2 ring-[#FF5E14] border-2 border-[#FF5E14] shadow-[0_0_12px_rgba(255,94,20,0.55)] scale-105"
                       : "border border-white/60 opacity-80 hover:opacity-100 hover:border-white hover:scale-102"
                   }`}
-                  aria-label={thumb.alt}
+                  aria-label={item.alt}
                 >
                   <Image
-                    src={thumb.src}
-                    alt={thumb.alt}
+                    src={item.thumb}
+                    alt={item.alt}
                     fill
                     sizes="(max-width: 768px) 80px, 100px"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
