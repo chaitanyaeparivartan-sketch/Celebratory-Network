@@ -145,7 +145,7 @@ export default function Hero() {
               </Link>
 
               <Link
-                href="/about-us"
+                href="/about"
                 className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-white text-[#171717] font-['PP_Mori',sans-serif] text-sm sm:text-base font-semibold shadow-sm hover:bg-white/90 active:scale-[0.98] transition-all cursor-pointer"
               >
                 Know More

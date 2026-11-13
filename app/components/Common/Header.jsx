@@ -26,7 +26,7 @@ function DropdownIcon({ className = "" }) {
 export default function Header({
   navLinks = [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/about-us" },
+    { label: "About Us", href: "/about" },
     {
       label: "OD Consulting",
       href: "/od-consulting",
@@ -62,8 +62,8 @@ export default function Header({
 
   const isLinkActive = (item) => {
     if (!pathname) return item.active || false;
-    if (item.href === "/") return pathname === "/";
-    if (item.href === "/about-us") return pathname === "/about-us" || pathname === "/about";
+    if (item.href === "/" || item.href === "") return pathname === "/";
+    if (item.href === "/about" || item.href === "/about-us") return pathname === "/about" || pathname === "/about-us";
     return pathname === item.href || pathname.startsWith(item.href + "/");
   };
 
@@ -97,7 +97,7 @@ export default function Header({
         </Link>
 
         {/* Desktop Nav Items */}
-        <ul className="hidden lg:flex items-center justify-center gap-[24px] xl:gap-[30px] flex-[1_0_0] list-none m-0 p-0">
+        <ul className="hidden lg:flex items-center justify-center gap-[16px] xl:gap-[30px] flex-[1_0_0] list-none m-0 p-0">
           {navLinks.map((item) => {
             if (item.hasDropdown) {
               const isHovered = activeDropdown === item.label;

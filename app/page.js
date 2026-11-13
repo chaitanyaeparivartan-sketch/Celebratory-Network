@@ -1,12 +1,12 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Stats from "./components/Stats";
-import WhatWeDo from "./components/WhatWeDo";
-import Statement from "./components/Statement";
-import HowWeHelp from "./components/HowWeHelp";
-import Testimonials from "./components/Testimonials";
-import CTA from "./components/CTA";
-import Footer from "./components/Footer";
+import Header from "./components/Common/Header";
+import Hero from "./components/Home/Hero";
+import Stats from "./components/Home/Stats";
+import WhatWeDo from "./components/Home/WhatWeDo";
+import Statement from "./components/Home/Statement";
+import HowWeHelp from "./components/Home/HowWeHelp";
+import Testimonials from "./components/Home/Testimonials";
+import CTA from "./components/Home/CTA";
+import Footer from "./components/Common/Footer";
 
 export default function Home() {
   return (
