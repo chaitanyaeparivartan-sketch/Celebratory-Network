@@ -138,7 +138,7 @@ export default function WhatWeDo() {
                     Book a call
                   </Link>
                   <Link
-                    href="/about"
+                    href="/about-us"
                     className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-[8px] bg-white border border-[#EAEAEA] text-[#171717] font-['PP_Mori',sans-serif] text-xs sm:text-sm font-semibold shadow-sm hover:bg-gray-50 active:scale-[0.98] transition-all cursor-pointer"
                   >
                     Know More

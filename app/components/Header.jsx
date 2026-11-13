@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 function DropdownIcon({ className = "" }) {
   return (
@@ -24,8 +25,8 @@ function DropdownIcon({ className = "" }) {
 
 export default function Header({
   navLinks = [
-    { label: "Home", href: "/", active: true },
-    { label: "About Us", href: "/about" },
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about-us" },
     {
       label: "OD Consulting",
       href: "/od-consulting",
@@ -54,9 +55,17 @@ export default function Header({
   isFloating = true,
   className = "",
 }) {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [openMobileSubmenu, setOpenMobileSubmenu] = useState(null);
+
+  const isLinkActive = (item) => {
+    if (!pathname) return item.active || false;
+    if (item.href === "/") return pathname === "/";
+    if (item.href === "/about-us") return pathname === "/about-us" || pathname === "/about";
+    return pathname === item.href || pathname.startsWith(item.href + "/");
+  };
 
   const toggleMobileSubmenu = (label) => {
     setOpenMobileSubmenu((prev) => (prev === label ? null : label));
@@ -141,7 +150,7 @@ export default function Header({
                 <Link
                   href={item.href}
                   className={`block font-['PP_Mori',sans-serif] text-[16px] sm:text-[17px] font-medium leading-[20px] text-center transition-colors ${
-                    item.active
+                    isLinkActive(item)
                       ? "text-[#FF5E14]"
                       : "text-[#0A0A0A] hover:text-[#FF5E14]"
                   }`}
@@ -241,7 +250,7 @@ export default function Header({
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block py-2 font-['PP_Mori',sans-serif] text-[15px] font-medium leading-[18px] transition-colors ${
-                      item.active
+                      isLinkActive(item)
                         ? "text-[#FF5E14]"
                         : "text-[#0A0A0A] hover:text-[#FF5E14]"
                     }`}
