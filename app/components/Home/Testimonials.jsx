@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Reveal from "@/app/components/Common/Reveal";
 
 const TESTIMONIALS = [
   // 1-5. Participant Testimonials (Women Leadership Program)
@@ -205,10 +206,10 @@ function Tail() {
 
 function TestimonialItem({ title, role, initials, text, statement }) {
   return (
-    <div className="flex w-[min(540px,85vw)] flex-none snap-start flex-col">
+    <div className="flex w-[min(540px,85vw)] flex-none snap-start flex-col group">
       {/* Profile Header */}
       <div className="mb-6 flex items-center gap-3.5">
-        <div className="grid h-[52px] w-[52px] flex-none place-items-center rounded-full bg-[#FFEAE0] font-['Inter',sans-serif] text-[15px] font-semibold text-[#FF5E14] shadow-sm">
+        <div className="grid h-[52px] w-[52px] flex-none place-items-center rounded-full bg-[#FFEAE0] font-['Inter',sans-serif] text-[15px] font-semibold text-[#FF5E14] shadow-sm transition-transform duration-300 group-hover:scale-105">
           {initials}
         </div>
         <div className="min-w-0">
@@ -222,12 +223,12 @@ function TestimonialItem({ title, role, initials, text, statement }) {
       </div>
 
       {/* Speech Bubble Card */}
-      <div className="relative flex flex-1 flex-col items-start justify-between gap-4 rounded-[28px] bg-white p-6 sm:p-7 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-[#EDEDED]">
+      <div className="relative flex flex-1 flex-col items-start justify-between gap-4 rounded-[28px] bg-white p-6 sm:p-7 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-[#EDEDED] transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] group-hover:border-[#FF5E14]/30">
         <Tail />
 
         {/* Top Bar: Quote Icon & 5 Stars */}
         <div className="flex items-center justify-between self-stretch">
-          <div className="grid h-[40px] w-[40px] place-items-center rounded-lg bg-[#F6F6F6]">
+          <div className="grid h-[40px] w-[40px] place-items-center rounded-lg bg-[#F6F6F6] transition-colors group-hover:bg-[#FFEAE0]">
             <QuoteIcon />
           </div>
           <div className="flex gap-0.5" aria-label="5 out of 5 stars">
@@ -265,7 +266,7 @@ export default function Testimonials() {
   return (
     <section className="overflow-x-hidden bg-[#f5f5f5] pb-14 pt-10 md:pb-20 md:pt-16">
       {/* Section Heading */}
-      <div className="mb-8 px-4 text-center md:mb-12">
+      <Reveal direction="up" duration={700} className="mb-8 px-4 text-center md:mb-12">
         <div className="inline-flex items-center gap-1.5 font-['Inter',sans-serif] text-sm font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
           <span className="h-2 w-2 rounded-[2px] bg-[#FF5E14]" />
           Testimonial
@@ -273,20 +274,22 @@ export default function Testimonials() {
         <h2 className="mt-3 font-['PP_Mori',sans-serif] text-[length:clamp(32px,4.6vw,52px)] font-semibold leading-[1.05] tracking-[-0.8px] text-[#242424]">
           What Clients Say
         </h2>
-      </div>
+      </Reveal>
 
       {/* Horizontal Carousel Track */}
-      <div
-        ref={trackRef}
-        className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-[max(16px,calc((100vw-1342px)/2))] pb-4 [scroll-padding-inline:max(16px,calc((100vw-1342px)/2))] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {TESTIMONIALS.map((item) => (
-          <TestimonialItem key={item.id} {...item} />
-        ))}
-      </div>
+      <Reveal direction="up" duration={750} delay={100}>
+        <div
+          ref={trackRef}
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-[max(16px,calc((100vw-1342px)/2))] pb-4 [scroll-padding-inline:max(16px,calc((100vw-1342px)/2))] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {TESTIMONIALS.map((item) => (
+            <TestimonialItem key={item.id} {...item} />
+          ))}
+        </div>
+      </Reveal>
 
       {/* Navigation Arrows */}
-      <div className="mx-auto mt-6 flex max-w-[1342px] items-center justify-center px-4 sm:px-6">
+      <Reveal direction="up" duration={700} delay={180} className="mx-auto mt-6 flex max-w-[1342px] items-center justify-center px-4 sm:px-6">
         <div className="flex gap-2.5">
           {[
             { label: "Previous", dir: -1, d: "M15 18l-6-6 6-6" },
@@ -297,7 +300,7 @@ export default function Testimonials() {
               type="button"
               aria-label={label}
               onClick={() => step(dir)}
-              className="grid h-11 w-11 sm:h-12 sm:w-12 place-items-center rounded-full border border-[#24242430] bg-white text-[#242424] transition-colors hover:border-[#FF5E14] hover:bg-[#FF5E14] hover:text-white cursor-pointer shadow-sm"
+              className="grid h-11 w-11 sm:h-12 sm:w-12 place-items-center rounded-full border border-[#24242430] bg-white text-[#242424] transition-all hover:border-[#FF5E14] hover:bg-[#FF5E14] hover:text-white hover:scale-105 active:scale-95 cursor-pointer shadow-sm"
             >
               <svg
                 width="20"
@@ -314,7 +317,7 @@ export default function Testimonials() {
             </button>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

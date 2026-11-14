@@ -67,14 +67,14 @@ export default function CTA({
         {/* ---------- Image ---------- */}
         <div
           style={{ transitionDelay: "0ms" }}
-          className={`aspect-[16/10] self-stretch overflow-hidden rounded-[clamp(8px,.72vw,16px)] bg-[#cfd8e6] md:aspect-[4/3] ${reveal(inView)}`}
+          className={`aspect-[16/10] self-stretch overflow-hidden rounded-[clamp(8px,.72vw,16px)] bg-[#cfd8e6] md:aspect-[4/3] group/img ${reveal(inView)}`}
         >
           <Image
             src={image}
             alt={imageAlt}
             width={480}
             height={360}
-            className="block h-full w-full object-cover"
+            className="block h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-105"
           />
         </div>
 

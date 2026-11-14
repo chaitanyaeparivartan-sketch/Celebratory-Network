@@ -30,7 +30,13 @@ const HERO_VIDEOS = [
 
 export default function Hero() {
   const [activeThumb, setActiveThumb] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   const videoRefs = useRef([]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsMounted(true), 60);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) return;
@@ -138,31 +144,63 @@ export default function Hero() {
         <div className="flex flex-col lg:flex-row items-center md:items-start lg:items-end justify-between gap-8 lg:gap-12">
           {/* Left Column: Heading, Subtitle & Buttons */}
           <div className="w-full max-w-[720px] text-center md:text-left mx-auto md:mx-0 flex flex-col items-center md:items-start">
-            {/* Title */}
-            <h1 className="font-ppmori text-[clamp(28px,3.8vw,52px)] font-semibold text-white tracking-[-0.8px] leading-[36px] sm:leading-[42px] md:leading-[48px] text-center md:text-left">
-              <span className="block sm:whitespace-nowrap">Leading organizational</span>
-              <span className="block sm:whitespace-nowrap">change &amp; transformation</span>
+            {/* Title with staggered entrance */}
+            <h1 className="font-ppmori text-[clamp(28px,3.8vw,52px)] font-semibold text-white tracking-[-0.8px] leading-[36px] sm:leading-[42px] md:leading-[48px] text-center md:text-left overflow-hidden">
+              <span
+                className="block sm:whitespace-nowrap transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{
+                  opacity: isMounted ? 1 : 0,
+                  transform: isMounted ? "none" : "translate3d(0, 32px, 0)",
+                  transitionDelay: "120ms",
+                }}
+              >
+                Leading organizational
+              </span>
+              <span
+                className="block sm:whitespace-nowrap transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{
+                  opacity: isMounted ? 1 : 0,
+                  transform: isMounted ? "none" : "translate3d(0, 32px, 0)",
+                  transitionDelay: "220ms",
+                }}
+              >
+                change &amp; transformation
+              </span>
             </h1>
 
             {/* Description */}
-            <p className="mt-3.5 sm:mt-4 text-white/95 font-inter font-normal text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.5] max-w-[500px] text-center md:text-left mx-auto md:mx-0">
+            <p
+              className="mt-3.5 sm:mt-4 text-white/95 font-inter font-normal text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.5] max-w-[500px] text-center md:text-left mx-auto md:mx-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              style={{
+                opacity: isMounted ? 1 : 0,
+                transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
+                transitionDelay: "340ms",
+              }}
+            >
               Strong organizations don&apos;t happen by chance. We help leaders and
               teams build better workplace cultures, strengthen collaboration,
               and achieve sustainable growth.
             </p>
 
             {/* CTA Buttons */}
-            <div className="mt-6 sm:mt-7 flex items-center justify-center md:justify-start gap-3.5 sm:gap-4 w-full md:w-auto">
+            <div
+              className="mt-6 sm:mt-7 flex items-center justify-center md:justify-start gap-3.5 sm:gap-4 w-full md:w-auto transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              style={{
+                opacity: isMounted ? 1 : 0,
+                transform: isMounted ? "none" : "translate3d(0, 18px, 0)",
+                transitionDelay: "460ms",
+              }}
+            >
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-[#FF5E14] text-white font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-[#e0500d] active:scale-[0.98] transition-all cursor-pointer"
+                className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-[#FF5E14] text-white font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] transition-all cursor-pointer"
               >
                 Book a call
               </Link>
 
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-white text-[#171717] font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-white/90 active:scale-[0.98] transition-all cursor-pointer"
+                className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-white text-[#171717] font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,255,255,0.25)] active:scale-[0.98] transition-all cursor-pointer"
               >
                 Know More
               </Link>
@@ -170,7 +208,14 @@ export default function Hero() {
           </div>
 
           {/* Right Column: Video Thumbnails (Hidden on mobile) */}
-          <div className="hidden md:flex items-center gap-2.5 sm:gap-3.5 self-end lg:self-end pb-1">
+          <div
+            className="hidden md:flex items-center gap-2.5 sm:gap-3.5 self-end lg:self-end pb-1 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            style={{
+              opacity: isMounted ? 1 : 0,
+              transform: isMounted ? "none" : "translate3d(24px, 0, 0)",
+              transitionDelay: "560ms",
+            }}
+          >
             {HERO_VIDEOS.map((item, index) => {
               const isActive = activeThumb === index;
               return (

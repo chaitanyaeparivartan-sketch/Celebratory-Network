@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Reveal from "@/app/components/Common/Reveal";
 
 /**
  * HowWeHelp
@@ -252,21 +253,23 @@ export default function HowWeHelp() {
       {/* ---------- Mobile Accordion View ---------- */}
       <div className="sm:hidden w-full bg-white px-5 pt-8 pb-14 font-['Inter',system-ui,-apple-system,'Segoe_UI',sans-serif] text-[#1a1a1a]">
         <div className="mx-auto max-w-[560px]">
-          <div className="flex items-center gap-2 text-[11px] font-medium tracking-[0.06em] uppercase before:h-1.5 before:w-1.5 before:rounded-[1px] before:bg-[#FF5E14] before:content-['']">
-            Where can Organization Development
-          </div>
+          <Reveal direction="up" duration={700}>
+            <div className="flex items-center gap-2 text-[11px] font-medium tracking-[0.06em] uppercase before:h-1.5 before:w-1.5 before:rounded-[1px] before:bg-[#FF5E14] before:content-['']">
+              Where can Organization Development
+            </div>
 
-          <h2 className="mt-2.5 mb-4 text-[34px] leading-[1.08] font-semibold tracking-[-0.035em] font-ppmori text-[#1c1c1c]">
-            Help your Business?
-          </h2>
+            <h2 className="mt-2.5 mb-4 text-[34px] leading-[1.08] font-semibold tracking-[-0.035em] font-ppmori text-[#1c1c1c]">
+              Help your Business?
+            </h2>
 
-          <p className="mb-8 text-[15px] leading-[1.6] text-[#4a4a4a]">
-            Every organisation reaches moments when strategy, people and culture
-            need to move together. Organisation Development helps your leaders
-            build trust, align on direction and work through change as one team.
-            Here are ten areas where it makes a real difference to your leaders,
-            your teams and your culture.
-          </p>
+            <p className="mb-8 text-[15px] leading-[1.6] text-[#4a4a4a]">
+              Every organisation reaches moments when strategy, people and culture
+              need to move together. Organisation Development helps your leaders
+              build trust, align on direction and work through change as one team.
+              Here are ten areas where it makes a real difference to your leaders,
+              your teams and your culture.
+            </p>
+          </Reveal>
 
           <ul className="m-0 list-none border-t border-[#ececec] p-0">
             {TOPICS.map((item, i) => {
@@ -332,7 +335,7 @@ export default function HowWeHelp() {
       <div className="hidden sm:block w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-12">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 sm:gap-8">
           {/* Left Column: Eyebrow + Main Title */}
-          <div className="flex flex-col items-start text-left max-w-[620px]">
+          <Reveal direction="up" duration={750} className="flex flex-col items-start text-left max-w-[620px]">
             {/* Section Chip */}
             <div className="inline-flex items-center gap-2 mb-2 sm:mb-2.5">
               <span className="w-2 h-2 rounded-[2px] bg-[#FF5E14] shrink-0" />
@@ -353,10 +356,10 @@ export default function HowWeHelp() {
             >
               Help your Business?
             </h2>
-          </div>
+          </Reveal>
 
           {/* Right Column: Paragraph */}
-          <div className="max-w-[480px] md:text-right">
+          <Reveal direction="up" duration={750} delay={120} className="max-w-[480px] md:text-right">
             <p
               className="text-[#555555] text-[13.5px] sm:text-[14.5px] leading-[1.65] font-normal"
               style={{ fontFamily: "Inter, sans-serif" }}
@@ -367,7 +370,7 @@ export default function HowWeHelp() {
               team. Here are ten areas where it makes a real difference to your
               leaders, your teams and your culture.
             </p>
-          </div>
+          </Reveal>
         </div>
       </div>
 

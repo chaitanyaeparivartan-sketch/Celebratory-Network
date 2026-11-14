@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import Image from "next/image";
+import Reveal from "@/app/components/Common/Reveal";
 
 const FLOATING_CARDS = [
   {
@@ -231,7 +232,7 @@ export default function Stats() {
         </div>
 
         {/* Center Main Headline */}
-        <div className="relative z-10 max-w-[700px] mx-auto text-center px-4">
+        <Reveal direction="up" duration={750} className="relative z-10 max-w-[700px] mx-auto text-center px-4">
           <h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-semibold text-[#171717] tracking-tight leading-[1.2] sm:leading-[1.24]"
             style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
@@ -244,35 +245,40 @@ export default function Stats() {
             <br />
             and teams thrive.
           </h2>
-        </div>
+        </Reveal>
 
         {/* Mobile/Tablet View: Single Column Stacked Cards */}
         <div className="lg:hidden mt-8 w-full max-w-[480px] mx-auto flex flex-col gap-2.5 px-2">
-          {FLOATING_CARDS.map((card) => (
-            <div
+          {FLOATING_CARDS.map((card, index) => (
+            <Reveal
               key={card.id}
-              className="flex items-center gap-2.5 p-1.5 pr-3 rounded-xl bg-white border border-gray-100 shadow-sm w-full"
+              direction="up"
+              delay={index * 60}
+              duration={550}
+              className="w-full"
             >
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-[8px] overflow-hidden shrink-0 bg-gray-100">
-                <Image
-                  src={card.avatar}
-                  alt=""
-                  fill
-                  sizes="40px"
-                  className="object-cover"
-                />
+              <div className="flex items-center gap-2.5 p-1.5 pr-3 rounded-xl bg-white border border-gray-100 shadow-sm w-full hover:shadow-md transition-shadow">
+                <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-[8px] overflow-hidden shrink-0 bg-gray-100">
+                  <Image
+                    src={card.avatar}
+                    alt=""
+                    fill
+                    sizes="40px"
+                    className="object-cover"
+                  />
+                </div>
+                <div
+                  className={`flex-1 flex items-center gap-2 px-3 py-2 rounded-[8px] ${card.bg}`}
+                >
+                  <span
+                    className={`w-1.5 h-1.5 rounded-[1px] ${card.bullet} shrink-0`}
+                  />
+                  <span className="text-[12px] sm:text-[13px] font-medium text-[#1E293B] leading-snug">
+                    {card.line1} {card.line2}
+                  </span>
+                </div>
               </div>
-              <div
-                className={`flex-1 flex items-center gap-2 px-3 py-2 rounded-[8px] ${card.bg}`}
-              >
-                <span
-                  className={`w-1.5 h-1.5 rounded-[1px] ${card.bullet} shrink-0`}
-                />
-                <span className="text-[12px] sm:text-[13px] font-medium text-[#1E293B] leading-snug">
-                  {card.line1} {card.line2}
-                </span>
-              </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -284,10 +290,16 @@ export default function Stats() {
       <div className="w-full max-w-[1400px] mx-auto pt-8 sm:pt-10 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 text-center">
           {STATS.map((stat, index) => (
-            <div key={index} className="flex flex-col items-center">
-              {/* Stat Number */}
+            <Reveal
+              key={index}
+              direction="up"
+              delay={index * 110}
+              duration={700}
+              className="flex flex-col items-center group cursor-default"
+            >
+              {/* Stat Number with hover scale */}
               <span
-                className="text-4xl sm:text-5xl lg:text-[54px] font-medium text-[#171717] tracking-tight leading-none mb-2.5"
+                className="text-4xl sm:text-5xl lg:text-[54px] font-medium text-[#171717] tracking-tight leading-none mb-2.5 transition-transform duration-300 ease-out group-hover:scale-105 group-hover:text-[#FF5E14]"
                 style={{
                   fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
                 }}
@@ -305,7 +317,7 @@ export default function Stats() {
                 <span className="text-[#64748B]">{stat.prefix} </span>
                 <span className="text-[#FF5E14]">{stat.highlight}</span>
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
