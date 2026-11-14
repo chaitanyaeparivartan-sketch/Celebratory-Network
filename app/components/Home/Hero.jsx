@@ -33,6 +33,7 @@ export default function Hero() {
   const videoRefs = useRef([]);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
     videoRefs.current.forEach((video, index) => {
       if (!video) return;
       if (index === activeThumb) {
@@ -54,8 +55,22 @@ export default function Hero() {
 
   return (
     <section className="relative w-full min-h-[640px] sm:min-h-[720px] h-[92vh] max-h-[1020px] flex flex-col justify-end overflow-hidden bg-[#1f1e1d] font-ppmori">
-      {/* Background Videos with Smooth Cross-fade */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+      {/* Mobile Background Image */}
+      <div className="md:hidden absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+        <Image
+          src="/Home/Hero/Mobile-Hero.png"
+          alt="Leading organizational change & transformation"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        {/* Mobile Gradient Overlay for text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" />
+      </div>
+
+      {/* Desktop Background Videos with Smooth Cross-fade */}
+      <div className="hidden md:block absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
         {HERO_VIDEOS.map((item, index) => (
           <video
             key={item.id}
