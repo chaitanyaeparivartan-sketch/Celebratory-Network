@@ -383,7 +383,7 @@ export default function HowWeHelp() {
           role="tablist"
           aria-orientation="vertical"
           onKeyDown={onKeyDown}
-          className="hidden sm:flex list-none flex-col items-start gap-3 sm:gap-3.5 md:gap-4 lg:gap-4.5 xl:gap-[18px] my-auto w-full"
+          className="hidden sm:flex list-none flex-col items-start gap-2.5 sm:gap-3 md:gap-3.5 lg:gap-4 my-auto w-full"
         >
           {TOPICS.map((t, i) => {
             const on = i === active;
@@ -396,33 +396,31 @@ export default function HowWeHelp() {
                   aria-selected={on}
                   tabIndex={on ? 0 : -1}
                   onClick={() => goTo(i)}
-                  className={`group flex items-start justify-start text-left cursor-pointer bg-transparent p-0 font-['Figtree',sans-serif] text-[15px] sm:text-[clamp(13.5px,1.1vw,19px)] xl:text-[20px] leading-[1.22] tracking-[-0.015em] transition-colors duration-300 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[6px] focus-visible:outline-[#FF5E14] ${
+                  className={`group flex items-start gap-2.5 sm:gap-3 text-left cursor-pointer bg-transparent p-0 font-ppmori text-[18px] sm:text-[clamp(17px,1.35vw,23px)] xl:text-[25px] leading-[1.2] tracking-[-0.015em] transition-colors duration-300 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[6px] focus-visible:outline-[#FF5E14] ${
                     on
                       ? "font-semibold text-[#1c1c1c]"
                       : "font-normal text-[#717171] hover:text-[#2d2d2d]"
                   }`}
                 >
-                  {/* ghost bold copy reserves the bold width so text never reflows */}
-                  <span className="flex flex-col items-start text-left gap-0.5">
+                  {/* Indicator Box: fixed width so every line of text starts at the identical horizontal position */}
+                  <span className="w-[10px] sm:w-[12px] xl:w-[14px] mt-[0.22em] shrink-0 flex items-center justify-center">
+                    <span
+                      aria-hidden="true"
+                      className={`h-[9px] w-[9px] sm:h-[10px] sm:w-[10px] xl:h-[12px] xl:w-[12px] rounded-[2px] bg-[#FF5E14] transition-all duration-300 ${
+                        on ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                      }`}
+                    />
+                  </span>
+
+                  {/* Title text: clean column layout with ghost bold width preservation */}
+                  <span className="flex flex-col items-start text-left">
                     {t.lines.map((line, idx) => (
                       <span
                         key={idx}
                         data-text={line}
-                        className={`inline-flex items-center justify-start gap-2 sm:gap-2.5 leading-[1.22] whitespace-nowrap text-left after:invisible after:block after:h-0 after:leading-none after:text-[0px] after:overflow-hidden after:font-semibold after:content-[attr(data-text)] ${
-                          idx > 0 && on ? "pl-[calc(clamp(8px,0.6vw,11px)+8px)]" : ""
-                        }`}
+                        className="block leading-[1.2] whitespace-nowrap text-left after:invisible after:block after:h-0 after:leading-none after:text-[0px] after:overflow-hidden after:font-semibold after:content-[attr(data-text)]"
                       >
-                        {idx === 0 && (
-                          <span
-                            aria-hidden="true"
-                            className={`h-[clamp(8px,0.6vw,11px)] w-[clamp(8px,0.6vw,11px)] shrink-0 rounded-[2px] bg-[#FF5E14] transition-all duration-300 ${
-                              on
-                                ? "scale-100 opacity-100"
-                                : "scale-0 opacity-0 w-0 -mr-2 sm:-mr-2.5 pointer-events-none"
-                            }`}
-                          />
-                        )}
-                        <span>{line}</span>
+                        {line}
                       </span>
                     ))}
                   </span>
