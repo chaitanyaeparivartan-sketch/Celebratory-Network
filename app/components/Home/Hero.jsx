@@ -65,6 +65,8 @@ export default function Hero() {
           sizes="100vw"
           className="object-cover object-center"
         />
+        {/* Subtle mobile shade gradient for text readability while keeping the image clear */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
       </div>
 
       {/* Desktop Background Videos with Smooth Cross-fade */}
