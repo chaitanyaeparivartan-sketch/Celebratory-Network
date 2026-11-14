@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 /**
  * HowWeHelp
@@ -100,6 +101,19 @@ const CARD_STYLES = {
   },
 };
 
+function PhotoStack({ image = "/Home/HowWeHelp/howwehelp-image-1.png" }) {
+  return (
+    <div className="relative mt-1.5 mr-auto mb-[26px] ml-1.5 aspect-[475/580] w-[76%]">
+      <i className="absolute inset-0 rounded-[22px] bg-[#d9d6d2] opacity-50 [transform:rotate(-5deg)_translate(-6px,4px)]" />
+      <i className="absolute inset-0 rounded-[22px] bg-[#d9d6d2] opacity-75 [transform:rotate(3deg)_translate(8px,2px)]" />
+      <div
+        className="absolute inset-0 -rotate-1 rounded-[22px] bg-cover bg-center shadow-[0_14px_30px_-12px_rgba(0,0,0,0.35)]"
+        style={{ backgroundImage: `url(${image})` }}
+      />
+    </div>
+  );
+}
+
 export default function HowWeHelp() {
   const trackRef = useRef(null);
   const stackRef = useRef(null);
@@ -110,6 +124,23 @@ export default function HowWeHelp() {
   const [fading, setFading] = useState(false);
   const [pinned, setPinned] = useState(true); // false on phones
   const [trackHeight, setTrackHeight] = useState(undefined);
+
+  // Mobile accordion state
+  const [openIndex, setOpenIndex] = useState(0);
+  const mobileItemRefs = useRef([]);
+
+  useEffect(() => {
+    if (openIndex === null) return;
+    const t = setTimeout(() => {
+      mobileItemRefs.current[openIndex]?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }, 320);
+    return () => clearTimeout(t);
+  }, [openIndex]);
+
+  const toggleAccordion = (i) => setOpenIndex((cur) => (cur === i ? null : i));
 
   // Desktop / phone switch
   useEffect(() => {
@@ -214,8 +245,87 @@ export default function HowWeHelp() {
 
   return (
     <section aria-label="Where Can Organization Development Help your Business" className="w-full bg-white pb-14 sm:pb-16 md:pb-20">
-      {/* Title Section (Split Header) */}
-      <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-12">
+      {/* ---------- Mobile Accordion View ---------- */}
+      <div className="sm:hidden w-full bg-white px-5 pt-8 pb-14 font-['Inter',system-ui,-apple-system,'Segoe_UI',sans-serif] text-[#1a1a1a]">
+        <div className="mx-auto max-w-[560px]">
+          <div className="flex items-center gap-2 text-[11px] font-medium tracking-[0.06em] uppercase before:h-1.5 before:w-1.5 before:rounded-[1px] before:bg-[#FF5E14] before:content-['']">
+            Where can Organization Development
+          </div>
+
+          <h2 className="mt-2.5 mb-4 text-[34px] leading-[1.08] font-semibold tracking-[-0.035em] font-ppmori text-[#1c1c1c]">
+            Help your Business?
+          </h2>
+
+          <p className="mb-8 text-[15px] leading-[1.6] text-[#4a4a4a]">
+            Every organisation reaches moments when strategy, people and culture
+            need to move together. Organisation Development helps your leaders
+            build trust, align on direction and work through change as one team.
+            Here are ten areas where it makes a real difference to your leaders,
+            your teams and your culture.
+          </p>
+
+          <ul className="m-0 list-none border-t border-[#ececec] p-0">
+            {TOPICS.map((item, i) => {
+              const isOpen = openIndex === i;
+              return (
+                <li
+                  key={item.title}
+                  ref={(el) => (mobileItemRefs.current[i] = el)}
+                  className="border-b border-[#ececec]"
+                >
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={`mobile-panel-${i}`}
+                    onClick={() => toggleAccordion(i)}
+                    className="flex w-full cursor-pointer items-start gap-3 border-0 bg-transparent py-[18px] text-left [-webkit-tap-highlight-color:transparent] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5E14]"
+                  >
+                    <span
+                      className={`mt-[9px] h-2 w-2 flex-none rounded-[1px] transition-colors duration-200 motion-reduce:transition-none ${
+                        isOpen ? "bg-[#FF5E14]" : "bg-transparent"
+                      }`}
+                    />
+                    <span
+                      className={`text-[20px] leading-[1.25] tracking-[-0.02em] transition-colors duration-200 motion-reduce:transition-none ${
+                        isOpen
+                          ? "font-medium text-[#1a1a1a]"
+                          : "font-light text-[#8a8a8a]"
+                      }`}
+                    >
+                      {item.title}
+                    </span>
+                  </button>
+
+                  <div
+                    id={`mobile-panel-${i}`}
+                    aria-hidden={!isOpen}
+                    className={`grid transition-[grid-template-rows] duration-300 ease-in-out motion-reduce:transition-none ${
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                  >
+                    <div className="min-h-0 overflow-hidden pl-5">
+                      <PhotoStack image={item.image} />
+                      <p className="mb-5 text-[15px] leading-[1.6] text-[#4a4a4a]">
+                        {item.text}
+                      </p>
+                      <Link
+                        href="/contact"
+                        tabIndex={isOpen ? 0 : -1}
+                        className="mb-[22px] inline-block rounded-lg bg-[#FF5E14] px-5 py-3 text-sm font-medium text-white no-underline transition-colors hover:bg-[#e0500d]"
+                      >
+                        Contact us
+                      </Link>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+
+      {/* Title Section (Split Header for Desktop/Tablet) */}
+      <div className="hidden sm:block w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-12">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 sm:gap-8">
           {/* Left Column: Eyebrow + Main Title */}
           <div className="flex flex-col items-start text-left max-w-[620px]">
@@ -257,37 +367,16 @@ export default function HowWeHelp() {
         </div>
       </div>
 
-      {/* Interactive Scroll-Driven Section */}
+      {/* Interactive Scroll-Driven Section (Desktop/Tablet) */}
       <div
         ref={trackRef}
         style={{ height: trackHeight }}
-        className="relative w-full"
+        className="hidden sm:block relative w-full"
       >
         <div
           aria-label="How we help interactive list"
           className="mx-auto grid w-full max-w-[1680px] grid-cols-1 items-center gap-y-10 bg-white px-4 sm:px-6 lg:px-8 xl:px-12 py-6 sm:py-8 font-['Inter',system-ui,sans-serif] text-[#1c1c1c] sm:sticky sm:top-0 sm:h-screen sm:grid-cols-[minmax(0,1.1fr)_minmax(260px,auto)_minmax(0,1fr)] sm:gap-x-10 md:gap-x-12 lg:gap-x-16 xl:gap-x-24 sm:overflow-hidden"
         >
-        {/* ---------- Mobile: Horizontal Topic Selector ---------- */}
-        <div className="sm:hidden w-full overflow-x-auto pb-2 flex gap-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {TOPICS.map((t, i) => {
-            const on = i === active;
-            return (
-              <button
-                key={t.title}
-                type="button"
-                onClick={() => goTo(i)}
-                className={`shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-medium transition-all ${
-                  on
-                    ? "bg-[#FF5E14] text-white shadow-sm"
-                    : "bg-[#F3F4F6] text-[#4B5563] hover:bg-[#E5E7EB]"
-                }`}
-              >
-                {on && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
-                <span>{t.title}</span>
-              </button>
-            );
-          })}
-        </div>
 
         {/* ---------- Left: titles (Tablet/Desktop) ---------- */}
         <ul
