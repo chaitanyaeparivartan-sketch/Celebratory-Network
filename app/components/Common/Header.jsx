@@ -73,12 +73,12 @@ export default function Header({
 
   return (
     <header
-      className={`w-full flex flex-col items-center px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 lg:pt-5 pb-2 z-50 pointer-events-none ${
-        isFloating ? "fixed top-0 left-0 right-0" : "sticky top-0"
+      className={`w-full flex flex-col items-center px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 lg:pt-6 pb-2 z-50 ${
+        isFloating ? "absolute top-0 left-0 right-0" : "relative"
       } ${className}`}
     >
       <nav
-        className="pointer-events-auto flex items-center justify-between w-full max-w-[1783px] h-[64px] sm:h-[70px] pl-[22px] sm:pl-[27px] pr-[10px] py-[14px] sm:py-[16px] rounded-[8px] border border-[#F4F4F4] bg-[#FFF] shadow-[0_0_22px_0_rgba(0,0,0,0.20)]"
+        className="flex items-center justify-between w-full max-w-[1783px] h-[64px] sm:h-[70px] pl-[22px] sm:pl-[27px] pr-[10px] py-[14px] sm:py-[16px] rounded-[8px] border border-[#F4F4F4] bg-[#FFF] shadow-[0_0_22px_0_rgba(0,0,0,0.20)]"
         aria-label="Main Navigation"
       >
         {/* Logo */}
@@ -207,7 +207,7 @@ export default function Header({
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden pointer-events-auto w-full max-w-[1783px] mt-2 rounded-[8px] border border-[#F4F4F4] bg-[#FFF] shadow-[0_8px_24px_rgba(0,0,0,0.15)] p-4 flex flex-col gap-2.5 max-h-[calc(100vh-100px)] overflow-y-auto">
+        <div className="lg:hidden w-full max-w-[1783px] mt-2 rounded-[8px] border border-[#F4F4F4] bg-[#FFF] shadow-[0_8px_24px_rgba(0,0,0,0.15)] p-4 flex flex-col gap-2.5 max-h-[calc(100vh-100px)] overflow-y-auto">
           <ul className="flex flex-col gap-1 list-none p-0 m-0">
             {navLinks.map((item) => {
               if (item.hasDropdown) {
