@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 /**
  * CTA (Common Component)
@@ -27,8 +28,8 @@ export default function CTA({
     const el = sectionRef.current;
     if (!el) return;
     if (!("IntersectionObserver" in window)) {
-      setInView(true);
-      return;
+      const id = requestAnimationFrame(() => setInView(true));
+      return () => cancelAnimationFrame(id);
     }
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -68,7 +69,13 @@ export default function CTA({
           style={{ transitionDelay: "0ms" }}
           className={`aspect-[16/10] self-stretch overflow-hidden rounded-[clamp(8px,.72vw,16px)] bg-[#cfd8e6] md:aspect-[4/3] ${reveal(inView)}`}
         >
-          <img src={image} alt={imageAlt} className="block h-full w-full object-cover" />
+          <Image
+            src={image}
+            alt={imageAlt}
+            width={480}
+            height={360}
+            className="block h-full w-full object-cover"
+          />
         </div>
 
         {/* ---------- Copy ---------- */}

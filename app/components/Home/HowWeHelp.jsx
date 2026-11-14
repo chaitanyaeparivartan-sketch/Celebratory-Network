@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 /**
  * HowWeHelp
@@ -154,8 +155,8 @@ export default function HowWeHelp() {
   // Tall scroll track = one viewport + one step per extra topic
   useEffect(() => {
     if (!pinned) {
-      setTrackHeight(undefined);
-      return;
+      const id = requestAnimationFrame(() => setTrackHeight(undefined));
+      return () => cancelAnimationFrame(id);
     }
     const size = () =>
       setTrackHeight(window.innerHeight * (1 + (TOPICS.length - 1) * STEP));
@@ -204,12 +205,15 @@ export default function HowWeHelp() {
   // Fade the right-hand text out, swap it, fade back in
   useEffect(() => {
     if (active === shown) return;
-    setFading(true);
+    const fadeTimer = setTimeout(() => setFading(true), 0);
     const id = setTimeout(() => {
       setShown(active);
       setFading(false);
     }, 220);
-    return () => clearTimeout(id);
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(id);
+    };
   }, [active, shown]);
 
   // Click / keyboard: scroll to a topic (or just select it on phones)
@@ -447,10 +451,11 @@ export default function HowWeHelp() {
                 className="pointer-events-none absolute inset-0 origin-[50%_60%] overflow-hidden rounded-[clamp(20px,2vw,44px)] border-[clamp(4px,.4vw,10px)] border-white bg-neutral-300 shadow-[0_30px_60px_-18px_rgba(0,0,0,.35),0_6px_14px_rgba(0,0,0,.12)] transition-[transform,opacity,filter] duration-700 ease-[cubic-bezier(.22,.8,.24,1)] motion-reduce:transition-none"
               >
                 {t.image ? (
-                  <img
+                  <Image
                     src={t.image}
-                    alt=""
-                    loading="lazy"
+                    alt={t.title}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 410px"
                     className="block h-full w-full object-cover"
                   />
                 ) : (
