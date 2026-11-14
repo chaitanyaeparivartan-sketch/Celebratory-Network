@@ -65,8 +65,6 @@ export default function Hero() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        {/* Mobile Gradient Overlay for text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" />
       </div>
 
       {/* Desktop Background Videos with Smooth Cross-fade */}
@@ -96,9 +94,9 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Left Dark Shade */}
+      {/* Left Dark Shade (Desktop only) */}
       <div
-        className="absolute top-1/2 left-[-90px] -mt-[645px] pointer-events-none z-20"
+        className="hidden md:block absolute top-1/2 left-[-90px] -mt-[645px] pointer-events-none z-20"
         style={{
           width: "1109px",
           height: "1290px",
@@ -110,9 +108,9 @@ export default function Hero() {
         }}
       />
 
-      {/* Right Dark Shade */}
+      {/* Right Dark Shade (Desktop only) */}
       <div
-        className="absolute top-1/2 right-[-90px] -mt-[645px] pointer-events-none z-20"
+        className="hidden md:block absolute top-1/2 right-[-90px] -mt-[645px] pointer-events-none z-20"
         style={{
           width: "1109px",
           height: "1290px",
@@ -135,24 +133,24 @@ export default function Hero() {
 
       {/* Hero Content Layer */}
       <div className="relative z-30 w-full max-w-[1783px] mx-auto px-4 sm:px-6 lg:px-12 pb-12 sm:pb-16 pt-28">
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row items-center md:items-start lg:items-end justify-between gap-8 lg:gap-12">
           {/* Left Column: Heading, Subtitle & Buttons */}
-          <div className="w-full max-w-[720px] text-left">
+          <div className="w-full max-w-[720px] text-center md:text-left mx-auto md:mx-0 flex flex-col items-center md:items-start">
             {/* Title */}
-            <h1 className="font-ppmori text-[clamp(28px,3.8vw,52px)] font-semibold text-white tracking-[-0.8px] leading-[36px] sm:leading-[42px] md:leading-[48px]">
+            <h1 className="font-ppmori text-[clamp(28px,3.8vw,52px)] font-semibold text-white tracking-[-0.8px] leading-[36px] sm:leading-[42px] md:leading-[48px] text-center md:text-left">
               <span className="block sm:whitespace-nowrap">Leading organizational</span>
               <span className="block sm:whitespace-nowrap">change &amp; transformation</span>
             </h1>
 
             {/* Description */}
-            <p className="mt-3.5 sm:mt-4 text-white/95 font-inter font-normal text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.5] max-w-[500px]">
+            <p className="mt-3.5 sm:mt-4 text-white/95 font-inter font-normal text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.5] max-w-[500px] text-center md:text-left mx-auto md:mx-0">
               Strong organizations don&apos;t happen by chance. We help leaders and
               teams build better workplace cultures, strengthen collaboration,
               and achieve sustainable growth.
             </p>
 
             {/* CTA Buttons */}
-            <div className="mt-6 sm:mt-7 flex items-center gap-3.5 sm:gap-4">
+            <div className="mt-6 sm:mt-7 flex items-center justify-center md:justify-start gap-3.5 sm:gap-4 w-full md:w-auto">
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-[#FF5E14] text-white font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-[#e0500d] active:scale-[0.98] transition-all cursor-pointer"
