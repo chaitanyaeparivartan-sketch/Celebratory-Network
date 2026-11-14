@@ -6,7 +6,7 @@ import Image from "next/image";
 const FLOATING_CARDS = [
   {
     id: 1,
-    avatar: "/Stats/card1.jpg",
+    avatar: "/Home/Stats/stat-image-1.jpg",
     line1: "Guide transformation with",
     line2: "your people on board",
     bg: "bg-[#E5F2FF]",
@@ -19,7 +19,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 2,
-    avatar: "/Stats/card2.jpg",
+    avatar: "/Home/Stats/stat-image-2.jpg",
     line1: "Align leadership teams on",
     line2: "one shared direction",
     bg: "bg-[#E6FAE1]",
@@ -32,7 +32,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 3,
-    avatar: "/Stats/card3.jpg",
+    avatar: "/Home/Stats/stat-image-3.jpg",
     line1: "Move leaders from function to",
     line2: "enterprise thinking",
     bg: "bg-[#F5EBFF]",
@@ -45,7 +45,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 4,
-    avatar: "/Stats/card4.jpg",
+    avatar: "/Home/Stats/stat-image-4.jpg",
     line1: "Build trust that",
     line2: "survives disagreement",
     bg: "bg-[#FFF0E6]",
@@ -58,7 +58,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 5,
-    avatar: "/Stats/card5.jpg",
+    avatar: "/Home/Stats/stat-image-5.jpg",
     line1: "Evolve culture, keep",
     line2: "what makes you unique",
     bg: "bg-[#F5EBFF]",
@@ -71,7 +71,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 6,
-    avatar: "/Stats/card6.jpg",
+    avatar: "/Home/Stats/stat-image-6.jpg",
     line1: "Work through conflict, keep",
     line2: "relationships strong",
     bg: "bg-[#FFF3DB]",
@@ -84,7 +84,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 7,
-    avatar: "/Stats/card7.jpg",
+    avatar: "/Home/Stats/stat-image-7.jpg",
     line1: "Strengthen decision-making",
     line2: "and accountability",
     bg: "bg-[#E6FAE1]",
@@ -246,29 +246,29 @@ export default function Stats() {
           </h2>
         </div>
 
-        {/* Mobile/Tablet Fallback: Sleek Horizontal Swipeable Cards Row */}
-        <div className="lg:hidden mt-6 w-full overflow-x-auto pb-2 pt-1 flex gap-2.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {/* Mobile/Tablet View: Single Column Stacked Cards */}
+        <div className="lg:hidden mt-8 w-full max-w-[480px] mx-auto flex flex-col gap-2.5 px-2">
           {FLOATING_CARDS.map((card) => (
             <div
               key={card.id}
-              className="flex items-center gap-2 p-1.5 pr-3 rounded-xl bg-white border border-gray-100 shadow-sm shrink-0"
+              className="flex items-center gap-2.5 p-1.5 pr-3 rounded-xl bg-white border border-gray-100 shadow-sm w-full"
             >
-              <div className="relative w-9 h-9 rounded-[8px] overflow-hidden shrink-0 bg-gray-100">
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-[8px] overflow-hidden shrink-0 bg-gray-100">
                 <Image
                   src={card.avatar}
                   alt=""
                   fill
-                  sizes="36px"
+                  sizes="40px"
                   className="object-cover"
                 />
               </div>
               <div
-                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-[8px] ${card.bg}`}
+                className={`flex-1 flex items-center gap-2 px-3 py-2 rounded-[8px] ${card.bg}`}
               >
                 <span
                   className={`w-1.5 h-1.5 rounded-[1px] ${card.bullet} shrink-0`}
                 />
-                <span className="text-[11.5px] font-medium text-[#1E293B] leading-tight whitespace-nowrap">
+                <span className="text-[12px] sm:text-[13px] font-medium text-[#1E293B] leading-snug">
                   {card.line1} {card.line2}
                 </span>
               </div>

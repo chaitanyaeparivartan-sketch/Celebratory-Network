@@ -11,7 +11,7 @@ const SERVICES = [
     titleLine2: "Development",
     description:
       "We design, facilitate and implement solutions to achieve the desired Organizational Culture.",
-    image: "/WhatWeDo/row1.jpg",
+    image: "/Home/WhatWeDo/whatwedo-image-1.png",
     imageAlt: "Executive leading strategic organizational agenda",
     reverse: false,
   },
@@ -22,7 +22,7 @@ const SERVICES = [
     titleLine2: "Consulting",
     description:
       "We work at the intersection of Family, Business and Organization Development, helping family managed businesses strengthen relationships, professionalize leadership and prepare for sustainable growth across generations.",
-    image: "/WhatWeDo/row2.jpg",
+    image: "/Home/WhatWeDo/whatwedo-image-2.png",
     imageAlt: "Family business partners collaborating at desk",
     reverse: true,
   },
@@ -33,7 +33,7 @@ const SERVICES = [
     titleLine2: "Interventions",
     description:
       "Large Group Interventions bring people across the organization together to surface diverse perspectives, create shared understanding of complex organizational realities.",
-    image: "/WhatWeDo/row3.jpg",
+    image: "/Home/WhatWeDo/whatwedo-image-3.png",
     imageAlt: "Cross-functional team collaborating on blueprint diagram",
     reverse: false,
   },
@@ -44,7 +44,7 @@ const SERVICES = [
     titleLine2: "Cultures",
     description:
       "HWC works towards understanding the person, the existing organizational culture and its impact on individuals and the business.",
-    image: "/WhatWeDo/row4.jpg",
+    image: "/Home/WhatWeDo/whatwedo-image-4.png",
     imageAlt: "Diverse team connecting and celebrating together",
     reverse: true,
   },
@@ -122,7 +122,7 @@ export default function WhatWeDo() {
 
                   {/* Description */}
                   <p
-                    className="text-[#525252] text-xs sm:text-sm xl:text-[14.5px] leading-relaxed max-w-[540px] mt-2 sm:mt-3"
+                    className="text-[#525252] text-[14px] sm:text-[15px] xl:text-[17px] leading-[1.6] max-w-[540px] mt-2 sm:mt-3"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     {item.description}
@@ -144,11 +144,23 @@ export default function WhatWeDo() {
                     Know More
                   </Link>
                 </div>
+
+                {/* Mobile Image (inside the card) */}
+                <div className="lg:hidden mt-6 sm:mt-8 relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[8px] overflow-hidden bg-gray-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+                  <Image
+                    src={item.image}
+                    alt={item.imageAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                    priority={item.id <= 2}
+                  />
+                </div>
               </div>
 
-              {/* Image Column */}
+              {/* Desktop Image Column */}
               <div
-                className={`relative w-full min-h-[300px] sm:min-h-[380px] lg:min-h-[440px] xl:min-h-[460px] rounded-[8px] overflow-hidden bg-gray-100 group shadow-[0_1px_3px_rgba(0,0,0,0.04)] ${
+                className={`hidden lg:block relative w-full min-h-[300px] sm:min-h-[380px] lg:min-h-[440px] xl:min-h-[460px] rounded-[8px] overflow-hidden bg-gray-100 group shadow-[0_1px_3px_rgba(0,0,0,0.04)] ${
                   item.reverse ? "lg:order-1" : "lg:order-2"
                 }`}
               >

@@ -7,23 +7,23 @@ import Image from "next/image";
 const HERO_VIDEOS = [
   {
     id: 0,
-    videoSrc: "/Hero/hero-video-1.mp4",
-    poster: "/Hero/poster1.jpg",
-    thumb: "/Hero/thumb_video1.jpg",
+    videoSrc: "/Home/Hero/hero-video-1.mp4",
+    poster: "/Home/Hero/poster1.jpg",
+    thumb: "/Home/Hero/thumb_video1.jpg",
     alt: "Strategic planning and team transformation session",
   },
   {
     id: 1,
-    videoSrc: "/Hero/hero-video-2.mp4",
-    poster: "/Hero/poster2.jpg",
-    thumb: "/Hero/thumb_video2.jpg",
+    videoSrc: "/Home/Hero/hero-video-2.mp4",
+    poster: "/Home/Hero/poster2.jpg",
+    thumb: "/Home/Hero/thumb_video2.jpg",
     alt: "Executive leadership discussion",
   },
   {
     id: 2,
-    videoSrc: "/Hero/hero-video-3.mp4",
-    poster: "/Hero/poster3.jpg",
-    thumb: "/Hero/thumb_video3.jpg",
+    videoSrc: "/Home/Hero/hero-video-3.mp4",
+    poster: "/Home/Hero/poster3.jpg",
+    thumb: "/Home/Hero/thumb_video3.jpg",
     alt: "Collaborative team workshop session",
   },
 ];
@@ -53,7 +53,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full min-h-[640px] sm:min-h-[720px] h-[92vh] max-h-[1020px] flex flex-col justify-end overflow-hidden bg-[#1f1e1d]">
+    <section className="relative w-full min-h-[640px] sm:min-h-[720px] h-[92vh] max-h-[1020px] flex flex-col justify-end overflow-hidden bg-[#1f1e1d] font-ppmori">
       {/* Background Videos with Smooth Cross-fade */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
         {HERO_VIDEOS.map((item, index) => (
@@ -62,6 +62,7 @@ export default function Hero() {
             ref={(el) => {
               videoRefs.current[index] = el;
             }}
+            src={item.videoSrc}
             autoPlay={index === 0}
             muted
             playsInline
@@ -123,13 +124,13 @@ export default function Hero() {
           {/* Left Column: Heading, Subtitle & Buttons */}
           <div className="w-full max-w-[720px] text-left">
             {/* Title */}
-            <h1 className="font-['PP_Mori',sans-serif] text-2xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-white tracking-tight leading-[1.15]">
+            <h1 className="font-ppmori text-[clamp(28px,3.8vw,52px)] font-semibold text-white tracking-[-0.8px] leading-[36px] sm:leading-[42px] md:leading-[48px]">
               <span className="block sm:whitespace-nowrap">Leading organizational</span>
               <span className="block sm:whitespace-nowrap">change &amp; transformation</span>
             </h1>
 
             {/* Description */}
-            <p className="mt-3.5 sm:mt-4 text-white font-normal text-sm sm:text-base leading-relaxed max-w-[500px]">
+            <p className="mt-3.5 sm:mt-4 text-white/95 font-inter font-normal text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.5] max-w-[500px]">
               Strong organizations don&apos;t happen by chance. We help leaders and
               teams build better workplace cultures, strengthen collaboration,
               and achieve sustainable growth.
@@ -139,22 +140,22 @@ export default function Hero() {
             <div className="mt-6 sm:mt-7 flex items-center gap-3.5 sm:gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-[#FF5E14] text-white font-['PP_Mori',sans-serif] text-sm sm:text-base font-semibold shadow-sm hover:bg-[#e0500d] active:scale-[0.98] transition-all cursor-pointer"
+                className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-[#FF5E14] text-white font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-[#e0500d] active:scale-[0.98] transition-all cursor-pointer"
               >
                 Book a call
               </Link>
 
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-white text-[#171717] font-['PP_Mori',sans-serif] text-sm sm:text-base font-semibold shadow-sm hover:bg-white/90 active:scale-[0.98] transition-all cursor-pointer"
+                className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-white text-[#171717] font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-white/90 active:scale-[0.98] transition-all cursor-pointer"
               >
                 Know More
               </Link>
             </div>
           </div>
 
-          {/* Right Column: Video Thumbnails */}
-          <div className="flex items-center gap-2.5 sm:gap-3.5 self-end lg:self-end pb-1">
+          {/* Right Column: Video Thumbnails (Hidden on mobile) */}
+          <div className="hidden md:flex items-center gap-2.5 sm:gap-3.5 self-end lg:self-end pb-1">
             {HERO_VIDEOS.map((item, index) => {
               const isActive = activeThumb === index;
               return (

@@ -10,51 +10,63 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const TOPICS = [
   {
     title: "Business Transformation",
-    lines: ["Business", "Transformation"],
+    lines: ["Business Transformation"],
     text: "Business transformation is not only about changing strategy, technology or operating models—it requires people to change how they think, work and collaborate. OD helps organisations translate business transformation into meaningful people and organisational change.",
-    image: "/Stats/card1.jpg",
+    image: "/Home/HowWeHelp/howwehelp-image-1.png",
   },
   {
     title: "Leadership Alignment",
     lines: ["Leadership Alignment"],
     text: "Leadership teams succeed when they pull in one direction. OD helps leaders build a shared view of priorities, clarify roles and decisions, and act as one team across the organisation.",
-    image: "/Stats/card2.jpg",
+    image: "/Home/HowWeHelp/howwehelp-image-2.png",
   },
   {
     title: "Moving from Functional to Enterprise Leadership",
     lines: ["Moving from Functional to", "Enterprise Leadership"],
     text: "Leaders who grew up in a function must learn to think for the whole enterprise. OD supports this shift with coaching, peer dialogue and real business challenges.",
-    image: "/Stats/card3.jpg",
+    image: "/Home/HowWeHelp/howwehelp-image-3.png",
   },
   {
     title: "Building Trust and Relationships",
-    lines: ["Building Trust", "and Relationships"],
+    lines: ["Building Trust and", "Relationships"],
     text: "Trust is what lets teams move fast and speak openly. OD creates the conditions for honest conversations and stronger working relationships across levels and functions.",
-    image: "/Stats/card4.jpg",
+    image: "/Home/HowWeHelp/howwehelp-image-4.png",
   },
   {
     title: "Culture Change",
     lines: ["Culture Change"],
     text: "Culture shows up in everyday behaviour, not in value statements. OD helps organisations define the culture they need and shift the habits, rituals and systems that sustain it.",
-    image: "/Stats/card5.jpg",
+    image: "/Home/HowWeHelp/howwehelp-image-5.png",
   },
   {
     title: "Strategic Thinking and Leadership Altitude",
     lines: ["Strategic Thinking and", "Leadership Altitude"],
     text: "Leaders need to step back from daily detail and see the bigger picture. OD builds the habits of strategic thinking and the ability to operate at the right altitude.",
-    image: "/WhatWeDo/row1.jpg",
+    image: "/Home/HowWeHelp/howwehelp-image-6.png",
   },
   {
     title: "Learning, Unlearning and Adaptability",
-    lines: ["Learning, Unlearning", "and Adaptability"],
+    lines: ["Learning, Unlearning and", "Adaptability"],
     text: "Staying relevant means learning new ways and letting go of old ones. OD helps people and teams build the agility to adapt as the business changes.",
-    image: "/WhatWeDo/row3.jpg",
+    image: "/Home/HowWeHelp/howwehelp-image-7.png",
   },
   {
     title: "Working Through Differences and Conflict",
-    lines: ["Working Through Differences", "and Conflict"],
+    lines: ["Working Through", "Differences and Conflict"],
     text: "Differences, handled well, lead to better decisions. OD gives teams the skills and structure to work through conflict constructively and come out stronger.",
-    image: "/Stats/card6.jpg",
+    image: "/Home/HowWeHelp/howwehelp-image-8.png",
+  },
+  {
+    title: "Decision–Making and Accountability",
+    lines: ["Decision–Making and", "Accountability"],
+    text: "Clear decision rights and genuine accountability help organisations move fast with clarity. OD helps leadership teams align on how decisions get made, who owns them, and how teams execute with ownership.",
+    image: "/Home/HowWeHelp/howwehelp-image-7.png",
+  },
+  {
+    title: "Role and Collective Identity",
+    lines: ["Role and Collective", "Identity"],
+    text: "When individuals understand their unique role and connect it to a collective purpose, engagement and ownership soar. OD helps organisations clarify roles, bridge boundaries and foster a shared sense of belonging.",
+    image: "/Home/HowWeHelp/howwehelp-image-8.png",
   },
 ];
 
@@ -202,40 +214,47 @@ export default function HowWeHelp() {
 
   return (
     <section aria-label="Where Can Organization Development Help your Business" className="w-full bg-white pb-14 sm:pb-16 md:pb-20">
-      {/* Title Section */}
-      <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-14 sm:pt-16 md:pt-20 pb-8 sm:pb-10 md:pb-12 text-center">
-        {/* Section Chip */}
-        <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
-          <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
-          <span
-            className="text-[#242424] font-medium text-[14px] leading-[18px] tracking-[0.24px]"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            Where Can Organization Development
-          </span>
+      {/* Title Section (Split Header) */}
+      <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-12">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 sm:gap-8">
+          {/* Left Column: Eyebrow + Main Title */}
+          <div className="flex flex-col items-start text-left max-w-[620px]">
+            {/* Section Chip */}
+            <div className="inline-flex items-center gap-2 mb-2 sm:mb-2.5">
+              <span className="w-2 h-2 rounded-[2px] bg-[#FF5E14] shrink-0" />
+              <span
+                className="text-[#242424] font-medium text-[12.5px] sm:text-[13.5px] leading-none uppercase tracking-[0.06em]"
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                Where Can Organization Development
+              </span>
+            </div>
+
+            {/* Section Title */}
+            <h2
+              className="text-[#1c1c1c] font-semibold text-3xl sm:text-4xl md:text-[46px] lg:text-[52px] leading-[1.08] tracking-[-0.03em] mt-1"
+              style={{
+                fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
+              }}
+            >
+              Help your Business?
+            </h2>
+          </div>
+
+          {/* Right Column: Paragraph */}
+          <div className="max-w-[480px] md:text-right">
+            <p
+              className="text-[#555555] text-[13.5px] sm:text-[14.5px] leading-[1.65] font-normal"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              Every organisation reaches moments when strategy, people and culture
+              need to move together. Organisation Development helps your leaders
+              build trust, align on direction and work through change as one
+              team. Here are ten areas where it makes a real difference to your
+              leaders, your teams and your culture.
+            </p>
+          </div>
         </div>
-
-        {/* Section Title */}
-        <h2
-          className="text-[#242424] font-semibold text-3xl sm:text-4xl md:text-[52px] leading-[1.15] md:leading-[58px] tracking-[-0.8px] mb-4 sm:mb-5"
-          style={{
-            fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
-          }}
-        >
-          Help your Business?
-        </h2>
-
-        {/* Subtitle / Description */}
-        <p
-          className="max-w-[840px] mx-auto text-[#666666] text-[14px] sm:text-[15px] md:text-[16px] leading-[1.65] font-normal"
-          style={{ fontFamily: "Inter, sans-serif" }}
-        >
-          Every organisation reaches moments when strategy, people and culture
-          need to move together. Organisation Development helps your leaders
-          build trust, align on direction and work through change as one
-          team. Here are ten areas where it makes a real difference to your
-          leaders, your teams and your culture.
-        </p>
       </div>
 
       {/* Interactive Scroll-Driven Section */}
@@ -275,12 +294,12 @@ export default function HowWeHelp() {
           role="tablist"
           aria-orientation="vertical"
           onKeyDown={onKeyDown}
-          className="hidden sm:flex list-none flex-col items-end gap-[clamp(14px,2vh,28px)] my-auto"
+          className="hidden sm:flex list-none flex-col items-start gap-3 sm:gap-3.5 md:gap-4 lg:gap-4.5 xl:gap-[18px] my-auto w-full"
         >
           {TOPICS.map((t, i) => {
             const on = i === active;
             return (
-              <li key={t.title} role="presentation" className="max-w-full">
+              <li key={t.title} role="presentation" className="w-full flex justify-start">
                 <button
                   ref={(el) => (btnRefs.current[i] = el)}
                   type="button"
@@ -288,27 +307,33 @@ export default function HowWeHelp() {
                   aria-selected={on}
                   tabIndex={on ? 0 : -1}
                   onClick={() => goTo(i)}
-                  className={`group flex max-w-full cursor-pointer items-start justify-start gap-3 bg-transparent p-0 text-left font-['Figtree',sans-serif] text-[16px] sm:text-[clamp(14px,1.3vw,24px)] xl:text-[26px] leading-[1.2] tracking-[-0.02em] transition-colors duration-300 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[6px] focus-visible:outline-[#ef6a2e] sm:justify-end sm:text-right ${
+                  className={`group flex items-start justify-start text-left cursor-pointer bg-transparent p-0 font-['Figtree',sans-serif] text-[15px] sm:text-[clamp(13.5px,1.1vw,19px)] xl:text-[20px] leading-[1.22] tracking-[-0.015em] transition-colors duration-300 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[6px] focus-visible:outline-[#FF5E14] ${
                     on
-                      ? "font-medium text-[#1c1c1c]"
-                      : "font-light text-[#7a7a7a] hover:text-[#4a4a4a]"
+                      ? "font-semibold text-[#1c1c1c]"
+                      : "font-normal text-[#717171] hover:text-[#2d2d2d]"
                   }`}
                 >
-                  <span
-                    aria-hidden="true"
-                    className={`mt-[.22em] h-[clamp(9px,0.75vw,16px)] w-[clamp(9px,0.75vw,16px)] shrink-0 rounded-[2px] bg-[#ef6a2e] transition duration-300 ${
-                      on ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                    }`}
-                  />
                   {/* ghost bold copy reserves the bold width so text never reflows */}
-                  <span className="flex flex-col items-start sm:items-end">
+                  <span className="flex flex-col items-start text-left gap-0.5">
                     {t.lines.map((line, idx) => (
                       <span
                         key={idx}
                         data-text={line}
-                        className="block whitespace-nowrap after:invisible after:block after:h-0 after:overflow-hidden after:font-medium after:content-[attr(data-text)]"
+                        className={`inline-flex items-center justify-start gap-2 sm:gap-2.5 leading-[1.22] whitespace-nowrap text-left after:invisible after:block after:h-0 after:leading-none after:text-[0px] after:overflow-hidden after:font-semibold after:content-[attr(data-text)] ${
+                          idx > 0 && on ? "pl-[calc(clamp(8px,0.6vw,11px)+8px)]" : ""
+                        }`}
                       >
-                        {line}
+                        {idx === 0 && (
+                          <span
+                            aria-hidden="true"
+                            className={`h-[clamp(8px,0.6vw,11px)] w-[clamp(8px,0.6vw,11px)] shrink-0 rounded-[2px] bg-[#FF5E14] transition-all duration-300 ${
+                              on
+                                ? "scale-100 opacity-100"
+                                : "scale-0 opacity-0 w-0 -mr-2 sm:-mr-2.5 pointer-events-none"
+                            }`}
+                          />
+                        )}
+                        <span>{line}</span>
                       </span>
                     ))}
                   </span>
@@ -358,26 +383,26 @@ export default function HowWeHelp() {
         <div
           role="tabpanel"
           aria-live="polite"
-          className="w-full max-w-[420px] self-center justify-self-start sm:translate-y-[8%]"
+          className="w-full max-w-[480px] self-center justify-self-start sm:translate-y-[8%]"
         >
           <div
             className={`transition duration-300 motion-reduce:transition-none ${
               fading ? "translate-y-2.5 opacity-0" : "translate-y-0 opacity-100"
             }`}
           >
-            <h3 className="mb-[1em] flex items-start gap-3 font-['Figtree',sans-serif] text-[clamp(17px,1.4vw,30px)] leading-[1.25] font-semibold tracking-[-0.01em]">
+            <h3 className="mb-[0.85em] flex items-start gap-3.5 font-['Figtree',sans-serif] text-[clamp(22px,1.8vw,34px)] leading-[1.2] font-semibold tracking-[-0.015em] text-[#1c1c1c]">
               <span
                 aria-hidden="true"
-                className="mt-[0.24em] h-[clamp(10px,0.8vw,18px)] w-[clamp(10px,0.8vw,18px)] shrink-0 rounded-[3px] bg-[#ef6a2e]"
+                className="mt-[0.22em] h-[clamp(12px,0.9vw,18px)] w-[clamp(12px,0.9vw,18px)] shrink-0 rounded-[3px] bg-[#FF5E14]"
               />
               <span>{current.title}</span>
             </h3>
-            <p className="mb-[1.8em] text-[clamp(13.5px,0.95vw,17px)] leading-[1.7] text-[#6b6b6b] sm:min-h-[7.5em]">
+            <p className="mb-[1.8em] text-[clamp(15px,1.15vw,19px)] leading-[1.65] text-[#555555] sm:min-h-[6.5em]">
               {current.text}
             </p>
             <a
               href="#contact"
-              className="inline-block rounded-lg bg-[#ef6a2e] px-[1.8em] py-[.85em] font-['Figtree',sans-serif] text-[clamp(14px,1vw,18px)] font-medium text-white no-underline transition duration-200 hover:-translate-y-0.5 hover:bg-[#d9561c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#1c1c1c]"
+              className="inline-block rounded-lg bg-[#FF5E14] px-[1.8em] py-[.85em] font-['Figtree',sans-serif] text-[clamp(14px,1vw,17px)] font-medium text-white no-underline transition duration-200 hover:-translate-y-0.5 hover:bg-[#E04F0D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#1c1c1c]"
             >
               Contact us
             </a>

@@ -5,7 +5,7 @@ import WhatWeDo from "./components/Home/WhatWeDo";
 import Statement from "./components/Home/Statement";
 import HowWeHelp from "./components/Home/HowWeHelp";
 import Testimonials from "./components/Home/Testimonials";
-import CTA from "./components/Home/CTA";
+import CTA from "./components/Common/CTA";
 import Footer from "./components/Common/Footer";
 
 export default function Home() {

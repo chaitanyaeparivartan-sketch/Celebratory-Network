@@ -1,6 +1,13 @@
 import Header from "../components/Common/Header";
 import Footer from "../components/Common/Footer";
+import CTA from "../components/Common/CTA";
 import Hero from "./components/Hero";
+import Purpose from "./components/Purpose";
+import DNA from "./components/DNA";
+import WeGrow from "./components/WeGrow";
+import Team from "./components/Team";
+import Research from "./components/Research";
+import Gallery from "./components/Gallery";
 
 export const metadata = {
   title: "About Us | Celebratory Network",
@@ -14,6 +21,13 @@ export default function AboutPage() {
       <Header />
       <main className="flex-1">
         <Hero showLogo={false} />
+        <Purpose />
+        <DNA />
+        <WeGrow />
+        <Team />
+        <Research />
+        <CTA />
+        <Gallery />
       </main>
       <Footer />
     </div>

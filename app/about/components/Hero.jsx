@@ -5,8 +5,7 @@ import Image from "next/image";
 export default function Hero({ showLogo = false, className = "" }) {
   return (
     <section
-      className={`relative w-full bg-white overflow-hidden ${className}`}
-      style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
+      className={`relative w-full bg-white overflow-hidden font-ppmori ${className}`}
     >
       {/* Warm Sunrise / Sunset Radial Sky Glow behind Bridge Towers & Seagulls */}
       <div
@@ -78,36 +77,36 @@ export default function Hero({ showLogo = false, className = "" }) {
       </div>
 
       {/* Main Story Content (Left Column on Pure White Sky Section) */}
-      <div className="relative lg:absolute lg:top-0 lg:left-0 lg:right-0 z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-24 sm:pt-28 md:pt-32 lg:pt-24 pb-4 lg:pb-0">
-        <div className="w-full max-w-[440px] sm:max-w-[480px] md:max-w-[500px] lg:max-w-[520px]">
+      <div className="relative lg:absolute lg:top-0 lg:left-0 lg:right-0 z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-40 lg:pt-36 pb-4 lg:pb-0">
+        <div className="w-full max-w-[440px] sm:max-w-[520px] md:max-w-[620px] lg:max-w-[680px]">
           {/* Top Story Tag */}
           <div className="flex items-center gap-1.5 sm:gap-2 mb-2">
             <span
               className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#e06526] inline-block rounded-[1px] shrink-0"
               aria-hidden="true"
             />
-            <span className="text-[#374151] font-semibold text-[10px] sm:text-[11px] tracking-[0.2em] uppercase select-none">
+            <span className="text-[#374151] font-semibold text-[12px] sm:text-[13px] md:text-[14px] tracking-[0.2em] uppercase select-none">
               OUR STORY
             </span>
           </div>
 
           {/* Heading - Exactly 3 Lines */}
-          <h1 className="text-[#141414] font-bold text-[20px] sm:text-[23px] md:text-[26px] lg:text-[29px] leading-[1.14] tracking-[-0.03em] mb-2.5 sm:mb-3">
+          <h1 className="text-[#141414] font-semibold text-[clamp(28px,3.8vw,52px)] leading-[36px] sm:leading-[42px] md:leading-[48px] tracking-[-0.8px] mb-2.5 sm:mb-3">
             A name often brings<br />
             curiosity. What does it really<br />
             mean?
           </h1>
 
           {/* Story Paragraphs */}
-          <div className="space-y-2 sm:space-y-2.5">
-            <p className="text-[#242424] text-[11px] sm:text-[11.5px] md:text-[12px] lg:text-[12.5px] leading-[1.48] font-normal">
+          <div className="space-y-2 sm:space-y-2.5 max-w-[520px]">
+            <p className="text-[#242424] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.48] font-normal">
               <span className="text-[#e06526] font-semibold">Celebratory</span>{" "}
               is about celebrating all moments of life. Every experience, every
               encounter, every challenge and every achievement shapes who we are
               today: as professionals, as organisations, and as people.
             </p>
 
-            <p className="text-[#242424] text-[11px] sm:text-[11.5px] md:text-[12px] lg:text-[12.5px] leading-[1.48] font-normal">
+            <p className="text-[#242424] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.48] font-normal">
               <span className="text-[#e06526] font-semibold">Network:</span>{" "}
               from the very beginning,{" "}
               <strong className="font-bold text-[#141414]">Payal</strong> started
@@ -117,7 +116,7 @@ export default function Hero({ showLogo = false, className = "" }) {
               people, expertise and perspectives to create meaningful work
             </p>
 
-            <p className="text-[#e06526] font-semibold text-[11px] sm:text-[11.5px] md:text-[12px] lg:text-[12.5px] leading-snug pt-0.5">
+            <p className="text-[#e06526] font-semibold text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-snug pt-0.5">
               And that is how we became Celebratory Network.
             </p>
           </div>
@@ -125,7 +124,7 @@ export default function Hero({ showLogo = false, className = "" }) {
       </div>
 
       {/* Bandra-Worli Sea Link Bridge at bottom (FULL image, 100% visible, no cut off) */}
-      <div className="relative w-full flex justify-center pointer-events-none select-none z-0 mt-2 sm:mt-4 lg:mt-0 lg:pt-20">
+      <div className="relative w-full flex justify-center pointer-events-none select-none z-0 mt-4 sm:mt-8 md:mt-12 lg:mt-0 lg:pt-[340px] xl:pt-[400px] 2xl:pt-[460px]">
         <div className="w-full max-w-[1920px]">
           <Image
             src="/AboutUs/about-us-image-1.png"
