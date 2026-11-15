@@ -12,7 +12,7 @@ const SERVICES = [
     titleLine2: "Development",
     description:
       "We design, facilitate and implement solutions to achieve the desired Organizational Culture.",
-    image: "/Home/WhatWeDo/whatwedo-image-1.png",
+    image: "/Home/WhatWeDo/whatwedo-image-1.webp",
     imageAlt: "Executive leading strategic organizational agenda",
     reverse: false,
   },
@@ -23,7 +23,7 @@ const SERVICES = [
     titleLine2: "Consulting",
     description:
       "We work at the intersection of Family, Business and Organization Development, helping family managed businesses strengthen relationships, professionalize leadership and prepare for sustainable growth across generations.",
-    image: "/Home/WhatWeDo/whatwedo-image-2.png",
+    image: "/Home/WhatWeDo/whatwedo-image-2.webp",
     imageAlt: "Family business partners collaborating at desk",
     reverse: true,
   },
@@ -34,7 +34,7 @@ const SERVICES = [
     titleLine2: "Interventions",
     description:
       "Large Group Interventions bring people across the organization together to surface diverse perspectives, create shared understanding of complex organizational realities.",
-    image: "/Home/WhatWeDo/whatwedo-image-3.png",
+    image: "/Home/WhatWeDo/whatwedo-image-3.webp",
     imageAlt: "Cross-functional team collaborating on blueprint diagram",
     reverse: false,
   },
@@ -45,7 +45,7 @@ const SERVICES = [
     titleLine2: "Cultures",
     description:
       "HWC works towards understanding the person, the existing organizational culture and its impact on individuals and the business.",
-    image: "/Home/WhatWeDo/whatwedo-image-4.png",
+    image: "/Home/WhatWeDo/whatwedo-image-4.webp",
     imageAlt: "Diverse team connecting and celebrating together",
     reverse: true,
   },

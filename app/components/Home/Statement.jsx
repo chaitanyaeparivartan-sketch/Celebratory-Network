@@ -22,7 +22,7 @@ export default function Statement() {
           <Reveal direction="scale" duration={800} className="shrink-0">
             <div className="relative w-[230px] h-[270px] sm:w-[260px] sm:h-[310px] md:w-[280px] md:h-[330px] rounded-[8px] overflow-hidden bg-[#BD3B00] shadow-[0_12px_32px_rgba(0,0,0,0.18)] group transition-transform duration-500 hover:scale-[1.02]">
               <Image
-                src="/Home/Statement/payal-gupta-card.jpg"
+                src="/Home/Statement/payal-gupta-card.webp"
                 alt="Payal Gupta - CEO, Director Celebratory Network"
                 fill
                 sizes="(max-width: 768px) 260px, 300px"
@@ -60,7 +60,7 @@ export default function Statement() {
             <div className="mt-2 flex items-center gap-2">
               <div className="relative w-[18px] h-[18px] shrink-0 transition-transform duration-300 hover:rotate-12">
                 <Image
-                  src="/Home/Statement/cn-badge.png"
+                  src="/Home/Statement/cn-badge.webp"
                   alt="Celebratory Network"
                   fill
                   sizes="20px"

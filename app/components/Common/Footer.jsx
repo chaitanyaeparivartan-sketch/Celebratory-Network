@@ -53,7 +53,7 @@ export default function Footer() {
         >
           <div className="relative w-8 h-8 shrink-0">
             <Image
-              src="/cn-badge.png"
+              src="/cn-badge.webp"
               alt="Celebratory Network Logo"
               width={32}
               height={32}

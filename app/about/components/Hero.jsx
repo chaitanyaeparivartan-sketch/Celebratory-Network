@@ -21,7 +21,7 @@ export default function Hero({ showLogo = false, className = "" }) {
       {showLogo && (
         <div className="absolute top-4 sm:top-5 md:top-6 lg:top-8 right-6 sm:right-8 md:right-10 lg:right-14 z-20">
           <Image
-            src="/logo.png"
+            src="/logo.webp"
             alt="Celebratory Network"
             width={282}
             height={51}
@@ -45,7 +45,7 @@ export default function Hero({ showLogo = false, className = "" }) {
         aria-hidden="true"
       >
         <Image
-          src="/AboutUs/about-us-image-2.png"
+          src="/AboutUs/about-us-image-2.webp"
           alt="Seagull flying"
           width={229}
           height={239}
@@ -67,7 +67,7 @@ export default function Hero({ showLogo = false, className = "" }) {
         aria-hidden="true"
       >
         <Image
-          src="/AboutUs/about-us-image-3.png"
+          src="/AboutUs/about-us-image-3.webp"
           alt="Seagull flying in distance"
           width={94}
           height={98}
@@ -127,7 +127,7 @@ export default function Hero({ showLogo = false, className = "" }) {
       <div className="relative w-full flex justify-center pointer-events-none select-none z-0 mt-4 sm:mt-8 md:mt-12 lg:mt-0 lg:pt-[340px] xl:pt-[400px] 2xl:pt-[460px]">
         <div className="w-full max-w-[1920px]">
           <Image
-            src="/AboutUs/about-us-image-1.png"
+            src="/AboutUs/about-us-image-1.webp"
             alt="Bandra-Worli Sea Link Mumbai"
             width={1920}
             height={1273}

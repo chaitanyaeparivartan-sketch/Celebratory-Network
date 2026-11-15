@@ -7,7 +7,7 @@ import Reveal from "@/app/components/Common/Reveal";
 const FLOATING_CARDS = [
   {
     id: 1,
-    avatar: "/Home/Stats/stat-image-1.jpg",
+    avatar: "/Home/Stats/stat-image-1.webp",
     line1: "Guide transformation with",
     line2: "your people on board",
     bg: "bg-[#E5F2FF]",
@@ -20,7 +20,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 2,
-    avatar: "/Home/Stats/stat-image-2.jpg",
+    avatar: "/Home/Stats/stat-image-2.webp",
     line1: "Align leadership teams on",
     line2: "one shared direction",
     bg: "bg-[#E6FAE1]",
@@ -33,7 +33,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 3,
-    avatar: "/Home/Stats/stat-image-3.jpg",
+    avatar: "/Home/Stats/stat-image-3.webp",
     line1: "Move leaders from function to",
     line2: "enterprise thinking",
     bg: "bg-[#F5EBFF]",
@@ -46,7 +46,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 4,
-    avatar: "/Home/Stats/stat-image-4.jpg",
+    avatar: "/Home/Stats/stat-image-4.webp",
     line1: "Build trust that",
     line2: "survives disagreement",
     bg: "bg-[#FFF0E6]",
@@ -59,7 +59,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 5,
-    avatar: "/Home/Stats/stat-image-5.jpg",
+    avatar: "/Home/Stats/stat-image-5.webp",
     line1: "Evolve culture, keep",
     line2: "what makes you unique",
     bg: "bg-[#F5EBFF]",
@@ -72,7 +72,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 6,
-    avatar: "/Home/Stats/stat-image-6.jpg",
+    avatar: "/Home/Stats/stat-image-6.webp",
     line1: "Work through conflict, keep",
     line2: "relationships strong",
     bg: "bg-[#FFF3DB]",
@@ -85,7 +85,7 @@ const FLOATING_CARDS = [
   },
   {
     id: 7,
-    avatar: "/Home/Stats/stat-image-7.jpg",
+    avatar: "/Home/Stats/stat-image-7.webp",
     line1: "Strengthen decision-making",
     line2: "and accountability",
     bg: "bg-[#E6FAE1]",
@@ -101,7 +101,7 @@ const FLOATING_CARDS = [
 const MOBILE_TOP_CHIPS = [
   {
     id: 2,
-    avatar: "/Home/Stats/stat-image-2.jpg",
+    avatar: "/Home/Stats/stat-image-2.webp",
     line1: "Align leadership teams on",
     line2: "one shared direction",
     bg: "bg-[#E6FAE1]",
@@ -114,7 +114,7 @@ const MOBILE_TOP_CHIPS = [
   },
   {
     id: 1,
-    avatar: "/Home/Stats/stat-image-1.jpg",
+    avatar: "/Home/Stats/stat-image-1.webp",
     line1: "Guide transformation with",
     line2: "your people on board",
     bg: "bg-[#E5F2FF]",
@@ -127,7 +127,7 @@ const MOBILE_TOP_CHIPS = [
   },
   {
     id: 4,
-    avatar: "/Home/Stats/stat-image-4.jpg",
+    avatar: "/Home/Stats/stat-image-4.webp",
     line1: "Build trust that survives",
     line2: "disagreement",
     bg: "bg-[#FFF0E6]",
@@ -143,7 +143,7 @@ const MOBILE_TOP_CHIPS = [
 const MOBILE_BOTTOM_CHIPS = [
   {
     id: 3,
-    avatar: "/Home/Stats/stat-image-3.jpg",
+    avatar: "/Home/Stats/stat-image-3.webp",
     line1: "Move leaders from function",
     line2: "to enterprise thinking",
     bg: "bg-[#F5EBFF]",
@@ -156,7 +156,7 @@ const MOBILE_BOTTOM_CHIPS = [
   },
   {
     id: 5,
-    avatar: "/Home/Stats/stat-image-5.jpg",
+    avatar: "/Home/Stats/stat-image-5.webp",
     line1: "Evolve culture, keep what",
     line2: "makes you unique",
     bg: "bg-[#F5EBFF]",
@@ -169,7 +169,7 @@ const MOBILE_BOTTOM_CHIPS = [
   },
   {
     id: 6,
-    avatar: "/Home/Stats/stat-image-6.jpg",
+    avatar: "/Home/Stats/stat-image-6.webp",
     line1: "Work through conflict, keep",
     line2: "relationships strong",
     bg: "bg-[#FFF3DB]",
@@ -182,7 +182,7 @@ const MOBILE_BOTTOM_CHIPS = [
   },
   {
     id: 7,
-    avatar: "/Home/Stats/stat-image-7.jpg",
+    avatar: "/Home/Stats/stat-image-7.webp",
     line1: "Strengthen decision-",
     line2: "making and accountability",
     bg: "bg-[#E6FAE1]",

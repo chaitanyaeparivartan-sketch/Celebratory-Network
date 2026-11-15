@@ -8,22 +8,22 @@ const HERO_VIDEOS = [
   {
     id: 0,
     videoSrc: "/Home/Hero/hero-video-1.mp4",
-    poster: "/Home/Hero/poster1.jpg",
-    thumb: "/Home/Hero/thumb_video1.jpg",
+    poster: "/Home/Hero/poster1.webp",
+    thumb: "/Home/Hero/thumb_video1.webp",
     alt: "Strategic planning and team transformation session",
   },
   {
     id: 1,
     videoSrc: "/Home/Hero/hero-video-2.mp4",
-    poster: "/Home/Hero/poster2.jpg",
-    thumb: "/Home/Hero/thumb_video2.jpg",
+    poster: "/Home/Hero/poster2.webp",
+    thumb: "/Home/Hero/thumb_video2.webp",
     alt: "Executive leadership discussion",
   },
   {
     id: 2,
     videoSrc: "/Home/Hero/hero-video-3.mp4",
-    poster: "/Home/Hero/poster3.jpg",
-    thumb: "/Home/Hero/thumb_video3.jpg",
+    poster: "/Home/Hero/poster3.webp",
+    thumb: "/Home/Hero/thumb_video3.webp",
     alt: "Collaborative team workshop session",
   },
 ];
@@ -64,7 +64,7 @@ export default function Hero() {
       {/* Mobile Background Image */}
       <div className="md:hidden absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
         <Image
-          src="/Home/Hero/Mobile-Hero.png"
+          src="/Home/Hero/Mobile-Hero.webp"
           alt="Leading organizational change & transformation"
           fill
           priority

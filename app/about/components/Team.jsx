@@ -12,37 +12,37 @@ const DEFAULT_TEAM = [
   {
     name: "Payal Gupta",
     role: "CEO and Director",
-    image: "/AboutUs/Team/payal-gupta.png",
+    image: "/AboutUs/Team/payal-gupta.webp",
     position: "center top",
   },
   {
     name: "Saurabh Karade",
     role: "Director",
-    image: "/AboutUs/Team/sourabh-karade.png",
+    image: "/AboutUs/Team/sourabh-karade.webp",
     position: "center top",
   },
   {
     name: "Probir Roy",
     role: "High Impact Advisor",
-    image: "/AboutUs/Team/probir-roy.png",
+    image: "/AboutUs/Team/probir-roy.webp",
     position: "center top",
   },
   {
     name: "Bhanumathy Vasudevan",
     role: "Mentor",
-    image: "/AboutUs/Team/bhanumathy-vasudev.png",
+    image: "/AboutUs/Team/bhanumathy-vasudev.webp",
     position: "center top",
   },
   {
     name: "Jaya Nuty",
     role: "Principal Consultant",
-    image: "/AboutUs/Team/jaya-nuty.png",
+    image: "/AboutUs/Team/jaya-nuty.webp",
     position: "center top",
   },
   {
     name: "Kesha Kapadia",
     role: "Senior Consultant",
-    image: "/AboutUs/Team/kesha-kapadia.png",
+    image: "/AboutUs/Team/kesha-kapadia.webp",
     position: "center top",
   },
 ];
