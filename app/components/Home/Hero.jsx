@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
+
+const SLIDE_DURATION = 6500; // 6.5 seconds per slide for auto-advance
 
 const HERO_VIDEOS = [
   {
@@ -59,30 +61,38 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, []);
 
+  const nextSlide = useCallback(() => {
+    setActiveThumb((prev) => (prev + 1) % HERO_VIDEOS.length);
+  }, []);
+
+  // Universal auto-advance timer for videos (desktop) and images (mobile)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, SLIDE_DURATION);
+    return () => clearInterval(timer);
+  }, [activeThumb, nextSlide]);
+
+  // Video playback management on desktop
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) return;
     videoRefs.current.forEach((video, index) => {
       if (!video) return;
       if (index === activeThumb) {
+        video.muted = true;
         video.currentTime = 0;
-        video.play().catch(() => {});
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
       } else {
         video.pause();
       }
     });
   }, [activeThumb]);
 
-  // Mobile auto-advance carousel every 6s
-  useEffect(() => {
-    if (typeof window === "undefined" || window.innerWidth >= 768) return;
-    const timer = setInterval(() => {
-      setActiveThumb((prev) => (prev + 1) % HERO_VIDEOS.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
   const handleEnded = () => {
-    setActiveThumb((prev) => (prev + 1) % HERO_VIDEOS.length);
+    nextSlide();
   };
 
   const handleThumbClick = (index) => {
@@ -91,6 +101,12 @@ export default function Hero() {
 
   return (
     <section className="relative w-full min-h-[640px] sm:min-h-[720px] h-[92vh] max-h-[1020px] flex flex-col justify-end overflow-hidden bg-[#1f1e1d] font-ppmori">
+      <style>{`
+        @keyframes heroProgress {
+          from { width: 0%; }
+          to { width: 100%; }
+        }
+      `}</style>
       {/* Mobile Background Images with Smooth Cross-fade */}
       <div className="md:hidden absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
         {HERO_VIDEOS.map((item, index) => (
@@ -237,25 +253,38 @@ export default function Hero() {
               );
             })}
 
-            {/* Mobile Carousel Indicators */}
-            <div className="flex md:hidden items-center justify-center gap-2 mt-6">
-              {HERO_VIDEOS.map((item, index) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleThumbClick(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    activeThumb === index
-                      ? "w-7 bg-[#FF5E14]"
-                      : "w-2 bg-white/40 hover:bg-white/80"
-                  }`}
-                />
-              ))}
+            {/* Mobile Carousel Indicators with Auto-Scroll Progress */}
+            <div className="flex md:hidden items-center justify-center gap-2.5 mt-6">
+              {HERO_VIDEOS.map((item, index) => {
+                const isActive = activeThumb === index;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => handleThumbClick(index)}
+                    aria-label={`Go to slide ${index + 1}`}
+                    className={`relative h-2 rounded-full overflow-hidden transition-all duration-300 cursor-pointer ${
+                      isActive
+                        ? "w-8 bg-white/30"
+                        : "w-2 bg-white/40 hover:bg-white/80"
+                    }`}
+                  >
+                    {isActive && (
+                      <span
+                        key={activeThumb}
+                        className="absolute inset-0 bg-[#FF5E14] rounded-full"
+                        style={{
+                          animation: `heroProgress ${SLIDE_DURATION}ms linear forwards`,
+                        }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
-          {/* Right Column: Video Thumbnails (Hidden on mobile) */}
+          {/* Right Column: Video Thumbnails with Auto-Scroll Progress Bar (Hidden on mobile) */}
           <div
             className="hidden md:flex items-center gap-2.5 sm:gap-3.5 self-end lg:self-end pb-1 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
@@ -285,6 +314,19 @@ export default function Hero() {
                     sizes="(max-width: 768px) 80px, 100px"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
+
+                  {/* Active Progress Line */}
+                  {isActive && (
+                    <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-black/40 overflow-hidden z-10 pointer-events-none">
+                      <div
+                        key={activeThumb}
+                        className="h-full bg-[#FF5E14]"
+                        style={{
+                          animation: `heroProgress ${SLIDE_DURATION}ms linear forwards`,
+                        }}
+                      />
+                    </div>
+                  )}
                 </button>
               );
             })}
