@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Reveal from "@/app/components/Common/Reveal";
 
 /**
  * WeGrow — values carousel section
@@ -175,7 +174,7 @@ export default function WeGrow({ items = DEFAULT_ITEMS, buttonHref = "#network",
       className="overflow-hidden bg-[#FF5E14] pb-[110px] pt-20 text-white antialiased max-[700px]:pb-[72px] max-[700px]:pt-14"
     >
       {/* ---------- Header ---------- */}
-      <Reveal direction="up" duration={750} className="flex flex-col items-center px-5 text-center">
+      <div className="flex flex-col items-center px-5 text-center">
         <span className="inline-flex items-center gap-2 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] before:h-2 before:w-2 before:rounded-[2px] before:bg-white before:content-['']">
           We grow
         </span>
@@ -202,17 +201,14 @@ export default function WeGrow({ items = DEFAULT_ITEMS, buttonHref = "#network",
 
         <a
           href={buttonHref}
-          className={`mt-7 inline-flex items-center justify-center gap-[10px] rounded-md bg-white px-[19px] py-[13px] font-ppmori text-[18px] font-semibold leading-5 text-[#FF5E14] no-underline hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.15)] active:scale-[0.98] transition-all ${focusRing}`}
+          className={`mt-7 inline-flex items-center justify-center gap-[10px] rounded-md bg-white px-[19px] py-[13px] font-ppmori text-[18px] font-semibold leading-5 text-[#FF5E14] no-underline ${focusRing}`}
         >
           Meet the network
         </a>
-      </Reveal>
+      </div>
 
       {/* ---------- Carousel ---------- */}
-      <Reveal
-        direction="up"
-        duration={800}
-        delay={100}
+      <div
         ref={stageRef}
         onPointerDown={onPointerDown}
         onMouseEnter={() => setIsPaused(true)}
@@ -283,13 +279,10 @@ export default function WeGrow({ items = DEFAULT_ITEMS, buttonHref = "#network",
             );
           })}
         </div>
-      </Reveal>
+      </div>
 
       {/* ---------- Tabs ---------- */}
-      <Reveal
-        direction="up"
-        duration={750}
-        delay={160}
+      <div
         className="mt-4 sm:mt-6 w-full px-3 sm:px-5"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
@@ -324,7 +317,7 @@ export default function WeGrow({ items = DEFAULT_ITEMS, buttonHref = "#network",
             );
           })}
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }
