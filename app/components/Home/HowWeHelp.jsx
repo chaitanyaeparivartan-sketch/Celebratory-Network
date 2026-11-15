@@ -129,18 +129,6 @@ export default function HowWeHelp() {
 
   // Mobile accordion state
   const [openIndex, setOpenIndex] = useState(0);
-  const mobileItemRefs = useRef([]);
-
-  useEffect(() => {
-    if (openIndex === null) return;
-    const t = setTimeout(() => {
-      mobileItemRefs.current[openIndex]?.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-      });
-    }, 320);
-    return () => clearTimeout(t);
-  }, [openIndex]);
 
   const toggleAccordion = (i) => setOpenIndex((cur) => (cur === i ? null : i));
 
@@ -277,7 +265,6 @@ export default function HowWeHelp() {
               return (
                 <li
                   key={item.title}
-                  ref={(el) => (mobileItemRefs.current[i] = el)}
                   className="border-b border-[#ececec]"
                 >
                   <button
