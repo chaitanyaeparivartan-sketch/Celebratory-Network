@@ -11,13 +11,25 @@ const HERO_VIDEOS = [
     poster: "/Home/Hero/poster1.webp",
     thumb: "/Home/Hero/thumb_video1.webp",
     alt: "Strategic planning and team transformation session",
+    titleLine1: "Leading organizational",
+    titleLine2: "change & transformation",
+    description:
+      "Strong organizations don't happen by chance. We help leaders and teams build better workplace cultures, strengthen collaboration, and achieve sustainable growth.",
+    primaryBtn: { label: "Book a call", href: "/contact" },
+    secondaryBtn: { label: "Know More", href: "/about" },
   },
   {
     id: 1,
     videoSrc: "/Home/Hero/hero-video-2.mp4",
     poster: "/Home/Hero/poster2.webp",
     thumb: "/Home/Hero/thumb_video2.webp",
-    alt: "Executive leadership discussion",
+    alt: "Personal Power In Leadership For Women Leaders",
+    titleLine1: "Personal Power In Leadership",
+    titleLine2: "For Women Leaders",
+    description:
+      "Brings spotlight on the Being and the Doing of Leadership A journey for Women Leaders who dream of possibilities and have the willingness to make it happen.",
+    primaryBtn: { label: "Book a call", href: "/contact" },
+    secondaryBtn: { label: "Know More", href: "/about" },
   },
   {
     id: 2,
@@ -25,6 +37,12 @@ const HERO_VIDEOS = [
     poster: "/Home/Hero/poster3.webp",
     thumb: "/Home/Hero/thumb_video3.webp",
     alt: "Collaborative team workshop session",
+    titleLine1: "Leading organizational",
+    titleLine2: "change & transformation",
+    description:
+      "Strong organizations don't happen by chance. We help leaders and teams build better workplace cultures, strengthen collaboration, and achieve sustainable growth.",
+    primaryBtn: { label: "Book a call", href: "/contact" },
+    secondaryBtn: { label: "Know More", href: "/about" },
   },
 ];
 
@@ -143,67 +161,76 @@ export default function Hero() {
       <div className="relative z-30 w-full max-w-[1783px] mx-auto px-4 sm:px-6 lg:px-12 pb-12 sm:pb-16 pt-28">
         <div className="flex flex-col lg:flex-row items-center md:items-start lg:items-end justify-between gap-8 lg:gap-12">
           {/* Left Column: Heading, Subtitle & Buttons */}
-          <div className="w-full max-w-[720px] text-center md:text-left mx-auto md:mx-0 flex flex-col items-center md:items-start">
-            {/* Title with staggered entrance */}
-            <h1 className="font-ppmori text-[clamp(28px,3.8vw,52px)] font-semibold text-white tracking-[-0.8px] leading-[36px] sm:leading-[42px] md:leading-[48px] text-center md:text-left overflow-hidden">
-              <span
-                className="block sm:whitespace-nowrap transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                style={{
-                  opacity: isMounted ? 1 : 0,
-                  transform: isMounted ? "none" : "translate3d(0, 32px, 0)",
-                  transitionDelay: "120ms",
-                }}
-              >
-                Leading organizational
-              </span>
-              <span
-                className="block sm:whitespace-nowrap transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                style={{
-                  opacity: isMounted ? 1 : 0,
-                  transform: isMounted ? "none" : "translate3d(0, 32px, 0)",
-                  transitionDelay: "220ms",
-                }}
-              >
-                change &amp; transformation
-              </span>
-            </h1>
+          <div className="w-full max-w-[720px] text-center md:text-left mx-auto md:mx-0 flex flex-col items-center md:items-start relative min-h-[220px] sm:min-h-[240px]">
+            {HERO_VIDEOS.map((slide, index) => {
+              const isActive = activeThumb === index;
+              return (
+                <div
+                  key={slide.id}
+                  className={`w-full flex flex-col items-center md:items-start transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    isActive
+                      ? "opacity-100 translate-y-0 relative z-10 pointer-events-auto"
+                      : "opacity-0 translate-y-3 absolute inset-0 pointer-events-none"
+                  }`}
+                  style={
+                    index === 0 && !isMounted
+                      ? {
+                          opacity: 0,
+                          transform: "translate3d(0, 24px, 0)",
+                        }
+                      : undefined
+                  }
+                >
+                  {/* Title */}
+                  <h1 className="font-ppmori text-[clamp(28px,3.8vw,52px)] font-semibold text-white tracking-[-0.8px] leading-[36px] sm:leading-[42px] md:leading-[48px] text-center md:text-left overflow-hidden">
+                    <span className="block sm:whitespace-nowrap">
+                      {slide.titleLine1}
+                    </span>
+                    <span className="block sm:whitespace-nowrap">
+                      {slide.titleLine2}
+                    </span>
+                  </h1>
 
-            {/* Description */}
-            <p
-              className="mt-3.5 sm:mt-4 text-white/95 font-inter font-normal text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.5] max-w-[500px] text-center md:text-left mx-auto md:mx-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-              style={{
-                opacity: isMounted ? 1 : 0,
-                transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
-                transitionDelay: "340ms",
-              }}
-            >
-              Strong organizations don&apos;t happen by chance. We help leaders and
-              teams build better workplace cultures, strengthen collaboration,
-              and achieve sustainable growth.
-            </p>
+                  {/* Description */}
+                  <p className="mt-3.5 sm:mt-4 text-white/95 font-inter font-normal text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.5] max-w-[500px] text-center md:text-left mx-auto md:mx-0">
+                    {slide.description}
+                  </p>
 
-            {/* CTA Buttons */}
-            <div
-              className="mt-6 sm:mt-7 flex items-center justify-center md:justify-start gap-3.5 sm:gap-4 w-full md:w-auto transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-              style={{
-                opacity: isMounted ? 1 : 0,
-                transform: isMounted ? "none" : "translate3d(0, 18px, 0)",
-                transitionDelay: "460ms",
-              }}
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-[#FF5E14] text-white font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] transition-all cursor-pointer"
-              >
-                Book a call
-              </Link>
+                  {/* CTA Buttons */}
+                  <div className="mt-6 sm:mt-7 flex items-center justify-center md:justify-start gap-3.5 sm:gap-4 w-full md:w-auto">
+                    <Link
+                      href={slide.primaryBtn.href}
+                      className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-[#FF5E14] text-white font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] transition-all cursor-pointer"
+                    >
+                      {slide.primaryBtn.label}
+                    </Link>
 
-              <Link
-                href="/about"
-                className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-white text-[#171717] font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,255,255,0.25)] active:scale-[0.98] transition-all cursor-pointer"
-              >
-                Know More
-              </Link>
+                    <Link
+                      href={slide.secondaryBtn.href}
+                      className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-white text-[#171717] font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,255,255,0.25)] active:scale-[0.98] transition-all cursor-pointer"
+                    >
+                      {slide.secondaryBtn.label}
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Mobile Carousel Indicators */}
+            <div className="flex md:hidden items-center justify-center gap-2 mt-6">
+              {HERO_VIDEOS.map((item, index) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => handleThumbClick(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    activeThumb === index
+                      ? "w-7 bg-[#FF5E14]"
+                      : "w-2 bg-white/40 hover:bg-white/80"
+                  }`}
+                />
+              ))}
             </div>
           </div>
 
