@@ -103,7 +103,12 @@ export default function WeGrow({ items = DEFAULT_ITEMS, buttonHref = "#network",
     const tab = tabRefs.current[current];
     const bar = tab?.parentNode;
     if (bar && bar.scrollWidth > bar.clientWidth) {
-      bar.scrollLeft = tab.offsetLeft - (bar.clientWidth - tab.offsetWidth) / 2;
+      const targetLeft = tab.offsetLeft - (bar.clientWidth - tab.offsetWidth) / 2;
+      if (typeof bar.scrollTo === "function") {
+        bar.scrollTo({ left: targetLeft, behavior: "smooth" });
+      } else {
+        bar.scrollLeft = targetLeft;
+      }
     }
   }, [current]);
 
@@ -278,14 +283,14 @@ export default function WeGrow({ items = DEFAULT_ITEMS, buttonHref = "#network",
 
       {/* ---------- Tabs ---------- */}
       <div
-        className="mt-6 w-full px-5"
+        className="mt-4 sm:mt-6 w-full px-3 sm:px-5"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
         <div
           role="tablist"
           aria-label="Our values"
-          className="mx-auto flex h-[60.5px] w-[820px] max-w-full gap-0.5 overflow-x-auto rounded-full bg-[rgba(22,22,22,0.12)] p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mx-auto flex h-[44px] sm:h-[50px] md:h-[58px] lg:h-[60.5px] w-[820px] max-w-full items-center gap-1 sm:gap-1.5 overflow-x-auto rounded-full bg-[rgba(22,22,22,0.16)] p-1 sm:p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden touch-pan-x select-none"
         >
           {items.map((item, i) => {
             const selected = i === current;
@@ -301,8 +306,10 @@ export default function WeGrow({ items = DEFAULT_ITEMS, buttonHref = "#network",
                 tabIndex={selected ? 0 : -1}
                 onClick={() => go(i)}
                 onKeyDown={onTabKeyDown}
-                className={`flex-[1_0_auto] cursor-pointer whitespace-nowrap rounded-full border-0 px-5 py-[15px] text-center font-inter text-[14px] sm:text-[15px] font-semibold transition-colors duration-300 motion-reduce:transition-none ${focusRing} ${
-                  selected ? "bg-white text-[#242424]" : "bg-transparent text-white"
+                className={`flex-[1_0_auto] h-full flex items-center justify-center cursor-pointer whitespace-nowrap rounded-full border-0 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 text-center font-inter text-[12px] sm:text-[13.5px] md:text-[15px] font-semibold leading-none transition-all duration-300 motion-reduce:transition-none ${focusRing} ${
+                  selected
+                    ? "bg-white text-[#242424] shadow-sm"
+                    : "bg-transparent text-white/90 hover:text-white"
                 }`}
               >
                 {item.tab}
