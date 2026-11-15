@@ -106,7 +106,8 @@ const MOBILE_TOP_CHIPS = [
     line2: "one shared direction",
     bg: "bg-[#E6FAE1]",
     bullet: "bg-[#16A34A]",
-    alignClass: "justify-start ml-[8%] sm:ml-[14%]",
+    alignClass: "justify-start ml-[14%] sm:ml-[20%]",
+    direction: "left", // slides in from right to left
     animName: "chipFloat2",
     animDuration: "5.2s",
     animDelay: "0.4s",
@@ -118,7 +119,8 @@ const MOBILE_TOP_CHIPS = [
     line2: "your people on board",
     bg: "bg-[#E5F2FF]",
     bullet: "bg-[#0284C7]",
-    alignClass: "justify-start ml-1 sm:ml-2",
+    alignClass: "justify-start ml-1 sm:ml-3",
+    direction: "right", // slides in from left to right
     animName: "chipFloat1",
     animDuration: "5.8s",
     animDelay: "0s",
@@ -130,7 +132,8 @@ const MOBILE_TOP_CHIPS = [
     line2: "disagreement",
     bg: "bg-[#FFF0E6]",
     bullet: "bg-[#EA580C]",
-    alignClass: "justify-start ml-[12%] sm:ml-[20%]",
+    alignClass: "justify-start ml-[18%] sm:ml-[24%]",
+    direction: "left", // slides in from right to left
     animName: "chipFloat4",
     animDuration: "5.5s",
     animDelay: "0.8s",
@@ -145,7 +148,8 @@ const MOBILE_BOTTOM_CHIPS = [
     line2: "to enterprise thinking",
     bg: "bg-[#F5EBFF]",
     bullet: "bg-[#C026D3]",
-    alignClass: "justify-start ml-[10%] sm:ml-[16%]",
+    alignClass: "justify-start ml-[16%] sm:ml-[22%]",
+    direction: "left", // slides in from right to left
     animName: "chipFloat3",
     animDuration: "6.4s",
     animDelay: "0.3s",
@@ -157,7 +161,8 @@ const MOBILE_BOTTOM_CHIPS = [
     line2: "makes you unique",
     bg: "bg-[#F5EBFF]",
     bullet: "bg-[#D946EF]",
-    alignClass: "justify-start ml-1 sm:ml-2",
+    alignClass: "justify-start ml-1 sm:ml-3",
+    direction: "right", // slides in from left to right
     animName: "chipFloat5",
     animDuration: "6.2s",
     animDelay: "0.6s",
@@ -170,6 +175,7 @@ const MOBILE_BOTTOM_CHIPS = [
     bg: "bg-[#FFF3DB]",
     bullet: "bg-[#F97316]",
     alignClass: "justify-start ml-[14%] sm:ml-[20%]",
+    direction: "left", // slides in from right to left
     animName: "chipFloat6",
     animDuration: "5.6s",
     animDelay: "0.9s",
@@ -182,6 +188,7 @@ const MOBILE_BOTTOM_CHIPS = [
     bg: "bg-[#E6FAE1]",
     bullet: "bg-[#16A34A]",
     alignClass: "justify-start ml-[4%] sm:ml-[8%]",
+    direction: "right", // slides in from left to right
     animName: "chipFloat7",
     animDuration: "6.0s",
     animDelay: "0.2s",
@@ -322,40 +329,41 @@ export default function Stats() {
         </div>
 
         {/* Mobile View: Top 3 Chips (above headline) */}
-        <div className="lg:hidden w-full max-w-[440px] mx-auto flex flex-col gap-3 sm:gap-3.5 px-2 mb-6 sm:mb-8">
+        <div className="lg:hidden w-full max-w-[520px] mx-auto flex flex-col gap-3 sm:gap-4 px-2 sm:px-4 mb-7 sm:mb-9">
           {MOBILE_TOP_CHIPS.map((chip, index) => (
             <Reveal
               key={chip.id}
-              direction="up"
-              delay={index * 80}
-              duration={600}
+              direction={chip.direction}
+              distance={48}
+              delay={index * 90}
+              duration={750}
               className={`w-full flex ${chip.alignClass}`}
             >
               <div
-                className="flex items-center gap-2 group cursor-pointer will-change-transform transition-transform duration-300 hover:scale-105"
+                className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer will-change-transform transition-transform duration-300 hover:scale-105"
                 style={{
                   animation: `${chip.animName} ${chip.animDuration} ease-in-out ${chip.animDelay} infinite`,
                 }}
               >
                 {/* Avatar */}
-                <div className="relative w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] rounded-[14px] sm:rounded-[16px] overflow-hidden shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.06)] bg-gray-100">
+                <div className="relative w-[48px] h-[48px] sm:w-[54px] sm:h-[54px] rounded-[16px] sm:rounded-[18px] overflow-hidden shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.06)] bg-gray-100">
                   <Image
                     src={chip.avatar}
                     alt=""
                     fill
-                    sizes="48px"
+                    sizes="56px"
                     className="object-cover"
                   />
                 </div>
 
-                {/* Pastel Pill Card */}
+                {/* Pastel Pill Card - wider with generous padding */}
                 <div
-                  className={`flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-[18px] sm:rounded-[20px] ${chip.bg} shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-white/60`}
+                  className={`flex items-center gap-2.5 px-4 sm:px-5 py-3 sm:py-3.5 rounded-[20px] sm:rounded-[22px] ${chip.bg} shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-white/60 min-w-[215px] sm:min-w-[250px]`}
                 >
                   <span
-                    className={`w-2 h-2 rounded-[2px] ${chip.bullet} shrink-0`}
+                    className={`w-2.5 h-2.5 rounded-[2.5px] ${chip.bullet} shrink-0`}
                   />
-                  <span className="text-[12.5px] sm:text-[13px] font-medium text-[#1E293B] leading-[1.3] text-left block">
+                  <span className="text-[13px] sm:text-[14px] font-medium text-[#1E293B] leading-[1.35] text-left block">
                     <span>{chip.line1}</span>
                     <br />
                     <span>{chip.line2}</span>
@@ -382,41 +390,42 @@ export default function Stats() {
           </h2>
         </Reveal>
 
-        {/* Mobile View: Bottom 3 Chips (below headline) */}
-        <div className="lg:hidden w-full max-w-[440px] mx-auto flex flex-col gap-3 sm:gap-3.5 px-2 mt-6 sm:mt-8">
+        {/* Mobile View: Bottom 4 Chips (below headline) */}
+        <div className="lg:hidden w-full max-w-[520px] mx-auto flex flex-col gap-3 sm:gap-4 px-2 sm:px-4 mt-7 sm:mt-9">
           {MOBILE_BOTTOM_CHIPS.map((chip, index) => (
             <Reveal
               key={chip.id}
-              direction="up"
-              delay={index * 80 + 120}
-              duration={600}
+              direction={chip.direction}
+              distance={48}
+              delay={index * 90 + 100}
+              duration={750}
               className={`w-full flex ${chip.alignClass}`}
             >
               <div
-                className="flex items-center gap-2 group cursor-pointer will-change-transform transition-transform duration-300 hover:scale-105"
+                className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer will-change-transform transition-transform duration-300 hover:scale-105"
                 style={{
                   animation: `${chip.animName} ${chip.animDuration} ease-in-out ${chip.animDelay} infinite`,
                 }}
               >
                 {/* Avatar */}
-                <div className="relative w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] rounded-[14px] sm:rounded-[16px] overflow-hidden shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.06)] bg-gray-100">
+                <div className="relative w-[48px] h-[48px] sm:w-[54px] sm:h-[54px] rounded-[16px] sm:rounded-[18px] overflow-hidden shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.06)] bg-gray-100">
                   <Image
                     src={chip.avatar}
                     alt=""
                     fill
-                    sizes="48px"
+                    sizes="56px"
                     className="object-cover"
                   />
                 </div>
 
-                {/* Pastel Pill Card */}
+                {/* Pastel Pill Card - wider with generous padding */}
                 <div
-                  className={`flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-[18px] sm:rounded-[20px] ${chip.bg} shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-white/60`}
+                  className={`flex items-center gap-2.5 px-4 sm:px-5 py-3 sm:py-3.5 rounded-[20px] sm:rounded-[22px] ${chip.bg} shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-white/60 min-w-[215px] sm:min-w-[250px]`}
                 >
                   <span
-                    className={`w-2 h-2 rounded-[2px] ${chip.bullet} shrink-0`}
+                    className={`w-2.5 h-2.5 rounded-[2.5px] ${chip.bullet} shrink-0`}
                   />
-                  <span className="text-[12.5px] sm:text-[13px] font-medium text-[#1E293B] leading-[1.3] text-left block">
+                  <span className="text-[13px] sm:text-[14px] font-medium text-[#1E293B] leading-[1.35] text-left block">
                     <span>{chip.line1}</span>
                     <br />
                     <span>{chip.line2}</span>
