@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Reveal from "@/app/components/Common/Reveal";
 
 const GALLERY_ITEMS = [
   {
@@ -86,17 +87,17 @@ export default function Gallery({
       style={{ background: "rgba(255, 94, 20, 0.10)" }}
     >
       {/* Heading Container */}
-      <div className="mx-auto mb-1 sm:mb-2 flex max-w-[760px] flex-col items-center gap-2 sm:gap-2.5 px-6 text-center">
+      <Reveal direction="up" duration={700} className="mx-auto mb-1 sm:mb-2 flex max-w-[760px] flex-col items-center gap-2 sm:gap-2.5 px-6 text-center">
         <h2 className="font-ppmori text-[clamp(30px,4.6vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-[#242424]">
           {title}
         </h2>
         <p className="max-w-[620px] font-inter text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] font-normal leading-[1.5] text-[#717171]">
           {description}
         </p>
-      </div>
+      </Reveal>
 
       {/* 6-Card Window Viewport with Auto-Scroll */}
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6">
+      <Reveal direction="up" duration={750} delay={120} className="mx-auto w-full max-w-[1440px] px-4 sm:px-6">
         <div
           ref={trackRef}
           onMouseEnter={() => setIsPaused(true)}
@@ -140,7 +141,7 @@ export default function Gallery({
             ))}
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import Reveal from "@/app/components/Common/Reveal";
+
 /**
  * TeamSection — "Celebratory Network team" grid (Tailwind CSS v3+ / v4).
  *
@@ -54,7 +56,7 @@ export default function TeamSection({ team = DEFAULT_TEAM }) {
       className="flex flex-col items-center gap-[58px] bg-[#F6F6F6] px-[clamp(20px,15vw,287px)] pb-10 sm:pb-12 lg:pb-14 pt-[83px] text-[#242424] antialiased max-sm:gap-10 max-sm:pt-14"
     >
       {/* Header */}
-      <div className="flex flex-col items-center text-center">
+      <Reveal direction="up" duration={700} className="flex flex-col items-center text-center">
         <span className="inline-flex items-center gap-2 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] before:h-[6px] before:w-[6px] before:rounded-[1px] before:bg-[#FF5E14] before:content-['']">
           The people behind the network
         </span>
@@ -64,12 +66,20 @@ export default function TeamSection({ team = DEFAULT_TEAM }) {
         >
           Celebratory Network team
         </h2>
-      </div>
+      </Reveal>
 
       {/* Grid: 3 columns across the 1346px content width (1920 − 2 × 287) */}
-      <ul className="grid w-full max-w-[1346px] grid-cols-1 gap-x-[30px] gap-y-[52px] sm:grid-cols-2 lg:grid-cols-3">
-        {team.map((member) => (
-          <li key={member.name}>
+      <ul className="grid w-full max-w-[1346px] grid-cols-1 gap-x-[30px] gap-y-[52px] sm:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
+        {team.map((member, index) => (
+          <Reveal
+            as="li"
+            key={member.name}
+            direction="up"
+            delay={index * 70}
+            duration={650}
+            distance={24}
+            className="group cursor-pointer"
+          >
             <div
               role="img"
               aria-label={`Photo of ${member.name}`}
@@ -78,15 +88,15 @@ export default function TeamSection({ team = DEFAULT_TEAM }) {
                   ? `url(${member.image}) lightgray ${member.position} / cover no-repeat`
                   : `url(${member.image}) lightgray center / cover no-repeat`,
               }}
-              className="h-[281.055px] self-stretch rounded-[20px] transition-transform duration-300 hover:scale-[1.02]"
+              className="h-[281.055px] self-stretch rounded-[20px] transition-all duration-500 ease-out group-hover:scale-[1.02] group-hover:shadow-[0_12px_28px_rgba(0,0,0,0.12)]"
             />
-            <h3 className="mt-4 font-ppmori text-[20px] sm:text-[22px] md:text-[24px] font-semibold leading-[30px] tracking-[-0.8px]">
+            <h3 className="mt-4 font-ppmori text-[20px] sm:text-[22px] md:text-[24px] font-semibold leading-[30px] tracking-[-0.8px] transition-colors duration-300 group-hover:text-[#0f0f0f]">
               {member.name}
             </h3>
             <p className="mt-1 font-inter text-[15px] sm:text-[16px] md:text-[17px] font-bold uppercase leading-5 tracking-[-0.8px] text-[#FF5E14]">
               {member.role}
             </p>
-          </li>
+          </Reveal>
         ))}
       </ul>
     </section>

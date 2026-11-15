@@ -1,5 +1,7 @@
 "use client";
 
+import Reveal from "@/app/components/Common/Reveal";
+
 /**
  * components/Research.jsx  (Next.js + Tailwind CSS)
  */
@@ -77,13 +79,13 @@ function ArrowIcon() {
 
 function Row({ year, title, desc, cta, href }) {
   return (
-    <div className="flex items-center gap-12 border-t border-[#e2e0d8] py-8 max-[760px]:flex-col max-[760px]:items-start max-[760px]:gap-2.5 max-[760px]:py-6">
+    <div className="flex items-center gap-12 border-t border-[#e2e0d8] py-8 max-[760px]:flex-col max-[760px]:items-start max-[760px]:gap-2.5 max-[760px]:py-6 transition-colors duration-300 hover:bg-black/[0.015] px-2 rounded-sm group">
       <div className="w-[120px] flex-none font-inter text-[14px] sm:text-[15px] font-semibold text-[#FF5E14] max-[760px]:w-auto">
         {year}
       </div>
 
       <div className="min-w-0 flex-1">
-        <h3 className="font-inter text-[20px] sm:text-[22px] md:text-[24px] font-semibold leading-[30px] tracking-[-0.24px] text-[#111]">
+        <h3 className="font-inter text-[20px] sm:text-[22px] md:text-[24px] font-semibold leading-[30px] tracking-[-0.24px] text-[#111] transition-colors duration-200 group-hover:text-[#FF5E14]">
           {title}
         </h3>
         <p className="mt-2 max-w-[760px] font-inter text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] font-normal leading-[1.6] text-[#5a5a55]">
@@ -93,7 +95,7 @@ function Row({ year, title, desc, cta, href }) {
 
       <a
         href={href}
-        className="group/link inline-flex flex-none items-center justify-center gap-2.5 whitespace-nowrap px-[19px] py-[13px] font-inter text-[14px] sm:text-[15px] font-medium leading-none text-[#242424] underline-offset-4 hover:underline max-[760px]:mt-1 max-[760px]:px-0 max-[760px]:py-2"
+        className="group/link inline-flex flex-none items-center justify-center gap-2.5 whitespace-nowrap px-[19px] py-[13px] font-inter text-[14px] sm:text-[15px] font-medium leading-none text-[#242424] underline-offset-4 hover:underline hover:text-[#FF5E14] transition-colors duration-200 max-[760px]:mt-1 max-[760px]:px-0 max-[760px]:py-2"
       >
         {cta}
         <ArrowIcon />
@@ -105,12 +107,22 @@ function Row({ year, title, desc, cta, href }) {
 function Group({ label, rows }) {
   return (
     <section>
-      <div className="mb-6 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-semibold uppercase tracking-[1.68px] text-[#5a5a55]">
-        {label}
-      </div>
+      <Reveal direction="up" duration={600} distance={18}>
+        <div className="mb-6 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-semibold uppercase tracking-[1.68px] text-[#5a5a55]">
+          {label}
+        </div>
+      </Reveal>
       <div className="border-b border-[#e2e0d8]">
-        {rows.map((r) => (
-          <Row key={r.title} {...r} />
+        {rows.map((r, i) => (
+          <Reveal
+            key={r.title}
+            direction="up"
+            delay={i * 60}
+            duration={650}
+            distance={20}
+          >
+            <Row {...r} />
+          </Reveal>
         ))}
       </div>
     </section>
@@ -122,7 +134,7 @@ export default function Research() {
     <section className="bg-[#f5f5f5] px-4 pb-12 pt-6 sm:px-8 sm:pt-8 lg:pb-[88px] lg:pt-10">
       <div className="mx-auto flex w-full max-w-[1132px] flex-col gap-8 lg:gap-[58px]">
         {/* heading */}
-        <div className="text-center">
+        <Reveal direction="up" duration={700} className="text-center">
           <div className="inline-flex items-center gap-1.5 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
             <span className="h-2 w-2 rounded-[2px] bg-[#FF5E14]" />
             Research &amp; Recognition
@@ -130,7 +142,7 @@ export default function Research() {
           <h2 className="mt-3.5 font-ppmori text-[clamp(30px,4.6vw,52px)] font-semibold leading-[0.92] tracking-[-0.8px] text-[#242424]">
             Studying how people thrive at work.
           </h2>
-        </div>
+        </Reveal>
 
         <Group label="Research" rows={RESEARCH} />
         <Group label="Voice & Publications" rows={VOICE} />

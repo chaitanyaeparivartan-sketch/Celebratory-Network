@@ -1,5 +1,7 @@
 "use client";
 
+import Reveal from "@/app/components/Common/Reveal";
+
 /**
  * components/DNA.jsx  (Next.js + Tailwind CSS)
  */
@@ -276,7 +278,7 @@ export default function OurDna() {
         }
       `}</style>
 
-      <div className="mb-6 text-center md:mb-10">
+      <Reveal direction="up" duration={700} className="mb-6 text-center md:mb-10">
         <div className="inline-flex items-center gap-1.5 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
           <span className="h-1.5 w-1.5 rounded-[1px] bg-[#FF5E14]" />
           Our DNA
@@ -284,11 +286,20 @@ export default function OurDna() {
         <h2 className="mt-3.5 font-ppmori text-[clamp(30px,4.6vw,52px)] font-semibold leading-none tracking-[-0.8px] text-[#242424]">
           What we believe, How we work.
         </h2>
-      </div>
+      </Reveal>
 
       <div className="mx-auto grid max-w-[1342px] grid-cols-1 justify-center gap-4 min-[861px]:grid-cols-2 max-[860px]:max-w-[663px]">
-        {ITEMS.map((item) => (
-          <DnaCard key={item.no} {...item} />
+        {ITEMS.map((item, index) => (
+          <Reveal
+            key={item.no}
+            direction="up"
+            delay={index * 70}
+            duration={650}
+            distance={24}
+            className="w-full"
+          >
+            <DnaCard {...item} />
+          </Reveal>
         ))}
       </div>
     </section>
