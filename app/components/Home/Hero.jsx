@@ -10,11 +10,11 @@ const HERO_VIDEOS = [
     videoSrc: "/Home/Hero/hero-video-1.mp4",
     poster: "/Home/Hero/poster1.webp",
     thumb: "/Home/Hero/thumb_video1.webp",
-    alt: "Strategic planning and team transformation session",
-    titleLine1: "Leading organizational",
-    titleLine2: "change & transformation",
+    alt: "Brings spotlight on the Being and the Doing of Leadership",
+    titleLine1: "Brings spotlight on the Being",
+    titleLine2: "and the Doing of Leadership",
     description:
-      "Strong organizations don't happen by chance. We help leaders and teams build better workplace cultures, strengthen collaboration, and achieve sustainable growth.",
+      "A journey for Women Leaders who dream of possibilities and have the willingness to make it happen.",
     primaryBtn: { label: "Book a call", href: "/contact" },
     secondaryBtn: { label: "Know More", href: "/about" },
   },
@@ -83,7 +83,7 @@ export default function Hero() {
       <div className="md:hidden absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
         <Image
           src="/Home/Hero/Mobile-Hero.webp"
-          alt="Leading organizational change & transformation"
+          alt="Brings spotlight on the Being and the Doing of Leadership"
           fill
           priority
           sizes="100vw"
