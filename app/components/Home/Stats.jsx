@@ -106,7 +106,7 @@ const MOBILE_TOP_CHIPS = [
     line2: "one shared direction",
     bg: "bg-[#E6FAE1]",
     bullet: "bg-[#16A34A]",
-    alignClass: "justify-start ml-[14%] sm:ml-[20%]",
+    alignClass: "justify-end",
     direction: "left", // slides in from right to left
     animName: "chipFloat2",
     animDuration: "5.2s",
@@ -119,7 +119,7 @@ const MOBILE_TOP_CHIPS = [
     line2: "your people on board",
     bg: "bg-[#E5F2FF]",
     bullet: "bg-[#0284C7]",
-    alignClass: "justify-start ml-1 sm:ml-3",
+    alignClass: "justify-start",
     direction: "right", // slides in from left to right
     animName: "chipFloat1",
     animDuration: "5.8s",
@@ -132,7 +132,7 @@ const MOBILE_TOP_CHIPS = [
     line2: "disagreement",
     bg: "bg-[#FFF0E6]",
     bullet: "bg-[#EA580C]",
-    alignClass: "justify-start ml-[18%] sm:ml-[24%]",
+    alignClass: "justify-end",
     direction: "left", // slides in from right to left
     animName: "chipFloat4",
     animDuration: "5.5s",
@@ -148,7 +148,7 @@ const MOBILE_BOTTOM_CHIPS = [
     line2: "to enterprise thinking",
     bg: "bg-[#F5EBFF]",
     bullet: "bg-[#C026D3]",
-    alignClass: "justify-start ml-[16%] sm:ml-[22%]",
+    alignClass: "justify-end",
     direction: "left", // slides in from right to left
     animName: "chipFloat3",
     animDuration: "6.4s",
@@ -161,7 +161,7 @@ const MOBILE_BOTTOM_CHIPS = [
     line2: "makes you unique",
     bg: "bg-[#F5EBFF]",
     bullet: "bg-[#D946EF]",
-    alignClass: "justify-start ml-1 sm:ml-3",
+    alignClass: "justify-start",
     direction: "right", // slides in from left to right
     animName: "chipFloat5",
     animDuration: "6.2s",
@@ -174,7 +174,7 @@ const MOBILE_BOTTOM_CHIPS = [
     line2: "relationships strong",
     bg: "bg-[#FFF3DB]",
     bullet: "bg-[#F97316]",
-    alignClass: "justify-start ml-[14%] sm:ml-[20%]",
+    alignClass: "justify-end",
     direction: "left", // slides in from right to left
     animName: "chipFloat6",
     animDuration: "5.6s",
@@ -187,7 +187,7 @@ const MOBILE_BOTTOM_CHIPS = [
     line2: "making and accountability",
     bg: "bg-[#E6FAE1]",
     bullet: "bg-[#16A34A]",
-    alignClass: "justify-start ml-[4%] sm:ml-[8%]",
+    alignClass: "justify-start ml-2 sm:ml-4",
     direction: "right", // slides in from left to right
     animName: "chipFloat7",
     animDuration: "6.0s",
@@ -329,7 +329,7 @@ export default function Stats() {
         </div>
 
         {/* Mobile View: Top 3 Chips (above headline) */}
-        <div className="lg:hidden w-full max-w-[520px] mx-auto flex flex-col gap-3 sm:gap-4 px-2 sm:px-4 mb-7 sm:mb-9">
+        <div className="lg:hidden w-full max-w-[560px] mx-auto flex flex-col gap-3.5 sm:gap-4 px-2 sm:px-4 mb-7 sm:mb-9">
           {MOBILE_TOP_CHIPS.map((chip, index) => (
             <Reveal
               key={chip.id}
@@ -340,7 +340,7 @@ export default function Stats() {
               className={`w-full flex ${chip.alignClass}`}
             >
               <div
-                className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer will-change-transform transition-transform duration-300 hover:scale-105"
+                className="flex items-center gap-2.5 sm:gap-3.5 group cursor-pointer will-change-transform transition-transform duration-300 hover:scale-[1.02] w-full max-w-[340px] sm:max-w-[410px]"
                 style={{
                   animation: `${chip.animName} ${chip.animDuration} ease-in-out ${chip.animDelay} infinite`,
                 }}
@@ -356,14 +356,14 @@ export default function Stats() {
                   />
                 </div>
 
-                {/* Pastel Pill Card - wider with generous padding */}
+                {/* Pastel Pill Card - wider with flex-1 and generous padding */}
                 <div
-                  className={`flex items-center gap-2.5 px-4 sm:px-5 py-3 sm:py-3.5 rounded-[20px] sm:rounded-[22px] ${chip.bg} shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-white/60 min-w-[215px] sm:min-w-[250px]`}
+                  className={`flex-1 flex items-center gap-2.5 sm:gap-3 px-5 sm:px-6 py-3.5 sm:py-4 rounded-[22px] sm:rounded-[24px] ${chip.bg} shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-white/60`}
                 >
                   <span
                     className={`w-2.5 h-2.5 rounded-[2.5px] ${chip.bullet} shrink-0`}
                   />
-                  <span className="text-[13px] sm:text-[14px] font-medium text-[#1E293B] leading-[1.35] text-left block">
+                  <span className="text-[13px] sm:text-[14px] font-medium text-[#1E293B] leading-[1.38] text-left block">
                     <span>{chip.line1}</span>
                     <br />
                     <span>{chip.line2}</span>
@@ -391,7 +391,7 @@ export default function Stats() {
         </Reveal>
 
         {/* Mobile View: Bottom 4 Chips (below headline) */}
-        <div className="lg:hidden w-full max-w-[520px] mx-auto flex flex-col gap-3 sm:gap-4 px-2 sm:px-4 mt-7 sm:mt-9">
+        <div className="lg:hidden w-full max-w-[560px] mx-auto flex flex-col gap-3.5 sm:gap-4 px-2 sm:px-4 mt-7 sm:mt-9">
           {MOBILE_BOTTOM_CHIPS.map((chip, index) => (
             <Reveal
               key={chip.id}
@@ -402,7 +402,7 @@ export default function Stats() {
               className={`w-full flex ${chip.alignClass}`}
             >
               <div
-                className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer will-change-transform transition-transform duration-300 hover:scale-105"
+                className="flex items-center gap-2.5 sm:gap-3.5 group cursor-pointer will-change-transform transition-transform duration-300 hover:scale-[1.02] w-full max-w-[340px] sm:max-w-[410px]"
                 style={{
                   animation: `${chip.animName} ${chip.animDuration} ease-in-out ${chip.animDelay} infinite`,
                 }}
@@ -418,14 +418,14 @@ export default function Stats() {
                   />
                 </div>
 
-                {/* Pastel Pill Card - wider with generous padding */}
+                {/* Pastel Pill Card - wider with flex-1 and generous padding */}
                 <div
-                  className={`flex items-center gap-2.5 px-4 sm:px-5 py-3 sm:py-3.5 rounded-[20px] sm:rounded-[22px] ${chip.bg} shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-white/60 min-w-[215px] sm:min-w-[250px]`}
+                  className={`flex-1 flex items-center gap-2.5 sm:gap-3 px-5 sm:px-6 py-3.5 sm:py-4 rounded-[22px] sm:rounded-[24px] ${chip.bg} shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-white/60`}
                 >
                   <span
                     className={`w-2.5 h-2.5 rounded-[2.5px] ${chip.bullet} shrink-0`}
                   />
-                  <span className="text-[13px] sm:text-[14px] font-medium text-[#1E293B] leading-[1.35] text-left block">
+                  <span className="text-[13px] sm:text-[14px] font-medium text-[#1E293B] leading-[1.38] text-left block">
                     <span>{chip.line1}</span>
                     <br />
                     <span>{chip.line2}</span>
