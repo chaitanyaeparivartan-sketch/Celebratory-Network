@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -56,9 +56,15 @@ export default function Header({
   className = "",
 }) {
   const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [openMobileSubmenu, setOpenMobileSubmenu] = useState(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsMounted(true), 40);
+    return () => clearTimeout(timer);
+  }, []);
 
   const isLinkActive = (item) => {
     if (!pathname) return item.active || false;
@@ -78,7 +84,11 @@ export default function Header({
       } ${className}`}
     >
       <nav
-        className="flex items-center justify-between w-full max-w-[1783px] h-[64px] sm:h-[70px] pl-[22px] sm:pl-[27px] pr-[10px] py-[14px] sm:py-[16px] rounded-[8px] border border-[#F4F4F4] bg-[#FFF] shadow-[0_0_22px_0_rgba(0,0,0,0.20)]"
+        className="flex items-center justify-between w-full max-w-[1783px] h-[64px] sm:h-[70px] pl-[22px] sm:pl-[27px] pr-[10px] py-[14px] sm:py-[16px] rounded-[8px] border border-[#F4F4F4] bg-[#FFF] shadow-[0_0_22px_0_rgba(0,0,0,0.20)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        style={{
+          opacity: isMounted ? 1 : 0,
+          transform: isMounted ? "none" : "translate3d(0, -12px, 0)",
+        }}
         aria-label="Main Navigation"
       >
         {/* Logo */}

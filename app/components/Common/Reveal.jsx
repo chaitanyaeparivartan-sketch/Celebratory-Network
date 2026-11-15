@@ -11,10 +11,12 @@ export default function Reveal({
   children,
   direction = "up", // 'up' | 'down' | 'left' | 'right' | 'scale' | 'none'
   delay = 0, // delay in milliseconds
-  duration = 750, // duration in milliseconds
+  duration = 700, // duration in milliseconds
   distance = 28, // initial offset in pixels
-  threshold = 0.12, // trigger when 12% is visible
+  threshold = 0.08, // trigger when 8% is visible
+  rootMargin = "0px 0px -20px 0px",
   className = "",
+  style: userStyle = {},
   as = "div",
 }) {
   const ref = useRef(null);
@@ -39,13 +41,13 @@ export default function Reveal({
       },
       {
         threshold,
-        rootMargin: "0px 0px -40px 0px",
+        rootMargin,
       }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [threshold, delay]);
+  }, [threshold, rootMargin, delay]);
 
   const getInitialTransform = () => {
     switch (direction) {
@@ -58,7 +60,7 @@ export default function Reveal({
       case "right":
         return `translate3d(-${distance}px, 0, 0)`;
       case "scale":
-        return "scale(0.94) translate3d(0, 16px, 0)";
+        return `scale(0.94) translate3d(0, ${Math.min(distance, 16)}px, 0)`;
       case "none":
       default:
         return "none";
@@ -72,6 +74,7 @@ export default function Reveal({
       ref={ref}
       className={className}
       style={{
+        ...userStyle,
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "none" : getInitialTransform(),
         transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,

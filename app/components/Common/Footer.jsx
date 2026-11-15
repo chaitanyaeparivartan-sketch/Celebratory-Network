@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/app/components/Common/Reveal";
 
 function XSocialIcon() {
   return (
@@ -44,60 +45,62 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#FF5E14] text-white font-['Inter',system-ui,sans-serif]">
-      <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-5 sm:py-6 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
-        {/* Left: Brand Logo + Company Name */}
-        <Link
-          href="/"
-          className="flex items-center gap-2.5 shrink-0 hover:opacity-90 transition-opacity"
-        >
-          <div className="relative w-8 h-8 shrink-0">
-            <Image
-              src="/cn-badge.webp"
-              alt="Celebratory Network Logo"
-              width={32}
-              height={32}
-              className="object-contain"
-            />
-          </div>
-          <span
-            style={{
-              color: "#FFF",
-              fontFamily: '"Kanchenjunga", sans-serif',
-              fontSize: "22.723px",
-              fontStyle: "normal",
-              fontWeight: 600,
-              lineHeight: "normal",
-            }}
+    <footer className="w-full bg-[#FF5E14] text-white font-['Inter',system-ui,sans-serif] overflow-hidden">
+      <Reveal direction="up" duration={650} distance={18} className="w-full">
+        <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-5 sm:py-6 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
+          {/* Left: Brand Logo + Company Name */}
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 shrink-0 hover:opacity-90 transition-opacity"
           >
-            Celebratory Network
-          </span>
-        </Link>
+            <div className="relative w-8 h-8 shrink-0">
+              <Image
+                src="/cn-badge.webp"
+                alt="Celebratory Network Logo"
+                width={32}
+                height={32}
+                className="object-contain"
+              />
+            </div>
+            <span
+              style={{
+                color: "#FFF",
+                fontFamily: '"Kanchenjunga", sans-serif',
+                fontSize: "22.723px",
+                fontStyle: "normal",
+                fontWeight: 600,
+                lineHeight: "normal",
+              }}
+            >
+              Celebratory Network
+            </span>
+          </Link>
 
-        {/* Center: Copyright Notice */}
-        <p className="text-white/95 text-[13px] sm:text-[14px] md:text-[15px] font-normal text-center">
-          Copyrights © 2026 All Rights Reserved by Celebratory Network
-        </p>
+          {/* Center: Copyright Notice */}
+          <p className="text-white/95 text-[13px] sm:text-[14px] md:text-[15px] font-normal text-center">
+            Copyrights © 2026 All Rights Reserved by Celebratory Network
+          </p>
 
-        {/* Right: Social Icons (X & LinkedIn) */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          {SOCIAL_LINKS.map((item) => {
-            const Icon = item.icon;
-            return (
-              <a
-                key={item.name}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Follow Celebratory Network on ${item.name}`}
-                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#205A9D] text-white flex items-center justify-center hover:opacity-90 hover:scale-105 transition-all shadow-sm"
-              >
-                <Icon />
-              </a>
-            );
-          })}
+          {/* Right: Social Icons (X & LinkedIn) */}
+          <div className="flex items-center gap-2.5 shrink-0">
+            {SOCIAL_LINKS.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Follow Celebratory Network on ${item.name}`}
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#205A9D] text-white flex items-center justify-center hover:opacity-90 hover:scale-105 transition-all shadow-sm"
+                >
+                  <Icon />
+                </a>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </Reveal>
     </footer>
   );
 }

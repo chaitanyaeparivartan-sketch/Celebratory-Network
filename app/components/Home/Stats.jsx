@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import Reveal from "@/app/components/Common/Reveal";
+import AnimatedCounter from "@/app/components/Common/AnimatedCounter";
 
 const FLOATING_CARDS = [
   {
@@ -275,55 +276,62 @@ export default function Stats() {
         onMouseLeave={handleMouseLeave}
         className="relative w-full max-w-[1400px] lg:h-[490px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center pt-2 pb-4 lg:py-0"
       >
-        {/* Floating Cards (Desktop Absolute Positioning with continuous float + mouse parallax) */}
+        {/* Floating Cards (Desktop Absolute Positioning with continuous float + mouse parallax + scroll entrance) */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
-          {FLOATING_CARDS.map((card) => {
+          {FLOATING_CARDS.map((card, index) => {
             const parallaxX = mousePos.x * card.parallax.x;
             const parallaxY = mousePos.y * card.parallax.y;
 
             return (
-              <div
+              <Reveal
                 key={card.id}
-                style={{
-                  ...card.desktopStyle,
-                  transform: `translate3d(${parallaxX}px, ${parallaxY}px, 0)`,
-                  transition: "transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)",
-                }}
+                direction="scale"
+                distance={20}
+                delay={index * 90}
+                duration={750}
                 className="absolute pointer-events-auto group cursor-pointer"
+                style={card.desktopStyle}
               >
-                {/* Continuous Floating Physics Container */}
                 <div
-                  className="flex items-center gap-2 will-change-transform transition-transform duration-300 ease-out group-hover:scale-105"
                   style={{
-                    animation: `${card.animName} ${card.animDuration} ease-in-out ${card.animDelay} infinite`,
+                    transform: `translate3d(${parallaxX}px, ${parallaxY}px, 0)`,
+                    transition: "transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)",
                   }}
                 >
-                  {/* Avatar Image */}
-                  <div className="relative w-[44px] h-[44px] xl:w-[48px] xl:h-[48px] rounded-[10px] xl:rounded-[12px] overflow-hidden shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.06)] bg-gray-100 group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow">
-                    <Image
-                      src={card.avatar}
-                      alt=""
-                      fill
-                      sizes="48px"
-                      className="object-cover"
-                    />
-                  </div>
-
-                  {/* Pastel Pill Card */}
+                  {/* Continuous Floating Physics Container */}
                   <div
-                    className={`flex items-center gap-2 px-3 py-2 xl:px-3.5 xl:py-2.5 rounded-[10px] xl:rounded-[12px] ${card.bg} shadow-[0_2px_10px_rgba(0,0,0,0.03)] group-hover:shadow-[0_6px_16px_rgba(0,0,0,0.08)] border border-white/60 transition-all duration-300`}
+                    className="flex items-center gap-2 will-change-transform transition-transform duration-300 ease-out group-hover:scale-105"
+                    style={{
+                      animation: `${card.animName} ${card.animDuration} ease-in-out ${card.animDelay} infinite`,
+                    }}
                   >
-                    <span
-                      className={`w-2 h-2 rounded-[2px] ${card.bullet} shrink-0`}
-                    />
-                    <span className="text-[11.5px] xl:text-[13px] font-medium text-[#1E293B] leading-[1.3] whitespace-nowrap block">
-                      <span>{card.line1}</span>
-                      <br />
-                      <span>{card.line2}</span>
-                    </span>
+                    {/* Avatar Image */}
+                    <div className="relative w-[44px] h-[44px] xl:w-[48px] xl:h-[48px] rounded-[10px] xl:rounded-[12px] overflow-hidden shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.06)] bg-gray-100 group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow">
+                      <Image
+                        src={card.avatar}
+                        alt=""
+                        fill
+                        sizes="48px"
+                        className="object-cover"
+                      />
+                    </div>
+
+                    {/* Pastel Pill Card */}
+                    <div
+                      className={`flex items-center gap-2 px-3 py-2 xl:px-3.5 xl:py-2.5 rounded-[10px] xl:rounded-[12px] ${card.bg} shadow-[0_2px_10px_rgba(0,0,0,0.03)] group-hover:shadow-[0_6px_16px_rgba(0,0,0,0.08)] border border-white/60 transition-all duration-300`}
+                    >
+                      <span
+                        className={`w-2 h-2 rounded-[2px] ${card.bullet} shrink-0`}
+                      />
+                      <span className="text-[11.5px] xl:text-[13px] font-medium text-[#1E293B] leading-[1.3] whitespace-nowrap block">
+                        <span>{card.line1}</span>
+                        <br />
+                        <span>{card.line2}</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>
@@ -451,14 +459,14 @@ export default function Stats() {
               duration={700}
               className="flex flex-col items-center group cursor-default"
             >
-              {/* Stat Number with hover scale */}
+              {/* Stat Number with animated counter & hover scale */}
               <span
                 className="text-4xl sm:text-5xl lg:text-[54px] font-medium text-[#171717] tracking-tight leading-none mb-2.5 transition-transform duration-300 ease-out group-hover:scale-105 group-hover:text-[#FF5E14]"
                 style={{
                   fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
                 }}
               >
-                {stat.value}
+                <AnimatedCounter value={stat.value} duration={1500} />
               </span>
 
               {/* Stat Description */}

@@ -263,8 +263,13 @@ export default function HowWeHelp() {
             {TOPICS.map((item, i) => {
               const isOpen = openIndex === i;
               return (
-                <li
+                <Reveal
+                  as="li"
                   key={item.title}
+                  direction="up"
+                  delay={Math.min(i * 35, 300)}
+                  duration={550}
+                  distance={18}
                   className="border-b border-[#ececec]"
                 >
                   <button
@@ -305,13 +310,13 @@ export default function HowWeHelp() {
                       <Link
                         href="/contact"
                         tabIndex={isOpen ? 0 : -1}
-                        className="mb-[22px] inline-block rounded-lg bg-[#FF5E14] px-5 py-3 text-sm font-medium text-white no-underline transition-colors hover:bg-[#e0500d]"
+                        className="mb-[22px] inline-block rounded-lg bg-[#FF5E14] px-5 py-3 text-sm font-medium text-white no-underline transition-all duration-300 hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(255,94,20,0.35)] active:scale-[0.98]"
                       >
                         Contact us
                       </Link>
                     </div>
                   </div>
-                </li>
+                </Reveal>
               );
             })}
           </ul>
@@ -482,12 +487,12 @@ export default function HowWeHelp() {
             <p className="mb-[1.8em] text-[clamp(15px,1.15vw,19px)] leading-[1.65] text-[#555555] sm:min-h-[6.5em]">
               {current.text}
             </p>
-            <a
-              href="#contact"
-              className="inline-block rounded-lg bg-[#FF5E14] px-[1.8em] py-[.85em] font-['Figtree',sans-serif] text-[clamp(14px,1vw,17px)] font-medium text-white no-underline transition duration-200 hover:-translate-y-0.5 hover:bg-[#E04F0D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#1c1c1c]"
+            <Link
+              href="/contact"
+              className="inline-block rounded-lg bg-[#FF5E14] px-[1.8em] py-[.85em] font-['Figtree',sans-serif] text-[clamp(14px,1vw,17px)] font-medium text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E04F0D] hover:shadow-[0_6px_18px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#1c1c1c] cursor-pointer"
             >
               Contact us
-            </a>
+            </Link>
           </div>
         </div>
         </div>

@@ -81,111 +81,118 @@ export default function WhatWeDo() {
 
         {/* 4 Alternating Feature Rows */}
         <div className="flex flex-col gap-6 sm:gap-8 lg:gap-10">
-          {SERVICES.map((item) => (
-            <div
-              key={item.id}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch"
-            >
-              {/* Text Card */}
-              <Reveal
-                direction="up"
-                duration={750}
-                delay={60}
-                className={`relative w-full h-full rounded-[8px] border border-[#EAEAEA] bg-white p-6 sm:p-10 md:p-12 xl:px-[99px] xl:py-[74px] flex flex-col justify-between items-start overflow-hidden group hover:border-[#D4D4D4] hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] transition-all duration-300 ${
-                  item.reverse ? "lg:order-2" : "lg:order-1"
-                }`}
-              >
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse at 100% 50%, rgba(255, 218, 198, 0.65) 0%, rgba(255, 238, 228, 0.3) 38%, rgba(255, 255, 255, 0) 72%), #FFFFFF",
-                  }}
-                />
+          {SERVICES.map((item) => {
+            const textDirection = item.reverse ? "left" : "right";
+            const imageDirection = item.reverse ? "right" : "left";
 
-                {/* Content Block */}
-                <div className="flex flex-col items-start gap-2.5 relative z-10 w-full">
-                  {/* Category Chip */}
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
-                    <span
-                      className="text-[#64748B] font-semibold text-[11px] sm:text-[12px] tracking-[0.08em] uppercase"
+            return (
+              <div
+                key={item.id}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch"
+              >
+                {/* Text Card */}
+                <Reveal
+                  direction={textDirection}
+                  duration={750}
+                  delay={60}
+                  distance={36}
+                  className={`relative w-full h-full rounded-[8px] border border-[#EAEAEA] bg-white p-6 sm:p-10 md:p-12 xl:px-[99px] xl:py-[74px] flex flex-col justify-between items-start overflow-hidden group hover:border-[#FF5E14]/40 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.07)] transition-all duration-300 ${
+                    item.reverse ? "lg:order-2" : "lg:order-1"
+                  }`}
+                >
+                  <div
+                    className="absolute inset-0 pointer-events-none transition-opacity duration-500 group-hover:opacity-90"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse at 100% 50%, rgba(255, 218, 198, 0.65) 0%, rgba(255, 238, 228, 0.3) 38%, rgba(255, 255, 255, 0) 72%), #FFFFFF",
+                    }}
+                  />
+
+                  {/* Content Block */}
+                  <div className="flex flex-col items-start gap-2.5 relative z-10 w-full">
+                    {/* Category Chip */}
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] transition-transform duration-300 group-hover:scale-125" />
+                      <span
+                        className="text-[#64748B] font-semibold text-[11px] sm:text-[12px] tracking-[0.08em] uppercase"
+                        style={{ fontFamily: "Inter, sans-serif" }}
+                      >
+                        {item.tag}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3
+                      className="text-[#171717] font-semibold text-2xl sm:text-3xl md:text-[36px] xl:text-[42px] leading-[1.12] tracking-tight mt-1 sm:mt-2 transition-colors duration-300 group-hover:text-[#0f0f0f]"
+                      style={{
+                        fontFamily:
+                          '"PP Mori", var(--font-geist-sans), sans-serif',
+                      }}
+                    >
+                      <span className="block">{item.titleLine1}</span>
+                      <span className="block">{item.titleLine2}</span>
+                    </h3>
+
+                    {/* Description */}
+                    <p
+                      className="text-[#525252] text-[14px] sm:text-[15px] xl:text-[17px] leading-[1.6] max-w-[540px] mt-2 sm:mt-3"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
-                      {item.tag}
-                    </span>
+                      {item.description}
+                    </p>
                   </div>
 
-                  {/* Title */}
-                  <h3
-                    className="text-[#171717] font-semibold text-2xl sm:text-3xl md:text-[36px] xl:text-[42px] leading-[1.12] tracking-tight mt-1 sm:mt-2"
-                    style={{
-                      fontFamily:
-                        '"PP Mori", var(--font-geist-sans), sans-serif',
-                    }}
-                  >
-                    <span className="block">{item.titleLine1}</span>
-                    <span className="block">{item.titleLine2}</span>
-                  </h3>
+                  {/* Action Buttons */}
+                  <div className="mt-8 sm:mt-10 flex items-center gap-3 sm:gap-3.5 relative z-10">
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-[8px] bg-[#FF5E14] text-white font-['PP_Mori',sans-serif] text-xs sm:text-sm font-semibold shadow-sm hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(255,94,20,0.35)] active:scale-[0.98] transition-all cursor-pointer"
+                    >
+                      Book a call
+                    </Link>
+                    <Link
+                      href="/about"
+                      className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-[8px] bg-white border border-[#EAEAEA] text-[#171717] font-['PP_Mori',sans-serif] text-xs sm:text-sm font-semibold shadow-sm hover:bg-gray-50 hover:border-gray-300 hover:-translate-y-0.5 hover:shadow-sm active:scale-[0.98] transition-all cursor-pointer"
+                    >
+                      Know More
+                    </Link>
+                  </div>
 
-                  {/* Description */}
-                  <p
-                    className="text-[#525252] text-[14px] sm:text-[15px] xl:text-[17px] leading-[1.6] max-w-[540px] mt-2 sm:mt-3"
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                  >
-                    {item.description}
-                  </p>
-                </div>
+                  {/* Mobile Image (inside the card) */}
+                  <div className="lg:hidden mt-6 sm:mt-8 relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[8px] overflow-hidden bg-gray-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+                    <Image
+                      src={item.image}
+                      alt={item.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      priority={item.id <= 2}
+                    />
+                  </div>
+                </Reveal>
 
-                {/* Action Buttons */}
-                <div className="mt-8 sm:mt-10 flex items-center gap-3 sm:gap-3.5 relative z-10">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-[8px] bg-[#FF5E14] text-white font-['PP_Mori',sans-serif] text-xs sm:text-sm font-semibold shadow-sm hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_4px_14px_rgba(255,94,20,0.3)] active:scale-[0.98] transition-all cursor-pointer"
-                  >
-                    Book a call
-                  </Link>
-                  <Link
-                    href="/about"
-                    className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-[8px] bg-white border border-[#EAEAEA] text-[#171717] font-['PP_Mori',sans-serif] text-xs sm:text-sm font-semibold shadow-sm hover:bg-gray-50 hover:-translate-y-0.5 hover:shadow-sm active:scale-[0.98] transition-all cursor-pointer"
-                  >
-                    Know More
-                  </Link>
-                </div>
-
-                {/* Mobile Image (inside the card) */}
-                <div className="lg:hidden mt-6 sm:mt-8 relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[8px] overflow-hidden bg-gray-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+                {/* Desktop Image Column */}
+                <Reveal
+                  direction={imageDirection}
+                  duration={750}
+                  delay={120}
+                  distance={36}
+                  className={`hidden lg:block relative w-full min-h-[300px] sm:min-h-[380px] lg:min-h-[440px] xl:min-h-[460px] rounded-[8px] overflow-hidden bg-gray-100 group shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-0.5 ${
+                    item.reverse ? "lg:order-1" : "lg:order-2"
+                  }`}
+                >
                   <Image
                     src={item.image}
                     alt={item.imageAlt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-104"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     priority={item.id <= 2}
                   />
-                </div>
-              </Reveal>
-
-              {/* Desktop Image Column */}
-              <Reveal
-                direction="scale"
-                duration={750}
-                delay={120}
-                className={`hidden lg:block relative w-full min-h-[300px] sm:min-h-[380px] lg:min-h-[440px] xl:min-h-[460px] rounded-[8px] overflow-hidden bg-gray-100 group shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-shadow duration-500 ${
-                  item.reverse ? "lg:order-1" : "lg:order-2"
-                }`}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.imageAlt}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-104"
-                  priority={item.id <= 2}
-                />
-              </Reveal>
-            </div>
-          ))}
+                </Reveal>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
