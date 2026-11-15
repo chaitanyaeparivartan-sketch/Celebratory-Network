@@ -10,6 +10,7 @@ const HERO_VIDEOS = [
     videoSrc: "/Home/Hero/hero-video-1.mp4",
     poster: "/Home/Hero/poster1.webp",
     thumb: "/Home/Hero/thumb_video1.webp",
+    mobileImage: "/Home/Hero/hero-mobile-1.webp",
     alt: "Brings spotlight on the Being and the Doing of Leadership",
     titleLine1: "Brings spotlight on the Being",
     titleLine2: "and the Doing of Leadership",
@@ -23,6 +24,7 @@ const HERO_VIDEOS = [
     videoSrc: "/Home/Hero/hero-video-2.mp4",
     poster: "/Home/Hero/poster2.webp",
     thumb: "/Home/Hero/thumb_video2.webp",
+    mobileImage: "/Home/Hero/hero-mobile-2.webp",
     alt: "Personal Power In Leadership For Women Leaders",
     titleLine1: "Personal Power In Leadership",
     titleLine2: "For Women Leaders",
@@ -36,6 +38,7 @@ const HERO_VIDEOS = [
     videoSrc: "/Home/Hero/hero-video-3.mp4",
     poster: "/Home/Hero/poster3.webp",
     thumb: "/Home/Hero/thumb_video3.webp",
+    mobileImage: "/Home/Hero/hero-mobile-1.webp",
     alt: "Collaborative team workshop session",
     titleLine1: "Leading organizational",
     titleLine2: "change & transformation",
@@ -69,6 +72,15 @@ export default function Hero() {
     });
   }, [activeThumb]);
 
+  // Mobile auto-advance carousel every 6s
+  useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth >= 768) return;
+    const timer = setInterval(() => {
+      setActiveThumb((prev) => (prev + 1) % HERO_VIDEOS.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   const handleEnded = () => {
     setActiveThumb((prev) => (prev + 1) % HERO_VIDEOS.length);
   };
@@ -79,18 +91,27 @@ export default function Hero() {
 
   return (
     <section className="relative w-full min-h-[640px] sm:min-h-[720px] h-[92vh] max-h-[1020px] flex flex-col justify-end overflow-hidden bg-[#1f1e1d] font-ppmori">
-      {/* Mobile Background Image */}
+      {/* Mobile Background Images with Smooth Cross-fade */}
       <div className="md:hidden absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-        <Image
-          src="/Home/Hero/Mobile-Hero.webp"
-          alt="Brings spotlight on the Being and the Doing of Leadership"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
+        {HERO_VIDEOS.map((item, index) => (
+          <div
+            key={item.id}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+              activeThumb === index ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          >
+            <Image
+              src={item.mobileImage}
+              alt={item.alt}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
+        ))}
         {/* Subtle mobile shade gradient for text readability while keeping the image clear */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
       </div>
 
       {/* Desktop Background Videos with Smooth Cross-fade */}
