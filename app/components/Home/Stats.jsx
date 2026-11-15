@@ -98,6 +98,84 @@ const FLOATING_CARDS = [
   },
 ];
 
+const MOBILE_TOP_CHIPS = [
+  {
+    id: 2,
+    avatar: "/Home/Stats/stat-image-2.jpg",
+    line1: "Align leadership teams on",
+    line2: "one shared direction",
+    bg: "bg-[#E6FAE1]",
+    bullet: "bg-[#16A34A]",
+    alignClass: "justify-start ml-[8%] sm:ml-[14%]",
+    animName: "chipFloat2",
+    animDuration: "5.2s",
+    animDelay: "0.4s",
+  },
+  {
+    id: 1,
+    avatar: "/Home/Stats/stat-image-1.jpg",
+    line1: "Guide transformation with",
+    line2: "your people on board",
+    bg: "bg-[#E5F2FF]",
+    bullet: "bg-[#0284C7]",
+    alignClass: "justify-start ml-1 sm:ml-2",
+    animName: "chipFloat1",
+    animDuration: "5.8s",
+    animDelay: "0s",
+  },
+  {
+    id: 4,
+    avatar: "/Home/Stats/stat-image-4.jpg",
+    line1: "Build trust that survives",
+    line2: "disagreement",
+    bg: "bg-[#FFF0E6]",
+    bullet: "bg-[#EA580C]",
+    alignClass: "justify-start ml-[12%] sm:ml-[20%]",
+    animName: "chipFloat4",
+    animDuration: "5.5s",
+    animDelay: "0.8s",
+  },
+];
+
+const MOBILE_BOTTOM_CHIPS = [
+  {
+    id: 3,
+    avatar: "/Home/Stats/stat-image-3.jpg",
+    line1: "Move leaders from function",
+    line2: "to enterprise thinking",
+    bg: "bg-[#F5EBFF]",
+    bullet: "bg-[#C026D3]",
+    alignClass: "justify-start ml-[10%] sm:ml-[16%]",
+    animName: "chipFloat3",
+    animDuration: "6.4s",
+    animDelay: "0.3s",
+  },
+  {
+    id: 5,
+    avatar: "/Home/Stats/stat-image-5.jpg",
+    line1: "Evolve culture, keep what",
+    line2: "makes you unique",
+    bg: "bg-[#F5EBFF]",
+    bullet: "bg-[#D946EF]",
+    alignClass: "justify-start ml-1 sm:ml-2",
+    animName: "chipFloat5",
+    animDuration: "6.2s",
+    animDelay: "0.6s",
+  },
+  {
+    id: 7,
+    avatar: "/Home/Stats/stat-image-7.jpg",
+    line1: "Strengthen decision-",
+    line2: "making and accountability",
+    bg: "bg-[#E6FAE1]",
+    bullet: "bg-[#16A34A]",
+    alignClass: "justify-start ml-[8%] sm:ml-[12%]",
+    animName: "chipFloat7",
+    animDuration: "6.0s",
+    animDelay: "0.2s",
+  },
+];
+
 const STATS = [
   {
     value: "20+",
@@ -231,8 +309,53 @@ export default function Stats() {
           })}
         </div>
 
+        {/* Mobile View: Top 3 Chips (above headline) */}
+        <div className="lg:hidden w-full max-w-[440px] mx-auto flex flex-col gap-3 sm:gap-3.5 px-2 mb-6 sm:mb-8">
+          {MOBILE_TOP_CHIPS.map((chip, index) => (
+            <Reveal
+              key={chip.id}
+              direction="up"
+              delay={index * 80}
+              duration={600}
+              className={`w-full flex ${chip.alignClass}`}
+            >
+              <div
+                className="flex items-center gap-2 group cursor-pointer will-change-transform transition-transform duration-300 hover:scale-105"
+                style={{
+                  animation: `${chip.animName} ${chip.animDuration} ease-in-out ${chip.animDelay} infinite`,
+                }}
+              >
+                {/* Avatar */}
+                <div className="relative w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] rounded-[14px] sm:rounded-[16px] overflow-hidden shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.06)] bg-gray-100">
+                  <Image
+                    src={chip.avatar}
+                    alt=""
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Pastel Pill Card */}
+                <div
+                  className={`flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-[18px] sm:rounded-[20px] ${chip.bg} shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-white/60`}
+                >
+                  <span
+                    className={`w-2 h-2 rounded-[2px] ${chip.bullet} shrink-0`}
+                  />
+                  <span className="text-[12.5px] sm:text-[13px] font-medium text-[#1E293B] leading-[1.3] text-left block">
+                    <span>{chip.line1}</span>
+                    <br />
+                    <span>{chip.line2}</span>
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
         {/* Center Main Headline */}
-        <Reveal direction="up" duration={750} className="relative z-10 max-w-[700px] mx-auto text-center px-4">
+        <Reveal direction="up" duration={750} className="relative z-10 max-w-[700px] mx-auto text-center px-4 my-2 lg:my-0">
           <h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-semibold text-[#171717] tracking-tight leading-[1.2] sm:leading-[1.24]"
             style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
@@ -247,34 +370,44 @@ export default function Stats() {
           </h2>
         </Reveal>
 
-        {/* Mobile/Tablet View: Single Column Stacked Cards */}
-        <div className="lg:hidden mt-8 w-full max-w-[480px] mx-auto flex flex-col gap-2.5 px-2">
-          {FLOATING_CARDS.map((card, index) => (
+        {/* Mobile View: Bottom 3 Chips (below headline) */}
+        <div className="lg:hidden w-full max-w-[440px] mx-auto flex flex-col gap-3 sm:gap-3.5 px-2 mt-6 sm:mt-8">
+          {MOBILE_BOTTOM_CHIPS.map((chip, index) => (
             <Reveal
-              key={card.id}
+              key={chip.id}
               direction="up"
-              delay={index * 60}
-              duration={550}
-              className="w-full"
+              delay={index * 80 + 120}
+              duration={600}
+              className={`w-full flex ${chip.alignClass}`}
             >
-              <div className="flex items-center gap-2.5 p-1.5 pr-3 rounded-xl bg-white border border-gray-100 shadow-sm w-full hover:shadow-md transition-shadow">
-                <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-[8px] overflow-hidden shrink-0 bg-gray-100">
+              <div
+                className="flex items-center gap-2 group cursor-pointer will-change-transform transition-transform duration-300 hover:scale-105"
+                style={{
+                  animation: `${chip.animName} ${chip.animDuration} ease-in-out ${chip.animDelay} infinite`,
+                }}
+              >
+                {/* Avatar */}
+                <div className="relative w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] rounded-[14px] sm:rounded-[16px] overflow-hidden shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.06)] bg-gray-100">
                   <Image
-                    src={card.avatar}
+                    src={chip.avatar}
                     alt=""
                     fill
-                    sizes="40px"
+                    sizes="48px"
                     className="object-cover"
                   />
                 </div>
+
+                {/* Pastel Pill Card */}
                 <div
-                  className={`flex-1 flex items-center gap-2 px-3 py-2 rounded-[8px] ${card.bg}`}
+                  className={`flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-[18px] sm:rounded-[20px] ${chip.bg} shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-white/60`}
                 >
                   <span
-                    className={`w-1.5 h-1.5 rounded-[1px] ${card.bullet} shrink-0`}
+                    className={`w-2 h-2 rounded-[2px] ${chip.bullet} shrink-0`}
                   />
-                  <span className="text-[12px] sm:text-[13px] font-medium text-[#1E293B] leading-snug">
-                    {card.line1} {card.line2}
+                  <span className="text-[12.5px] sm:text-[13px] font-medium text-[#1E293B] leading-[1.3] text-left block">
+                    <span>{chip.line1}</span>
+                    <br />
+                    <span>{chip.line2}</span>
                   </span>
                 </div>
               </div>
