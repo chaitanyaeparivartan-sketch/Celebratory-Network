@@ -136,31 +136,31 @@ export default function Hero({ showLogo = false, className = "" }) {
 
           {/* Story Paragraphs */}
           <div
-            className="space-y-2 sm:space-y-2.5 max-w-[520px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="space-y-3 sm:space-y-3.5 max-w-[540px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: isMounted ? 1 : 0,
               transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
               transitionDelay: "280ms",
             }}
           >
-            <p className="text-[#242424] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.48] font-normal">
+            <p className="text-[#242424] text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-[1.55] sm:leading-[1.5] font-normal">
               <span className="text-[#e06526] font-semibold">Celebratory</span>{" "}
               is about celebrating all moments of life. Every experience, every
               encounter, every challenge and every achievement shapes who we are
               today: as professionals, as organisations, and as people.
             </p>
 
-            <p className="text-[#242424] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[1.48] font-normal">
+            <p className="text-[#242424] text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-[1.55] sm:leading-[1.5] font-normal">
               <span className="text-[#e06526] font-semibold">Network:</span>{" "}
               from the very beginning,{" "}
               <strong className="font-bold text-[#141414]">Payal</strong> started
               Celebratory Network with a belief in the power of passion and
               ownership. We consciously moved away from the traditional employee
               model of work and embraced a consortium model, bringing together
-              people, expertise and perspectives to create meaningful work
+              people, expertise and perspectives to create meaningful work.
             </p>
 
-            <p className="text-[#e06526] font-semibold text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-snug pt-0.5">
+            <p className="text-[#e06526] font-semibold text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-snug pt-1">
               And that is how we became Celebratory Network.
             </p>
           </div>
