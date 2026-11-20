@@ -19,7 +19,7 @@ export default function BusinessODHero({ className = "" }) {
       {/* Background Cityscape Image with Golden Sunset Horizon */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
         <Image
-          src="/BusinessOD/business-od-hero.webp"
+          src="/BusinessOD/business-od-hero-new.webp"
           alt="Leading organizational change & transformation"
           fill
           priority

@@ -40,7 +40,7 @@ const HERO_VIDEOS = [
     videoSrc: "/Home/Hero/hero-video-3.mp4",
     poster: "/Home/Hero/poster3.webp",
     thumb: "/Home/Hero/thumb_video3.webp",
-    mobileImage: "/Home/Hero/hero-mobile-1.webp",
+    mobileImage: "/Home/Hero/hero-mobile-3.webp",
     alt: "Collaborative team workshop session",
     titleLine1: "Leading organizational",
     titleLine2: "change & transformation",
