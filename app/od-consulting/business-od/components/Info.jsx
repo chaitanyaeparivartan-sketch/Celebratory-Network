@@ -1,7 +1,9 @@
 'use client'; // needed in Next.js App Router; harmless elsewhere
 import { useEffect, useRef } from 'react';
 
-const TITLE = 'CULTURE DRIVES PERFORMANCE';
+const BADGE = 'ORGANIZATIONAL DEVELOPMENT INSIGHTS';
+const TITLE = 'Culture Drives Performance';
+const SUBTITLE = 'Connecting culture, leadership, and performance';
 
 const PARAGRAPHS = [
   'In today’s world, where markets and organizations are evolving more rapidly than ever before, alertness, awareness, and agile responsiveness are paramount to success. While most business leaders know the importance of organizational culture, many still struggle to grasp how to use culture as a key driver of performance.',
@@ -14,7 +16,6 @@ const clamp = (v) => Math.max(0, Math.min(1, v));
 
 export default function Info({ className = '' }) {
   const sectionRef = useRef(null);
-  const charRefs = useRef([]);
   const wordRefs = useRef([]);
 
   useEffect(() => {
@@ -25,20 +26,14 @@ export default function Info({ className = '' }) {
       const section = sectionRef.current;
       if (!section || reduce) return;
       const rect = section.getBoundingClientRect();
-      const p = clamp(-rect.top / (rect.height - window.innerHeight));
+      const scrollableDist = rect.height - window.innerHeight;
+      if (scrollableDist <= 0) return;
 
-      // Heading: letters rise into place, all finish at 18% of the scroll
-      const tp = clamp(p / 0.18);
-      const chars = charRefs.current;
-      chars.forEach((c, i) => {
-        if (!c) return;
-        const local = clamp(tp * 1.6 - (i / chars.length) * 0.6);
-        c.style.transform = local >= 1 ? 'none' : `translateY(${(1 - local) * 105}%)`;
-      });
+      const p = clamp(-rect.top / scrollableDist);
 
-      // Paragraphs: words fill in one by one between 15% and 75%
+      // Paragraphs: words fill in sequentially between 5% and 85% of scroll
       const words = wordRefs.current;
-      const n = clamp((p - 0.15) / 0.6) * words.length;
+      const n = clamp((p - 0.05) / 0.80) * words.length;
       words.forEach((w, i) => {
         if (w) w.dataset.on = String(i < n);
       });
@@ -59,35 +54,31 @@ export default function Info({ className = '' }) {
     };
   }, []);
 
-  let charIndex = 0;
   let wordIndex = 0;
 
   return (
-    <section ref={sectionRef} className={`relative h-[320vh] bg-white ${className}`}>
-      <div className="sticky top-0 flex h-screen flex-col justify-center gap-6 overflow-hidden px-5 md:gap-12 md:px-[6vw]">
-        <h2
-          aria-label="Culture drives performance"
-          className="flex flex-wrap gap-x-[.25em] font-[Archivo,'Helvetica_Neue',Arial,sans-serif] text-[length:clamp(2.2rem,8vw,7rem)] font-black uppercase leading-[.86] text-[#FF5E14] [font-stretch:62%]"
-        >
-          {TITLE.split(' ').map((word) => (
-            <span key={word} aria-hidden="true" className="inline-flex overflow-hidden pb-[.04em]">
-              {word.split('').map((ch, i) => {
-                const idx = charIndex++;
-                return (
-                  <span
-                    key={i}
-                    ref={(el) => (charRefs.current[idx] = el)}
-                    className="inline-block translate-y-[105%] will-change-transform motion-reduce:translate-y-0"
-                  >
-                    {ch}
-                  </span>
-                );
-              })}
+    <section ref={sectionRef} className={`relative min-h-[260vh] bg-white ${className}`}>
+      {/* Sticky viewport container without overflow clipping */}
+      <div className="sticky top-0 flex min-h-screen flex-col justify-center px-4 sm:px-6 md:px-10 lg:px-16 py-12 sm:py-16 md:py-20 w-full max-w-[1783px] mx-auto">
+        {/* Section Header with Eyebrow Badge & Title */}
+        <div className="mb-6 sm:mb-8 md:mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFEAE0] border border-[#FF5E14]/30 mb-3 sm:mb-4">
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
+            <span className="font-inter text-xs sm:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#FF5E14]">
+              {BADGE}
             </span>
-          ))}
-        </h2>
+          </div>
 
-        <div className="grid w-full gap-[.7em] text-[.86rem] font-medium leading-[1.35] md:gap-[.8em] md:text-[length:clamp(1rem,1.7vw,1.6rem)] font-ppmori">
+          <h2 className="font-ppmori text-2xl sm:text-3xl md:text-4xl lg:text-[46px] font-bold text-[#141414] leading-[1.15] tracking-[-0.025em]">
+            {TITLE}
+            <span className="block text-lg sm:text-xl md:text-2xl lg:text-[28px] font-medium text-[#FF5E14] mt-1.5 sm:mt-2 tracking-normal">
+              {SUBTITLE}
+            </span>
+          </h2>
+        </div>
+
+        {/* Highlightable Paragraphs Stack */}
+        <div className="grid w-full gap-5 sm:gap-6 md:gap-7 text-[clamp(17px,1.5vw,24px)] leading-[1.46] font-medium font-ppmori">
           {PARAGRAPHS.map((para, pi) => (
             <p key={pi}>
               {para.split(' ').map((word, wi, arr) => {
