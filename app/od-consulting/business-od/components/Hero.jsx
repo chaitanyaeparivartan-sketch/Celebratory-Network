@@ -56,9 +56,9 @@ export default function BusinessODHero({ className = "" }) {
         aria-hidden="true"
       />
 
-      {/* Layer 4: Bottom atmospheric fade into the orange Statement section */}
+      {/* Layer 4: Tighter bottom atmospheric fade into the orange Statement section */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 md:h-40 pointer-events-none z-15 bg-gradient-to-b from-transparent via-[#FF5E14]/40 to-[#FF5E14]"
+        className="absolute bottom-0 left-0 right-0 h-10 sm:h-14 md:h-16 lg:h-20 pointer-events-none z-15 bg-gradient-to-b from-transparent via-[#FF5E14]/50 to-[#FF5E14]"
         aria-hidden="true"
       />
 
