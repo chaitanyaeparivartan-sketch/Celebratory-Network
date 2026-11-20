@@ -2,26 +2,36 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 
-const RULES = [
+const IMPACT_ITEMS = [
   {
-    label: "The Office Rules 01",
-    title: "The brief is not set in stone",
-    desc: "A brief is a starting point, not a set of commandments. We’ll challenge it if we think there’s a better way to get where we need to go.",
+    num: "01",
+    title: "Organisational Effectiveness",
+    desc: "Clarify roles, governance, decision rights and accountability.",
   },
   {
-    label: "The Office Rules 02",
-    title: "Good ideas need space",
-    desc: "We don’t believe in rushing to the first solution that kind of works. Give an idea enough room to breathe, and it might just be the one.",
+    num: "02",
+    title: "Culture Transformation",
+    desc: "Aligning behaviours and norms with business strategy.",
   },
   {
-    label: "The Office Rules 03",
-    title: "Pretty is not a strategy",
-    desc: "We love beautiful things. But looking good is only part of the job. Everything we put out there needs to have a reason to be.",
+    num: "03",
+    title: "Leadership Effectiveness",
+    desc: "Supporting leaders in navigating growth, complexity and change.",
   },
   {
-    label: "The Office Rules 04",
-    title: "If it can be simple, simplify",
-    desc: "Complexity for complexity’s sake is not cool, actually. If your brand can say more with less, we’ll make it happen.",
+    num: "04",
+    title: "Cross Functional Collaboration",
+    desc: "Breaking silos and strengthening enterprise thinking.",
+  },
+  {
+    num: "05",
+    title: "Business Transformation",
+    desc: "Helping organizations move from intention to execution.",
+  },
+  {
+    num: "06",
+    title: "Succession & Leadership Transition",
+    desc: "Enabling leadership continuity and long-term sustainability.",
   },
 ];
 
@@ -38,9 +48,9 @@ export default function Impact({ className = "" }) {
     const total = trackRef.current.offsetHeight - window.innerHeight;
     if (total <= 0) return;
 
-    // As user scrolls through the pinned track, p progresses smoothly from 0.0 to 1.0
+    // As user scrolls through the 400vh pinned track, p maps smoothly from 0.0 to 1.0 across all 6 items
     const p = Math.max(0, Math.min(0.9999, -r.top / total));
-    const targetIdx = Math.floor(p * RULES.length);
+    const targetIdx = Math.floor(p * IMPACT_ITEMS.length);
     setActive((prev) => (prev !== targetIdx ? targetIdx : prev));
   }, []);
 
@@ -55,7 +65,7 @@ export default function Impact({ className = "" }) {
     };
   }, [handleScroll]);
 
-  const handleRuleClick = useCallback((i) => {
+  const handleItemClick = useCallback((i) => {
     isLockedRef.current = true;
     setActive(i);
     if (lockTimeoutRef.current) clearTimeout(lockTimeoutRef.current);
@@ -68,13 +78,11 @@ export default function Impact({ className = "" }) {
     <section className={`office-rules-wrapper relative w-full bg-white text-[#111] ${className}`}>
       <style>{`
         .office-rules-wrapper {
-          --bg: #ffffff;
-          --ink: #111;
           --accent: #FF5E14;
         }
-        /* Sticky scroll track: 360vh gives ample pinned time to reveal one rule after another */
+        /* Sticky scroll track: 400vh gives smooth travel across all 6 impact areas */
         .office-rules-track {
-          height: 360vh;
+          height: 400vh;
           position: relative;
         }
         .office-rules-pin {
@@ -84,8 +92,18 @@ export default function Impact({ className = "" }) {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 0 4vw;
+          padding: 3rem 1.5rem;
           z-index: 20;
+        }
+        @media (min-width: 640px) {
+          .office-rules-pin {
+            padding: 3.5rem 2rem;
+          }
+        }
+        @media (min-width: 1024px) {
+          .office-rules-pin {
+            padding: 4rem 3rem;
+          }
         }
         .office-rule {
           border-top: 1.5px solid var(--accent);
@@ -99,14 +117,17 @@ export default function Impact({ className = "" }) {
           border-bottom: 1.5px solid var(--accent);
         }
         .office-rule-label {
-          font-size: clamp(0.95rem, 1.35vw, 1.35rem);
+          font-size: clamp(0.9rem, 1.25vw, 1.2rem);
           text-transform: uppercase;
-          padding: clamp(18px, 2.4vw, 34px) 0;
+          padding: clamp(14px, 1.8vw, 22px) 0;
           font-weight: 600;
-          font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+          font-family: 'Inter', var(--font-inter), sans-serif;
           letter-spacing: -0.01em;
           transition: color 0.25s ease;
           color: #222;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
         }
         .office-rule.open .office-rule-label {
           color: var(--accent);
@@ -114,7 +135,7 @@ export default function Impact({ className = "" }) {
         .office-rule-body {
           display: grid;
           grid-template-rows: 0fr;
-          transition: grid-template-rows 0.55s cubic-bezier(0.25, 0.1, 0.25, 1);
+          transition: grid-template-rows 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
         .office-rule.open .office-rule-body {
           grid-template-rows: 1fr;
@@ -125,13 +146,13 @@ export default function Impact({ className = "" }) {
         }
         .office-rule-row {
           display: grid;
-          grid-template-columns: 1fr minmax(260px, 34%);
-          gap: 4vw;
+          grid-template-columns: 1fr minmax(260px, 36%);
+          gap: 3vw;
           align-items: start;
-          padding: clamp(6px, 1.2vw, 16px) 0 clamp(26px, 3.5vw, 48px);
+          padding: clamp(4px, 1vw, 12px) 0 clamp(20px, 2.6vw, 36px);
           opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.45s ease 0.08s, transform 0.55s cubic-bezier(0.25, 0.1, 0.25, 1) 0.05s;
+          transform: translateY(16px);
+          transition: opacity 0.4s ease 0.08s, transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.05s;
         }
         .office-rule.open .office-rule-row {
           opacity: 1;
@@ -142,22 +163,22 @@ export default function Impact({ className = "" }) {
           font-weight: 400;
           color: var(--accent);
           text-transform: uppercase;
-          font-size: clamp(2.4rem, 7vw, 6.8rem);
+          font-size: clamp(2rem, 5vw, 4.6rem);
           line-height: 0.96;
           letter-spacing: -0.01em;
-          max-width: 11ch;
+          max-width: 14ch;
         }
         .office-rule-desc {
-          font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-          font-size: clamp(0.95rem, 1.35vw, 1.4rem);
+          font-family: 'Inter', var(--font-inter), sans-serif;
+          font-size: clamp(0.95rem, 1.25vw, 1.3rem);
           line-height: 1.45;
-          padding-top: 0.5em;
-          color: #222;
+          padding-top: 0.3em;
+          color: #333;
         }
         @media (max-width: 768px) {
           .office-rule-row {
             grid-template-columns: 1fr;
-            gap: 1.25rem;
+            gap: 0.75rem;
           }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -167,23 +188,39 @@ export default function Impact({ className = "" }) {
         }
       `}</style>
 
-      {/* Pinned Scroll Track: Locks to viewport and reveals each rule one after another */}
+      {/* Pinned Scroll Track: Sticks to viewport and reveals each impact area sequentially */}
       <div ref={trackRef} className="office-rules-track">
         <div className="office-rules-pin max-w-[1783px] mx-auto w-full">
-          {RULES.map((rule, idx) => {
+          {/* Section Eyebrow & Title */}
+          <div className="mb-4 sm:mb-6 md:mb-8">
+            <div className="inline-flex items-center gap-2 mb-2 font-inter text-xs sm:text-[13px] font-semibold uppercase tracking-[0.16em] text-[#FF5E14]">
+              <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
+              Areas of Focus
+            </div>
+            <h2 className="font-[Archivo,'Helvetica_Neue',Arial,sans-serif] text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-black uppercase leading-[0.94] [font-stretch:65%] tracking-tight">
+              <span className="text-[#171717]">WHERE WE </span>
+              <span className="text-[#FF5E14]">CREATE IMPACT</span>
+            </h2>
+          </div>
+
+          {/* Accordion Impact Items */}
+          {IMPACT_ITEMS.map((item, idx) => {
             const isOpen = active === idx;
             return (
               <div
                 key={idx}
                 className={`office-rule ${isOpen ? "open" : ""}`}
-                onClick={() => handleRuleClick(idx)}
+                onClick={() => handleItemClick(idx)}
               >
-                <div className="office-rule-label">{rule.label}</div>
+                <div className="office-rule-label">
+                  <span className="text-[#FF5E14] font-semibold">{item.num}</span>
+                  <span>{item.title}</span>
+                </div>
                 <div className="office-rule-body">
                   <div className="office-rule-inner">
                     <div className="office-rule-row">
-                      <h2 className="office-rule-title">{rule.title}</h2>
-                      <p className="office-rule-desc">{rule.desc}</p>
+                      <h3 className="office-rule-title">{item.title}</h3>
+                      <p className="office-rule-desc">{item.desc}</p>
                     </div>
                   </div>
                 </div>
