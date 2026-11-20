@@ -75,7 +75,7 @@ export default function Impact({ className = "" }) {
   }, []);
 
   return (
-    <section className={`office-rules-wrapper relative w-full bg-white text-[#111] ${className}`}>
+    <section className={`office-rules-wrapper relative w-full bg-white text-[#111] font-ppmori ${className}`}>
       <style>{`
         .office-rules-wrapper {
           --accent: #FF5E14;
@@ -117,14 +117,14 @@ export default function Impact({ className = "" }) {
           border-bottom: 1.5px solid var(--accent);
         }
         .office-rule-label {
-          font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+          font-size: clamp(0.9rem, 1.15vw, 1.15rem);
           text-transform: uppercase;
-          padding: clamp(12px, 1.5vw, 18px) 0;
+          padding: clamp(14px, 1.8vw, 22px) 0;
           font-weight: 500;
-          font-family: 'Inter', var(--font-inter), sans-serif;
+          font-family: var(--font-inter), 'Inter', sans-serif;
           letter-spacing: -0.01em;
           transition: color 0.25s ease;
-          color: #222;
+          color: #242424;
           display: flex;
           align-items: center;
           gap: 0.75rem;
@@ -149,7 +149,7 @@ export default function Impact({ className = "" }) {
           grid-template-columns: 1fr minmax(260px, 36%);
           gap: 3vw;
           align-items: start;
-          padding: clamp(4px, 1vw, 12px) 0 clamp(18px, 2.2vw, 30px);
+          padding: clamp(4px, 1vw, 12px) 0 clamp(20px, 2.6vw, 36px);
           opacity: 0;
           transform: translateY(14px);
           transition: opacity 0.35s ease 0.08s, transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.05s;
@@ -159,21 +159,21 @@ export default function Impact({ className = "" }) {
           transform: none;
         }
         .office-rule-title {
-          font-family: 'PP Mori', var(--font-ppmori), -apple-system, sans-serif;
+          font-family: "PP Mori", var(--font-geist-sans), sans-serif;
           font-weight: 600;
           color: var(--accent);
           text-transform: uppercase;
-          font-size: clamp(1.4rem, 2.4vw, 2.35rem);
-          line-height: 1.14;
-          letter-spacing: -0.02em;
+          font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+          line-height: 1.12;
+          letter-spacing: -0.025em;
           max-width: 18ch;
         }
         .office-rule-desc {
-          font-family: 'Inter', var(--font-inter), sans-serif;
-          font-size: clamp(0.9rem, 1.1vw, 1.15rem);
-          line-height: 1.5;
+          font-family: var(--font-inter), 'Inter', sans-serif;
+          font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+          line-height: 1.6;
           padding-top: 0.2em;
-          color: #333;
+          color: #4A4A4A;
         }
         @media (max-width: 768px) {
           .office-rule-row {
@@ -191,15 +191,14 @@ export default function Impact({ className = "" }) {
       {/* Pinned Scroll Track: Sticks to viewport and reveals each impact area sequentially */}
       <div ref={trackRef} className="office-rules-track">
         <div className="office-rules-pin max-w-[1783px] mx-auto w-full">
-          {/* Section Eyebrow & Title */}
+          {/* Section Eyebrow & Title matching Home Page style */}
           <div className="mb-4 sm:mb-6 md:mb-8">
-            <div className="inline-flex items-center gap-2 mb-2 font-inter text-xs sm:text-[13px] font-semibold uppercase tracking-[0.16em] text-[#FF5E14]">
+            <div className="inline-flex items-center gap-1.5 font-['Inter',sans-serif] text-sm font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
               <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
               Areas of Focus
             </div>
-            <h2 className="font-ppmori text-2xl sm:text-3xl md:text-4xl font-bold uppercase leading-tight tracking-tight">
-              <span className="text-[#171717]">WHERE WE </span>
-              <span className="text-[#FF5E14]">CREATE IMPACT</span>
+            <h2 className="mt-2.5 font-ppmori text-3xl sm:text-4xl md:text-[46px] lg:text-[52px] font-semibold tracking-[-0.8px] leading-[1.08] text-[#242424]">
+              WHERE WE <span className="text-[#FF5E14]">CREATE IMPACT</span>
             </h2>
           </div>
 
