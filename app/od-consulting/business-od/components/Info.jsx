@@ -1,9 +1,7 @@
 'use client'; // needed in Next.js App Router; harmless elsewhere
 import { useEffect, useRef } from 'react';
 
-const BADGE = 'ORGANIZATIONAL DEVELOPMENT INSIGHTS';
-const TITLE = 'Culture Drives Performance';
-const SUBTITLE = 'Connecting culture, leadership, and performance';
+const TITLE_LINES = ['CULTURE DRIVES', 'PERFORMANCE'];
 
 const PARAGRAPHS = [
   'In today’s world, where markets and organizations are evolving more rapidly than ever before, alertness, awareness, and agile responsiveness are paramount to success. While most business leaders know the importance of organizational culture, many still struggle to grasp how to use culture as a key driver of performance.',
@@ -16,6 +14,7 @@ const clamp = (v) => Math.max(0, Math.min(1, v));
 
 export default function Info({ className = '' }) {
   const sectionRef = useRef(null);
+  const charRefs = useRef([]);
   const wordRefs = useRef([]);
 
   useEffect(() => {
@@ -31,9 +30,18 @@ export default function Info({ className = '' }) {
 
       const p = clamp(-rect.top / scrollableDist);
 
-      // Paragraphs: words fill in sequentially between 5% and 85% of scroll
+      // Heading: letters rise into place from behind overflow clip, all finished by 18% of scroll
+      const tp = clamp(p / 0.18);
+      const chars = charRefs.current;
+      chars.forEach((c, i) => {
+        if (!c) return;
+        const local = clamp(tp * 1.6 - (i / chars.length) * 0.6);
+        c.style.transform = local >= 1 ? 'none' : `translateY(${(1 - local) * 105}%)`;
+      });
+
+      // Paragraphs: words fill in sequentially between 15% and 80% of scroll
       const words = wordRefs.current;
-      const n = clamp((p - 0.05) / 0.80) * words.length;
+      const n = clamp((p - 0.15) / 0.65) * words.length;
       words.forEach((w, i) => {
         if (w) w.dataset.on = String(i < n);
       });
@@ -54,31 +62,42 @@ export default function Info({ className = '' }) {
     };
   }, []);
 
+  let charIndex = 0;
   let wordIndex = 0;
 
   return (
-    <section ref={sectionRef} className={`relative min-h-[260vh] bg-white ${className}`}>
-      {/* Sticky viewport container without overflow clipping */}
-      <div className="sticky top-0 flex min-h-screen flex-col justify-center px-4 sm:px-6 md:px-10 lg:px-16 py-12 sm:py-16 md:py-20 w-full max-w-[1783px] mx-auto">
-        {/* Section Header with Eyebrow Badge & Title */}
-        <div className="mb-6 sm:mb-8 md:mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFEAE0] border border-[#FF5E14]/30 mb-3 sm:mb-4">
-            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
-            <span className="font-inter text-xs sm:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#FF5E14]">
-              {BADGE}
-            </span>
-          </div>
-
-          <h2 className="font-ppmori text-2xl sm:text-3xl md:text-4xl lg:text-[46px] font-bold text-[#141414] leading-[1.15] tracking-[-0.025em]">
-            {TITLE}
-            <span className="block text-lg sm:text-xl md:text-2xl lg:text-[28px] font-medium text-[#FF5E14] mt-1.5 sm:mt-2 tracking-normal">
-              {SUBTITLE}
-            </span>
-          </h2>
-        </div>
+    <section ref={sectionRef} className={`relative h-[320vh] bg-white ${className}`}>
+      {/* Sticky viewport container */}
+      <div className="sticky top-0 flex min-h-screen flex-col justify-center gap-6 sm:gap-8 md:gap-10 px-5 sm:px-8 md:px-[6vw] max-w-[1783px] mx-auto pt-16 sm:pt-20 pb-10">
+        {/* Kinetic Rising Title: CULTURE DRIVES PERFORMANCE */}
+        <h2
+          aria-label="Culture drives performance"
+          className="flex flex-col gap-1 sm:gap-2 font-[Archivo,'Helvetica_Neue',Arial,sans-serif] text-[length:clamp(2.4rem,6.2vw,5.6rem)] font-black uppercase leading-[.88] text-[#FF5E14] [font-stretch:65%] tracking-tight select-none"
+        >
+          {TITLE_LINES.map((line, lineIdx) => (
+            <div key={lineIdx} className="flex flex-wrap gap-x-[.25em]">
+              {line.split(' ').map((word) => (
+                <span key={word} aria-hidden="true" className="inline-flex overflow-hidden pb-[.06em]">
+                  {word.split('').map((ch, i) => {
+                    const idx = charIndex++;
+                    return (
+                      <span
+                        key={i}
+                        ref={(el) => (charRefs.current[idx] = el)}
+                        className="inline-block translate-y-[105%] will-change-transform motion-reduce:translate-y-0"
+                      >
+                        {ch}
+                      </span>
+                    );
+                  })}
+                </span>
+              ))}
+            </div>
+          ))}
+        </h2>
 
         {/* Highlightable Paragraphs Stack */}
-        <div className="grid w-full gap-5 sm:gap-6 md:gap-7 text-[clamp(17px,1.5vw,24px)] leading-[1.46] font-medium font-ppmori">
+        <div className="grid w-full gap-3 sm:gap-4 md:gap-5 text-[clamp(15px,1.25vw,21px)] leading-[1.46] font-medium font-ppmori">
           {PARAGRAPHS.map((para, pi) => (
             <p key={pi}>
               {para.split(' ').map((word, wi, arr) => {
