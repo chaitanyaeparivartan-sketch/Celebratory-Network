@@ -78,8 +78,8 @@ function SingleParagraphScrub({ text, paragraphIndex }) {
   const waveWidth = 5.2; // Width of active kinetic scrub wave in character units
 
   return (
-    <div ref={paragraphRef} className="relative">
-      <p className="font-ppmori text-[clamp(19px,2.1vw,30px)] sm:text-[clamp(21px,2.3vw,33px)] leading-[1.38] md:leading-[1.42] tracking-[-0.012em] font-medium select-text">
+    <div ref={paragraphRef} className="relative w-full">
+      <p className="font-ppmori text-[clamp(21px,2.1vw,36px)] sm:text-[clamp(23px,2.3vw,40px)] leading-[1.38] md:leading-[1.42] tracking-[-0.012em] font-medium select-text">
         {parsedWords.map((wordObj, wIdx) => (
           <span
             key={wIdx}
@@ -155,8 +155,8 @@ export default function Info({ className = "" }) {
     <section
       className={`relative w-full bg-white font-ppmori py-20 sm:py-24 md:py-32 lg:py-36 overflow-hidden ${className}`}
     >
-      <div className="w-full max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
-        {/* All 4 paragraphs displayed in standard page flow, highlighting sequentially one at a time */}
+      {/* Aligns directly to the Navbar max-width [1783px] and horizontal padding */}
+      <div className="w-full max-w-[1783px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-16 sm:space-y-20 md:space-y-24 lg:space-y-28">
           {PARAGRAPHS.map((text, idx) => (
             <SingleParagraphScrub
