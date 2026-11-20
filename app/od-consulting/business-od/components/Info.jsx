@@ -1,8 +1,6 @@
 'use client'; // needed in Next.js App Router; harmless elsewhere
 import { useEffect, useRef } from 'react';
 
-const TITLE_LINES = ['CULTURE DRIVES', 'PERFORMANCE'];
-
 const PARAGRAPHS = [
   'In today’s world, where markets and organizations are evolving more rapidly than ever before, alertness, awareness, and agile responsiveness are paramount to success. While most business leaders know the importance of organizational culture, many still struggle to grasp how to use culture as a key driver of performance.',
   'Our approach to culture change is designed to help organizations yield sustainable performance results. We offer customized organizational development experiences at the individual, team, and organizational level that connect culture, strategy, and leadership to yield significant and sustainable results.',
@@ -14,7 +12,6 @@ const clamp = (v) => Math.max(0, Math.min(1, v));
 
 export default function Info({ className = '' }) {
   const sectionRef = useRef(null);
-  const charRefs = useRef([]);
   const wordRefs = useRef([]);
 
   useEffect(() => {
@@ -30,18 +27,9 @@ export default function Info({ className = '' }) {
 
       const p = clamp(-rect.top / scrollableDist);
 
-      // Heading: letters rise into place from behind overflow clip, all finished by 18% of scroll
-      const tp = clamp(p / 0.18);
-      const chars = charRefs.current;
-      chars.forEach((c, i) => {
-        if (!c) return;
-        const local = clamp(tp * 1.6 - (i / chars.length) * 0.6);
-        c.style.transform = local >= 1 ? 'none' : `translateY(${(1 - local) * 105}%)`;
-      });
-
-      // Paragraphs: words fill in sequentially between 15% and 80% of scroll
+      // Paragraphs: words fill in sequentially between 5% and 85% of scroll
       const words = wordRefs.current;
-      const n = clamp((p - 0.15) / 0.65) * words.length;
+      const n = clamp((p - 0.05) / 0.80) * words.length;
       words.forEach((w, i) => {
         if (w) w.dataset.on = String(i < n);
       });
@@ -62,38 +50,19 @@ export default function Info({ className = '' }) {
     };
   }, []);
 
-  let charIndex = 0;
   let wordIndex = 0;
 
   return (
-    <section ref={sectionRef} className={`relative h-[320vh] bg-white ${className}`}>
+    <section ref={sectionRef} className={`relative min-h-[260vh] bg-white ${className}`}>
       {/* Sticky viewport container */}
       <div className="sticky top-0 flex min-h-screen flex-col justify-center gap-6 sm:gap-8 md:gap-10 px-5 sm:px-8 md:px-[6vw] max-w-[1783px] mx-auto pt-16 sm:pt-20 pb-10">
-        {/* Kinetic Rising Title: CULTURE DRIVES PERFORMANCE */}
+        {/* Bold Condensed Title: CULTURE DRIVES PERFORMANCE */}
         <h2
           aria-label="Culture drives performance"
-          className="flex flex-col gap-1 sm:gap-2 font-[Archivo,'Helvetica_Neue',Arial,sans-serif] text-[length:clamp(2.4rem,6.2vw,5.6rem)] font-black uppercase leading-[.88] text-[#FF5E14] [font-stretch:65%] tracking-tight select-none"
+          className="font-[Archivo,'Helvetica_Neue',Arial,sans-serif] text-[length:clamp(2.5rem,6.5vw,5.8rem)] font-black uppercase leading-[.88] text-[#FF5E14] [font-stretch:65%] tracking-tight select-none"
         >
-          {TITLE_LINES.map((line, lineIdx) => (
-            <div key={lineIdx} className="flex flex-wrap gap-x-[.25em]">
-              {line.split(' ').map((word) => (
-                <span key={word} aria-hidden="true" className="inline-flex overflow-hidden pb-[.06em]">
-                  {word.split('').map((ch, i) => {
-                    const idx = charIndex++;
-                    return (
-                      <span
-                        key={i}
-                        ref={(el) => (charRefs.current[idx] = el)}
-                        className="inline-block translate-y-[105%] will-change-transform motion-reduce:translate-y-0"
-                      >
-                        {ch}
-                      </span>
-                    );
-                  })}
-                </span>
-              ))}
-            </div>
-          ))}
+          <span className="block">CULTURE DRIVES</span>
+          <span className="block">PERFORMANCE</span>
         </h2>
 
         {/* Highlightable Paragraphs Stack */}
