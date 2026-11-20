@@ -65,10 +65,10 @@ export default function Impact({ className = "" }) {
   }, []);
 
   return (
-    <section className={`office-rules-wrapper relative w-full bg-[#f7efea] text-[#111] ${className}`}>
+    <section className={`office-rules-wrapper relative w-full bg-white text-[#111] ${className}`}>
       <style>{`
         .office-rules-wrapper {
-          --bg: #f7efea;
+          --bg: #ffffff;
           --ink: #111;
           --accent: #FF5E14;
         }
