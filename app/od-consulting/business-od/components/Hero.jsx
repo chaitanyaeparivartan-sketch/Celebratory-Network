@@ -13,7 +13,7 @@ export default function BusinessODHero({ className = "" }) {
 
   return (
     <section
-      className={`relative w-full bg-white overflow-hidden font-ppmori ${className}`}
+      className={`relative w-full h-screen min-h-[680px] min-h-[100dvh] bg-white overflow-hidden font-ppmori ${className}`}
     >
       {/* Background Image - exact uploaded JPG, unoptimized */}
       <div
