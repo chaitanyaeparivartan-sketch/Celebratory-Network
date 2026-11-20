@@ -9,7 +9,7 @@ const PARAGRAPHS = [
   "We use an evidence-based approach to quantify aspects of organizational culture that are proven to be linked to performance outcomes.",
 ];
 
-function KineticScrubParagraph({ text, paragraphIndex }) {
+function LetterScrubParagraph({ text, paragraphIndex }) {
   const paragraphRef = useRef(null);
   const [progress, setProgress] = useState(0);
 
@@ -18,10 +18,9 @@ function KineticScrubParagraph({ text, paragraphIndex }) {
     const rect = paragraphRef.current.getBoundingClientRect();
     const windowHeight = window.innerHeight || 800;
 
-    // Start scrubbing when paragraph enters bottom of screen (86%)
-    // Complete scrub when paragraph moves past upper-middle reading focal point (20%)
-    const startY = windowHeight * 0.86;
-    const endY = windowHeight * 0.20;
+    // Smooth scrub window: starts as paragraph enters viewport, completes near upper third
+    const startY = windowHeight * 0.88;
+    const endY = windowHeight * 0.24;
     const current = (startY - rect.top) / (startY - endY);
     const clamped = Math.max(0, Math.min(1, current));
     setProgress(clamped);
@@ -46,77 +45,107 @@ function KineticScrubParagraph({ text, paragraphIndex }) {
     };
   }, [updateProgress]);
 
-  const words = useMemo(() => text.split(" "), [text]);
-  const totalWords = words.length;
+  // Pre-parse text into words and individual letters with continuous character indexing
+  const { parsedWords, totalChars } = useMemo(() => {
+    const words = text.split(" ");
+    let runningIndex = 0;
+
+    const parsed = words.map((word) => {
+      const letters = word.split("").map((char) => {
+        const idx = runningIndex++;
+        // Deterministic micro-tilt between -3.2deg and +3.2deg for authentic kinetic scrub
+        const baseTilt = (((idx * 17 + paragraphIndex * 13) % 9) - 4) * 0.8;
+        return {
+          char,
+          index: idx,
+          baseTilt,
+        };
+      });
+      // Count space separator between words
+      runningIndex++;
+      return {
+        letters,
+      };
+    });
+
+    return {
+      parsedWords: parsed,
+      totalChars: Math.max(1, runningIndex),
+    };
+  }, [text, paragraphIndex]);
+
+  // Current scrub cursor position in character units
+  const targetCharIndex = progress * totalChars;
+  const waveWidth = 5.5; // Width of active kinetic scrub wave in character units
 
   return (
     <div ref={paragraphRef} className="relative">
-      <p className="font-ppmori text-[clamp(22px,2.9vw,40px)] leading-[1.4] md:leading-[1.46] tracking-[-0.015em] font-medium select-text">
-        {words.map((word, i) => {
-          // Word milestone threshold along paragraph scrub progress
-          const threshold = totalWords > 1 ? i / (totalWords - 1) : 0;
-          const scrubWindow = 0.055; // Width of active kinetic wave
-          const diff = progress - threshold;
+      <p className="font-ppmori text-[clamp(18px,1.9vw,28px)] sm:text-[clamp(19px,2.1vw,30px)] leading-[1.32] md:leading-[1.36] tracking-[-0.012em] font-medium select-text">
+        {parsedWords.map((wordObj, wIdx) => (
+          <span
+            key={wIdx}
+            className="inline-block whitespace-nowrap mr-[0.24em]"
+          >
+            {wordObj.letters.map((letter, lIdx) => {
+              const diff = targetCharIndex - letter.index;
 
-          // Deterministic pseudo-random tilt between -3.2deg and +3.2deg for authentic kinetic feel
-          const baseTilt = (((i * 19 + paragraphIndex * 13) % 9) - 4) * 0.8;
+              let color = "#171717";
+              let scale = 1;
+              let tilt = 0;
+              let translateY = 0;
+              let textShadow = "none";
+              let opacity = 0.92;
 
-          let color = "#171717";
-          let scale = 1;
-          let tilt = 0;
-          let translateY = 0;
-          let textShadow = "none";
-          let opacity = 0.95;
+              if (diff < 0) {
+                // Stage 0: Unreached - clean rich black
+                color = "#171717";
+                scale = 1;
+                tilt = 0;
+                translateY = 0;
+                textShadow = "none";
+                opacity = 0.9;
+              } else if (diff < waveWidth) {
+                // Stage 1: Active Letter-by-Letter Kinetic Pop (Matching two26.studio)
+                const t = diff / waveWidth;
+                const peak = Math.sin(t * Math.PI);
 
-          if (diff < 0) {
-            // Stage 0: Unreached - clean rich black
-            color = "#171717";
-            scale = 1;
-            tilt = 0;
-            translateY = 0;
-            textShadow = "none";
-            opacity = 0.9;
-          } else if (diff < scrubWindow) {
-            // Stage 1: Active Kinetic Wave Scrub (Inspired by two26.studio)
-            // Arc peaks in the middle of the wave: scale 1.12, micro-tilt, subtle lift, incandescent glow
-            const t = diff / scrubWindow;
-            const peak = Math.sin(t * Math.PI);
+                color = "#FF5E14";
+                scale = 1 + 0.12 * peak;
+                tilt = letter.baseTilt * peak;
+                translateY = -3.2 * peak;
+                textShadow =
+                  "0.5px 0.5px 0 #FF5E14, -0.5px -0.5px 0 #FF5E14, 0 0 10px rgba(255, 94, 20, 0.45)";
+                opacity = 1;
+              } else {
+                // Stage 2: Settled - smooth high-contrast brand orange
+                color = "#FF5E14";
+                scale = 1;
+                tilt = 0;
+                translateY = 0;
+                textShadow = "none";
+                opacity = 1;
+              }
 
-            color = "#FF5E14";
-            scale = 1 + 0.12 * peak;
-            tilt = baseTilt * peak;
-            translateY = -3.5 * peak;
-            textShadow =
-              "0.6px 0.6px 0 #FF5E14, -0.6px -0.6px 0 #FF5E14, 0 0 12px rgba(255, 94, 20, 0.45)";
-            opacity = 1;
-          } else {
-            // Stage 2: Settled - smooth, solid high-contrast brand orange
-            color = "#FF5E14";
-            scale = 1;
-            tilt = 0;
-            translateY = 0;
-            textShadow = "none";
-            opacity = 1;
-          }
-
-          return (
-            <span
-              key={i}
-              className="inline-block mr-[0.27em] will-change-transform will-change-[color]"
-              style={{
-                color,
-                opacity,
-                transform: `translate3d(0, ${translateY.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(1)}deg)`,
-                textShadow,
-                transformOrigin: "center bottom",
-                transition:
-                  "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.24s ease, text-shadow 0.24s ease, opacity 0.24s ease",
-              }}
-            >
-              {word}
-            </span>
-          );
-        })}
+              return (
+                <span
+                  key={lIdx}
+                  className="inline-block will-change-transform will-change-[color]"
+                  style={{
+                    color,
+                    opacity,
+                    transform: `translate3d(0, ${translateY.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(1)}deg)`,
+                    textShadow,
+                    transformOrigin: "center bottom",
+                    transition:
+                      "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.24s ease, text-shadow 0.24s ease, opacity 0.24s ease",
+                  }}
+                >
+                  {letter.char}
+                </span>
+              );
+            })}
+          </span>
+        ))}
       </p>
     </div>
   );
@@ -125,13 +154,13 @@ function KineticScrubParagraph({ text, paragraphIndex }) {
 export default function Info({ className = "" }) {
   return (
     <section
-      className={`relative w-full bg-white font-ppmori py-24 sm:py-32 md:py-40 lg:py-48 overflow-hidden ${className}`}
+      className={`relative w-full bg-white font-ppmori py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden ${className}`}
     >
-      <div className="w-full max-w-[1240px] mx-auto px-5 sm:px-8 lg:px-12">
-        {/* Highlightable Paragraphs Stack */}
-        <div className="space-y-18 sm:space-y-24 md:space-y-36">
+      <div className="w-full max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
+        {/* Paragraphs with tight, refined sentence and paragraph spacing */}
+        <div className="space-y-8 sm:space-y-10 md:space-y-12 lg:space-y-14">
           {PARAGRAPHS.map((text, idx) => (
-            <KineticScrubParagraph
+            <LetterScrubParagraph
               key={idx}
               text={text}
               paragraphIndex={idx}
