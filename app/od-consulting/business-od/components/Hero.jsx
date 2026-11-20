@@ -28,7 +28,7 @@ export default function BusinessODHero({ className = "" }) {
         />
       </div>
 
-      {/* Layer 2: Building Foreground (Building.png) positioned on right */}
+      {/* Layer 2: Building Foreground (Building.png) shifted right so it never overlaps text */}
       <div
         className="absolute inset-0 pointer-events-none select-none z-10 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden"
         style={{
@@ -37,7 +37,7 @@ export default function BusinessODHero({ className = "" }) {
           transitionDelay: "150ms",
         }}
       >
-        <div className="relative w-full h-full lg:translate-x-[6%] xl:translate-x-[10%]">
+        <div className="relative w-full h-full translate-x-[36%] sm:translate-x-[42%] md:translate-x-[46%] lg:translate-x-[50%] xl:translate-x-[52%]">
           <Image
             src="/BusinessOD/Building.png"
             alt="Organization Development Building"
