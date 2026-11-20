@@ -5,8 +5,8 @@ export default function BusinessODHero({ className = "" }) {
     <section className={`relative w-full overflow-hidden bg-white ${className}`}>
       <div className="relative w-full h-[45vh] sm:h-[55vh] md:h-[68vh] lg:h-[76vh] min-h-[340px] max-h-[880px]">
         <Image
-          src="/BusinessOD/business-od-cityscape-4k.jpg"
-          alt="Business Organization Development City Skyline"
+          src="/BusinessOD/hero-building.jpg"
+          alt="Business Organization Development"
           fill
           priority
           unoptimized
