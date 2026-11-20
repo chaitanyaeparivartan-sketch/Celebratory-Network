@@ -12,41 +12,49 @@ const PARAGRAPHS = [
 function SingleParagraphScrub({ text, paragraphIndex }) {
   const paragraphRef = useRef(null);
   const [progress, setProgress] = useState(0);
+  const targetProgressRef = useRef(0);
+  const currentProgressRef = useRef(0);
 
-  const updateProgress = useCallback(() => {
+  const calculateTarget = useCallback(() => {
     if (!paragraphRef.current) return;
     const rect = paragraphRef.current.getBoundingClientRect();
     const windowHeight = window.innerHeight || 800;
 
-    // Focused focal activation window:
-    // Starts scrubbing when paragraph reaches the 65% line of the viewport
-    // Completes scrub when paragraph moves past the 38% line of the viewport
-    // Tuned for tighter paragraph spacing so highlighting flows strictly one-by-one.
-    const startY = windowHeight * 0.65;
-    const endY = windowHeight * 0.38;
+    // Generous, slow scrub travel window:
+    // Starts as paragraph enters lower viewport (82%)
+    // Slowly glides across viewport until 18% near the top
+    const startY = windowHeight * 0.82;
+    const endY = windowHeight * 0.18;
     const current = (startY - rect.top) / (startY - endY);
-    const clamped = Math.max(0, Math.min(1, current));
-    setProgress(clamped);
+    targetProgressRef.current = Math.max(0, Math.min(1, current));
   }, []);
 
   useEffect(() => {
-    updateProgress();
+    calculateTarget();
+    currentProgressRef.current = targetProgressRef.current;
+    setProgress(targetProgressRef.current);
 
     let rafId = null;
-    const onScroll = () => {
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updateProgress);
+    const loop = () => {
+      calculateTarget();
+      const diff = targetProgressRef.current - currentProgressRef.current;
+      // Smooth slow-motion dampening factor (0.065 creates silky, slow inertial scrub)
+      if (Math.abs(diff) > 0.0006) {
+        currentProgressRef.current += diff * 0.065;
+        setProgress(currentProgressRef.current);
+      } else if (currentProgressRef.current !== targetProgressRef.current) {
+        currentProgressRef.current = targetProgressRef.current;
+        setProgress(currentProgressRef.current);
+      }
+      rafId = requestAnimationFrame(loop);
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
+    rafId = requestAnimationFrame(loop);
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
     };
-  }, [updateProgress]);
+  }, [calculateTarget]);
 
   // Pre-parse text into words and individual letters with continuous character indexing
   const { parsedWords, totalChars } = useMemo(() => {
@@ -75,7 +83,7 @@ function SingleParagraphScrub({ text, paragraphIndex }) {
   }, [text, paragraphIndex]);
 
   const targetCharIndex = progress * totalChars;
-  const waveWidth = 5.2; // Width of active kinetic scrub wave in character units
+  const waveWidth = 8.5; // Wider, slower kinetic wave span in character units
 
   return (
     <div ref={paragraphRef} className="relative w-full">
@@ -104,7 +112,7 @@ function SingleParagraphScrub({ text, paragraphIndex }) {
                 textShadow = "none";
                 opacity = 0.9;
               } else if (diff < waveWidth) {
-                // Active Letter-by-Letter Kinetic Pop (two26.studio style)
+                // Active Letter-by-Letter Kinetic Pop (Slow, smooth arc)
                 const t = diff / waveWidth;
                 const peak = Math.sin(t * Math.PI);
 
@@ -113,7 +121,7 @@ function SingleParagraphScrub({ text, paragraphIndex }) {
                 tilt = letter.baseTilt * peak;
                 translateY = -3.2 * peak;
                 textShadow =
-                  "0.5px 0.5px 0 #FF5E14, -0.5px -0.5px 0 #FF5E14, 0 0 10px rgba(255, 94, 20, 0.45)";
+                  "0.5px 0.5px 0 #FF5E14, -0.5px -0.5px 0 #FF5E14, 0 0 12px rgba(255, 94, 20, 0.45)";
                 opacity = 1;
               } else {
                 // Settled: Solid high-contrast brand orange
@@ -136,7 +144,7 @@ function SingleParagraphScrub({ text, paragraphIndex }) {
                     textShadow,
                     transformOrigin: "center bottom",
                     transition:
-                      "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.24s ease, text-shadow 0.24s ease, opacity 0.24s ease",
+                      "transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), color 0.48s ease, text-shadow 0.48s ease, opacity 0.48s ease",
                   }}
                 >
                   {letter.char}
