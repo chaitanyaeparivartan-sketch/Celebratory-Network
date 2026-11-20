@@ -32,28 +32,6 @@ export default function Statement({ className = "" }) {
               Culture is what enables teams to defy the odds and achieve the remarkable
             </h2>
           </Reveal>
-
-          {/* Author Name */}
-          <Reveal direction="up" duration={800} delay={120} distance={20}>
-            <h3 className="mt-7 sm:mt-9 text-white font-bold text-sm sm:text-base tracking-[0.08em] uppercase">
-              PAYAL GUPTA
-            </h3>
-          </Reveal>
-
-          {/* Author Title & Company with CN Badge (pure CSS / zero image) */}
-          <Reveal direction="up" duration={800} delay={200} distance={16}>
-            <div className="mt-2.5 flex items-center justify-center gap-2 group cursor-default">
-              <span
-                className="w-[18px] h-[18px] rounded-full bg-[#183B56] text-white text-[9px] font-bold flex items-center justify-center shrink-0 shadow-sm"
-                aria-hidden="true"
-              >
-                CN
-              </span>
-              <span className="text-white/95 font-medium text-[11px] sm:text-[12px] tracking-wide uppercase font-inter">
-                CEO, DIRECTOR &ndash; CELEBRATORY NETWORK
-              </span>
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>
