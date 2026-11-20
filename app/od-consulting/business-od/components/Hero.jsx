@@ -27,7 +27,7 @@ export default function BusinessODHero({ className = "" }) {
       >
         <Image
           src="/BusinessOD/hero-building.jpg"
-          alt="Toward Organization Development"
+          alt="Our Perspective on Organization Development"
           fill
           priority
           unoptimized
@@ -57,8 +57,8 @@ export default function BusinessODHero({ className = "" }) {
               className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#FF5E14] inline-block rounded-[1px] shrink-0"
               aria-hidden="true"
             />
-            <span className="text-[#374151] font-semibold text-[12px] sm:text-[13px] md:text-[14px] tracking-[0.2em] uppercase select-none">
-              OUR PERSPECTIVE
+            <span className="text-[#374151] font-semibold text-[11px] sm:text-[12px] md:text-[13px] tracking-[0.14em] uppercase select-none">
+              Visible Systems · Culture · Invisible Dynamics
             </span>
           </div>
 
@@ -71,7 +71,7 @@ export default function BusinessODHero({ className = "" }) {
               transitionDelay: "180ms",
             }}
           >
-            Toward Organization Development
+            Our Perspective on Organization Development
           </h1>
 
           {/* Story Paragraphs */}
@@ -84,42 +84,8 @@ export default function BusinessODHero({ className = "" }) {
             }}
           >
             <p className="text-[#242424] text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-[1.55] sm:leading-[1.5] font-normal">
-              Many transformation efforts focus on structures, processes and governance.{" "}
-              <strong className="font-semibold text-[#141414]">
-                These are necessary. But they are not sufficient.
-              </strong>
+              Structures, processes and governance are necessary, but not sufficient. Organizations are living systems where formal structures run alongside informal networks. We help you work with both: culture patterns, relationships, leadership behaviour and ways of working.
             </p>
-
-            <p className="text-[#242424] text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-[1.55] sm:leading-[1.5] font-normal">
-              <strong className="font-semibold text-[#141414]">Organizations are living systems.</strong>{" "}
-              Formal structures operate alongside informal networks, official priorities coexist with unspoken realities.{" "}
-              <strong className="font-semibold text-[#141414]">
-                Success depends on both.
-              </strong>
-            </p>
-
-            <div className="pt-2 sm:pt-2.5 space-y-2">
-              <p className="text-[#242424] text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-[1.55] sm:leading-[1.5] font-normal">
-                Our work focuses on helping organizations understand and work with:
-              </p>
-
-              <div className="space-y-1 sm:space-y-1.5 text-[14px] sm:text-[14.5px] md:text-[15px] leading-[1.5] text-[#242424] font-medium">
-                <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <span>Visible systems</span>
-                  <span className="text-[#FF5E14] font-semibold select-none">|</span>
-                  <span>Culture patterns</span>
-                  <span className="text-[#FF5E14] font-semibold select-none">|</span>
-                  <span>Invisible dynamics</span>
-                </p>
-                <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <span>Organisational relationships</span>
-                  <span className="text-[#FF5E14] font-semibold select-none">|</span>
-                  <span>Leadership behaviour</span>
-                  <span className="text-[#FF5E14] font-semibold select-none">|</span>
-                  <span>Ways of Working</span>
-                </p>
-              </div>
-            </div>
 
             {/* Actions */}
             <div className="pt-3 sm:pt-4 flex items-center gap-3 sm:gap-3.5">
