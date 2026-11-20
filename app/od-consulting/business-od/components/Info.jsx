@@ -19,11 +19,11 @@ function SingleParagraphScrub({ text, paragraphIndex }) {
     const windowHeight = window.innerHeight || 800;
 
     // Focused focal activation window:
-    // Starts scrubbing when paragraph reaches the 72% line of the viewport
-    // Completes scrub when paragraph moves past the 32% line of the viewport
-    // This ensures only ONE paragraph highlights at a time as you scroll through them.
-    const startY = windowHeight * 0.72;
-    const endY = windowHeight * 0.32;
+    // Starts scrubbing when paragraph reaches the 65% line of the viewport
+    // Completes scrub when paragraph moves past the 38% line of the viewport
+    // Tuned for tighter paragraph spacing so highlighting flows strictly one-by-one.
+    const startY = windowHeight * 0.65;
+    const endY = windowHeight * 0.38;
     const current = (startY - rect.top) / (startY - endY);
     const clamped = Math.max(0, Math.min(1, current));
     setProgress(clamped);
@@ -153,11 +153,11 @@ function SingleParagraphScrub({ text, paragraphIndex }) {
 export default function Info({ className = "" }) {
   return (
     <section
-      className={`relative w-full bg-white font-ppmori py-20 sm:py-24 md:py-32 lg:py-36 overflow-hidden ${className}`}
+      className={`relative w-full bg-white font-ppmori py-14 sm:py-18 md:py-24 lg:py-28 overflow-hidden ${className}`}
     >
       {/* Aligns directly to the Navbar max-width [1783px] and horizontal padding */}
       <div className="w-full max-w-[1783px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-16 sm:space-y-20 md:space-y-24 lg:space-y-28">
+        <div className="space-y-6 sm:space-y-8 md:space-y-9 lg:space-y-10">
           {PARAGRAPHS.map((text, idx) => (
             <SingleParagraphScrub
               key={idx}
