@@ -13,41 +13,39 @@ export default function BusinessODHero({ className = "" }) {
 
   return (
     <section
-      className={`relative w-full h-screen min-h-[680px] min-h-[100dvh] bg-white overflow-hidden font-ppmori ${className}`}
+      className={`relative w-full min-h-screen min-h-[100dvh] bg-[#f0f6fc] overflow-hidden font-ppmori flex items-center ${className}`}
     >
-      {/* Background Image - exact uploaded JPG, unoptimized, shifted towards right */}
+      {/* Background Image - exact uploaded building image */}
       <div
         className="absolute inset-0 pointer-events-none select-none z-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden"
         style={{
           opacity: isMounted ? 1 : 0,
-          transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
-          transitionDelay: "200ms",
+          transform: isMounted ? "none" : "translate3d(0, 16px, 0)",
+          transitionDelay: "150ms",
         }}
       >
-        <div className="relative w-[130%] sm:w-[125%] lg:w-[130%] xl:w-[135%] h-full -left-[15%] sm:-left-[12%] lg:-left-[15%] xl:-left-[18%]">
-          <Image
-            src="/BusinessOD/hero-building.jpg"
-            alt="Our Perspective on Organization Development"
-            fill
-            priority
-            unoptimized
-            sizes="100vw"
-            className="object-cover object-right-bottom block"
-          />
-        </div>
-        {/* Soft atmospheric gradient wash ensuring maximum readability on left */}
+        <Image
+          src="/BusinessOD/hero-building.jpg"
+          alt="Toward Organization Development"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="object-cover object-right-bottom block"
+        />
+        {/* Soft atmospheric gradient wash ensuring the text on the left is crystal clear and matches slide background */}
         <div
-          className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent md:from-white/85 md:via-white/45 md:to-transparent pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-r from-[#f0f6fc]/95 via-[#f0f6fc]/75 to-transparent md:from-[#f0f6fc]/90 md:via-[#f0f6fc]/40 md:to-transparent pointer-events-none"
           aria-hidden="true"
         />
       </div>
 
-      {/* Main Story Content - exactly matching app/about/components/Hero.jsx CSS */}
-      <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-40 lg:pt-36 pb-16 sm:pb-20 lg:pb-24">
-        <div className="w-full max-w-[440px] sm:max-w-[520px] md:max-w-[620px] lg:max-w-[680px]">
-          {/* Top Tag */}
+      {/* Main Content - exact layout and typography from slide */}
+      <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-38 lg:pt-36 pb-16 sm:pb-20">
+        <div className="w-full max-w-[560px] lg:max-w-[590px]">
+          {/* Eyebrow / Tag: Orange Square + Orange Text */}
           <div
-            className="flex items-center gap-1.5 sm:gap-2 mb-2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="flex items-center gap-2 mb-3 sm:mb-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: isMounted ? 1 : 0,
               transform: isMounted ? "none" : "translate3d(0, 16px, 0)",
@@ -55,38 +53,77 @@ export default function BusinessODHero({ className = "" }) {
             }}
           >
             <span
-              className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#FF5E14] inline-block rounded-[1px] shrink-0"
+              className="w-2 h-2 bg-[#FF5E14] inline-block rounded-[1px] shrink-0"
               aria-hidden="true"
             />
-            <span className="text-[#374151] font-semibold text-[11px] sm:text-[12px] md:text-[13px] tracking-[0.14em] uppercase select-none">
-              Visible Systems · Culture · Invisible Dynamics
+            <span
+              className="text-[#FF5E14] font-semibold text-[13px] sm:text-[14px] md:text-[15px] tracking-[0.14em] uppercase select-none"
+              style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
+            >
+              OUR PERSPECTIVE
             </span>
           </div>
 
-          {/* Heading */}
+          {/* Heading: Exact 2 Lines, Bold Navy/Slate All-Caps */}
           <h1
-            className="text-[#141414] font-semibold text-[clamp(28px,3.8vw,52px)] leading-[36px] sm:leading-[42px] md:leading-[48px] tracking-[-0.8px] mb-2.5 sm:mb-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="text-[#1E293B] font-bold text-[34px] sm:text-[44px] md:text-[50px] lg:text-[54px] xl:text-[58px] leading-[1.06] tracking-tight uppercase mb-5 sm:mb-6 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
+              fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
               opacity: isMounted ? 1 : 0,
               transform: isMounted ? "none" : "translate3d(0, 24px, 0)",
               transitionDelay: "180ms",
             }}
           >
-            Our Perspective on Organization Development
+            <span className="block">TOWARD ORGANIZATION</span>
+            <span className="block">DEVELOPMENT</span>
           </h1>
 
-          {/* Story Paragraphs / Brief */}
+          {/* Body Paragraph */}
           <div
-            className="space-y-3 sm:space-y-3.5 max-w-[540px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: isMounted ? 1 : 0,
               transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
-              transitionDelay: "280ms",
+              transitionDelay: "260ms",
             }}
           >
-            <p className="text-[#242424] text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-[1.55] sm:leading-[1.5] font-normal">
-              Structures, processes and governance are necessary, but not sufficient. Organizations are living systems where formal structures run alongside informal networks. We help you work with both: culture patterns, relationships, leadership behaviour and ways of working.
+            <p
+              className="text-[#334155] text-[15px] sm:text-[16px] md:text-[16.5px] leading-[1.55] max-w-[530px]"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              Many transformation efforts focus on structures, processes and governance. These are necessary. But they are not sufficient. Organizations are living systems. Formal structures operate alongside informal networks, official priorities coexist with unspoken realities. Success depends on both.
             </p>
+
+            {/* Subheading in Brand Orange + 2 Dimension Bullet Lines */}
+            <div className="mt-5 sm:mt-6 max-w-[540px]">
+              <h2
+                className="text-[#FF5E14] font-bold text-[17px] sm:text-[18px] md:text-[19px] leading-[1.32] mb-3"
+                style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
+              >
+                <span className="block">Our work focuses on helping organizations</span>
+                <span className="block">understand and work with:</span>
+              </h2>
+
+              <div
+                className="space-y-1.5 text-[14px] sm:text-[15px] text-[#2D3748] font-medium"
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <span>Visible systems</span>
+                  <span className="text-[#FF5E14] font-bold text-[18px] leading-none select-none">·</span>
+                  <span>Culture patterns</span>
+                  <span className="text-[#FF5E14] font-bold text-[18px] leading-none select-none">·</span>
+                  <span>Invisible dynamics</span>
+                </p>
+                <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <span>Organisational relationships</span>
+                  <span className="text-[#FF5E14] font-bold text-[18px] leading-none select-none">·</span>
+                  <span>Leadership behaviour</span>
+                  <span className="text-[#FF5E14] font-bold text-[18px] leading-none select-none">·</span>
+                  <span>Ways of Working</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
