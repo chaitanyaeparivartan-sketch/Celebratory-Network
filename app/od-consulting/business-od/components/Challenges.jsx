@@ -121,9 +121,7 @@ export default function Challenges() {
                       <div className="flex flex-col gap-4 sm:gap-5 mt-5 sm:mt-6 w-full">
                         {item.points.map((pt, idx) => (
                           <div key={idx} className="flex items-start gap-3">
-                            <span className="text-[#FF5E14] font-bold text-base sm:text-lg leading-tight mt-0.5 select-none shrink-0">
-                              —
-                            </span>
+                            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] mt-2 shrink-0 transition-transform duration-300 group-hover:scale-125" />
                             <div className="flex flex-col">
                               <h4
                                 className="text-[#171717] font-semibold text-[15px] sm:text-[16px] xl:text-[17px] leading-[1.4]"
@@ -150,7 +148,7 @@ export default function Challenges() {
                       <ul className="flex flex-col gap-2.5 sm:gap-3 mt-5 sm:mt-6 w-full">
                         {item.bullets.map((bullet, idx) => (
                           <li key={idx} className="flex items-start gap-3">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E14] mt-2 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] mt-2 shrink-0 transition-transform duration-300 group-hover:scale-125" />
                             <span
                               className="text-[#404040] text-[14px] sm:text-[15px] xl:text-[16px] leading-[1.5]"
                               style={{ fontFamily: "Inter, sans-serif" }}
