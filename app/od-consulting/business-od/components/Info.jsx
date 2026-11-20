@@ -9,42 +9,53 @@ const PARAGRAPHS = [
   "We use an evidence-based approach to quantify aspects of organizational culture that are proven to be linked to performance outcomes.",
 ];
 
-function SingleParagraphScrub({ text, paragraphIndex }) {
-  const paragraphRef = useRef(null);
-  const [progress, setProgress] = useState(0);
+export default function Info({ className = "" }) {
+  const sectionRef = useRef(null);
+  // globalProgress runs continuously from 0.0 to 4.0
+  // [0.0 -> 1.0]: Paragraph 1 highlights. Paragraph 2, 3, 4 remain strictly 0 (black).
+  // [1.0 -> 2.0]: Paragraph 1 is 100% finished. Paragraph 2 highlights.
+  // [2.0 -> 3.0]: Paragraph 1 & 2 are 100% finished. Paragraph 3 highlights.
+  // [3.0 -> 4.0]: Paragraph 1, 2, 3 are 100% finished. Paragraph 4 highlights.
+  const [currentProgress, setCurrentProgress] = useState(0);
   const targetProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
 
+  const numParagraphs = PARAGRAPHS.length;
+
   const calculateTarget = useCallback(() => {
-    if (!paragraphRef.current) return;
-    const rect = paragraphRef.current.getBoundingClientRect();
+    if (!sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
     const windowHeight = window.innerHeight || 800;
 
-    // Generous, slow scrub travel window:
-    // Starts as paragraph enters lower viewport (82%)
-    // Slowly glides across viewport until 18% near the top
-    const startY = windowHeight * 0.82;
-    const endY = windowHeight * 0.18;
-    const current = (startY - rect.top) / (startY - endY);
-    targetProgressRef.current = Math.max(0, Math.min(1, current));
-  }, []);
+    // Start triggering as the section reaches comfortable reading line
+    const startY = windowHeight * 0.70;
+    const scrolled = startY - rect.top;
+
+    // Total scroll travel spread across all 4 paragraphs
+    // Gives generous, slow-motion scroll travel per paragraph (~360px per paragraph)
+    const scrollPerPara = 360;
+    const totalDistance = scrollPerPara * numParagraphs;
+
+    const raw = (scrolled / totalDistance) * numParagraphs;
+    targetProgressRef.current = Math.max(0, Math.min(numParagraphs, raw));
+  }, [numParagraphs]);
 
   useEffect(() => {
     calculateTarget();
     currentProgressRef.current = targetProgressRef.current;
-    setProgress(targetProgressRef.current);
+    setCurrentProgress(targetProgressRef.current);
 
     let rafId = null;
     const loop = () => {
       calculateTarget();
       const diff = targetProgressRef.current - currentProgressRef.current;
-      // Smooth slow-motion dampening factor (0.065 creates silky, slow inertial scrub)
-      if (Math.abs(diff) > 0.0006) {
-        currentProgressRef.current += diff * 0.065;
-        setProgress(currentProgressRef.current);
+      // Smooth slow-motion inertial lerp
+      if (Math.abs(diff) > 0.0005) {
+        currentProgressRef.current += diff * 0.06;
+        setCurrentProgress(currentProgressRef.current);
       } else if (currentProgressRef.current !== targetProgressRef.current) {
         currentProgressRef.current = targetProgressRef.current;
-        setProgress(currentProgressRef.current);
+        setCurrentProgress(currentProgressRef.current);
       }
       rafId = requestAnimationFrame(loop);
     };
@@ -56,123 +67,128 @@ function SingleParagraphScrub({ text, paragraphIndex }) {
     };
   }, [calculateTarget]);
 
-  // Pre-parse text into words and individual letters with continuous character indexing
-  const { parsedWords, totalChars } = useMemo(() => {
-    const words = text.split(" ");
-    let runningIndex = 0;
+  // Pre-parse all paragraphs into words and continuous letter indexing
+  const parsedData = useMemo(() => {
+    return PARAGRAPHS.map((text, pIdx) => {
+      const words = text.split(" ");
+      let runningIndex = 0;
 
-    const parsed = words.map((word) => {
-      const letters = word.split("").map((char) => {
-        const idx = runningIndex++;
-        // Deterministic micro-tilt between -3.2deg and +3.2deg
-        const baseTilt = (((idx * 17 + paragraphIndex * 13) % 9) - 4) * 0.8;
-        return {
-          char,
-          index: idx,
-          baseTilt,
-        };
+      const parsedWords = words.map((word) => {
+        const letters = word.split("").map((char) => {
+          const idx = runningIndex++;
+          const baseTilt = (((idx * 17 + pIdx * 13) % 9) - 4) * 0.8;
+          return {
+            char,
+            index: idx,
+            baseTilt,
+          };
+        });
+        runningIndex++; // space separator
+        return { letters };
       });
-      runningIndex++; // space separator
-      return { letters };
+
+      return {
+        parsedWords,
+        totalChars: Math.max(1, runningIndex),
+      };
     });
+  }, []);
 
-    return {
-      parsedWords: parsed,
-      totalChars: Math.max(1, runningIndex),
-    };
-  }, [text, paragraphIndex]);
-
-  const targetCharIndex = progress * totalChars;
-  const waveWidth = 8.5; // Wider, slower kinetic wave span in character units
-
-  return (
-    <div ref={paragraphRef} className="relative w-full">
-      <p className="font-ppmori text-[clamp(21px,2.1vw,36px)] sm:text-[clamp(23px,2.3vw,40px)] leading-[1.38] md:leading-[1.42] tracking-[-0.012em] font-medium select-text">
-        {parsedWords.map((wordObj, wIdx) => (
-          <span
-            key={wIdx}
-            className="inline-block whitespace-nowrap mr-[0.25em]"
-          >
-            {wordObj.letters.map((letter, lIdx) => {
-              const diff = targetCharIndex - letter.index;
-
-              let color = "#171717";
-              let scale = 1;
-              let tilt = 0;
-              let translateY = 0;
-              let textShadow = "none";
-              let opacity = 0.92;
-
-              if (diff < 0) {
-                // Unreached: Clean black
-                color = "#171717";
-                scale = 1;
-                tilt = 0;
-                translateY = 0;
-                textShadow = "none";
-                opacity = 0.9;
-              } else if (diff < waveWidth) {
-                // Active Letter-by-Letter Kinetic Pop (Slow, smooth arc)
-                const t = diff / waveWidth;
-                const peak = Math.sin(t * Math.PI);
-
-                color = "#FF5E14";
-                scale = 1 + 0.12 * peak;
-                tilt = letter.baseTilt * peak;
-                translateY = -3.2 * peak;
-                textShadow =
-                  "0.5px 0.5px 0 #FF5E14, -0.5px -0.5px 0 #FF5E14, 0 0 12px rgba(255, 94, 20, 0.45)";
-                opacity = 1;
-              } else {
-                // Settled: Solid high-contrast brand orange
-                color = "#FF5E14";
-                scale = 1;
-                tilt = 0;
-                translateY = 0;
-                textShadow = "none";
-                opacity = 1;
-              }
-
-              return (
-                <span
-                  key={lIdx}
-                  className="inline-block will-change-transform will-change-[color]"
-                  style={{
-                    color,
-                    opacity,
-                    transform: `translate3d(0, ${translateY.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(1)}deg)`,
-                    textShadow,
-                    transformOrigin: "center bottom",
-                    transition:
-                      "transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), color 0.48s ease, text-shadow 0.48s ease, opacity 0.48s ease",
-                  }}
-                >
-                  {letter.char}
-                </span>
-              );
-            })}
-          </span>
-        ))}
-      </p>
-    </div>
-  );
-}
-
-export default function Info({ className = "" }) {
   return (
     <section
+      ref={sectionRef}
       className={`relative w-full bg-white font-ppmori py-14 sm:py-18 md:py-24 lg:py-28 overflow-hidden ${className}`}
     >
-      {/* Aligns directly to the Navbar max-width [1783px] and horizontal padding */}
       <div className="w-full max-w-[1783px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-6 sm:space-y-8 md:space-y-9 lg:space-y-10">
-          {PARAGRAPHS.map((text, idx) => (
-            <SingleParagraphScrub
-              key={idx}
-              text={text}
-              paragraphIndex={idx}
-            />
-          ))}
+          {PARAGRAPHS.map((_, pIdx) => {
+            // Strict sequential guarantee:
+            // Paragraph pIdx only begins when currentProgress >= pIdx (i.e. previous para is 100% finished)
+            let paraProgress = 0;
+            if (currentProgress >= pIdx + 1) {
+              paraProgress = 1; // 100% finished
+            } else if (currentProgress > pIdx) {
+              paraProgress = currentProgress - pIdx; // actively scrubbing from 0.0 to 1.0
+            } else {
+              paraProgress = 0; // has not started yet (strictly black)
+            }
+
+            const { parsedWords, totalChars } = parsedData[pIdx];
+            const targetCharIndex = paraProgress * totalChars;
+            const waveWidth = 8.5; // Width of active kinetic wave
+
+            return (
+              <div key={pIdx} className="relative w-full">
+                <p className="font-ppmori text-[clamp(21px,2.1vw,36px)] sm:text-[clamp(23px,2.3vw,40px)] leading-[1.38] md:leading-[1.42] tracking-[-0.012em] font-medium select-text">
+                  {parsedWords.map((wordObj, wIdx) => (
+                    <span
+                      key={wIdx}
+                      className="inline-block whitespace-nowrap mr-[0.25em]"
+                    >
+                      {wordObj.letters.map((letter, lIdx) => {
+                        const diff = targetCharIndex - letter.index;
+
+                        let color = "#171717";
+                        let scale = 1;
+                        let tilt = 0;
+                        let translateY = 0;
+                        let textShadow = "none";
+                        let opacity = 0.92;
+
+                        if (diff < 0) {
+                          // Unreached: Clean black
+                          color = "#171717";
+                          scale = 1;
+                          tilt = 0;
+                          translateY = 0;
+                          textShadow = "none";
+                          opacity = 0.9;
+                        } else if (diff < waveWidth) {
+                          // Active Kinetic Wave Pop
+                          const t = diff / waveWidth;
+                          const peak = Math.sin(t * Math.PI);
+
+                          color = "#FF5E14";
+                          scale = 1 + 0.12 * peak;
+                          tilt = letter.baseTilt * peak;
+                          translateY = -3.2 * peak;
+                          textShadow =
+                            "0.5px 0.5px 0 #FF5E14, -0.5px -0.5px 0 #FF5E14, 0 0 10px rgba(255, 94, 20, 0.45)";
+                          opacity = 1;
+                        } else {
+                          // Settled: Solid brand orange
+                          color = "#FF5E14";
+                          scale = 1;
+                          tilt = 0;
+                          translateY = 0;
+                          textShadow = "none";
+                          opacity = 1;
+                        }
+
+                        return (
+                          <span
+                            key={lIdx}
+                            className="inline-block will-change-transform will-change-[color]"
+                            style={{
+                              color,
+                              opacity,
+                              transform: `translate3d(0, ${translateY.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(1)}deg)`,
+                              textShadow,
+                              transformOrigin: "center bottom",
+                              transition:
+                                "transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), color 0.48s ease, text-shadow 0.48s ease, opacity 0.48s ease",
+                            }}
+                          >
+                            {letter.char}
+                          </span>
+                        );
+                      })}
+                    </span>
+                  ))}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
