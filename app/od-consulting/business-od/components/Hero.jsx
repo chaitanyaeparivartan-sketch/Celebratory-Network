@@ -24,20 +24,20 @@ export default function BusinessODHero({ className = "" }) {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[78%_bottom] md:object-right-bottom"
+          className="object-cover object-[80%_bottom] md:object-right-bottom"
         />
 
-        {/* Ambient Gradient Wash: softens left side for text readability while leaving the towers and sunset crisp */}
+        {/* Ambient Gradient Wash: softens text area while keeping towers, sky, and sunrise vibrant */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.82) 38%, rgba(255, 255, 255, 0.35) 62%, transparent 100%)",
+              "linear-gradient(90deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.6) 36%, rgba(255, 255, 255, 0.15) 58%, transparent 85%)",
           }}
         />
 
         {/* Mobile Gradient: subtle vertical shade from top-down to ensure readability on small screens */}
-        <div className="md:hidden absolute inset-0 bg-gradient-to-t from-white/95 via-white/75 to-transparent" />
+        <div className="md:hidden absolute inset-0 bg-gradient-to-t from-white/95 via-white/70 to-transparent" />
       </div>
 
       {/* Floating Bird Micro-Animations */}
