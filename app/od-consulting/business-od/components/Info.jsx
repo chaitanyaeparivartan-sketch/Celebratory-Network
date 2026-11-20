@@ -9,30 +9,32 @@ const PARAGRAPHS = [
   "We use an evidence-based approach to quantify aspects of organizational culture that are proven to be linked to performance outcomes.",
 ];
 
-function LetterScrubParagraph({ text, paragraphIndex }) {
-  const paragraphRef = useRef(null);
-  const [progress, setProgress] = useState(0);
+export default function Info({ className = "" }) {
+  const containerRef = useRef(null);
+  const [globalProgress, setGlobalProgress] = useState(0);
 
-  const updateProgress = useCallback(() => {
-    if (!paragraphRef.current) return;
-    const rect = paragraphRef.current.getBoundingClientRect();
+  const handleScroll = useCallback(() => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
     const windowHeight = window.innerHeight || 800;
 
-    // Smooth scrub window: starts as paragraph enters viewport, completes near upper third
-    const startY = windowHeight * 0.88;
-    const endY = windowHeight * 0.24;
-    const current = (startY - rect.top) / (startY - endY);
-    const clamped = Math.max(0, Math.min(1, current));
-    setProgress(clamped);
+    // Total scrollable travel distance of the pinned container
+    const totalDistance = rect.height - windowHeight;
+    if (totalDistance <= 0) return;
+
+    // Progress from 0 (container hits top of screen) to 1 (reaches bottom of container)
+    const scrolled = -rect.top;
+    const progress = Math.max(0, Math.min(1, scrolled / totalDistance));
+    setGlobalProgress(progress);
   }, []);
 
   useEffect(() => {
-    updateProgress();
+    handleScroll();
 
     let rafId = null;
     const onScroll = () => {
       if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updateProgress);
+      rafId = requestAnimationFrame(handleScroll);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -43,129 +45,227 @@ function LetterScrubParagraph({ text, paragraphIndex }) {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [updateProgress]);
+  }, [handleScroll]);
 
-  // Pre-parse text into words and individual letters with continuous character indexing
-  const { parsedWords, totalChars } = useMemo(() => {
-    const words = text.split(" ");
-    let runningIndex = 0;
+  const numParagraphs = PARAGRAPHS.length;
+  const sliceSize = 1 / numParagraphs; // 0.25 per paragraph
 
-    const parsed = words.map((word) => {
-      const letters = word.split("").map((char) => {
-        const idx = runningIndex++;
-        // Deterministic micro-tilt between -3.2deg and +3.2deg for authentic kinetic scrub
-        const baseTilt = (((idx * 17 + paragraphIndex * 13) % 9) - 4) * 0.8;
-        return {
-          char,
-          index: idx,
-          baseTilt,
-        };
+  // Pre-parse all paragraphs into words and continuous letter indexes
+  const parsedData = useMemo(() => {
+    return PARAGRAPHS.map((text, pIdx) => {
+      const words = text.split(" ");
+      let runningIndex = 0;
+
+      const parsedWords = words.map((word) => {
+        const letters = word.split("").map((char) => {
+          const idx = runningIndex++;
+          // Deterministic micro-tilt between -3.2deg and +3.2deg
+          const baseTilt = (((idx * 17 + pIdx * 13) % 9) - 4) * 0.8;
+          return {
+            char,
+            index: idx,
+            baseTilt,
+          };
+        });
+        runningIndex++; // word space
+        return { letters };
       });
-      // Count space separator between words
-      runningIndex++;
+
       return {
-        letters,
+        parsedWords,
+        totalChars: Math.max(1, runningIndex),
       };
     });
+  }, []);
 
-    return {
-      parsedWords: parsed,
-      totalChars: Math.max(1, runningIndex),
-    };
-  }, [text, paragraphIndex]);
-
-  // Current scrub cursor position in character units
-  const targetCharIndex = progress * totalChars;
-  const waveWidth = 5.5; // Width of active kinetic scrub wave in character units
+  // Current active paragraph index
+  const activeParagraphIndex = Math.min(
+    numParagraphs - 1,
+    Math.floor(globalProgress / sliceSize)
+  );
 
   return (
-    <div ref={paragraphRef} className="relative">
-      <p className="font-ppmori text-[clamp(18px,1.9vw,28px)] sm:text-[clamp(19px,2.1vw,30px)] leading-[1.32] md:leading-[1.36] tracking-[-0.012em] font-medium select-text">
-        {parsedWords.map((wordObj, wIdx) => (
-          <span
-            key={wIdx}
-            className="inline-block whitespace-nowrap mr-[0.24em]"
-          >
-            {wordObj.letters.map((letter, lIdx) => {
-              const diff = targetCharIndex - letter.index;
+    // Outer scroll track: 360vh allows smooth, comfortable scrub travel for each paragraph
+    <section
+      ref={containerRef}
+      className={`relative w-full h-[360vh] bg-white font-ppmori ${className}`}
+    >
+      {/* Sticky Fullscreen Stage: Pins in viewport while user scrolls through all 4 paragraphs */}
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-between items-center overflow-hidden px-5 sm:px-8 lg:px-12 py-12 sm:py-16 md:py-20 select-text">
+        {/* Top Minimal Progress Indicator */}
+        <div className="w-full max-w-[1100px] flex items-center justify-between pointer-events-none z-20">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-[2px] bg-[#FF5E14]" aria-hidden="true" />
+            <span
+              className="text-[#FF5E14] font-semibold text-[11px] sm:text-[12px] uppercase tracking-[0.14em]"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              Perspective {activeParagraphIndex + 1} of {numParagraphs}
+            </span>
+          </div>
 
-              let color = "#171717";
-              let scale = 1;
-              let tilt = 0;
-              let translateY = 0;
-              let textShadow = "none";
-              let opacity = 0.92;
-
-              if (diff < 0) {
-                // Stage 0: Unreached - clean rich black
-                color = "#171717";
-                scale = 1;
-                tilt = 0;
-                translateY = 0;
-                textShadow = "none";
-                opacity = 0.9;
-              } else if (diff < waveWidth) {
-                // Stage 1: Active Letter-by-Letter Kinetic Pop (Matching two26.studio)
-                const t = diff / waveWidth;
-                const peak = Math.sin(t * Math.PI);
-
-                color = "#FF5E14";
-                scale = 1 + 0.12 * peak;
-                tilt = letter.baseTilt * peak;
-                translateY = -3.2 * peak;
-                textShadow =
-                  "0.5px 0.5px 0 #FF5E14, -0.5px -0.5px 0 #FF5E14, 0 0 10px rgba(255, 94, 20, 0.45)";
-                opacity = 1;
-              } else {
-                // Stage 2: Settled - smooth high-contrast brand orange
-                color = "#FF5E14";
-                scale = 1;
-                tilt = 0;
-                translateY = 0;
-                textShadow = "none";
-                opacity = 1;
-              }
+          {/* Slim segmented progress track */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {PARAGRAPHS.map((_, idx) => {
+              const segStart = idx * sliceSize;
+              const segProgress = Math.max(
+                0,
+                Math.min(1, (globalProgress - segStart) / sliceSize)
+              );
 
               return (
-                <span
-                  key={lIdx}
-                  className="inline-block will-change-transform will-change-[color]"
-                  style={{
-                    color,
-                    opacity,
-                    transform: `translate3d(0, ${translateY.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(1)}deg)`,
-                    textShadow,
-                    transformOrigin: "center bottom",
-                    transition:
-                      "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.24s ease, text-shadow 0.24s ease, opacity 0.24s ease",
-                  }}
+                <div
+                  key={idx}
+                  className="w-8 sm:w-12 h-1.5 rounded-full bg-[#E5E7EB] overflow-hidden"
                 >
-                  {letter.char}
-                </span>
+                  <div
+                    className="h-full bg-[#FF5E14] transition-all duration-150"
+                    style={{ width: `${(segProgress * 100).toFixed(0)}%` }}
+                  />
+                </div>
               );
             })}
-          </span>
-        ))}
-      </p>
-    </div>
-  );
-}
+          </div>
+        </div>
 
-export default function Info({ className = "" }) {
-  return (
-    <section
-      className={`relative w-full bg-white font-ppmori py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden ${className}`}
-    >
-      <div className="w-full max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-12">
-        {/* Paragraphs with tight, refined sentence and paragraph spacing */}
-        <div className="space-y-8 sm:space-y-10 md:space-y-12 lg:space-y-14">
-          {PARAGRAPHS.map((text, idx) => (
-            <LetterScrubParagraph
-              key={idx}
-              text={text}
-              paragraphIndex={idx}
-            />
-          ))}
+        {/* Center Stage: Renders ONE paragraph at a time */}
+        <div className="relative w-full max-w-[1100px] flex-1 flex items-center justify-center my-auto">
+          {PARAGRAPHS.map((_, pIdx) => {
+            const sliceStart = pIdx * sliceSize;
+            const sliceEnd = (pIdx + 1) * sliceSize;
+
+            // Check if paragraph is within its visible window (with small cross-fade buffer)
+            const isVisible =
+              globalProgress >= sliceStart - 0.04 &&
+              globalProgress <= sliceEnd + 0.04;
+
+            if (!isVisible) return null;
+
+            // Local progress within this paragraph's slice (0 to 1)
+            const localProgress = Math.max(
+              0,
+              Math.min(1, (globalProgress - sliceStart) / sliceSize)
+            );
+
+            // Smooth entrance and exit opacity & subtle Y translation
+            let opacity = 1;
+            let translateY = 0;
+
+            const isFirst = pIdx === 0;
+            const isLast = pIdx === numParagraphs - 1;
+
+            if (localProgress < 0.12 && !isFirst) {
+              // Fade in
+              const t = localProgress / 0.12;
+              opacity = t;
+              translateY = (1 - t) * 16;
+            } else if (localProgress > 0.88 && !isLast) {
+              // Fade out
+              const t = (localProgress - 0.88) / 0.12;
+              opacity = 1 - t;
+              translateY = -t * 16;
+            }
+
+            // Letter scrub range within this paragraph: 0.10 -> 0.82
+            const scrubP = Math.max(
+              0,
+              Math.min(1, (localProgress - 0.10) / (0.82 - 0.10))
+            );
+
+            const { parsedWords, totalChars } = parsedData[pIdx];
+            const targetCharIndex = scrubP * totalChars;
+            const waveWidth = 5.0; // Active kinetic pop wave span in character units
+
+            return (
+              <div
+                key={pIdx}
+                className="absolute inset-0 flex items-center justify-center transition-all duration-200"
+                style={{
+                  opacity,
+                  transform: `translate3d(0, ${translateY.toFixed(1)}px, 0)`,
+                  pointerEvents: opacity > 0.2 ? "auto" : "none",
+                }}
+              >
+                <p className="font-ppmori text-center text-[clamp(20px,2.4vw,34px)] leading-[1.38] md:leading-[1.44] tracking-[-0.012em] font-medium select-text">
+                  {parsedWords.map((wordObj, wIdx) => (
+                    <span
+                      key={wIdx}
+                      className="inline-block whitespace-nowrap mr-[0.26em]"
+                    >
+                      {wordObj.letters.map((letter, lIdx) => {
+                        const diff = targetCharIndex - letter.index;
+
+                        let color = "#171717";
+                        let scale = 1;
+                        let tilt = 0;
+                        let letterY = 0;
+                        let textShadow = "none";
+                        let letterOpacity = 0.92;
+
+                        if (diff < 0) {
+                          // Unreached: Clean black
+                          color = "#171717";
+                          scale = 1;
+                          tilt = 0;
+                          letterY = 0;
+                          textShadow = "none";
+                          letterOpacity = 0.9;
+                        } else if (diff < waveWidth) {
+                          // Active Kinetic Scrub (two26.studio style)
+                          const t = diff / waveWidth;
+                          const peak = Math.sin(t * Math.PI);
+
+                          color = "#FF5E14";
+                          scale = 1 + 0.12 * peak;
+                          tilt = letter.baseTilt * peak;
+                          letterY = -3.2 * peak;
+                          textShadow =
+                            "0.5px 0.5px 0 #FF5E14, -0.5px -0.5px 0 #FF5E14, 0 0 10px rgba(255, 94, 20, 0.45)";
+                          letterOpacity = 1;
+                        } else {
+                          // Settled: Solid brand orange
+                          color = "#FF5E14";
+                          scale = 1;
+                          tilt = 0;
+                          letterY = 0;
+                          textShadow = "none";
+                          letterOpacity = 1;
+                        }
+
+                        return (
+                          <span
+                            key={lIdx}
+                            className="inline-block will-change-transform will-change-[color]"
+                            style={{
+                              color,
+                              opacity: letterOpacity,
+                              transform: `translate3d(0, ${letterY.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(1)}deg)`,
+                              textShadow,
+                              transformOrigin: "center bottom",
+                              transition:
+                                "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.24s ease, text-shadow 0.24s ease, opacity 0.24s ease",
+                            }}
+                          >
+                            {letter.char}
+                          </span>
+                        );
+                      })}
+                    </span>
+                  ))}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom Scroll Hint */}
+        <div className="w-full flex items-center justify-center pointer-events-none z-20">
+          <span
+            className="text-[#9CA3AF] text-[11px] sm:text-[12px] uppercase tracking-[0.16em]"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            Scroll to continue
+          </span>
         </div>
       </div>
     </section>
