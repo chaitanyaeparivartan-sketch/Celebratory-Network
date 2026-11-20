@@ -14,7 +14,7 @@ export default function BusinessODHero({ className = "" }) {
 
   return (
     <section
-      className={`relative w-full bg-white overflow-hidden font-ppmori min-h-[640px] sm:min-h-[700px] lg:min-h-[760px] flex items-center ${className}`}
+      className={`relative w-full bg-white overflow-hidden font-ppmori ${className}`}
     >
       {/* Background Image - exact uploaded JPG, unoptimized */}
       <div
@@ -42,7 +42,7 @@ export default function BusinessODHero({ className = "" }) {
       </div>
 
       {/* Main Story Content - exactly matching app/about/components/Hero.jsx CSS */}
-      <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-40 lg:pt-36 pb-12 sm:pb-16">
+      <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-40 lg:pt-36 pb-16 sm:pb-20 lg:pb-24">
         <div className="w-full max-w-[440px] sm:max-w-[520px] md:max-w-[620px] lg:max-w-[680px]">
           {/* Top Tag */}
           <div
