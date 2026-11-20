@@ -22,6 +22,12 @@ export default function BusinessODPage() {
         <Statement />
         <Challenges />
         <Info />
+        <CTA
+          title="Ready to build a resilient, high-performing organization?"
+          text="Get a personalised look at how Celebratory Network can help align your leadership and transform your workplace culture."
+          buttonLabel="Book a call"
+          href="/contact"
+        />
         <Impact />
       </main>
       <Footer />
