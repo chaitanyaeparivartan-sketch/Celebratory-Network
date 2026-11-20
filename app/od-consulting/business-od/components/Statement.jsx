@@ -34,6 +34,12 @@ export default function Statement({ className = "" }) {
           </Reveal>
         </div>
       </div>
+
+      {/* Minimal bottom edge feather into the next white section */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-3 sm:h-4 md:h-5 pointer-events-none z-10 bg-gradient-to-b from-[#FF5E14] to-white"
+        aria-hidden="true"
+      />
     </section>
   );
 }
