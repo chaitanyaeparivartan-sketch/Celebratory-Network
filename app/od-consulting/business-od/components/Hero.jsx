@@ -15,7 +15,7 @@ export default function BusinessODHero({ className = "" }) {
     <section
       className={`relative w-full min-h-screen min-h-[100dvh] bg-[#f0f6fc] overflow-hidden font-ppmori flex items-center ${className}`}
     >
-      {/* Background Image - exact uploaded building image */}
+      {/* Background Image - exact uploaded building image, shifted towards right */}
       <div
         className="absolute inset-0 pointer-events-none select-none z-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden"
         style={{
@@ -24,15 +24,17 @@ export default function BusinessODHero({ className = "" }) {
           transitionDelay: "150ms",
         }}
       >
-        <Image
-          src="/BusinessOD/hero-building.jpg"
-          alt="Toward Organization Development"
-          fill
-          priority
-          unoptimized
-          sizes="100vw"
-          className="object-cover object-right-bottom block"
-        />
+        <div className="relative w-[145%] sm:w-[135%] lg:w-[140%] xl:w-[145%] h-full -left-[20%] sm:-left-[18%] lg:-left-[22%] xl:-left-[25%]">
+          <Image
+            src="/BusinessOD/hero-building.jpg"
+            alt="Toward Organization Development"
+            fill
+            priority
+            unoptimized
+            sizes="100vw"
+            className="object-cover object-right-bottom block"
+          />
+        </div>
         {/* Soft atmospheric gradient wash ensuring the text on the left is crystal clear and matches slide background */}
         <div
           className="absolute inset-0 bg-gradient-to-r from-[#f0f6fc]/95 via-[#f0f6fc]/75 to-transparent md:from-[#f0f6fc]/90 md:via-[#f0f6fc]/40 md:to-transparent pointer-events-none"
