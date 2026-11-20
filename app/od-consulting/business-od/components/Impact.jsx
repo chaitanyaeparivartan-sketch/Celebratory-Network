@@ -48,7 +48,7 @@ export default function Impact({ className = "" }) {
     const total = trackRef.current.offsetHeight - window.innerHeight;
     if (total <= 0) return;
 
-    // As user scrolls through the 400vh pinned track, p maps smoothly from 0.0 to 1.0 across all 6 items
+    // As user scrolls through the 360vh pinned track, p maps smoothly from 0.0 to 1.0 across all 6 items
     const p = Math.max(0, Math.min(0.9999, -r.top / total));
     const targetIdx = Math.floor(p * IMPACT_ITEMS.length);
     setActive((prev) => (prev !== targetIdx ? targetIdx : prev));
@@ -77,12 +77,8 @@ export default function Impact({ className = "" }) {
   return (
     <section className={`office-rules-wrapper relative w-full bg-white text-[#111] ${className}`}>
       <style>{`
-        .office-rules-wrapper {
-          --accent: #FF5E14;
-        }
-        /* Sticky scroll track: 400vh gives smooth travel across all 6 impact areas */
         .office-rules-track {
-          height: 400vh;
+          height: 360vh;
           position: relative;
         }
         .office-rules-pin {
@@ -105,94 +101,13 @@ export default function Impact({ className = "" }) {
             padding: 4rem 3rem;
           }
         }
-        .office-rule {
-          border-top: 1.5px solid var(--accent);
-          cursor: pointer;
-          transition: background-color 0.2s ease;
-        }
-        .office-rule:hover {
-          background-color: rgba(255, 94, 20, 0.02);
-        }
-        .office-rule:last-child {
-          border-bottom: 1.5px solid var(--accent);
-        }
-        .office-rule-label {
-          font-size: clamp(0.85rem, 1.1vw, 1.05rem);
-          text-transform: uppercase;
-          padding: clamp(12px, 1.5vw, 18px) 0;
-          font-weight: 500;
-          font-family: 'Inter', var(--font-inter), sans-serif;
-          letter-spacing: -0.01em;
-          transition: color 0.25s ease;
-          color: #222;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-        }
-        .office-rule.open .office-rule-label {
-          color: var(--accent);
-        }
-        .office-rule-body {
-          display: grid;
-          grid-template-rows: 0fr;
-          transition: grid-template-rows 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        .office-rule.open .office-rule-body {
-          grid-template-rows: 1fr;
-        }
-        .office-rule-inner {
-          overflow: hidden;
-          min-height: 0;
-        }
-        .office-rule-row {
-          display: grid;
-          grid-template-columns: 1fr minmax(260px, 36%);
-          gap: 3vw;
-          align-items: start;
-          padding: clamp(4px, 1vw, 12px) 0 clamp(18px, 2.2vw, 30px);
-          opacity: 0;
-          transform: translateY(14px);
-          transition: opacity 0.35s ease 0.08s, transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.05s;
-        }
-        .office-rule.open .office-rule-row {
-          opacity: 1;
-          transform: none;
-        }
-        .office-rule-title {
-          font-family: 'PP Mori', var(--font-ppmori), -apple-system, sans-serif;
-          font-weight: 600;
-          color: var(--accent);
-          text-transform: uppercase;
-          font-size: clamp(1.4rem, 2.4vw, 2.35rem);
-          line-height: 1.14;
-          letter-spacing: -0.02em;
-          max-width: 18ch;
-        }
-        .office-rule-desc {
-          font-family: 'Inter', var(--font-inter), sans-serif;
-          font-size: clamp(0.9rem, 1.1vw, 1.15rem);
-          line-height: 1.5;
-          padding-top: 0.2em;
-          color: #333;
-        }
-        @media (max-width: 768px) {
-          .office-rule-row {
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
-          }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .office-rule-body, .office-rule-row {
-            transition: none !important;
-          }
-        }
       `}</style>
 
       {/* Pinned Scroll Track: Sticks to viewport and reveals each impact area sequentially */}
       <div ref={trackRef} className="office-rules-track">
         <div className="office-rules-pin max-w-[1783px] mx-auto w-full">
           {/* Section Eyebrow & Title */}
-          <div className="mb-4 sm:mb-6 md:mb-8">
+          <div className="mb-6 sm:mb-8 md:mb-10">
             <div className="inline-flex items-center gap-2 mb-2 font-inter text-xs sm:text-[13px] font-semibold uppercase tracking-[0.16em] text-[#FF5E14]">
               <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
               Areas of Focus
@@ -203,30 +118,54 @@ export default function Impact({ className = "" }) {
             </h2>
           </div>
 
-          {/* Accordion Impact Items */}
-          {IMPACT_ITEMS.map((item, idx) => {
-            const isOpen = active === idx;
-            return (
-              <div
-                key={idx}
-                className={`office-rule ${isOpen ? "open" : ""}`}
-                onClick={() => handleItemClick(idx)}
-              >
-                <div className="office-rule-label">
-                  <span className="text-[#FF5E14] font-semibold">{item.num}</span>
-                  <span>{item.title}</span>
-                </div>
-                <div className="office-rule-body">
-                  <div className="office-rule-inner">
-                    <div className="office-rule-row">
-                      <h3 className="office-rule-title">{item.title}</h3>
-                      <p className="office-rule-desc">{item.desc}</p>
+          {/* 6 Impact Areas: Same Line & Justified Between */}
+          <div className="w-full">
+            {IMPACT_ITEMS.map((item, idx) => {
+              const isOpen = active === idx;
+              return (
+                <div
+                  key={idx}
+                  className={`group relative w-full border-t border-[#FF5E14] last:border-b cursor-pointer transition-colors duration-200 py-4 sm:py-5 md:py-6 ${
+                    isOpen ? "bg-[#FF5E14]/[0.02]" : "hover:bg-[#FF5E14]/[0.01]"
+                  }`}
+                  onClick={() => handleItemClick(idx)}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 w-full">
+                    {/* Left: 01 ORGANISATIONAL EFFECTIVENESS */}
+                    <div className="flex items-center gap-3 sm:gap-4 shrink-0 font-ppmori text-lg sm:text-xl md:text-2xl lg:text-[25px] font-semibold tracking-tight transition-colors duration-300">
+                      <span
+                        className={`transition-colors duration-300 ${
+                          isOpen ? "text-[#FF5E14]" : "text-[#171717]/40 group-hover:text-[#FF5E14]"
+                        }`}
+                      >
+                        {item.num}
+                      </span>
+                      <span
+                        className={`transition-colors duration-300 ${
+                          isOpen ? "text-[#FF5E14]" : "text-[#171717] group-hover:text-[#FF5E14]"
+                        }`}
+                      >
+                        {item.title.toUpperCase()}
+                      </span>
+                    </div>
+
+                    {/* Right: Clarify roles, governance, decision rights and accountability. */}
+                    <div
+                      className={`sm:ml-auto max-w-xl transition-all duration-300 ease-out ${
+                        isOpen
+                          ? "opacity-100 translate-y-0 sm:translate-x-0"
+                          : "opacity-0 -translate-y-1 sm:translate-y-0 sm:translate-x-2 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0"
+                      }`}
+                    >
+                      <p className="font-inter text-sm sm:text-base md:text-[15px] lg:text-[16px] text-[#333] leading-relaxed sm:text-right">
+                        {item.desc}
+                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
