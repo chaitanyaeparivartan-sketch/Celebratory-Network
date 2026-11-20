@@ -56,6 +56,12 @@ export default function BusinessODHero({ className = "" }) {
         aria-hidden="true"
       />
 
+      {/* Layer 4: Bottom atmospheric fade into the orange Statement section */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 md:h-40 pointer-events-none z-15 bg-gradient-to-b from-transparent via-[#FF5E14]/40 to-[#FF5E14]"
+        aria-hidden="true"
+      />
+
       {/* Main Content - exact font sizes matching app/about/components/Hero.jsx */}
       <div className="relative z-20 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-38 lg:pt-36 pb-16 sm:pb-20">
         <div className="w-full max-w-[440px] sm:max-w-[520px] md:max-w-[620px] lg:max-w-[680px]">
