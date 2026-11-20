@@ -117,10 +117,10 @@ export default function Impact({ className = "" }) {
           border-bottom: 1.5px solid var(--accent);
         }
         .office-rule-label {
-          font-size: clamp(0.9rem, 1.25vw, 1.2rem);
+          font-size: clamp(0.85rem, 1.1vw, 1.05rem);
           text-transform: uppercase;
-          padding: clamp(14px, 1.8vw, 22px) 0;
-          font-weight: 600;
+          padding: clamp(12px, 1.5vw, 18px) 0;
+          font-weight: 500;
           font-family: 'Inter', var(--font-inter), sans-serif;
           letter-spacing: -0.01em;
           transition: color 0.25s ease;
@@ -149,30 +149,30 @@ export default function Impact({ className = "" }) {
           grid-template-columns: 1fr minmax(260px, 36%);
           gap: 3vw;
           align-items: start;
-          padding: clamp(4px, 1vw, 12px) 0 clamp(20px, 2.6vw, 36px);
+          padding: clamp(4px, 1vw, 12px) 0 clamp(18px, 2.2vw, 30px);
           opacity: 0;
-          transform: translateY(16px);
-          transition: opacity 0.4s ease 0.08s, transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.05s;
+          transform: translateY(14px);
+          transition: opacity 0.35s ease 0.08s, transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.05s;
         }
         .office-rule.open .office-rule-row {
           opacity: 1;
           transform: none;
         }
         .office-rule-title {
-          font-family: Anton, Impact, "Arial Narrow", sans-serif;
-          font-weight: 400;
+          font-family: 'PP Mori', var(--font-ppmori), -apple-system, sans-serif;
+          font-weight: 600;
           color: var(--accent);
           text-transform: uppercase;
-          font-size: clamp(2rem, 5vw, 4.6rem);
-          line-height: 0.96;
-          letter-spacing: -0.01em;
-          max-width: 14ch;
+          font-size: clamp(1.4rem, 2.4vw, 2.35rem);
+          line-height: 1.14;
+          letter-spacing: -0.02em;
+          max-width: 18ch;
         }
         .office-rule-desc {
           font-family: 'Inter', var(--font-inter), sans-serif;
-          font-size: clamp(0.95rem, 1.25vw, 1.3rem);
-          line-height: 1.45;
-          padding-top: 0.3em;
+          font-size: clamp(0.9rem, 1.1vw, 1.15rem);
+          line-height: 1.5;
+          padding-top: 0.2em;
           color: #333;
         }
         @media (max-width: 768px) {
@@ -197,7 +197,7 @@ export default function Impact({ className = "" }) {
               <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
               Areas of Focus
             </div>
-            <h2 className="font-[Archivo,'Helvetica_Neue',Arial,sans-serif] text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-black uppercase leading-[0.94] [font-stretch:65%] tracking-tight">
+            <h2 className="font-ppmori text-2xl sm:text-3xl md:text-4xl font-bold uppercase leading-tight tracking-tight">
               <span className="text-[#171717]">WHERE WE </span>
               <span className="text-[#FF5E14]">CREATE IMPACT</span>
             </h2>
