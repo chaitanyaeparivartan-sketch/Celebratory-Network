@@ -3,6 +3,7 @@ import Footer from "@/app/components/Common/Footer";
 import CTA from "@/app/components/Common/CTA";
 import BusinessODHero from "./components/Hero";
 import Statement from "./components/Statement";
+import Challenges from "./components/Challenges";
 import Info from "./components/Info";
 import Impact from "./components/Impact";
 
@@ -19,6 +20,7 @@ export default function BusinessODPage() {
       <main className="flex-1">
         <BusinessODHero />
         <Statement />
+        <Challenges />
         <Info />
         <Impact />
         <CTA

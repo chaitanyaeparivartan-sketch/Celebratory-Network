@@ -3,6 +3,7 @@ import Footer from "@/app/components/Common/Footer";
 import CTA from "@/app/components/Common/CTA";
 import BusinessODHero from "../od-consulting/business-od/components/Hero";
 import Statement from "../od-consulting/business-od/components/Statement";
+import Challenges from "../od-consulting/business-od/components/Challenges";
 import Info from "../od-consulting/business-od/components/Info";
 import Impact from "../od-consulting/business-od/components/Impact";
 
@@ -19,14 +20,9 @@ export default function BusinessODPage() {
       <main className="flex-1">
         <BusinessODHero />
         <Statement />
+        <Challenges />
         <Info />
         <Impact />
-        <CTA
-          title="Ready to build a resilient, high-performing organization?"
-          text="Get a personalised look at how Celebratory Network can help align your leadership and transform your workplace culture."
-          buttonLabel="Book a call"
-          href="/contact"
-        />
       </main>
       <Footer />
     </div>
