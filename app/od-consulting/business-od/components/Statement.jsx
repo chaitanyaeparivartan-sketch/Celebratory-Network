@@ -5,7 +5,7 @@ import Reveal from "@/app/components/Common/Reveal";
 export default function Statement({ className = "" }) {
   return (
     <section
-      className={`relative w-full bg-[#FF5E14] overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28 font-ppmori ${className}`}
+      className={`relative w-full bg-[#FF5E14] overflow-hidden py-8 sm:py-10 md:py-12 lg:py-14 font-ppmori ${className}`}
     >
       {/* Subtle pulsating background glow */}
       <style>{`
