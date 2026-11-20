@@ -15,19 +15,32 @@ export default function BusinessODHero({ className = "" }) {
     <section
       className={`relative w-full min-h-screen min-h-[100dvh] bg-[#f0f6fc] overflow-hidden font-ppmori flex items-center ${className}`}
     >
-      {/* Background Image - exact uploaded building image, shifted towards right */}
+      {/* Layer 1: Sky Background (Bg.png) */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <Image
+          src="/BusinessOD/Bg.png"
+          alt="Sky background"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="object-cover object-center block"
+        />
+      </div>
+
+      {/* Layer 2: Building Foreground (Building.png) positioned on right */}
       <div
-        className="absolute inset-0 pointer-events-none select-none z-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden"
+        className="absolute inset-0 pointer-events-none select-none z-10 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden"
         style={{
           opacity: isMounted ? 1 : 0,
-          transform: isMounted ? "none" : "translate3d(0, 16px, 0)",
+          transform: isMounted ? "none" : "translate3d(20px, 16px, 0)",
           transitionDelay: "150ms",
         }}
       >
-        <div className="relative w-[145%] sm:w-[135%] lg:w-[140%] xl:w-[145%] h-full -left-[20%] sm:-left-[18%] lg:-left-[22%] xl:-left-[25%]">
+        <div className="relative w-full h-full lg:translate-x-[6%] xl:translate-x-[10%]">
           <Image
-            src="/BusinessOD/hero-building.jpg"
-            alt="Toward Organization Development"
+            src="/BusinessOD/Building.png"
+            alt="Organization Development Building"
             fill
             priority
             unoptimized
@@ -35,15 +48,16 @@ export default function BusinessODHero({ className = "" }) {
             className="object-cover object-right-bottom block"
           />
         </div>
-        {/* Soft atmospheric gradient wash ensuring the text on the left is crystal clear and matches slide background */}
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-[#f0f6fc]/95 via-[#f0f6fc]/75 to-transparent md:from-[#f0f6fc]/90 md:via-[#f0f6fc]/40 md:to-transparent pointer-events-none"
-          aria-hidden="true"
-        />
       </div>
 
-      {/* Main Content - exact layout and typography from slide */}
-      <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-38 lg:pt-36 pb-16 sm:pb-20">
+      {/* Layer 3: Soft ambient gradient wash on mobile/tablet for crystal-clear readability */}
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent md:from-white/85 md:via-white/30 md:to-transparent lg:hidden pointer-events-none z-10"
+        aria-hidden="true"
+      />
+
+      {/* Layer 4: Main Content - exact layout, typography, and colors from slide */}
+      <div className="relative z-20 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-38 lg:pt-36 pb-16 sm:pb-20">
         <div className="w-full max-w-[560px] lg:max-w-[590px]">
           {/* Eyebrow / Tag: Orange Square + Orange Text */}
           <div
