@@ -14,11 +14,11 @@ export default function Info({ className = "" }) {
   const firstParaRef = useRef(null);
   const lastParaRef = useRef(null);
 
-  // globalProgress runs continuously from 0.0 to 4.0
+  // globalProgress runs continuously from 0.0 to 4.0:
   // [0.0 -> 1.0]: Paragraph 1 highlights. Paragraph 2, 3, 4 remain strictly 0 (black).
   // [1.0 -> 2.0]: Paragraph 1 is 100% finished. Paragraph 2 highlights.
   // [2.0 -> 3.0]: Paragraph 1 & 2 are 100% finished. Paragraph 3 highlights.
-  // [3.0 -> 4.0]: Paragraph 1, 2, 3 are 100% finished. Paragraph 4 highlights all the way to completion.
+  // [3.0 -> 4.0]: Paragraph 1, 2, 3 are 100% finished. Paragraph 4 highlights to completion.
   const [currentProgress, setCurrentProgress] = useState(0);
   const targetProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
@@ -91,18 +91,16 @@ export default function Info({ className = "" }) {
 
   // Pre-parse all paragraphs into words and continuous letter indexing
   const parsedData = useMemo(() => {
-    return PARAGRAPHS.map((text, pIdx) => {
+    return PARAGRAPHS.map((text) => {
       const words = text.split(" ");
       let runningIndex = 0;
 
       const parsedWords = words.map((word) => {
         const letters = word.split("").map((char) => {
           const idx = runningIndex++;
-          const baseTilt = (((idx * 17 + pIdx * 13) % 9) - 4) * 0.8;
           return {
             char,
             index: idx,
-            baseTilt,
           };
         });
         runningIndex++; // space separator
@@ -136,8 +134,7 @@ export default function Info({ className = "" }) {
             }
 
             const { parsedWords, totalChars } = parsedData[pIdx];
-            const waveWidth = 8.5; // Width of active kinetic wave
-            // Extend cursor to ensure kinetic pop wave finishes across every character
+            const waveWidth = 4.0; // Clean, smooth 4-character color feathering
             const targetCharIndex = paraProgress * (totalChars + waveWidth);
 
             const isFirst = pIdx === 0;
@@ -149,7 +146,7 @@ export default function Info({ className = "" }) {
                 ref={isFirst ? firstParaRef : isLast ? lastParaRef : null}
                 className="relative w-full"
               >
-                <p className="font-ppmori text-[clamp(21px,2.1vw,36px)] sm:text-[clamp(23px,2.3vw,40px)] leading-[1.38] md:leading-[1.42] tracking-[-0.012em] font-medium select-text">
+                <p className="font-ppmori text-[clamp(18px,1.6vw,26px)] sm:text-[clamp(20px,1.8vw,30px)] md:text-[clamp(21px,2.1vw,32px)] leading-[1.4] md:leading-[1.46] tracking-[-0.012em] font-medium select-text">
                   {parsedWords.map((wordObj, wIdx) => (
                     <span
                       key={wIdx}
@@ -159,62 +156,37 @@ export default function Info({ className = "" }) {
                         const diff = targetCharIndex - letter.index;
 
                         let color = "#171717";
-                        let scale = 1;
-                        let tilt = 0;
-                        let translateY = 0;
-                        let textShadow = "none";
-                        let opacity = 0.92;
+                        let opacity = 0.9;
 
                         if (paraProgress >= 1) {
-                          // Paragraph 100% complete: Settled solid brand orange
+                          // Paragraph 100% complete: Normal size, solid brand orange
                           color = "#FF5E14";
-                          scale = 1;
-                          tilt = 0;
-                          translateY = 0;
-                          textShadow = "none";
                           opacity = 1;
                         } else if (paraProgress <= 0 || diff < 0) {
-                          // Unreached: Clean black
+                          // Unreached: Normal size, clean black
                           color = "#171717";
-                          scale = 1;
-                          tilt = 0;
-                          translateY = 0;
-                          textShadow = "none";
-                          opacity = 0.9;
+                          opacity = 0.88;
                         } else if (diff < waveWidth) {
-                          // Active Kinetic Wave Pop
+                          // Active smooth color feathering from black to brand orange
                           const t = diff / waveWidth;
-                          const peak = Math.sin(t * Math.PI);
-
-                          color = "#FF5E14";
-                          scale = 1 + 0.12 * peak;
-                          tilt = letter.baseTilt * peak;
-                          translateY = -3.2 * peak;
-                          textShadow =
-                            "0.5px 0.5px 0 #FF5E14, -0.5px -0.5px 0 #FF5E14, 0 0 10px rgba(255, 94, 20, 0.45)";
-                          opacity = 1;
+                          const r = Math.round(23 + (255 - 23) * t);
+                          const g = Math.round(23 + (94 - 23) * t);
+                          const b = Math.round(23 + (20 - 23) * t);
+                          color = `rgb(${r}, ${g}, ${b})`;
+                          opacity = 0.88 + 0.12 * t;
                         } else {
-                          // Settled: Solid brand orange
+                          // Settled: Normal size, solid brand orange
                           color = "#FF5E14";
-                          scale = 1;
-                          tilt = 0;
-                          translateY = 0;
-                          textShadow = "none";
                           opacity = 1;
                         }
 
                         return (
                           <span
                             key={lIdx}
-                            className="inline-block will-change-transform will-change-[color]"
+                            className="inline-block will-change-[color] transition-colors duration-150 ease-out"
                             style={{
                               color,
                               opacity,
-                              transform: `translate3d(0, ${translateY.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(1)}deg)`,
-                              textShadow,
-                              transformOrigin: "center bottom",
-                              transition:
-                                "transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), color 0.48s ease, text-shadow 0.48s ease, opacity 0.48s ease",
                             }}
                           >
                             {letter.char}
