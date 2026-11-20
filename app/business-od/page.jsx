@@ -4,6 +4,7 @@ import CTA from "@/app/components/Common/CTA";
 import BusinessODHero from "../od-consulting/business-od/components/Hero";
 import Statement from "../od-consulting/business-od/components/Statement";
 import Info from "../od-consulting/business-od/components/Info";
+import Impact from "../od-consulting/business-od/components/Impact";
 
 export const metadata = {
   title: "Business OD | Celebratory Network",
@@ -19,6 +20,7 @@ export default function BusinessODPage() {
         <BusinessODHero />
         <Statement />
         <Info />
+        <Impact />
         <CTA
           title="Ready to build a resilient, high-performing organization?"
           text="Get a personalised look at how Celebratory Network can help align your leadership and transform your workplace culture."
