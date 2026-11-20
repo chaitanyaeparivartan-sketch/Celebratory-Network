@@ -11,11 +11,14 @@ const PARAGRAPHS = [
 
 export default function Info({ className = "" }) {
   const sectionRef = useRef(null);
+  const firstParaRef = useRef(null);
+  const lastParaRef = useRef(null);
+
   // globalProgress runs continuously from 0.0 to 4.0
   // [0.0 -> 1.0]: Paragraph 1 highlights. Paragraph 2, 3, 4 remain strictly 0 (black).
   // [1.0 -> 2.0]: Paragraph 1 is 100% finished. Paragraph 2 highlights.
   // [2.0 -> 3.0]: Paragraph 1 & 2 are 100% finished. Paragraph 3 highlights.
-  // [3.0 -> 4.0]: Paragraph 1, 2, 3 are 100% finished. Paragraph 4 highlights.
+  // [3.0 -> 4.0]: Paragraph 1, 2, 3 are 100% finished. Paragraph 4 highlights all the way to completion.
   const [currentProgress, setCurrentProgress] = useState(0);
   const targetProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
@@ -23,20 +26,39 @@ export default function Info({ className = "" }) {
   const numParagraphs = PARAGRAPHS.length;
 
   const calculateTarget = useCallback(() => {
-    if (!sectionRef.current) return;
-    const rect = sectionRef.current.getBoundingClientRect();
+    // Safety: If user has scrolled to the bottom of the page, complete all paragraphs 100%
+    const scrollY = window.scrollY || window.pageYOffset || 0;
     const windowHeight = window.innerHeight || 800;
+    const docHeight = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
 
-    // Start triggering as the section reaches comfortable reading line
-    const startY = windowHeight * 0.70;
-    const scrolled = startY - rect.top;
+    if (scrollY + windowHeight >= docHeight - 30) {
+      targetProgressRef.current = numParagraphs;
+      return;
+    }
 
-    // Total scroll travel spread across all 4 paragraphs
-    // Gives generous, slow-motion scroll travel per paragraph (~360px per paragraph)
-    const scrollPerPara = 360;
-    const totalDistance = scrollPerPara * numParagraphs;
+    if (!firstParaRef.current || !lastParaRef.current) return;
+    const firstRect = firstParaRef.current.getBoundingClientRect();
+    const lastRect = lastParaRef.current.getBoundingClientRect();
 
-    const raw = (scrolled / totalDistance) * numParagraphs;
+    // Start point: when top of first paragraph enters 74% of viewport
+    const startY = windowHeight * 0.74;
+
+    // End point: when last paragraph reaches comfortable reading line (46% of viewport)
+    // This guarantees the last sentence is 100% completed while comfortably in view
+    const endY = windowHeight * 0.46;
+
+    const paraDistance = lastRect.top - firstRect.top;
+    const totalTravel = (startY - endY) + paraDistance;
+
+    if (totalTravel <= 0) return;
+
+    const scrolled = startY - firstRect.top;
+    const raw = (scrolled / totalTravel) * numParagraphs;
     targetProgressRef.current = Math.max(0, Math.min(numParagraphs, raw));
   }, [numParagraphs]);
 
@@ -51,7 +73,7 @@ export default function Info({ className = "" }) {
       const diff = targetProgressRef.current - currentProgressRef.current;
       // Smooth slow-motion inertial lerp
       if (Math.abs(diff) > 0.0005) {
-        currentProgressRef.current += diff * 0.06;
+        currentProgressRef.current += diff * 0.075;
         setCurrentProgress(currentProgressRef.current);
       } else if (currentProgressRef.current !== targetProgressRef.current) {
         currentProgressRef.current = targetProgressRef.current;
@@ -114,11 +136,19 @@ export default function Info({ className = "" }) {
             }
 
             const { parsedWords, totalChars } = parsedData[pIdx];
-            const targetCharIndex = paraProgress * totalChars;
             const waveWidth = 8.5; // Width of active kinetic wave
+            // Extend cursor to ensure kinetic pop wave finishes across every character
+            const targetCharIndex = paraProgress * (totalChars + waveWidth);
+
+            const isFirst = pIdx === 0;
+            const isLast = pIdx === numParagraphs - 1;
 
             return (
-              <div key={pIdx} className="relative w-full">
+              <div
+                key={pIdx}
+                ref={isFirst ? firstParaRef : isLast ? lastParaRef : null}
+                className="relative w-full"
+              >
                 <p className="font-ppmori text-[clamp(21px,2.1vw,36px)] sm:text-[clamp(23px,2.3vw,40px)] leading-[1.38] md:leading-[1.42] tracking-[-0.012em] font-medium select-text">
                   {parsedWords.map((wordObj, wIdx) => (
                     <span
@@ -135,7 +165,15 @@ export default function Info({ className = "" }) {
                         let textShadow = "none";
                         let opacity = 0.92;
 
-                        if (diff < 0) {
+                        if (paraProgress >= 1) {
+                          // Paragraph 100% complete: Settled solid brand orange
+                          color = "#FF5E14";
+                          scale = 1;
+                          tilt = 0;
+                          translateY = 0;
+                          textShadow = "none";
+                          opacity = 1;
+                        } else if (paraProgress <= 0 || diff < 0) {
                           // Unreached: Clean black
                           color = "#171717";
                           scale = 1;
