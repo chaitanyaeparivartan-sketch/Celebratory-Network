@@ -14,30 +14,30 @@ export default function BusinessODHero({ className = "" }) {
 
   return (
     <section
-      className={`relative w-full min-h-[640px] sm:min-h-[720px] h-[92vh] max-h-[1020px] flex flex-col justify-end overflow-hidden bg-[#FAF8F5] font-ppmori ${className}`}
+      className={`relative w-full min-h-[640px] sm:min-h-[720px] h-[92vh] max-h-[1020px] flex flex-col justify-end overflow-hidden bg-[#F0F6FC] font-ppmori ${className}`}
     >
-      {/* Background Cityscape Image with Golden Sunset Horizon */}
+      {/* Background Cityscape Image with Clear Blue Sky */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
         <Image
-          src="/BusinessOD/business-od-hero-new.webp"
+          src="/BusinessOD/business-od-cityscape-blue.webp"
           alt="Leading organizational change & transformation"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[80%_bottom] md:object-right-bottom"
+          className="object-cover object-[75%_bottom] md:object-right-bottom"
         />
 
-        {/* Ambient Gradient Wash: softens text area while keeping towers, sky, and sunrise vibrant */}
+        {/* Ambient Gradient Wash: softens text area on left while keeping towers, blue sky, and clouds vibrant */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(90deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.6) 36%, rgba(255, 255, 255, 0.15) 58%, transparent 85%)",
+              "linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.72) 36%, rgba(255, 255, 255, 0.2) 60%, transparent 88%)",
           }}
         />
 
         {/* Mobile Gradient: subtle vertical shade from top-down to ensure readability on small screens */}
-        <div className="md:hidden absolute inset-0 bg-gradient-to-t from-white/95 via-white/70 to-transparent" />
+        <div className="md:hidden absolute inset-0 bg-gradient-to-t from-white/95 via-white/75 to-transparent" />
       </div>
 
       {/* Floating Bird Micro-Animations */}
@@ -64,7 +64,7 @@ export default function BusinessODHero({ className = "" }) {
         }}
         aria-hidden="true"
       >
-        <svg viewBox="0 0 44 24" fill="none" className="w-full h-auto text-[#6b5545] opacity-75">
+        <svg viewBox="0 0 44 24" fill="none" className="w-full h-auto text-[#334155] opacity-75">
           <path
             d="M2 18C10 6 18 10 22 18C26 10 34 6 42 18"
             stroke="currentColor"
@@ -86,7 +86,7 @@ export default function BusinessODHero({ className = "" }) {
         }}
         aria-hidden="true"
       >
-        <svg viewBox="0 0 44 24" fill="none" className="w-full h-auto text-[#6b5545] opacity-65">
+        <svg viewBox="0 0 44 24" fill="none" className="w-full h-auto text-[#334155] opacity-65">
           <path
             d="M2 18C10 6 18 10 22 18C26 10 34 6 42 18"
             stroke="currentColor"
