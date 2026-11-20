@@ -56,10 +56,10 @@ export default function Info({ className = '' }) {
     <section ref={sectionRef} className={`relative min-h-[260vh] bg-white ${className}`}>
       {/* Sticky viewport container */}
       <div className="sticky top-0 flex min-h-screen flex-col justify-center gap-6 sm:gap-8 md:gap-10 px-5 sm:px-8 md:px-[6vw] max-w-[1783px] mx-auto pt-16 sm:pt-20 pb-10">
-        {/* Title: CULTURE DRIVES PERFORMANCE matching Home page fonts */}
+        {/* Large Bold Condensed Title: CULTURE DRIVES PERFORMANCE */}
         <h2
           aria-label="Culture drives performance"
-          className="font-ppmori text-[length:clamp(2.4rem,5.5vw,5.2rem)] font-semibold uppercase leading-[0.96] text-[#FF5E14] tracking-[-0.03em] select-none"
+          className="font-[Archivo,'Helvetica_Neue',Arial,sans-serif] text-[length:clamp(2.8rem,7.5vw,6.5rem)] font-black uppercase leading-[.88] text-[#FF5E14] [font-stretch:62%] tracking-tight select-none"
         >
           <span className="block">CULTURE DRIVES</span>
           <span className="block">PERFORMANCE</span>
