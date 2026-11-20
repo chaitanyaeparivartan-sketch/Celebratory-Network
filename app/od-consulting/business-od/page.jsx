@@ -3,6 +3,7 @@ import Footer from "@/app/components/Common/Footer";
 import CTA from "@/app/components/Common/CTA";
 import BusinessODHero from "./components/Hero";
 import Statement from "./components/Statement";
+import Info from "./components/Info";
 
 export const metadata = {
   title: "Business OD | Celebratory Network",
@@ -17,6 +18,7 @@ export default function BusinessODPage() {
       <main className="flex-1">
         <BusinessODHero />
         <Statement />
+        <Info />
         <CTA
           title="Ready to build a resilient, high-performing organization?"
           text="Get a personalised look at how Celebratory Network can help align your leadership and transform your workplace culture."
