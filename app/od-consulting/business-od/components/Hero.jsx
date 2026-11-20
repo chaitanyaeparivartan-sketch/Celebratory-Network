@@ -15,24 +15,26 @@ export default function BusinessODHero({ className = "" }) {
     <section
       className={`relative w-full h-screen min-h-[680px] min-h-[100dvh] bg-white overflow-hidden font-ppmori ${className}`}
     >
-      {/* Background Image - exact uploaded JPG, unoptimized */}
+      {/* Background Image - exact uploaded JPG, unoptimized, shifted towards right */}
       <div
-        className="absolute inset-0 pointer-events-none select-none z-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        className="absolute inset-0 pointer-events-none select-none z-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden"
         style={{
           opacity: isMounted ? 1 : 0,
           transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
           transitionDelay: "200ms",
         }}
       >
-        <Image
-          src="/BusinessOD/hero-building.jpg"
-          alt="Our Perspective on Organization Development"
-          fill
-          priority
-          unoptimized
-          sizes="100vw"
-          className="object-cover object-right-bottom block"
-        />
+        <div className="relative w-[130%] sm:w-[125%] lg:w-[130%] xl:w-[135%] h-full -left-[15%] sm:-left-[12%] lg:-left-[15%] xl:-left-[18%]">
+          <Image
+            src="/BusinessOD/hero-building.jpg"
+            alt="Our Perspective on Organization Development"
+            fill
+            priority
+            unoptimized
+            sizes="100vw"
+            className="object-cover object-right-bottom block"
+          />
+        </div>
         {/* Soft atmospheric gradient wash ensuring maximum readability on left */}
         <div
           className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent md:from-white/85 md:via-white/45 md:to-transparent pointer-events-none"
