@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function BusinessODHero({ className = "" }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -74,7 +73,7 @@ export default function BusinessODHero({ className = "" }) {
             Our Perspective on Organization Development
           </h1>
 
-          {/* Story Paragraphs */}
+          {/* Story Paragraphs / Brief */}
           <div
             className="space-y-3 sm:space-y-3.5 max-w-[540px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
@@ -86,22 +85,6 @@ export default function BusinessODHero({ className = "" }) {
             <p className="text-[#242424] text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-[1.55] sm:leading-[1.5] font-normal">
               Structures, processes and governance are necessary, but not sufficient. Organizations are living systems where formal structures run alongside informal networks. We help you work with both: culture patterns, relationships, leadership behaviour and ways of working.
             </p>
-
-            {/* Actions */}
-            <div className="pt-3 sm:pt-4 flex items-center gap-3 sm:gap-3.5">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-6 sm:px-7 py-2.5 sm:py-3 rounded-[8px] bg-[#FF5E14] text-white font-['PP_Mori',sans-serif] text-xs sm:text-sm font-semibold shadow-sm hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(255,94,20,0.35)] active:scale-[0.98] transition-all cursor-pointer"
-              >
-                Book a call
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center justify-center px-6 sm:px-7 py-2.5 sm:py-3 rounded-[8px] bg-white border border-[#EAEAEA] text-[#171717] font-['PP_Mori',sans-serif] text-xs sm:text-sm font-semibold shadow-sm hover:bg-gray-50 hover:border-gray-300 hover:-translate-y-0.5 hover:shadow-sm active:scale-[0.98] transition-all cursor-pointer"
-              >
-                Know More
-              </Link>
-            </div>
           </div>
         </div>
       </div>
