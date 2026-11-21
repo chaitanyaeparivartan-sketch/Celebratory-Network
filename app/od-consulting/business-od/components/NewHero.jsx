@@ -31,7 +31,7 @@ export default function NewHero({ className = "" }) {
 
         {/* Bottom smooth gradient fade to white behind the overlapping card */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-44 sm:h-60 md:h-72 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none z-10"
+          className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 md:h-40 bg-gradient-to-t from-white via-white/75 to-transparent pointer-events-none z-10"
           aria-hidden="true"
         />
       </div>
