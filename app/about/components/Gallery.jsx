@@ -6,42 +6,42 @@ import Reveal from "@/app/components/Common/Reveal";
 
 const GALLERY_ITEMS = [
   {
-    image: "/AboutUs/Gallery/gallery-image-1.webp",
+    image: "/AboutUs/gallery-image-1.webp",
     alt: "Team meeting in conference room",
     rotate: "-rotate-[6.167deg]",
   },
   {
-    image: "/AboutUs/Gallery/gallery-image-2.webp",
+    image: "/AboutUs/gallery-image-2.webp",
     alt: "Leader standing in modern office corridor",
     rotate: "rotate-[4.139deg]",
   },
   {
-    image: "/AboutUs/Gallery/gallery-image-3.webp",
+    image: "/AboutUs/gallery-image-3.webp",
     alt: "Colleagues collaborating in lounge",
     rotate: "-rotate-[6.167deg]",
   },
   {
-    image: "/AboutUs/Gallery/gallery-image-4.webp",
+    image: "/AboutUs/gallery-image-4.webp",
     alt: "Team member in vest giving thumbs up",
     rotate: "rotate-[4.139deg]",
   },
   {
-    image: "/AboutUs/Gallery/gallery-image-5.webp",
+    image: "/AboutUs/gallery-image-5.webp",
     alt: "Group working together around laptop",
     rotate: "-rotate-[6.167deg]",
   },
   {
-    image: "/AboutUs/Gallery/gallery-image-6.webp",
+    image: "/AboutUs/gallery-image-6.webp",
     alt: "Coworkers in casual conversation",
     rotate: "rotate-[4.139deg]",
   },
   {
-    image: "/AboutUs/Gallery/gallery-image-7.webp",
+    image: "/AboutUs/gallery-image-7.webp",
     alt: "Two professionals working at desk",
     rotate: "-rotate-[6.167deg]",
   },
   {
-    image: "/AboutUs/Gallery/gallery-image-8.webp",
+    image: "/AboutUs/gallery-image-8.webp",
     alt: "Team member working at office workstation",
     rotate: "rotate-[4.139deg]",
   },

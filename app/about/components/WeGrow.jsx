@@ -12,43 +12,43 @@ const DEFAULT_ITEMS = [
     tab: "Passion",
     title: "Passion and ownership",
     body: "We care deeply about our work and take personal ownership of the impact we create.",
-    image: "/AboutUs/Grow/grow-image-1.webp",
-    mobileImage: "/AboutUs/Grow/mobile/grow-image-1-clean.webp",
+    image: "/AboutUs/grow-image-1.webp",
+    mobileImage: "/AboutUs/grow-image-1-clean.webp",
   },
   {
     tab: "Walk the talk",
     title: "We walk the talk",
     body: "Our actions reflect our values, our commitments and the change we want to create.",
-    image: "/AboutUs/Grow/grow-image-2.webp",
-    mobileImage: "/AboutUs/Grow/mobile/grow-image-2-clean.webp",
+    image: "/AboutUs/grow-image-2.webp",
+    mobileImage: "/AboutUs/grow-image-2-clean.webp",
   },
   {
     tab: "Committed",
     title: "Committed to every client",
     body: "We stay with each engagement from the first conversation to the lasting result.",
-    image: "/AboutUs/Grow/grow-image-3.webp",
-    mobileImage: "/AboutUs/Grow/mobile/grow-image-3-clean.webp",
+    image: "/AboutUs/grow-image-3.webp",
+    mobileImage: "/AboutUs/grow-image-3-clean.webp",
   },
   {
     tab: "Self-driven",
     title: "Self-driven by nature",
     body: "We take the initiative, set our own bar and keep raising it without being asked.",
-    image: "/AboutUs/Grow/grow-image-4.webp",
-    mobileImage: "/AboutUs/Grow/mobile/grow-image-4-clean.webp",
+    image: "/AboutUs/grow-image-4.webp",
+    mobileImage: "/AboutUs/grow-image-4-clean.webp",
   },
   {
     tab: "Curious",
     title: "Always curious",
     body: "We ask better questions, learn from every project and share what we find.",
-    image: "/AboutUs/Grow/grow-image-5.webp",
-    mobileImage: "/AboutUs/Grow/mobile/grow-image-5-clean.webp",
+    image: "/AboutUs/grow-image-5.webp",
+    mobileImage: "/AboutUs/grow-image-5-clean.webp",
   },
   {
     tab: "Impact",
     title: "Impact that lasts",
     body: "We measure our work by the change it leaves behind in people and organisations.",
-    image: "/AboutUs/Grow/grow-image-6.webp",
-    mobileImage: "/AboutUs/Grow/mobile/grow-image-6-clean.webp",
+    image: "/AboutUs/grow-image-6.webp",
+    mobileImage: "/AboutUs/grow-image-6-clean.webp",
   },
 ];
 
@@ -247,7 +247,7 @@ export default function WeGrow({ items = DEFAULT_ITEMS, buttonHref = "#network",
                   </p>
                 </div>
 
-                {/* illustration image from /AboutUs/Grow */}
+                {/* illustration image from /AboutUs */}
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute right-0 top-0 bottom-0 h-full flex items-center justify-end select-none max-[700px]:top-[115px] max-[700px]:bottom-0 max-[700px]:left-0 max-[700px]:w-full max-[700px]:justify-center max-[700px]:h-auto"

@@ -15,61 +15,61 @@ const TOPICS = [
     title: "Business Transformation",
     lines: ["Business Transformation"],
     text: "Business transformation is not only about changing strategy, technology or operating models—it requires people to change how they think, work and collaborate. OD helps organisations translate business transformation into meaningful people and organisational change.",
-    image: "/Home/HowWeHelp/howwehelp-image-1.webp",
+    image: "/Home/howwehelp-image-1.webp",
   },
   {
     title: "Leadership Alignment",
     lines: ["Leadership Alignment"],
     text: "Leadership teams succeed when they pull in one direction. OD helps leaders build a shared view of priorities, clarify roles and decisions, and act as one team across the organisation.",
-    image: "/Home/HowWeHelp/howwehelp-image-2.webp",
+    image: "/Home/howwehelp-image-2.webp",
   },
   {
     title: "Moving from Functional to Enterprise Leadership",
     lines: ["Moving from Functional to", "Enterprise Leadership"],
     text: "Leaders who grew up in a function must learn to think for the whole enterprise. OD supports this shift with coaching, peer dialogue and real business challenges.",
-    image: "/Home/HowWeHelp/howwehelp-image-3.webp",
+    image: "/Home/howwehelp-image-3.webp",
   },
   {
     title: "Building Trust and Relationships",
     lines: ["Building Trust and", "Relationships"],
     text: "Trust is what lets teams move fast and speak openly. OD creates the conditions for honest conversations and stronger working relationships across levels and functions.",
-    image: "/Home/HowWeHelp/howwehelp-image-4.webp",
+    image: "/Home/howwehelp-image-4.webp",
   },
   {
     title: "Culture Change",
     lines: ["Culture Change"],
     text: "Culture shows up in everyday behaviour, not in value statements. OD helps organisations define the culture they need and shift the habits, rituals and systems that sustain it.",
-    image: "/Home/HowWeHelp/howwehelp-image-5.webp",
+    image: "/Home/howwehelp-image-5.webp",
   },
   {
     title: "Strategic Thinking and Leadership Altitude",
     lines: ["Strategic Thinking and", "Leadership Altitude"],
     text: "Leaders need to step back from daily detail and see the bigger picture. OD builds the habits of strategic thinking and the ability to operate at the right altitude.",
-    image: "/Home/HowWeHelp/howwehelp-image-6.webp",
+    image: "/Home/howwehelp-image-6.webp",
   },
   {
     title: "Learning, Unlearning and Adaptability",
     lines: ["Learning, Unlearning and", "Adaptability"],
     text: "Staying relevant means learning new ways and letting go of old ones. OD helps people and teams build the agility to adapt as the business changes.",
-    image: "/Home/HowWeHelp/howwehelp-image-7.webp",
+    image: "/Home/howwehelp-image-7.webp",
   },
   {
     title: "Working Through Differences and Conflict",
     lines: ["Working Through", "Differences and Conflict"],
     text: "Differences, handled well, lead to better decisions. OD gives teams the skills and structure to work through conflict constructively and come out stronger.",
-    image: "/Home/HowWeHelp/howwehelp-image-8.webp",
+    image: "/Home/howwehelp-image-8.webp",
   },
   {
     title: "Decision–Making and Accountability",
     lines: ["Decision–Making and", "Accountability"],
     text: "Clear decision rights and genuine accountability help organisations move fast with clarity. OD helps leadership teams align on how decisions get made, who owns them, and how teams execute with ownership.",
-    image: "/Home/HowWeHelp/howwehelp-image-7.webp",
+    image: "/Home/howwehelp-image-7.webp",
   },
   {
     title: "Role and Collective Identity",
     lines: ["Role and Collective", "Identity"],
     text: "When individuals understand their unique role and connect it to a collective purpose, engagement and ownership soar. OD helps organisations clarify roles, bridge boundaries and foster a shared sense of belonging.",
-    image: "/Home/HowWeHelp/howwehelp-image-8.webp",
+    image: "/Home/howwehelp-image-8.webp",
   },
 ];
 
@@ -103,7 +103,7 @@ const CARD_STYLES = {
   },
 };
 
-function PhotoStack({ image = "/Home/HowWeHelp/howwehelp-image-1.webp" }) {
+function PhotoStack({ image = "/Home/howwehelp-image-1.webp" }) {
   return (
     <div className="relative mt-1.5 mr-auto mb-[26px] ml-1.5 aspect-[475/580] w-[76%]">
       <i className="absolute inset-0 rounded-[22px] bg-[#d9d6d2] opacity-50 [transform:rotate(-5deg)_translate(-6px,4px)]" />
