@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import Reveal from "@/app/components/Common/Reveal";
 
 const SECTIONS_DATA = [
@@ -159,22 +158,6 @@ export default function Challenges() {
                         ))}
                       </ul>
                     )}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="mt-8 sm:mt-10 flex items-center gap-3 sm:gap-3.5 relative z-10">
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-[8px] bg-[#FF5E14] text-white font-['PP_Mori',sans-serif] text-xs sm:text-sm font-semibold shadow-sm hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(255,94,20,0.35)] active:scale-[0.98] transition-all cursor-pointer"
-                    >
-                      Book a call
-                    </Link>
-                    <Link
-                      href="/about"
-                      className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-[8px] bg-white border border-[#EAEAEA] text-[#171717] font-['PP_Mori',sans-serif] text-xs sm:text-sm font-semibold shadow-sm hover:bg-gray-50 hover:border-gray-300 hover:-translate-y-0.5 hover:shadow-sm active:scale-[0.98] transition-all cursor-pointer"
-                    >
-                      Know More
-                    </Link>
                   </div>
 
                   {/* Mobile Image (inside the card) */}
