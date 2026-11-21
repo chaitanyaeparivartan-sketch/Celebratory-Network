@@ -86,9 +86,9 @@ export default function BusinessODHero({ className = "" }) {
             </span>
           </div>
 
-          {/* Heading - exact clamp, leading, and tracking from About Us Hero */}
+          {/* Heading - Sentence case matching About Us Hero */}
           <h1
-            className="text-[#1E293B] font-semibold text-[clamp(28px,3.8vw,52px)] leading-[36px] sm:leading-[42px] md:leading-[48px] tracking-[-0.8px] uppercase mb-2.5 sm:mb-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="text-[#1E293B] font-semibold text-[clamp(28px,3.8vw,52px)] leading-[36px] sm:leading-[42px] md:leading-[48px] tracking-[-0.8px] mb-2.5 sm:mb-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
               opacity: isMounted ? 1 : 0,
@@ -96,8 +96,8 @@ export default function BusinessODHero({ className = "" }) {
               transitionDelay: "180ms",
             }}
           >
-            <span className="block">TOWARD ORGANIZATION</span>
-            <span className="block">DEVELOPMENT</span>
+            <span className="block">Toward organization</span>
+            <span className="block">development</span>
           </h1>
 
           {/* Story Paragraphs - exact font size and line-height from About Us Hero */}
