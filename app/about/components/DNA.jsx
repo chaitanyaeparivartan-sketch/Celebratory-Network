@@ -1,6 +1,6 @@
 "use client";
 
-import Reveal from "@/app/components/Common/Reveal";
+import Reveal from "@/app/components/common/Reveal";
 
 /**
  * components/DNA.jsx  (Next.js + Tailwind CSS)
@@ -11,37 +11,37 @@ const ITEMS = [
     no: "01",
     title: "The client system comes first",
     desc: "Every engagement starts with the whole system around the client, not just the brief in front of us.",
-    image: "/AboutUs/dna-image-1.webp",
+    image: "/about/dna-image-1.webp",
   },
   {
     no: "02",
     title: "We Operate as Equals",
     desc: "We believe meaningful work happens through partnership, openness, and mutual respect, not hierarchy.",
-    image: "/AboutUs/dna-image-2.webp",
+    image: "/about/dna-image-2.webp",
   },
   {
     no: "03",
     title: "Novelty is Important to Bring Energy",
     desc: "We bring fresh thinking, new perspectives, and creative approaches to keep the work alive and energising.",
-    image: "/AboutUs/dna-image-3.webp",
+    image: "/about/dna-image-3.webp",
   },
   {
     no: "04",
     title: "Commitment to Deliverables",
     desc: "We take ownership of what we commit to and stay focused on creating meaningful outcomes.",
-    image: "/AboutUs/dna-image-4.webp",
+    image: "/about/dna-image-4.webp",
   },
   {
     no: "05",
     title: "Speed and Flow",
     desc: "We value momentum, responsiveness, and a smooth flow of work without compromising thoughtfulness.",
-    image: "/AboutUs/dna-image-5.webp",
+    image: "/about/dna-image-5.webp",
   },
   {
     no: "06",
     title: "Saying No",
     desc: "We believe that knowing when to say no is as important as knowing what to say yes to.",
-    image: "/AboutUs/dna-image-6.webp",
+    image: "/about/dna-image-6.webp",
   },
 ];
 

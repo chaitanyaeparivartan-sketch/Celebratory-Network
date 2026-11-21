@@ -1,5 +1,5 @@
-import Header from "@/app/components/Common/Header";
-import Footer from "@/app/components/Common/Footer";
+import Header from "@/app/components/common/Header";
+import Footer from "@/app/components/common/Footer";
 import ContactHero from "./components/ContactHero";
 import DirectConnect from "./components/DirectConnect";
 import ContactForm from "./components/ContactForm";

@@ -97,7 +97,7 @@ export default function Header({
           className="flex items-center shrink-0 hover:opacity-90 transition-opacity"
         >
           <Image
-            src="/logo.webp"
+            src="/common/header-image-1.webp"
             alt="Celebratory Network Logo"
             width={282}
             height={51}

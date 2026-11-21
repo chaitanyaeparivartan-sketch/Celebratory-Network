@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Reveal from "@/app/components/Common/Reveal";
+import Reveal from "@/app/components/common/Reveal";
 
 function XSocialIcon() {
   return (
@@ -55,7 +55,7 @@ export default function Footer() {
           >
             <div className="relative w-8 h-8 shrink-0">
               <Image
-                src="/cn-badge.webp"
+                src="/common/footer-image-1.webp"
                 alt="Celebratory Network Logo"
                 width={32}
                 height={32}

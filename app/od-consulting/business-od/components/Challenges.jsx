@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Reveal from "@/app/components/Common/Reveal";
+import Reveal from "@/app/components/common/Reveal";
 
 const SECTIONS_DATA = [
   {
@@ -9,7 +9,7 @@ const SECTIONS_DATA = [
     tag: "WHAT WE SEE",
     title: "Across Organizations",
     reverse: false,
-    image: "/BusinessOD/what-we-see.webp",
+    image: "/business-od/challenges-image-1.webp",
     imageAlt: "Lighthouse on coastal breakwater representing navigation through organizational complexity",
     type: "points",
     points: [
@@ -40,7 +40,7 @@ const SECTIONS_DATA = [
     tag: "IMPACT OF SYMPTOMS",
     title: "On The System",
     reverse: true,
-    image: "/BusinessOD/system-symptoms.webp",
+    image: "/business-od/challenges-image-2.webp",
     imageAlt: "Executive boardroom circle representing interconnected systemic organizational challenges",
     type: "bullets",
     bullets: [

@@ -18,7 +18,7 @@ export default function BusinessODHero({ className = "" }) {
       {/* Layer 1: Sky Background (Bg.png) */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
         <Image
-          src="/BusinessOD/Bg.png"
+          src="/business-od/hero-image-1.png"
           alt="Sky background"
           fill
           priority
@@ -39,7 +39,7 @@ export default function BusinessODHero({ className = "" }) {
       >
         <div className="relative w-full h-full translate-x-[36%] sm:translate-x-[42%] md:translate-x-[46%] lg:translate-x-[50%] xl:translate-x-[52%]">
           <Image
-            src="/BusinessOD/Building.png"
+            src="/business-od/hero-image-2.png"
             alt="Organization Development Building"
             fill
             priority

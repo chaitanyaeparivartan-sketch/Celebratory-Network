@@ -1,6 +1,6 @@
 "use client";
 
-import Reveal from "@/app/components/Common/Reveal";
+import Reveal from "@/app/components/common/Reveal";
 
 /**
  * TeamSection — "Celebratory Network team" grid (Tailwind CSS v3+ / v4).
@@ -14,37 +14,37 @@ const DEFAULT_TEAM = [
   {
     name: "Payal Gupta",
     role: "CEO and Director",
-    image: "/AboutUs/payal-gupta.webp",
+    image: "/about/team-image-1.webp",
     position: "center top",
   },
   {
     name: "Saurabh Karade",
     role: "Director",
-    image: "/AboutUs/sourabh-karade.webp",
+    image: "/about/team-image-2.webp",
     position: "center top",
   },
   {
     name: "Probir Roy",
     role: "High Impact Advisor",
-    image: "/AboutUs/probir-roy.webp",
+    image: "/about/team-image-3.webp",
     position: "center top",
   },
   {
     name: "Bhanumathy Vasudevan",
     role: "Mentor",
-    image: "/AboutUs/bhanumathy-vasudev.webp",
+    image: "/about/team-image-4.webp",
     position: "center top",
   },
   {
     name: "Jaya Nuty",
     role: "Principal Consultant",
-    image: "/AboutUs/jaya-nuty.webp",
+    image: "/about/team-image-5.webp",
     position: "center top",
   },
   {
     name: "Kesha Kapadia",
     role: "Senior Consultant",
-    image: "/AboutUs/kesha-kapadia.webp",
+    image: "/about/team-image-6.webp",
     position: "center top",
   },
 ];

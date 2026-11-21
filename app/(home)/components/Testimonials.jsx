@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import Reveal from "@/app/components/Common/Reveal";
+import Reveal from "@/app/components/common/Reveal";
 
 const TESTIMONIALS = [
   // 1-5. Participant Testimonials (Women Leadership Program)

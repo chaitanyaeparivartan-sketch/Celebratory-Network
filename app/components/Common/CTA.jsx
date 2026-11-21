@@ -17,7 +17,7 @@ export default function CTA({
   text = "Get a personalised look at how Celebratory Network can work for your organisation.",
   buttonLabel = "Talk to us",
   href = "/contact",
-  image = "/Common/CTA/cta-office.webp",
+  image = "/common/cta-image-1.webp",
   imageAlt = "Two colleagues standing in a bright office corridor",
   className = "",
 }) {
