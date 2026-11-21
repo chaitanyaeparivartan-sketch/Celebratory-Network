@@ -1,6 +1,6 @@
 "use client";
 
-import Reveal from "@/app/components/common/Reveal";
+import Reveal from "@/app/components/Common/Reveal";
 
 export default function Purpose({ className = "" }) {
   return (

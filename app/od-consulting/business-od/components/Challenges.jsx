@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Reveal from "@/app/components/common/Reveal";
+import Reveal from "@/app/components/Common/Reveal";
 
 const SECTIONS_DATA = [
   {

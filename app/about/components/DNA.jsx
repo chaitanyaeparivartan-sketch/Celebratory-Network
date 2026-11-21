@@ -1,6 +1,6 @@
 "use client";
 
-import Reveal from "@/app/components/common/Reveal";
+import Reveal from "@/app/components/Common/Reveal";
 
 /**
  * components/DNA.jsx  (Next.js + Tailwind CSS)

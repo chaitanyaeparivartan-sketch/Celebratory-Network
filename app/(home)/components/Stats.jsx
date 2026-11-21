@@ -2,8 +2,8 @@
 
 import { useState, useRef } from "react";
 import Image from "next/image";
-import Reveal from "@/app/components/common/Reveal";
-import AnimatedCounter from "@/app/components/common/AnimatedCounter";
+import Reveal from "@/app/components/Common/Reveal";
+import AnimatedCounter from "@/app/components/Common/AnimatedCounter";
 
 const FLOATING_CARDS = [
   {

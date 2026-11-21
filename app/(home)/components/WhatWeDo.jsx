@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Reveal from "@/app/components/common/Reveal";
+import Reveal from "@/app/components/Common/Reveal";
 
 const SERVICES = [
   {
