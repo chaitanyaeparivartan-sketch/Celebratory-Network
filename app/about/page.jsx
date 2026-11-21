@@ -1,7 +1,7 @@
 import Header from "../components/Common/Header";
 import Footer from "../components/Common/Footer";
 import CTA from "../components/Common/CTA";
-import Hero from "./components/Hero";
+import NewHero from "./components/NewHero";
 import Purpose from "./components/Purpose";
 import DNA from "./components/DNA";
 import WeGrow from "./components/WeGrow";
@@ -20,7 +20,7 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1">
-        <Hero showLogo={false} />
+        <NewHero showLogo={false} />
         <Purpose />
         <DNA />
         <WeGrow />
