@@ -19,6 +19,11 @@ const nextConfig = {
         destination: "/about",
         permanent: true,
       },
+      {
+        source: "/business-od",
+        destination: "/od-consulting/business-od",
+        permanent: true,
+      },
     ];
   },
 };
