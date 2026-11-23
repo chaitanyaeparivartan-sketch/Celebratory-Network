@@ -26,7 +26,12 @@ const nextConfig = {
       },
       {
         source: "/diversity-inclusion",
-        destination: "/od-consulting/diversity-inclusion",
+        destination: "/od-consulting/diversity-and-inclusion",
+        permanent: true,
+      },
+      {
+        source: "/od-consulting/diversity-inclusion",
+        destination: "/od-consulting/diversity-and-inclusion",
         permanent: true,
       },
     ];

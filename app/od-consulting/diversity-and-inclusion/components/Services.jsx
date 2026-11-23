@@ -1,42 +1,39 @@
 "use client";
 
+"use client";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 
 /**
  * Services.jsx — DEIB services, pinned split-screen accordion (React + Tailwind)
- *
- * Setup:
- *  1. Put wheel.jpg and podium.jpg in /public/images/  (or change the `img` paths below)
- *  2. Load Inter (e.g. Google Fonts link in index.html). "PP Mori" is a licensed font –
- *     add your own @font-face for it; until then the stack falls back to Inter.
  */
 
 const SERVICES = [
   {
     title: "DEI Assessment",
     color: "#4a6bb5",
-    img: "/images/wheel.jpg",
+    img: "/diversity-inclusion/pexels-werner-pfennig-6949925.jpg",
     pos: "70% 45%",
     items: ["DEI Audit", "DEI Index", "Cultural Assessment", "Leadership Readiness Dialogues."],
   },
   {
     title: "DEI for Leadership and Sponsors",
     color: "#3aa57c",
-    img: "/images/podium.jpg",
+    img: "/diversity-inclusion/pexels-ivan-s-8117475.jpg",
     pos: "42% 50%",
     items: ["Leadership context setting", "DEI Vision", "DEI Strategy", "Setting up DEI Council"],
   },
   {
     title: "Diversity Champions",
     color: "#c9a53a",
-    img: "/images/wheel.jpg",
+    img: "/diversity-inclusion/pexels-werner-pfennig-6949925.jpg",
     pos: "8% 62%",
     items: ["DEI Conceptual understanding", "Awareness", "Skill building", "Actioning DEI Pillars"],
   },
   {
     title: "Learning Journey",
     color: "#d4562b",
-    img: "/images/podium.jpg",
+    img: "/diversity-inclusion/pexels-ivan-s-8117475.jpg",
     pos: "88% 60%",
     items: [
       "Inclusive Leadership",
@@ -51,7 +48,7 @@ const SERVICES = [
   {
     title: "DEI Game Changer",
     color: "#d6342f",
-    img: "/images/wheel.jpg",
+    img: "/diversity-inclusion/pexels-werner-pfennig-6949925.jpg",
     pos: "95% 28%",
     items: ["ERG Design and Implementation - Gender, Generations etc.", "Empathy Circles"],
   },
@@ -59,7 +56,7 @@ const SERVICES = [
 
 const EASE = "cubic-bezier(.77,0,.18,1)";
 const DUR = 1050;
-const FONT = "font-['PP_Mori','Inter','Helvetica_Neue',Arial,sans-serif]";
+const FONT = 'font-["PP_Mori",var(--font-geist-sans),sans-serif]';
 
 /* One image layer. mode: idle (first paint) | enter | prev */
 function Layer({ s, mode, rev }) {
@@ -86,9 +83,12 @@ function Layer({ s, mode, rev }) {
         style={{ objectPosition: s.pos, ...imgAnim }}
       />
       {/* bottom gradient + caption */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-black/55 to-transparent" />
-      <div className="absolute bottom-[30px] left-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[.14em] text-white md:left-[34px]">
-        <i className="block h-2.5 w-2.5 rounded-full" style={{ background: s.color }} />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-black/60 to-transparent" />
+      <div
+        className="absolute bottom-[24px] left-6 flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-white md:left-[34px]"
+        style={{ fontFamily: "Inter, sans-serif" }}
+      >
+        <i className="block h-2.5 w-2.5 rounded-full shadow-sm" style={{ background: s.color }} />
         {s.title}
       </div>
       {mode === "prev" && (
@@ -167,32 +167,37 @@ export default function Services() {
         </div>
 
         {/* RIGHT — heading + accordion */}
-        <div className="flex flex-col bg-white px-6 pt-9 md:px-[58px] md:pt-[clamp(44px,8vh,90px)]">
+        <div className="flex flex-col justify-center bg-white px-6 py-10 md:px-[58px] lg:px-[72px]">
           <div
-            className={`mb-3.5 flex items-center justify-start gap-2.5 text-left text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424] font-['Inter',sans-serif]`}
+            className="mb-3.5 flex items-center justify-start gap-2.5 text-left text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.12em] text-[#242424]"
+            style={{ fontFamily: "Inter, sans-serif" }}
           >
-            <i className="block h-2.5 w-2.5 bg-[#f26a3d]" />
+            <i className="block h-2 w-2 rounded-full bg-[#FF5E14]" />
             DEIB Services
           </div>
 
           <h2
-            className={`mb-[26px] text-left text-[36px] font-semibold leading-9 tracking-[-0.8px] text-[#242424] md:text-[52px] md:leading-[48px] ${FONT}`}
+            className="mb-6 sm:mb-8 text-left text-[32px] sm:text-[40px] md:text-[48px] lg:text-[52px] font-semibold leading-[1.08] tracking-tight text-[#171717]"
+            style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
           >
             Building inclusive workplaces.
           </h2>
 
-          <div className="border-t border-black/[.18]">
+          <div className="border-t border-black/[.12]">
             {SERVICES.map((s, i) => {
               const open = i === st.cur;
               return (
                 <div
                   key={s.title}
                   onClick={() => onSelect(i)}
-                  className="cursor-pointer border-b border-black/[.18]"
+                  className="cursor-pointer border-b border-black/[.12] transition-colors"
                 >
                   <h3
-                    className={`pb-[21px] pt-[23px] text-[20px] font-medium uppercase leading-[1.1] tracking-[-0.3px] transition-colors duration-300 md:text-[26px] ${FONT}`}
-                    style={{ color: open ? s.color : "#111" }}
+                    className="pb-[18px] pt-[20px] text-[18px] sm:text-[22px] md:text-[25px] font-medium uppercase leading-[1.15] tracking-tight transition-colors duration-300"
+                    style={{
+                      fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
+                      color: open ? s.color : "#171717",
+                    }}
                   >
                     {s.title}
                   </h3>
@@ -204,14 +209,15 @@ export default function Services() {
                   >
                     <div className="overflow-hidden">
                       <ul
-                        className={`space-y-0 pb-[34px] pt-[3px] font-mono text-[15px] leading-[1.75] tracking-[.02em] text-[#555] transition-all duration-500 ${
+                        className={`space-y-1 pb-[26px] pt-[2px] text-[14px] sm:text-[15px] leading-[1.7] text-[#525252] transition-all duration-500 ${
                           open ? "translate-y-0 opacity-100 delay-150" : "translate-y-2.5 opacity-0"
                         }`}
+                        style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         {s.items.map((it) => (
-                          <li key={it} className="relative pl-[26px]">
+                          <li key={it} className="relative pl-[22px]">
                             <span
-                              className="absolute left-0 top-[.75em] h-1.5 w-1.5"
+                              className="absolute left-0 top-[0.6em] h-1.5 w-1.5 rounded-full"
                               style={{ background: s.color }}
                             />
                             {it}
