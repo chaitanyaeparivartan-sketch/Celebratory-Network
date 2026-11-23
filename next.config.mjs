@@ -24,6 +24,11 @@ const nextConfig = {
         destination: "/od-consulting/business-od",
         permanent: true,
       },
+      {
+        source: "/diversity-inclusion",
+        destination: "/od-consulting/diversity-inclusion",
+        permanent: true,
+      },
     ];
   },
 };
