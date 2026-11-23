@@ -153,7 +153,7 @@ export default function Services() {
       `}</style>
 
       <div className="sticky top-0 flex h-screen w-full items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 sm:pt-24 pb-8 sm:pb-10">
-        <div className="relative mx-auto grid w-full max-w-[1680px] h-[calc(100vh-140px)] min-h-[540px] max-h-[720px] grid-rows-[280px_1fr] md:grid-rows-1 md:grid-cols-2 overflow-hidden rounded-[16px] sm:rounded-[20px] border border-[#EAEAEA] bg-white shadow-[0_12px_36px_rgba(0,0,0,0.06)]">
+        <div className="relative mx-auto grid w-full max-w-[1680px] h-[calc(100vh-140px)] min-h-[540px] max-h-[720px] grid-rows-[280px_1fr] md:grid-rows-1 md:grid-cols-2 overflow-hidden bg-white">
           {/* LEFT — media */}
           <div className="relative h-full w-full overflow-hidden bg-neutral-900">
             {st.prev !== null && (
