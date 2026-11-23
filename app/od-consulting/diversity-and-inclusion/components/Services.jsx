@@ -195,12 +195,12 @@ export default function Services() {
         @keyframes dim{from{opacity:0}to{opacity:.55}}
       `}</style>
 
-      <div className="sticky top-0 flex h-screen max-h-screen w-full flex-col justify-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-16 sm:pt-20 pb-6 sm:pb-8">
+      <div className="sticky top-0 flex h-screen max-h-screen w-full flex-col justify-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-14 sm:pt-16 pb-6 sm:pb-8">
         <div className="mx-auto flex w-full max-w-[1520px] flex-col">
           {/* TOP: Horizontally Centered Heading */}
-          <div className="mb-4 sm:mb-6 md:mb-7 flex flex-col items-center text-center">
+          <div className="mb-4 sm:mb-5 md:mb-6 flex flex-col items-center text-center flex-none">
             <div
-              className="mb-1.5 inline-flex items-center gap-2 text-center text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.12em] text-[#242424]"
+              className="mb-1.5 inline-flex items-center gap-2 text-center text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#242424]"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               <i className="block h-2 w-2 rounded-full bg-[#FF5E14]" />
@@ -208,7 +208,7 @@ export default function Services() {
             </div>
 
             <h2
-              className="text-center text-[26px] sm:text-[32px] md:text-[38px] lg:text-[42px] font-semibold leading-[1.1] tracking-tight text-[#171717]"
+              className="text-center text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] font-semibold leading-[1.1] tracking-tight text-[#171717]"
               style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
             >
               Building inclusive workplaces.
@@ -216,9 +216,9 @@ export default function Services() {
           </div>
 
           {/* BOTTOM: Left Media & Right Content */}
-          <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-14 items-center">
-            {/* LEFT — media */}
-            <div className="relative h-[260px] sm:h-[320px] md:h-[380px] lg:h-[420px] w-full overflow-hidden rounded-[8px] bg-neutral-900 shadow-sm">
+          <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center">
+            {/* LEFT — media filling available viewport height */}
+            <div className="relative h-[340px] sm:h-[440px] md:h-[calc(100vh-210px)] min-h-[400px] max-h-[720px] w-full overflow-hidden rounded-2xl bg-neutral-900 shadow-md">
               {st.prev !== null && (
                 <Layer key={`p${st.tick}`} s={SERVICES[st.prev]} mode="prev" />
               )}
@@ -230,7 +230,7 @@ export default function Services() {
               />
             </div>
 
-            {/* RIGHT — accordion content */}
+            {/* RIGHT — accordion content with increased typography */}
             <div className="flex flex-col justify-center w-full">
               <div className="border-t border-black/[.12]">
                 {SERVICES.map((s, i) => {
@@ -242,7 +242,7 @@ export default function Services() {
                       className="cursor-pointer border-b border-black/[.12] transition-colors"
                     >
                       <h3
-                        className="pb-[10px] pt-[12px] sm:pb-[12px] sm:pt-[14px] text-[17px] sm:text-[19px] md:text-[21px] font-medium leading-[1.15] tracking-tight transition-colors duration-300"
+                        className="pb-[12px] pt-[14px] sm:pb-[14px] sm:pt-[16px] md:pb-[16px] md:pt-[18px] text-[19px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-medium leading-[1.2] tracking-tight transition-colors duration-300"
                         style={{
                           fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
                           color: open ? s.color : "#171717",
@@ -258,15 +258,15 @@ export default function Services() {
                       >
                         <div className="overflow-hidden">
                           <ul
-                            className={`space-y-1 pb-[14px] pt-[2px] text-[13px] sm:text-[13.5px] leading-[1.6] text-[#525252] transition-all duration-400 ${
+                            className={`space-y-1.5 pb-[18px] pt-[2px] text-[15px] sm:text-[15.5px] md:text-[16.5px] leading-[1.65] text-[#4e4e4e] transition-all duration-400 ${
                               open ? "translate-y-0 opacity-100 delay-100" : "translate-y-2.5 opacity-0"
                             }`}
                             style={{ fontFamily: "Inter, sans-serif" }}
                           >
                             {s.items.map((it) => (
-                              <li key={it} className="relative pl-[20px]">
+                              <li key={it} className="relative pl-[22px]">
                                 <span
-                                  className="absolute left-0 top-[0.6em] h-1.5 w-1.5 rounded-full"
+                                  className="absolute left-0 top-[0.6em] h-2 w-2 rounded-full"
                                   style={{ background: s.color }}
                                 />
                                 {it}
