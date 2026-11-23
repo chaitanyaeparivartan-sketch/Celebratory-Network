@@ -49,13 +49,31 @@ export default function Hero() {
         </p>
       </div>
 
-      {/* Image: right 50% */}
+      {/* Image: right 50% with realistic directional & ground shadows */}
       <div className="relative z-10 flex h-[50vh] w-full items-center justify-center px-[4vw] py-8 md:h-screen md:w-1/2 md:py-[9vh]">
-        <img
-          src={imgSrc}
-          alt="Colleagues with hands joined in a circle"
-          className="h-full w-full object-contain max-h-[580px] drop-shadow-md"
-        />
+        <div className="relative flex items-center justify-center w-full max-h-[580px] aspect-square">
+          {/* Ambient ground contact shadow directly under the standing circle */}
+          <div
+            className="pointer-events-none absolute -bottom-2 w-[84%] aspect-[1/0.85] rounded-full blur-[28px] opacity-75 select-none"
+            style={{
+              background:
+                "radial-gradient(ellipse at 52% 56%, rgba(35, 15, 5, 0.45) 0%, rgba(60, 25, 10, 0.28) 36%, rgba(100, 45, 18, 0.12) 60%, transparent 75%)",
+              transform: "translateY(24px) rotate(-2deg)",
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Cut-out image with multi-layered directional shadows (top-left light source casting downwards-right) */}
+          <img
+            src={imgSrc}
+            alt="Colleagues with hands joined in a circle"
+            className="relative z-10 h-full w-full object-contain"
+            style={{
+              filter:
+                "drop-shadow(3px 8px 12px rgba(30, 15, 5, 0.32)) drop-shadow(8px 22px 32px rgba(45, 20, 10, 0.22)) drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.15))",
+            }}
+          />
+        </div>
       </div>
     </section>
   );
