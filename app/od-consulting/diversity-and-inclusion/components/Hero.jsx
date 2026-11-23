@@ -6,9 +6,25 @@ export default function Hero() {
   const imgSrc = teamHuddle?.src || teamHuddle || "/diversity-inclusion/team-huddle.png";
 
   return (
-    <section className="relative flex min-h-screen flex-col bg-white text-black md:flex-row md:items-center overflow-hidden">
+    <section
+      className="relative flex min-h-screen flex-col text-black md:flex-row md:items-center overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(270deg, rgba(255, 94, 20, 0.24) 0%, rgba(255, 138, 77, 0.14) 34%, rgba(255, 238, 228, 0.05) 68%, #FFFFFF 100%)",
+      }}
+    >
+      {/* Ambient warm orange glow concentrated behind the team circle */}
+      <div
+        className="pointer-events-none absolute right-[-5%] top-1/2 -translate-y-1/2 w-[55vw] h-[55vw] max-w-[760px] max-h-[760px] rounded-full blur-3xl opacity-75"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255, 94, 20, 0.35) 0%, rgba(255, 155, 100, 0.18) 45%, transparent 72%)",
+        }}
+        aria-hidden="true"
+      />
+
       {/* Text: left 50% */}
-      <div className="px-[6vw] pt-28 pb-6 md:w-1/2 md:py-0 md:pl-[7vw] md:pr-[3vw]">
+      <div className="relative z-10 px-[6vw] pt-28 pb-6 md:w-1/2 md:py-0 md:pl-[7vw] md:pr-[3vw]">
         <div
           className="mb-5 flex items-center gap-3.5 text-[0.8rem] font-semibold uppercase tracking-[0.28em] text-[#171717]"
           style={{ fontFamily: "Inter, sans-serif" }}
@@ -34,7 +50,7 @@ export default function Hero() {
       </div>
 
       {/* Image: right 50% */}
-      <div className="flex h-[50vh] w-full items-center justify-center px-[4vw] py-8 md:h-screen md:w-1/2 md:py-[9vh]">
+      <div className="relative z-10 flex h-[50vh] w-full items-center justify-center px-[4vw] py-8 md:h-screen md:w-1/2 md:py-[9vh]">
         <img
           src={imgSrc}
           alt="Colleagues with hands joined in a circle"
