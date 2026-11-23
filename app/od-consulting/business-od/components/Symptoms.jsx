@@ -116,18 +116,20 @@ function Card({ item, lead, active, onActivate, onDeactivate }) {
         }}
       />
 
-      <div className={`relative flex h-full flex-col justify-between ${lead ? "p-[18px]" : "p-4"}`}>
+      <div className={`relative flex h-full flex-col justify-between ${lead ? "p-3.5 sm:p-4" : "p-2.5 sm:p-3"}`}>
         <b
-          className={`font-bold leading-none transition-colors duration-300 ease-in ${
-            lead ? "text-[76px] tracking-[-0.03em]" : "text-[30px]"
+          className={`font-semibold leading-none transition-colors duration-300 ease-in ${
+            lead ? "text-[64px] sm:text-[72px] tracking-[-0.03em]" : "text-[28px] sm:text-[30px]"
           } ${active ? "text-white" : "text-[#003D7A]"}`}
+          style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
         >
           {shown}%
         </b>
         <span
-          className={`font-semibold leading-[1.3] transition-colors duration-300 ease-in ${
-            lead ? "text-xl" : "text-[13px]"
+          className={`font-medium sm:font-semibold leading-[1.3] transition-colors duration-300 ease-in ${
+            lead ? "text-lg sm:text-[19px]" : "text-[12px] sm:text-[13px]"
           } ${active ? "text-white" : "text-[#1C1C1C]"}`}
+          style={{ fontFamily: "Inter, sans-serif" }}
         >
           {item.label}
         </span>
@@ -142,27 +144,31 @@ export default function Symptoms({ className = "" }) {
   const activeIndex = hovered ?? 0;
 
   return (
-    <section className={`grid min-h-screen place-items-center bg-[#2F6FCB] p-8 font-['Space_Grotesk',Arial,sans-serif] text-white ${className}`}>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      />
+    <section
+      className={`relative w-full bg-[#2F6FCB] py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 text-white font-ppmori ${className}`}
+    >
       <style>{WAVE_CSS}</style>
 
-      <div className="grid w-full max-w-[1200px] items-center gap-7 lg:grid-cols-[330px_1fr] lg:gap-12">
+      <div className="mx-auto grid w-full max-w-[1240px] items-center gap-7 lg:grid-cols-[330px_1fr] lg:gap-12">
         <header>
-          <p className="mb-3.5 flex items-center gap-2.5 text-[13px] font-medium uppercase tracking-[1.5px]">
-            <i className="block h-[9px] w-[9px]" style={{ background: ORANGE }} />
+          <p
+            className="mb-3.5 flex items-center gap-2.5 text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.12em] text-white/90"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            <i className="block h-[7px] w-[7px] rounded-full" style={{ background: ORANGE }} />
             Symptoms of
           </p>
-          <h1 className="text-[clamp(36px,4vw,46px)] font-semibold leading-[1.04] tracking-[-0.03em]">
+          <h2
+            className="text-[32px] sm:text-[40px] lg:text-[46px] font-semibold leading-[1.08] tracking-tight"
+            style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
+          >
             Organization
             <br />
             Challenges
-          </h1>
+          </h2>
         </header>
 
-        <ul className="grid auto-rows-[150px] grid-cols-2 gap-3 lg:auto-rows-auto lg:grid-cols-[1.3fr_1fr_1fr_1fr] lg:grid-rows-[repeat(2,186px)]">
+        <ul className="grid auto-rows-[140px] sm:auto-rows-[150px] grid-cols-2 gap-3 lg:auto-rows-auto lg:grid-cols-[1.3fr_1fr_1fr_1fr] lg:grid-rows-[repeat(2,180px)]">
           {ITEMS.map((item, i) => (
             <Card
               key={item.label}
