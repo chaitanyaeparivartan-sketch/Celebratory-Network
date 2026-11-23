@@ -76,7 +76,7 @@ export default function Info({ className = '' }) {
                     <span
                       ref={(el) => (wordRefs.current[idx] = el)}
                       data-on="false"
-                      className="text-[#171717]/25 transition-colors duration-150 data-[on=true]:text-[#FF5E14] motion-reduce:text-[#FF5E14]"
+                      className="text-[#171717]/25 transition-colors duration-150 data-[on=true]:text-[#171717] motion-reduce:text-[#171717]"
                     >
                       {word}
                     </span>
