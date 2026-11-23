@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 export default function BusinessODHero({ className = "" }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -13,40 +12,46 @@ export default function BusinessODHero({ className = "" }) {
 
   return (
     <section
-      className={`relative w-full min-h-screen min-h-[100dvh] bg-[#f0f6fc] overflow-hidden flex items-center ${className}`}
+      className={`relative w-full min-h-screen min-h-[100dvh] overflow-hidden flex items-center ${className}`}
+      style={{
+        background:
+          "linear-gradient(180deg, hsl(209.1177deg 93.8045% 45%) 0%, hsl(209.1177deg 82.4294% 100%) 148.67%)",
+      }}
     >
-      {/* Background Banner Image */}
-      <div className="absolute inset-0 z-0 select-none pointer-events-none">
-        <Image
-          src="/business-od/hero-image-1.webp"
-          alt="Organization Development Building and Sky"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[78%_bottom] sm:object-[82%_bottom] md:object-[86%_bottom] lg:object-[88%_bottom] transition-transform duration-1000 ease-out"
-          style={{
-            transform: isMounted ? "scale(1)" : "scale(1.03)",
-          }}
-        />
+      {/* Background Building Image Layer using exact Figma specifications */}
+      <div
+        className="absolute bottom-0 right-0 pointer-events-none select-none z-0 max-w-none transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        style={{
+          width: "1615px",
+          height: "945px",
+          transform: isMounted
+            ? "scaleX(-1)"
+            : "scaleX(-1) translate3d(20px, 16px, 0)",
+          aspectRatio: "94/55",
+          background:
+            "url(/business-od/hero-image-2.webp) transparent -51.5px 0px / 104.025% 100% no-repeat",
+          opacity: isMounted ? 1 : 0,
+        }}
+        aria-hidden="true"
+      />
 
-        {/* Subtle gradient overlay at top for floating navigation bar */}
-        <div className="absolute inset-x-0 top-0 h-28 sm:h-36 bg-gradient-to-b from-black/20 via-black/5 to-transparent pointer-events-none" />
+      {/* Subtle top gradient overlay to provide contrast for the floating header */}
+      <div className="absolute inset-x-0 top-0 h-28 sm:h-36 bg-gradient-to-b from-black/20 via-black/5 to-transparent pointer-events-none z-10" />
 
-        {/* Soft ambient wash on mobile/tablet so text remains crystal clear over image */}
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/20 md:from-white/85 md:via-white/40 md:to-transparent lg:hidden pointer-events-none"
-          aria-hidden="true"
-        />
+      {/* Soft ambient wash on mobile/tablet so text remains crystal clear */}
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/20 md:from-white/85 md:via-white/40 md:to-transparent lg:hidden pointer-events-none z-10"
+        aria-hidden="true"
+      />
 
-        {/* Bottom edge feather into the orange Statement section */}
-        <div
-          className="absolute bottom-0 inset-x-0 h-3 sm:h-4 md:h-5 bg-gradient-to-b from-transparent to-[#FF5E14] pointer-events-none z-10"
-          aria-hidden="true"
-        />
-      </div>
+      {/* Bottom edge feather into the orange Statement section */}
+      <div
+        className="absolute bottom-0 inset-x-0 h-3 sm:h-4 md:h-5 bg-gradient-to-b from-transparent to-[#FF5E14] pointer-events-none z-15"
+        aria-hidden="true"
+      />
 
-      {/* Hero Section Content Placed Directly on the Left Side of Banner */}
-      <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-40 pb-16 sm:pb-24">
+      {/* Hero Section Content Placed Directly on the Left Side */}
+      <div className="relative z-20 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-40 pb-16 sm:pb-24">
         <div
           className="w-full max-w-[540px] sm:max-w-[580px] md:max-w-[620px] lg:max-w-[660px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{
