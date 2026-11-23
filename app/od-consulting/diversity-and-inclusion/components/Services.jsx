@@ -185,54 +185,123 @@ export default function Services() {
               />
             </div>
 
-            {/* RIGHT — accordion content */}
-            <div className="flex flex-col justify-center w-full">
-              <div className="border-t border-black/[.12]">
-                {SERVICES.map((s, i) => {
-                  const open = i === st.cur;
+            {/* RIGHT — One service at a time */}
+            <div className="flex flex-col justify-between h-full min-h-[300px] sm:min-h-[360px] md:min-h-[400px] lg:min-h-[440px] py-1 sm:py-2">
+              {/* Stepper / Tab Pills */}
+              <div className="flex items-center gap-2 mb-3 sm:mb-4 border-b border-black/[.08] pb-3 sm:pb-4">
+                {SERVICES.map((s, idx) => {
+                  const isActive = idx === st.cur;
                   return (
-                    <div
+                    <button
                       key={s.title}
-                      onClick={() => onSelect(i)}
-                      className="cursor-pointer border-b border-black/[.12] transition-colors"
+                      onClick={() => go(idx)}
+                      type="button"
+                      className={`cursor-pointer px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[12px] sm:text-[13px] font-semibold transition-all duration-300 ${
+                        isActive
+                          ? "bg-[#171717] text-white shadow-sm"
+                          : "bg-black/[0.04] text-[#717171] hover:bg-black/[0.08] hover:text-[#171717]"
+                      }`}
+                      style={{ fontFamily: "Inter, sans-serif" }}
                     >
-                      <h3
-                        className="pb-[10px] pt-[12px] sm:pb-[12px] sm:pt-[14px] text-[17px] sm:text-[19px] md:text-[21px] font-medium uppercase leading-[1.15] tracking-tight transition-colors duration-300"
-                        style={{
-                          fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
-                          color: open ? s.color : "#171717",
-                        }}
-                      >
-                        {s.title}
-                      </h3>
-
-                      <div
-                        className={`grid transition-[grid-template-rows] duration-[500ms] ease-[cubic-bezier(.65,0,.2,1)] ${
-                          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                        }`}
-                      >
-                        <div className="overflow-hidden">
-                          <ul
-                            className={`space-y-1 pb-[14px] pt-[2px] text-[13px] sm:text-[13.5px] leading-[1.6] text-[#525252] transition-all duration-400 ${
-                              open ? "translate-y-0 opacity-100 delay-100" : "translate-y-2.5 opacity-0"
-                            }`}
-                            style={{ fontFamily: "Inter, sans-serif" }}
-                          >
-                            {s.items.map((it) => (
-                              <li key={it} className="relative pl-[20px]">
-                                <span
-                                  className="absolute left-0 top-[0.6em] h-1.5 w-1.5 rounded-full"
-                                  style={{ background: s.color }}
-                                />
-                                {it}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                      0{idx + 1}
+                    </button>
                   );
                 })}
+                <span
+                  className="ml-auto text-[12px] font-medium text-[#888]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  0{st.cur + 1} / 0{n}
+                </span>
+              </div>
+
+              {/* Active Single Service Content */}
+              <div
+                key={st.cur}
+                className="flex-1 flex flex-col justify-center transition-opacity duration-300 py-1"
+              >
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <span
+                    className="h-2 w-2 rounded-full"
+                    style={{ background: SERVICES[st.cur].color }}
+                  />
+                  <span
+                    className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.14em]"
+                    style={{ color: SERVICES[st.cur].color, fontFamily: "Inter, sans-serif" }}
+                  >
+                    Service 0{st.cur + 1}
+                  </span>
+                </div>
+
+                <h3
+                  className="text-[24px] sm:text-[30px] md:text-[34px] font-semibold leading-[1.15] tracking-tight text-[#171717] mb-4 sm:mb-5"
+                  style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
+                >
+                  {SERVICES[st.cur].title}
+                </h3>
+
+                <ul className="space-y-2.5 sm:space-y-3 w-full">
+                  {SERVICES[st.cur].items.map((it) => (
+                    <li key={it} className="flex items-start gap-3">
+                      <span
+                        className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0"
+                        style={{ background: SERVICES[st.cur].color }}
+                      />
+                      <span
+                        className="text-[14px] sm:text-[15.5px] leading-[1.55] text-[#404040]"
+                        style={{ fontFamily: "Inter, sans-serif" }}
+                      >
+                        {it}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Navigation controls */}
+              <div className="flex items-center gap-3 pt-4 border-t border-black/[.08] mt-3 sm:mt-4">
+                <button
+                  type="button"
+                  onClick={() => go(Math.max(0, st.cur - 1))}
+                  disabled={st.cur === 0}
+                  className={`inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border transition-all duration-200 cursor-pointer ${
+                    st.cur === 0
+                      ? "border-black/[0.08] text-black/20 cursor-not-allowed"
+                      : "border-black/[0.2] text-black hover:border-black hover:bg-black hover:text-white"
+                  }`}
+                  aria-label="Previous service"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => go(Math.min(n - 1, st.cur + 1))}
+                  disabled={st.cur === n - 1}
+                  className={`inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border transition-all duration-200 cursor-pointer ${
+                    st.cur === n - 1
+                      ? "border-black/[0.08] text-black/20 cursor-not-allowed"
+                      : "border-black/[0.2] text-black hover:border-black hover:bg-black hover:text-white"
+                  }`}
+                  aria-label="Next service"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+
+                {/* Progress bar */}
+                <div className="flex-1 ml-2 h-1 bg-black/[0.08] rounded-full overflow-hidden">
+                  <div
+                    className="h-full transition-all duration-300 rounded-full"
+                    style={{
+                      width: `${((st.cur + 1) / n) * 100}%`,
+                      backgroundColor: SERVICES[st.cur].color,
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
