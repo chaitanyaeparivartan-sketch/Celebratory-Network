@@ -4,6 +4,7 @@ import CTA from "@/app/components/Common/CTA";
 import Hero from "./components/Hero";
 import Statement from "./components/Statement";
 import Challenges from "./components/Challenges";
+import Symptoms from "./components/Symptoms";
 import Info from "./components/Info";
 import Impact from "./components/Impact";
 
@@ -21,6 +22,7 @@ export default function BusinessODPage() {
         <Hero />
         <Statement />
         <Challenges />
+        <Symptoms />
         <Info />
         <CTA
           title="Ready to build a resilient, high-performing organization?"
