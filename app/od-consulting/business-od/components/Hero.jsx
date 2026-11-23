@@ -13,7 +13,7 @@ export default function BusinessODHero({ className = "" }) {
 
   return (
     <section
-      className={`relative w-full min-h-screen min-h-[100dvh] overflow-hidden flex items-center ${className}`}
+      className={`relative w-full min-h-screen min-h-[100dvh] overflow-hidden font-ppmori flex items-center ${className}`}
       style={{
         background:
           "linear-gradient(180deg, hsl(209.1177deg 93.8045% 45%) 0%, hsl(209.1177deg 82.4294% 100%) 148.67%)",
@@ -53,43 +53,54 @@ export default function BusinessODHero({ className = "" }) {
         aria-hidden="true"
       />
 
-      {/* Main Content (Left Column on Sky Background - Exact Typography from Frame 146) */}
-      <div className="relative z-20 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-40 pb-16 sm:pb-24">
-        <div
-          className="w-full max-w-[540px] sm:max-w-[580px] md:max-w-[620px] lg:max-w-[660px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-          style={{
-            opacity: isMounted ? 1 : 0,
-            transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
-          }}
-        >
-          {/* Eyebrow Tag: Orange Square + White Tracking Text */}
-          <div className="flex items-center gap-2 mb-3 sm:mb-4">
+      {/* Main Content - EXACT font sizes, font families & weights matching About Us Hero */}
+      <div className="relative z-20 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-38 lg:pt-36 pb-16 sm:pb-20">
+        <div className="w-full max-w-[440px] sm:max-w-[520px] md:max-w-[620px] lg:max-w-[680px]">
+          {/* Eyebrow Tag */}
+          <div
+            className="flex items-center gap-1.5 sm:gap-2 mb-2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            style={{
+              opacity: isMounted ? 1 : 0,
+              transform: isMounted ? "none" : "translate3d(0, 16px, 0)",
+              transitionDelay: "100ms",
+            }}
+          >
             <span
-              className="w-2 h-2 rounded-[1px] bg-[#FF5E14] inline-block shrink-0"
+              className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#FF5E14] inline-block rounded-[1px] shrink-0"
               aria-hidden="true"
             />
             <span
-              className="text-white font-semibold text-[11px] sm:text-[12px] md:text-[13px] tracking-[0.2em] uppercase select-none"
-              style={{ fontFamily: "Inter, sans-serif" }}
+              className="text-white font-semibold text-[12px] sm:text-[13px] md:text-[14px] tracking-[0.2em] uppercase select-none"
+              style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
             >
               WHERE CAN ORGANIZATION DEVELOPMENT
             </span>
           </div>
 
-          {/* Heading from Frame 146: Help your Business? */}
+          {/* Heading - Exact typography from About Us Hero */}
           <h1
-            className="text-white font-semibold text-[clamp(36px,5.2vw,72px)] leading-[1.05] tracking-[-0.035em] mb-5 sm:mb-6"
+            className="text-white font-semibold text-[clamp(28px,3.8vw,52px)] leading-[36px] sm:leading-[42px] md:leading-[48px] tracking-[-0.8px] mb-2.5 sm:mb-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
+              opacity: isMounted ? 1 : 0,
+              transform: isMounted ? "none" : "translate3d(0, 24px, 0)",
+              transitionDelay: "180ms",
             }}
           >
             Help your Business?
           </h1>
 
-          {/* Story Body Narrative & System Dimensions */}
-          <div className="space-y-4 sm:space-y-5">
+          {/* Story Paragraphs - exact font size, line-height & font family from About Us Hero */}
+          <div
+            className="space-y-3 sm:space-y-3.5 max-w-[540px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            style={{
+              opacity: isMounted ? 1 : 0,
+              transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
+              transitionDelay: "260ms",
+            }}
+          >
             <p
-              className="text-white/90 text-[15px] sm:text-[16px] md:text-[17px] leading-[1.68] font-normal"
+              className="text-white/90 text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-[1.55] sm:leading-[1.5] font-normal"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               Many transformation efforts focus on structures, processes and
@@ -99,9 +110,10 @@ export default function BusinessODHero({ className = "" }) {
               unspoken realities. Success depends on both.
             </p>
 
-            <div className="pt-2 sm:pt-2.5 space-y-2.5 sm:space-y-3">
+            {/* Subheading in Brand Orange + 2 Dimension Bullet Lines */}
+            <div className="pt-1.5 sm:pt-2 space-y-2">
               <h2
-                className="text-[#FF5E14] font-semibold text-[16px] sm:text-[17px] md:text-[18px] leading-snug drop-shadow-sm"
+                className="text-[#FF5E14] font-semibold text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-snug drop-shadow-sm pt-1"
                 style={{
                   fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
                 }}
@@ -110,10 +122,10 @@ export default function BusinessODHero({ className = "" }) {
               </h2>
 
               <div
-                className="space-y-1.5 sm:space-y-2 text-[14px] sm:text-[15px] md:text-[15.5px] leading-[1.5] text-white/95 font-normal"
+                className="space-y-1 sm:space-y-1.5 text-[14px] sm:text-[14.5px] md:text-[15px] leading-[1.5] text-white/95 font-normal"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
-                <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
                   <span>Visible systems</span>
                   <span className="text-[#FF5E14] font-bold text-[14px] sm:text-[15px] select-none">
                     ·
@@ -124,7 +136,7 @@ export default function BusinessODHero({ className = "" }) {
                   </span>
                   <span>Invisible dynamics</span>
                 </p>
-                <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
                   <span>Organisational relationships</span>
                   <span className="text-[#FF5E14] font-bold text-[14px] sm:text-[15px] select-none">
                     ·
