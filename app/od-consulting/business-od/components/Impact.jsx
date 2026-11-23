@@ -197,8 +197,8 @@ export default function Impact({ className = "" }) {
               <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
               Areas of Focus
             </div>
-            <h2 className="mt-2.5 font-ppmori text-3xl sm:text-4xl md:text-[46px] lg:text-[52px] font-semibold tracking-[-0.8px] leading-[1.08] text-[#242424]">
-              WHERE WE <span className="text-[#FF5E14]">CREATE IMPACT</span>
+            <h2 className="mt-2.5 font-ppmori text-3xl sm:text-4xl md:text-[46px] lg:text-[52px] font-semibold tracking-[-0.8px] leading-[1.08] text-black">
+              Where We Create Impact
             </h2>
           </div>
 
