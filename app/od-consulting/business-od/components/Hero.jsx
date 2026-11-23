@@ -12,49 +12,50 @@ export default function BusinessODHero({ className = "" }) {
   }, []);
 
   return (
-    <section className={`relative w-full bg-white ${className}`}>
-      {/* Top Wide Photographic Banner */}
-      <div className="relative w-full h-[52vh] sm:h-[58vh] md:h-[62vh] min-h-[360px] sm:min-h-[420px] overflow-hidden bg-[#1F2937]">
+    <section
+      className={`relative w-full min-h-screen min-h-[100dvh] bg-[#f0f6fc] overflow-hidden flex items-center ${className}`}
+    >
+      {/* Background Banner Image */}
+      <div className="absolute inset-0 z-0 select-none pointer-events-none">
         <Image
           src="/business-od/hero-image-1.webp"
-          alt="Organization Development Building"
+          alt="Organization Development Building and Sky"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_50%] transition-transform duration-1000 ease-out"
+          className="object-cover object-[78%_bottom] sm:object-[82%_bottom] md:object-[86%_bottom] lg:object-[88%_bottom] transition-transform duration-1000 ease-out"
           style={{
-            transform: isMounted ? "scale(1)" : "scale(1.04)",
+            transform: isMounted ? "scale(1)" : "scale(1.03)",
           }}
         />
-        {/* Subtle gradient overlay to provide contrast for the floating header */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/10 pointer-events-none" />
 
-        {/* Bottom smooth gradient fade to white behind the overlapping card */}
+        {/* Subtle gradient overlay at top for floating navigation bar */}
+        <div className="absolute inset-x-0 top-0 h-28 sm:h-36 bg-gradient-to-b from-black/20 via-black/5 to-transparent pointer-events-none" />
+
+        {/* Soft ambient wash on mobile/tablet so text remains crystal clear over image */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 md:h-40 bg-gradient-to-t from-white via-white/75 to-transparent pointer-events-none z-10"
+          className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/20 md:from-white/85 md:via-white/40 md:to-transparent lg:hidden pointer-events-none"
+          aria-hidden="true"
+        />
+
+        {/* Bottom edge feather into the orange Statement section */}
+        <div
+          className="absolute bottom-0 inset-x-0 h-3 sm:h-4 md:h-5 bg-gradient-to-b from-transparent to-[#FF5E14] pointer-events-none z-10"
           aria-hidden="true"
         />
       </div>
 
-      {/* Overlapping White Panel */}
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section Content Placed Directly on the Left Side of Banner */}
+      <div className="relative z-10 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-40 pb-16 sm:pb-24">
         <div
-          className="relative -mt-10 sm:-mt-12 md:-mt-14 bg-white rounded-t-[28px] sm:rounded-t-[34px] md:rounded-t-[38px] px-6 sm:px-10 md:px-14 lg:px-16 pt-8 sm:pt-12 md:pt-14 pb-12 sm:pb-16 shadow-[0_-12px_36px_rgba(20,20,20,0.06)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="w-full max-w-[540px] sm:max-w-[580px] md:max-w-[620px] lg:max-w-[660px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{
             opacity: isMounted ? 1 : 0,
-            transform: isMounted ? "none" : "translate3d(0, 24px, 0)",
+            transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
           }}
         >
-          {/* Decorative Orange Asterisk in Top Right */}
-          <span
-            className="absolute right-6 sm:right-10 md:right-14 top-6 sm:top-8 md:top-10 text-[#FF5E14] text-[28px] sm:text-[34px] md:text-[38px] leading-none select-none transition-transform duration-500 hover:rotate-45 cursor-default"
-            aria-hidden="true"
-          >
-            ✱
-          </span>
-
           {/* Eyebrow Tag */}
-          <div className="flex items-center gap-2 mb-4 sm:mb-5">
+          <div className="flex items-center gap-2 mb-3 sm:mb-4">
             <span
               className="w-2 h-2 rounded-[1px] bg-[#FF5E14] inline-block shrink-0"
               aria-hidden="true"
@@ -67,9 +68,9 @@ export default function BusinessODHero({ className = "" }) {
             </span>
           </div>
 
-          {/* Large Heading - Sentence Case */}
+          {/* Heading - Sentence Case */}
           <h1
-            className="text-[#141414] font-semibold text-[clamp(32px,5.2vw,72px)] leading-[1.04] tracking-[-0.035em] max-w-[1100px]"
+            className="text-[#141414] font-semibold text-[clamp(32px,4.5vw,64px)] leading-[1.06] tracking-[-0.035em] mb-4 sm:mb-5"
             style={{
               fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
             }}
@@ -78,7 +79,7 @@ export default function BusinessODHero({ className = "" }) {
           </h1>
 
           {/* Story Body & Dimensions */}
-          <div className="mt-6 sm:mt-8 md:mt-10 max-w-[820px] space-y-5">
+          <div className="space-y-4 sm:space-y-5">
             <p
               className="text-[#334155] text-[15px] sm:text-[16px] md:text-[17px] leading-[1.68] font-normal"
               style={{ fontFamily: "Inter, sans-serif" }}
@@ -90,7 +91,7 @@ export default function BusinessODHero({ className = "" }) {
               unspoken realities. Success depends on both.
             </p>
 
-            <div className="pt-2 sm:pt-3 space-y-3">
+            <div className="pt-2 sm:pt-2.5 space-y-2.5 sm:space-y-3">
               <h2
                 className="text-[#FF5E14] font-semibold text-[16px] sm:text-[17px] md:text-[18px] leading-snug"
                 style={{
