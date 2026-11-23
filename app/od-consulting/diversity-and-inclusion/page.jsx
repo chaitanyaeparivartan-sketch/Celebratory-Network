@@ -3,6 +3,7 @@ import Footer from "@/app/components/Common/Footer";
 import CTA from "@/app/components/Common/CTA";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
+import DeiResources from "./components/DeiResources";
 
 export const metadata = {
   title: "Diversity and Inclusion | Celebratory Network",
@@ -17,6 +18,7 @@ export default function DiversityAndInclusionPage() {
       <main className="flex-1">
         <Hero />
         <Services />
+        <DeiResources />
         <CTA
           title="Ready to build an inclusive, high-performing workplace?"
           text="Get a personalised look at how Celebratory Network can help align your leadership and transform your diversity and inclusion strategy."
