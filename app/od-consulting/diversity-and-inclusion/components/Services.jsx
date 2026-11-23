@@ -55,6 +55,7 @@ const SERVICES = [
 const EASE = "cubic-bezier(.77,0,.18,1)";
 const DUR = 1050;
 const FONT = 'font-["PP_Mori",var(--font-geist-sans),sans-serif]';
+const STEP = 0.65; // Viewport heights of scroll per service item
 
 /* One image layer. mode: idle (first paint) | enter | prev */
 function Layer({ s, mode, rev }) {
@@ -104,6 +105,7 @@ export default function Services() {
   const curRef = useRef(0);
   const tickRef = useRef(0);
   const lockRef = useRef(0);
+  const [trackHeight, setTrackHeight] = useState(undefined);
   const [st, setSt] = useState({ cur: 0, prev: null, rev: false, tick: 0 });
   const n = SERVICES.length;
 
@@ -117,28 +119,73 @@ export default function Services() {
     setTimeout(() => setSt((s) => (s.tick === tick ? { ...s, prev: null } : s)), DUR + 100);
   }, []);
 
+  // Compute total track height based on step per service
   useEffect(() => {
-    const onScroll = () => {
-      if (Date.now() < lockRef.current || !wrapRef.current) return;
-      const el = wrapRef.current;
-      const rect = el.getBoundingClientRect();
-      const total = el.offsetHeight - window.innerHeight;
-      if (total <= 0) return;
-      // Only drive accordion while inside the pinned scroll area
-      if (rect.top > 0 || rect.bottom < window.innerHeight) return;
-      const p = Math.min(0.9999, Math.max(0, -rect.top / total));
-      go(Math.floor(p * n));
+    const size = () => {
+      setTrackHeight(window.innerHeight * (1 + (n - 1) * STEP));
     };
+    size();
+    window.addEventListener("resize", size);
+    return () => window.removeEventListener("resize", size);
+  }, [n]);
+
+  // One distinct scroll step opens each service in order
+  useEffect(() => {
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      if (Date.now() < lockRef.current || !wrapRef.current) return;
+      const track = wrapRef.current;
+      const stepPx = window.innerHeight * STEP;
+      const top = -track.getBoundingClientRect().top;
+      if (top < 0) {
+        go(0);
+        return;
+      }
+      const y = Math.min(Math.max(top, 0), stepPx * (n - 1));
+      const raw = y / stepPx;
+      const target = Math.min(n - 1, Math.round(raw));
+      go(target);
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, [go, n]);
 
   const onSelect = (i) => {
     go(i);
+    const track = wrapRef.current;
+    if (!track) return;
+    const stepPx = window.innerHeight * STEP;
+    const trackTop = track.getBoundingClientRect().top + window.scrollY;
+    lockRef.current = Date.now() + 800;
+    window.scrollTo({
+      top: trackTop + i * stepPx,
+      behavior: "smooth",
+    });
   };
 
   return (
-    <section ref={wrapRef} id="services" className="relative h-[180vh] md:h-[160vh] bg-white w-full">
+    <section
+      ref={wrapRef}
+      id="services"
+      className="relative bg-white w-full"
+      style={{
+        minHeight: trackHeight ? `${trackHeight}px` : `${100 + (n - 1) * 65}vh`,
+      }}
+    >
       {/* keyframes for the image wipe */}
       <style>{`
         @keyframes wipeUp{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
