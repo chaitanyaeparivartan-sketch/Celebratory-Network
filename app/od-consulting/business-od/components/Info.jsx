@@ -30,8 +30,17 @@ export default function Info({ className = '' }) {
       // Paragraphs: words fill in sequentially between 5% and 85% of scroll
       const words = wordRefs.current;
       const n = clamp((p - 0.05) / 0.80) * words.length;
+      const activeIdx = Math.floor(n);
+
       words.forEach((w, i) => {
-        if (w) w.dataset.on = String(i < n);
+        if (!w) return;
+        if (i < activeIdx) {
+          w.dataset.state = 'done';
+        } else if (i === activeIdx && p > 0.05 && p < 0.85) {
+          w.dataset.state = 'active';
+        } else {
+          w.dataset.state = 'pending';
+        }
       });
     };
 
@@ -75,8 +84,8 @@ export default function Info({ className = '' }) {
                   <span key={wi}>
                     <span
                       ref={(el) => (wordRefs.current[idx] = el)}
-                      data-on="false"
-                      className="text-[#171717]/25 transition-colors duration-150 data-[on=true]:text-[#171717] motion-reduce:text-[#171717]"
+                      data-state="pending"
+                      className="text-[#171717]/25 transition-colors duration-150 data-[state=active]:text-[#FF5E14] data-[state=done]:text-[#171717] motion-reduce:text-[#171717]"
                     >
                       {word}
                     </span>
