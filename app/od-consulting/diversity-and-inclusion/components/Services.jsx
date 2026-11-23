@@ -242,7 +242,7 @@ export default function Services() {
                       className="cursor-pointer border-b border-black/[.12] transition-colors"
                     >
                       <h3
-                        className="pb-[10px] pt-[12px] sm:pb-[12px] sm:pt-[14px] text-[17px] sm:text-[19px] md:text-[21px] font-medium uppercase leading-[1.15] tracking-tight transition-colors duration-300"
+                        className="pb-[10px] pt-[12px] sm:pb-[12px] sm:pt-[14px] text-[17px] sm:text-[19px] md:text-[21px] font-medium leading-[1.15] tracking-tight transition-colors duration-300"
                         style={{
                           fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
                           color: open ? s.color : "#171717",
