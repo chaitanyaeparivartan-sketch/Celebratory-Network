@@ -4,12 +4,12 @@ import CTA from "@/app/components/Common/CTA";
 import Services from "./components/Services";
 
 export const metadata = {
-  title: "Diversity & Inclusion | Celebratory Network",
+  title: "Diversity and Inclusion | Celebratory Network",
   description:
     "Building inclusive workplaces. We design, facilitate and implement DEIB solutions that connect culture, leadership, and diversity.",
 };
 
-export default function DiversityInclusionPage() {
+export default function DiversityAndInclusionPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
