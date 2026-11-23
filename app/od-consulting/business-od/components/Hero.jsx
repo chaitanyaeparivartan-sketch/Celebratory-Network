@@ -53,12 +53,12 @@ export default function BusinessODHero({ className = "" }) {
         aria-hidden="true"
       />
 
-      {/* Main Content - EXACT font sizes, font families & weights matching About Us Hero */}
+      {/* Main Content */}
       <div className="relative z-20 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-38 lg:pt-36 pb-16 sm:pb-20">
-        <div className="w-full max-w-[440px] sm:max-w-[520px] md:max-w-[620px] lg:max-w-[680px]">
+        <div className="w-full max-w-[480px] sm:max-w-[560px] md:max-w-[640px] lg:max-w-[700px]">
           {/* Eyebrow Tag */}
           <div
-            className="flex items-center gap-1.5 sm:gap-2 mb-2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: isMounted ? 1 : 0,
               transform: isMounted ? "none" : "translate3d(0, 16px, 0)",
@@ -73,13 +73,13 @@ export default function BusinessODHero({ className = "" }) {
               className="text-white font-semibold text-[12px] sm:text-[13px] md:text-[14px] tracking-[0.2em] uppercase select-none"
               style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
             >
-              OUR PERSPECTIVE
+              Our Perspective
             </span>
           </div>
 
-          {/* Heading - Toward Organization Development */}
+          {/* Heading - Toward Organizational Development */}
           <h1
-            className="text-white font-semibold text-[clamp(28px,3.8vw,52px)] leading-[36px] sm:leading-[42px] md:leading-[48px] tracking-[-0.8px] mb-2.5 sm:mb-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="text-white font-semibold text-[clamp(32px,4.5vw,56px)] leading-[1.08] tracking-[-0.8px] mb-4 sm:mb-6 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
               opacity: isMounted ? 1 : 0,
@@ -87,77 +87,21 @@ export default function BusinessODHero({ className = "" }) {
               transitionDelay: "180ms",
             }}
           >
-            <span className="block">Toward organization</span>
-            <span className="block">development</span>
+            Toward Organizational Development
           </h1>
 
-          {/* Story Paragraphs */}
-          <div
-            className="space-y-3 sm:space-y-3.5 max-w-[540px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          {/* Description */}
+          <p
+            className="text-white/90 text-[16px] sm:text-[17px] md:text-[18px] lg:text-[19px] leading-[1.6] font-normal max-w-[560px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
+              fontFamily: "Inter, sans-serif",
               opacity: isMounted ? 1 : 0,
               transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
               transitionDelay: "260ms",
             }}
           >
-            <div
-              className="space-y-2 text-white/90 text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-[1.55] sm:leading-[1.5] font-normal"
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              <p>
-                Many transformation efforts focus on structures, processes and governance.
-                <br className="hidden sm:inline" />
-                {" "}These are necessary. But they are not sufficient.
-              </p>
-              <p>
-                Organizations are living systems.
-                <br className="hidden sm:inline" />
-                {" "}Formal structures operate alongside informal networks, official priorities coexist with unspoken realities.
-                <br className="hidden sm:inline" />
-                {" "}Success depends on both.
-              </p>
-            </div>
-
-            {/* Subheading in Brand Orange + 2 Dimension Bullet Lines */}
-            <div className="pt-1.5 sm:pt-2 space-y-2">
-              <h2
-                className="text-[#FF5E14] font-semibold text-[15px] sm:text-[15.5px] md:text-[16px] lg:text-[16.5px] leading-snug drop-shadow-sm pt-1"
-                style={{
-                  fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
-                }}
-              >
-                Our work focuses on helping organizations understand and work with:
-              </h2>
-
-              <div
-                className="space-y-1 sm:space-y-1.5 text-[14px] sm:text-[14.5px] md:text-[15px] leading-[1.5] text-white/95 font-normal"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                <p className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
-                  <span>Visible systems</span>
-                  <span className="text-[#FF5E14] font-medium text-[13px] sm:text-[14px] select-none mx-1">
-                    |
-                  </span>
-                  <span>Culture patterns</span>
-                  <span className="text-[#FF5E14] font-medium text-[13px] sm:text-[14px] select-none mx-1">
-                    |
-                  </span>
-                  <span>Invisible dynamics</span>
-                </p>
-                <p className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
-                  <span>Organisational relationships</span>
-                  <span className="text-[#FF5E14] font-medium text-[13px] sm:text-[14px] select-none mx-1">
-                    |
-                  </span>
-                  <span>Leadership behaviour</span>
-                  <span className="text-[#FF5E14] font-medium text-[13px] sm:text-[14px] select-none mx-1">
-                    |
-                  </span>
-                  <span>Ways of Working</span>
-                </p>
-              </div>
-            </div>
-          </div>
+            We help organizations grow by understanding their structures, culture, relationships, leadership, and the invisible dynamics that shape how people work together.
+          </p>
         </div>
       </div>
     </section>
