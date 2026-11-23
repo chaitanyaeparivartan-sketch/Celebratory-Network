@@ -85,7 +85,7 @@ function Layer({ s, mode, rev }) {
       {/* bottom gradient + caption */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-black/60 to-transparent" />
       <div
-        className="absolute bottom-[24px] left-6 flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-white md:left-[34px]"
+        className="absolute bottom-[24px] left-6 flex items-center gap-2.5 text-xs font-semibold tracking-[0.12em] text-white md:left-[34px]"
         style={{ fontFamily: "Inter, sans-serif" }}
       >
         <i className="block h-2.5 w-2.5 rounded-full shadow-sm" style={{ background: s.color }} />
@@ -152,25 +152,12 @@ export default function Services() {
         @keyframes dim{from{opacity:0}to{opacity:.55}}
       `}</style>
 
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 sm:pt-24 pb-8 sm:pb-10">
-        <div className="relative mx-auto grid w-full max-w-[1680px] h-[calc(100vh-140px)] min-h-[540px] max-h-[720px] grid-rows-[280px_1fr] md:grid-rows-1 md:grid-cols-2 overflow-hidden bg-white">
-          {/* LEFT — media */}
-          <div className="relative h-full w-full overflow-hidden bg-neutral-900">
-            {st.prev !== null && (
-              <Layer key={`p${st.tick}`} s={SERVICES[st.prev]} mode="prev" />
-            )}
-            <Layer
-              key={`c${st.tick}`}
-              s={SERVICES[st.cur]}
-              mode={st.tick === 0 ? "idle" : "enter"}
-              rev={st.rev}
-            />
-          </div>
-
-          {/* RIGHT — heading + accordion */}
-          <div className="flex h-full flex-col justify-center bg-white px-6 py-6 sm:px-8 md:px-[44px] lg:px-[54px] xl:px-[64px] overflow-y-auto">
+      <div className="sticky top-0 flex min-h-screen w-full flex-col justify-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 sm:pt-24 pb-8 sm:pb-12">
+        <div className="mx-auto flex w-full max-w-[1680px] flex-col">
+          {/* TOP: Horizontally Centered Heading */}
+          <div className="mb-6 sm:mb-8 md:mb-10 flex flex-col items-center text-center">
             <div
-              className="mb-2 sm:mb-2.5 flex items-center justify-start gap-2 text-left text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.12em] text-[#242424]"
+              className="mb-2.5 inline-flex items-center gap-2 text-center text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.12em] text-[#242424]"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               <i className="block h-2 w-2 rounded-full bg-[#FF5E14]" />
@@ -178,58 +165,77 @@ export default function Services() {
             </div>
 
             <h2
-              className="mb-4 sm:mb-5 text-left text-[28px] sm:text-[34px] md:text-[38px] lg:text-[42px] font-semibold leading-[1.08] tracking-tight text-[#171717]"
+              className="text-center text-[30px] sm:text-[38px] md:text-[44px] lg:text-[48px] font-semibold leading-[1.08] tracking-tight text-[#171717]"
               style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
             >
               Building inclusive workplaces.
             </h2>
+          </div>
 
-            <div className="border-t border-black/[.12]">
-              {SERVICES.map((s, i) => {
-                const open = i === st.cur;
-                return (
-                  <div
-                    key={s.title}
-                    onClick={() => onSelect(i)}
-                    className="cursor-pointer border-b border-black/[.12] transition-colors"
-                  >
-                    <h3
-                      className="pb-[13px] pt-[15px] text-[17px] sm:text-[20px] md:text-[22px] font-medium uppercase leading-[1.15] tracking-tight transition-colors duration-300"
-                      style={{
-                        fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
-                        color: open ? s.color : "#171717",
-                      }}
-                    >
-                      {s.title}
-                    </h3>
+          {/* BOTTOM: Left Media & Right Content */}
+          <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center">
+            {/* LEFT — media */}
+            <div className="relative h-[280px] sm:h-[360px] md:h-[480px] lg:h-[520px] w-full overflow-hidden rounded-[8px] bg-neutral-900 shadow-sm">
+              {st.prev !== null && (
+                <Layer key={`p${st.tick}`} s={SERVICES[st.prev]} mode="prev" />
+              )}
+              <Layer
+                key={`c${st.tick}`}
+                s={SERVICES[st.cur]}
+                mode={st.tick === 0 ? "idle" : "enter"}
+                rev={st.rev}
+              />
+            </div>
 
+            {/* RIGHT — accordion content */}
+            <div className="flex flex-col justify-center w-full">
+              <div className="border-t border-black/[.12]">
+                {SERVICES.map((s, i) => {
+                  const open = i === st.cur;
+                  return (
                     <div
-                      className={`grid transition-[grid-template-rows] duration-[600ms] ease-[cubic-bezier(.65,0,.2,1)] ${
-                        open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                      }`}
+                      key={s.title}
+                      onClick={() => onSelect(i)}
+                      className="cursor-pointer border-b border-black/[.12] transition-colors"
                     >
-                      <div className="overflow-hidden">
-                        <ul
-                          className={`space-y-1 pb-[18px] pt-[2px] text-[13px] sm:text-[14px] leading-[1.65] text-[#525252] transition-all duration-500 ${
-                            open ? "translate-y-0 opacity-100 delay-150" : "translate-y-2.5 opacity-0"
-                          }`}
-                          style={{ fontFamily: "Inter, sans-serif" }}
-                        >
-                          {s.items.map((it) => (
-                            <li key={it} className="relative pl-[20px]">
-                              <span
-                                className="absolute left-0 top-[0.6em] h-1.5 w-1.5 rounded-full"
-                                style={{ background: s.color }}
-                              />
-                              {it}
-                            </li>
-                          ))}
-                        </ul>
+                      <h3
+                        className="pb-[14px] pt-[16px] text-[18px] sm:text-[21px] md:text-[23px] font-medium uppercase leading-[1.15] tracking-tight transition-colors duration-300"
+                        style={{
+                          fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
+                          color: open ? s.color : "#171717",
+                        }}
+                      >
+                        {s.title}
+                      </h3>
+
+                      <div
+                        className={`grid transition-[grid-template-rows] duration-[600ms] ease-[cubic-bezier(.65,0,.2,1)] ${
+                          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <ul
+                            className={`space-y-1.5 pb-[20px] pt-[2px] text-[13px] sm:text-[14px] leading-[1.65] text-[#525252] transition-all duration-500 ${
+                              open ? "translate-y-0 opacity-100 delay-150" : "translate-y-2.5 opacity-0"
+                            }`}
+                            style={{ fontFamily: "Inter, sans-serif" }}
+                          >
+                            {s.items.map((it) => (
+                              <li key={it} className="relative pl-[22px]">
+                                <span
+                                  className="absolute left-0 top-[0.6em] h-1.5 w-1.5 rounded-full"
+                                  style={{ background: s.color }}
+                                />
+                                {it}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
