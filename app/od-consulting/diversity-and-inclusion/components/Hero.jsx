@@ -7,7 +7,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex min-h-screen flex-col text-black md:flex-row md:items-center overflow-hidden"
+      className="relative flex min-h-[85vh] lg:min-h-[88vh] flex-col text-black md:flex-row md:items-center overflow-hidden pt-20 pb-6 md:pt-24 md:pb-8"
       style={{
         background:
           "linear-gradient(270deg, rgba(255, 94, 20, 0.24) 0%, rgba(255, 138, 77, 0.14) 34%, rgba(255, 238, 228, 0.05) 68%, #FFFFFF 100%)",
@@ -24,7 +24,7 @@ export default function Hero() {
       />
 
       {/* Text: left 50% */}
-      <div className="relative z-10 px-[6vw] pt-28 pb-6 md:w-1/2 md:py-0 md:pl-[7vw] md:pr-[3vw]">
+      <div className="relative z-10 px-[6vw] pt-6 pb-4 md:w-1/2 md:py-0 md:pl-[7vw] md:pr-[3vw]">
         <div
           className="mb-5 flex items-center gap-3.5 text-[0.8rem] font-semibold uppercase tracking-[0.28em] text-[#171717]"
           style={{ fontFamily: "Inter, sans-serif" }}
@@ -50,8 +50,8 @@ export default function Hero() {
       </div>
 
       {/* Image: right 50% with realistic directional & ground shadows */}
-      <div className="relative z-10 flex h-[50vh] w-full items-center justify-center px-[4vw] py-8 md:h-screen md:w-1/2 md:py-[9vh]">
-        <div className="relative flex items-center justify-center w-full max-h-[580px] aspect-square">
+      <div className="relative z-10 flex w-full items-center justify-center px-[4vw] py-4 md:w-1/2 md:py-4">
+        <div className="relative flex items-center justify-center w-full max-w-[540px] lg:max-w-[600px] xl:max-w-[640px] aspect-square">
           {/* Ambient ground contact shadow directly under the standing circle */}
           <div
             className="pointer-events-none absolute -bottom-2 w-[84%] aspect-[1/0.85] rounded-full blur-[28px] opacity-75 select-none"

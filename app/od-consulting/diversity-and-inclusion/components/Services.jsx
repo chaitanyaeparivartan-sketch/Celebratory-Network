@@ -195,7 +195,7 @@ export default function Services() {
         @keyframes dim{from{opacity:0}to{opacity:.55}}
       `}</style>
 
-      <div className="sticky top-0 flex h-screen max-h-screen w-full flex-col justify-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-14 sm:pt-16 pb-6 sm:pb-8">
+      <div className="sticky top-0 flex h-screen max-h-screen w-full flex-col justify-start px-4 sm:px-6 lg:px-8 xl:px-12 pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8">
         <div className="mx-auto flex w-full max-w-[1520px] flex-col">
           {/* TOP: Horizontally Centered Heading */}
           <div className="mb-4 sm:mb-5 md:mb-6 flex flex-col items-center text-center flex-none">
@@ -218,7 +218,7 @@ export default function Services() {
           {/* BOTTOM: Left Media & Right Content */}
           <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center">
             {/* LEFT — media filling available viewport height */}
-            <div className="relative h-[340px] sm:h-[440px] md:h-[calc(100vh-210px)] min-h-[400px] max-h-[720px] w-full overflow-hidden rounded-2xl bg-neutral-900 shadow-md">
+            <div className="relative h-[340px] sm:h-[440px] md:h-[calc(100vh-190px)] min-h-[400px] max-h-[720px] w-full overflow-hidden rounded-2xl bg-neutral-900 shadow-md">
               {st.prev !== null && (
                 <Layer key={`p${st.tick}`} s={SERVICES[st.prev]} mode="prev" />
               )}
