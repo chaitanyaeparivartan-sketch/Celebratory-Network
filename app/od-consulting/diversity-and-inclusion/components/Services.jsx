@@ -232,14 +232,14 @@ export default function Services() {
 
             {/* RIGHT — accordion content with increased typography */}
             <div className="flex flex-col justify-center w-full">
-              <div className="border-t border-black/[.12]">
+              <div>
                 {SERVICES.map((s, i) => {
                   const open = i === st.cur;
                   return (
                     <div
                       key={s.title}
                       onClick={() => onSelect(i)}
-                      className="cursor-pointer border-b border-black/[.12] transition-colors"
+                      className="cursor-pointer border-b border-black/[.12] last:border-b-0 transition-colors"
                     >
                       <h3
                         className="pb-[12px] pt-[14px] sm:pb-[14px] sm:pt-[16px] md:pb-[16px] md:pt-[18px] text-[19px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-medium leading-[1.2] tracking-tight transition-colors duration-300"
