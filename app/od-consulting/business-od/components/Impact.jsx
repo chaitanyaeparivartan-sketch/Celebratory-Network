@@ -113,11 +113,11 @@ export default function Impact({ className = "" }) {
           cursor: pointer;
           transition: background-color 0.2s ease;
         }
+        .office-rule:first-child {
+          border-top: none;
+        }
         .office-rule:hover {
           background-color: rgba(255, 94, 20, 0.02);
-        }
-        .office-rule:last-child {
-          border-bottom: 1.5px solid var(--accent);
         }
         .office-rule-label {
           font-size: clamp(0.9rem, 1.15vw, 1.15rem);
