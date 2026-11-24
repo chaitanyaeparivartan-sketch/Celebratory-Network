@@ -47,7 +47,7 @@ function ArrowIcon({ className = "" }) {
 export default function DeiResources() {
   return (
     <section className="bg-[#f6f6f6] font-['Inter',system-ui,sans-serif] text-[#242424] antialiased">
-      <div className="mx-auto max-w-[1088px] px-5 pb-[72px] pt-12 md:px-6 md:pb-24 md:pt-[72px]">
+      <div className="mx-auto max-w-[1783px] px-5 sm:px-8 md:px-[6vw] pb-[72px] pt-12 md:pb-24 md:pt-[72px]">
         {/* Header */}
         <header className="mb-12 text-center md:mb-[72px]">
           <div className="mb-4 inline-flex items-center gap-2 text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">

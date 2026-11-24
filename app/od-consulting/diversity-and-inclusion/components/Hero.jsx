@@ -23,56 +23,59 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* Text: left 50% */}
-      <div className="relative z-10 px-[6vw] pt-6 pb-4 md:w-1/2 md:py-0 md:pl-[7vw] md:pr-[3vw]">
-        <div
-          className="mb-5 flex items-center gap-3.5 text-[0.8rem] font-semibold uppercase tracking-[0.28em] text-[#171717]"
-          style={{ fontFamily: "Inter, sans-serif" }}
-        >
-          <span className="h-3 w-3 flex-none bg-[#FF5E14]" aria-hidden="true" />
-          Our DEIB Practice
+      {/* Centered container with standard page width */}
+      <div className="relative z-10 mx-auto flex w-full max-w-[1783px] flex-col md:flex-row md:items-center px-5 sm:px-8 md:px-[6vw] justify-between">
+        {/* Text: left */}
+        <div className="w-full md:w-1/2 pt-6 pb-4 md:py-0 pr-0 md:pr-8 lg:pr-12">
+          <div
+            className="mb-5 flex items-center gap-3.5 text-[0.8rem] font-semibold uppercase tracking-[0.28em] text-[#171717]"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            <span className="h-3 w-3 flex-none bg-[#FF5E14]" aria-hidden="true" />
+            Our DEIB Practice
+          </div>
+
+          <h1
+            className="mb-6 text-[clamp(2.2rem,4.4vw,4rem)] font-bold leading-[1.05] tracking-tight text-[#171717]"
+            style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
+          >
+            Diversity, Equity, Inclusion &amp; Belonging
+          </h1>
+
+          <p
+            className="max-w-[30em] text-[clamp(1rem,1.25vw,1.2rem)] font-normal text-[#525252] leading-relaxed"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            Building workplaces where every voice is heard, every difference is
+            valued and everyone can do their best work.
+          </p>
         </div>
 
-        <h1
-          className="mb-6 text-[clamp(2.2rem,4.4vw,4rem)] font-bold leading-[1.05] tracking-tight text-[#171717]"
-          style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
-        >
-          Diversity, Equity, Inclusion &amp; Belonging
-        </h1>
+        {/* Image: right */}
+        <div className="flex w-full items-center justify-center py-4 md:w-1/2 md:py-4 md:justify-end">
+          <div className="relative flex items-center justify-center w-full max-w-[540px] lg:max-w-[600px] xl:max-w-[640px] aspect-square">
+            {/* Ambient ground contact shadow directly under the standing circle */}
+            <div
+              className="pointer-events-none absolute -bottom-2 w-[84%] aspect-[1/0.85] rounded-full blur-[28px] opacity-75 select-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 52% 56%, rgba(35, 15, 5, 0.45) 0%, rgba(60, 25, 10, 0.28) 36%, rgba(100, 45, 18, 0.12) 60%, transparent 75%)",
+                transform: "translateY(24px) rotate(-2deg)",
+              }}
+              aria-hidden="true"
+            />
 
-        <p
-          className="max-w-[30em] text-[clamp(1rem,1.25vw,1.2rem)] font-normal text-[#525252] leading-relaxed"
-          style={{ fontFamily: "Inter, sans-serif" }}
-        >
-          Building workplaces where every voice is heard, every difference is
-          valued and everyone can do their best work.
-        </p>
-      </div>
-
-      {/* Image: right 50% with realistic directional & ground shadows */}
-      <div className="relative z-10 flex w-full items-center justify-center px-[4vw] py-4 md:w-1/2 md:py-4">
-        <div className="relative flex items-center justify-center w-full max-w-[540px] lg:max-w-[600px] xl:max-w-[640px] aspect-square">
-          {/* Ambient ground contact shadow directly under the standing circle */}
-          <div
-            className="pointer-events-none absolute -bottom-2 w-[84%] aspect-[1/0.85] rounded-full blur-[28px] opacity-75 select-none"
-            style={{
-              background:
-                "radial-gradient(ellipse at 52% 56%, rgba(35, 15, 5, 0.45) 0%, rgba(60, 25, 10, 0.28) 36%, rgba(100, 45, 18, 0.12) 60%, transparent 75%)",
-              transform: "translateY(24px) rotate(-2deg)",
-            }}
-            aria-hidden="true"
-          />
-
-          {/* Cut-out image with multi-layered directional shadows (top-left light source casting downwards-right) */}
-          <img
-            src={imgSrc}
-            alt="Colleagues with hands joined in a circle"
-            className="relative z-10 h-full w-full object-contain"
-            style={{
-              filter:
-                "drop-shadow(3px 8px 12px rgba(30, 15, 5, 0.32)) drop-shadow(8px 22px 32px rgba(45, 20, 10, 0.22)) drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.15))",
-            }}
-          />
+            {/* Cut-out image with multi-layered directional shadows (top-left light source casting downwards-right) */}
+            <img
+              src={imgSrc}
+              alt="Colleagues with hands joined in a circle"
+              className="relative z-10 h-full w-full object-contain"
+              style={{
+                filter:
+                  "drop-shadow(3px 8px 12px rgba(30, 15, 5, 0.32)) drop-shadow(8px 22px 32px rgba(45, 20, 10, 0.22)) drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.15))",
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>

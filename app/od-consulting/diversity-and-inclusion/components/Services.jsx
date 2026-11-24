@@ -195,8 +195,8 @@ export default function Services() {
         @keyframes dim{from{opacity:0}to{opacity:.55}}
       `}</style>
 
-      <div className="sticky top-0 flex h-screen max-h-screen w-full flex-col justify-start px-4 sm:px-6 lg:px-8 xl:px-12 pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8">
-        <div className="mx-auto flex w-full max-w-[1520px] flex-col">
+      <div className="sticky top-0 flex h-screen max-h-screen w-full flex-col justify-start px-5 sm:px-8 md:px-[6vw] pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8">
+        <div className="mx-auto flex w-full max-w-[1783px] flex-col">
           {/* TOP: Horizontally Centered Heading */}
           <div className="mb-4 sm:mb-5 md:mb-6 flex flex-col items-center text-center flex-none">
             <div
