@@ -113,8 +113,13 @@ export default function Impact({ className = "" }) {
           cursor: pointer;
           transition: background-color 0.2s ease;
         }
-        .office-rule:first-child {
-          border-top: none;
+        .office-rule:first-child,
+        .office-rule:first-of-type {
+          border-top: none !important;
+        }
+        .office-rule:last-child,
+        .office-rule:last-of-type {
+          border-bottom: none !important;
         }
         .office-rule:hover {
           background-color: rgba(255, 94, 20, 0.02);
@@ -206,29 +211,32 @@ export default function Impact({ className = "" }) {
           </div>
 
           {/* Accordion Impact Items */}
-          {IMPACT_ITEMS.map((item, idx) => {
-            const isOpen = active === idx;
-            return (
-              <div
-                key={idx}
-                className={`office-rule ${isOpen ? "open" : ""}`}
-                onClick={() => handleItemClick(idx)}
-              >
-                <div className="office-rule-label">
-                  <span className="text-[#FF5E14] font-semibold">{item.num}</span>
-                  {!isOpen && <span>{item.title}</span>}
-                </div>
-                <div className="office-rule-body">
-                  <div className="office-rule-inner">
-                    <div className="office-rule-row">
-                      <h3 className="office-rule-title">{item.title}</h3>
-                      <p className="office-rule-desc">{item.desc}</p>
+          <div className="w-full">
+            {IMPACT_ITEMS.map((item, idx) => {
+              const isOpen = active === idx;
+              return (
+                <div
+                  key={idx}
+                  className={`office-rule ${isOpen ? "open" : ""} ${idx === 0 ? "!border-t-0" : ""}`}
+                  style={idx === 0 ? { borderTop: "none" } : undefined}
+                  onClick={() => handleItemClick(idx)}
+                >
+                  <div className="office-rule-label">
+                    <span className="text-[#FF5E14] font-semibold">{item.num}</span>
+                    {!isOpen && <span>{item.title}</span>}
+                  </div>
+                  <div className="office-rule-body">
+                    <div className="office-rule-inner">
+                      <div className="office-rule-row">
+                        <h3 className="office-rule-title">{item.title}</h3>
+                        <p className="office-rule-desc">{item.desc}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
