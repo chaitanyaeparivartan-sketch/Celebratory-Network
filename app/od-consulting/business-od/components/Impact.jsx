@@ -92,17 +92,20 @@ export default function Impact({ className = "" }) {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 3rem 1.5rem;
+          padding-top: 3rem;
+          padding-bottom: 2.5rem;
           z-index: 20;
         }
         @media (min-width: 640px) {
           .office-rules-pin {
-            padding: 3.5rem 2rem;
+            padding-top: 3.5rem;
+            padding-bottom: 2.5rem;
           }
         }
         @media (min-width: 1024px) {
           .office-rules-pin {
-            padding: 4rem 3rem;
+            padding-top: 4rem;
+            padding-bottom: 2.5rem;
           }
         }
         .office-rule {
@@ -190,7 +193,7 @@ export default function Impact({ className = "" }) {
 
       {/* Pinned Scroll Track: Sticks to viewport and reveals each impact area sequentially */}
       <div ref={trackRef} className="office-rules-track">
-        <div className="office-rules-pin max-w-[1783px] mx-auto w-full">
+        <div className="office-rules-pin max-w-[1783px] mx-auto w-full px-5 sm:px-8 md:px-[6vw]">
           {/* Section Eyebrow & Title matching Home Page style */}
           <div className="mb-4 sm:mb-6 md:mb-8">
             <div className="inline-flex items-center gap-1.5 font-['Inter',sans-serif] text-sm font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
