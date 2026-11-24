@@ -65,10 +65,16 @@ export default function Info({ className = '' }) {
     <section ref={sectionRef} className={`relative min-h-[260vh] bg-white ${className}`}>
       {/* Sticky viewport container */}
       <div className="sticky top-0 flex min-h-screen flex-col justify-center gap-6 sm:gap-8 md:gap-10 px-5 sm:px-8 md:px-[6vw] max-w-[1783px] mx-auto pt-16 sm:pt-20 pb-10">
-        {/* Normal Heading: Culture Drives Performance */}
-        <h2 className="font-ppmori text-3xl sm:text-4xl md:text-[46px] lg:text-[52px] font-semibold tracking-[-0.8px] leading-[1.08] text-black">
-          Culture Drives Performance
-        </h2>
+        {/* Header with Chip & Heading */}
+        <div>
+          <div className="mb-2 sm:mb-2.5 inline-flex items-center gap-1.5 font-['Inter',sans-serif] text-sm font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
+            Culture &amp; Performance
+          </div>
+          <h2 className="font-ppmori text-3xl sm:text-4xl md:text-[46px] lg:text-[52px] font-semibold tracking-[-0.8px] leading-[1.08] text-black">
+            Culture Drives Performance
+          </h2>
+        </div>
 
         {/* Highlightable Paragraphs Stack */}
         <div className="grid w-full gap-3 sm:gap-4 md:gap-5 text-[clamp(15px,1.25vw,21px)] leading-[1.46] font-medium font-ppmori">
