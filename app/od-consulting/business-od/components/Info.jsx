@@ -27,19 +27,29 @@ export default function Info({ className = '' }) {
 
       const p = clamp(-rect.top / scrollableDist);
 
-      // Paragraphs: words fill in sequentially between 5% and 85% of scroll
+      // Paragraphs: a 5-word orange highlight wave travels through, settling into black behind it
       const words = wordRefs.current;
-      const n = clamp((p - 0.05) / 0.80) * words.length;
-      const activeIdx = Math.floor(n);
+      const totalWords = words.length;
+      const WINDOW_SIZE = 5;
+
+      if (p <= 0.05) {
+        words.forEach((w) => {
+          if (w) w.dataset.state = 'pending';
+        });
+        return;
+      }
+
+      const n = clamp((p - 0.05) / 0.80) * (totalWords + WINDOW_SIZE);
+      const currentWord = Math.floor(n);
 
       words.forEach((w, i) => {
         if (!w) return;
-        if (i < activeIdx) {
-          w.dataset.state = 'done';
-        } else if (i === activeIdx && p > 0.05 && p < 0.85) {
+        if (i > currentWord) {
+          w.dataset.state = 'pending';
+        } else if (i >= currentWord - WINDOW_SIZE) {
           w.dataset.state = 'active';
         } else {
-          w.dataset.state = 'pending';
+          w.dataset.state = 'done';
         }
       });
     };
