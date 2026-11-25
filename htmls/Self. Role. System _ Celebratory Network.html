@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Self. Role. System | Celebratory Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Schibsted+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#FF5E14;--blue:#205A9D;--grey:#F4F4F4;--peach:#FFF1EA;--ink:#1a1a1a;--muted:#555;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.5}
+h1,h2,h3,.num{font-family:"Schibsted Grotesk",Inter,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* nav */
+.nav{position:sticky;top:12px;z-index:50;max-width:1180px;width:calc(100% - 32px);margin:12px auto 0;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--orange)}
+.logo b{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;background:var(--blue);color:var(--orange);font-size:10px}
+.nav ul{display:flex;gap:26px;list-style:none;font-size:14px}
+.nav ul a:hover,.nav ul a.on{color:var(--orange)}
+.btn{display:inline-block;background:var(--orange);color:#fff;font-weight:600;font-size:14px;padding:10px 20px;border-radius:8px}
+@media(max-width:1050px){.nav ul{display:none}}
+
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.eyebrow::before{content:"";width:6px;height:6px;background:var(--orange)}
+.eyebrow.center{justify-content:center}
+.eyebrow.light{color:#fff}.eyebrow.light::before{background:#fff}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:64px 24px 88px;max-width:1180px;margin:0 auto}
+.hero h1{font-size:clamp(44px,7vw,76px);line-height:.98;letter-spacing:-.02em;margin:18px 0 24px}
+.hero h1 span{color:var(--orange)}
+.hero p{max-width:440px;font-size:16px;color:#444;line-height:1.65}
+.photo{border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.18);aspect-ratio:4/3.2}
+.photo svg{width:100%;height:100%;display:block}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+
+/* orange bands */
+.band{background:var(--orange);color:#fff;padding:96px 24px}
+.band h2{font-size:clamp(32px,5vw,48px);font-weight:600;line-height:1.1;margin:16px 0 24px}
+.arch{max-width:820px;margin:0 auto;text-align:center}
+.arch p{font-size:17px;line-height:1.7;color:rgba(255,255,255,.94)}
+.arch blockquote{margin:40px auto 0;padding:24px 28px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:16px;font-size:15px;line-height:1.6;font-weight:500}
+
+/* core realities */
+.grey{background:var(--grey);padding:96px 24px}
+.head{text-align:center;max-width:720px;margin:0 auto 56px}
+.head h2{font-size:clamp(32px,5vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin:16px 0 16px}
+.head p{font-size:15px;color:var(--muted);line-height:1.65}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{border-radius:24px;padding:36px 32px;background:linear-gradient(115deg,#fff 60%,var(--peach) 100%)}
+.num{display:block;font-size:96px;font-weight:700;line-height:1;letter-spacing:-.03em;color:var(--orange)}
+.card h3{font-size:24px;font-weight:600;margin-top:18px}
+.card .sub{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin:6px 0 18px}
+.card ul{list-style:none;display:grid;gap:12px}
+.card li{font-size:14px;color:var(--muted);line-height:1.65;padding-left:16px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--orange)}
+.card li b{color:var(--ink)}
+@media(max-width:900px){.cards{grid-template-columns:1fr}}
+
+/* accordion */
+.outcomes{padding:96px 24px;background:#fff}
+.outcomes .in{max-width:820px;margin:0 auto}
+.acc{background:var(--grey);border-radius:16px;overflow:hidden}
+.acc details{border-top:1px solid #e0e0e0}.acc details:first-child{border-top:0}
+.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-weight:600;font-size:16px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:focus-visible{outline:2px solid var(--orange);outline-offset:-2px}
+.acc summary i{flex:0 0 32px;height:32px;border-radius:50%;background:var(--peach);color:var(--orange);display:grid;place-items:center;font-style:normal;font-size:18px}
+.acc summary i::before{content:"+"}
+.acc details[open] summary i{background:var(--orange);color:#fff}
+.acc details[open] summary i::before{content:"–"}
+.acc .body{padding:0 24px 24px;font-size:14px;color:var(--muted);line-height:1.7}
+
+/* quote */
+.quote{text-align:center}
+.quote h2{font-size:clamp(30px,5vw,54px);font-weight:600;line-height:1.2;max-width:860px;margin:18px auto 0;letter-spacing:-.01em}
+
+/* CTA */
+.cta{background:var(--peach);padding:96px 24px}
+.banner{position:relative;max-width:860px;margin:0 auto;display:flex;overflow:hidden;border-radius:16px;background:var(--blue);box-shadow:0 20px 50px rgba(0,0,0,.25);color:#fff}
+.banner .t{position:relative;z-index:1;padding:44px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.banner h3{font-size:26px;font-weight:500;line-height:1.3;max-width:400px}
+.banner p{font-size:13px;color:rgba(255,255,255,.82);max-width:360px}
+.banner .btn{font-size:12px;padding:10px 20px;border-radius:6px;width:fit-content;margin-top:8px}
+.stripes{position:absolute;inset:0 0 0 auto;width:150px;opacity:.7;background:repeating-linear-gradient(115deg,var(--orange) 0 7px,transparent 7px 17px);clip-path:polygon(35% 0,100% 0,100% 100%,0 100%)}
+@media(max-width:700px){.stripes{display:none}.banner .t{padding:32px 24px}}
+
+footer{background:var(--orange);color:#fff;font-size:12px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;padding:24px 32px}
+footer .logo{color:#fff;font-size:18px;font-weight:500}
+footer .soc{display:flex;gap:8px}
+footer .soc a{width:32px;height:32px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-weight:700;font-size:11px}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#"><b>CN</b>Celebratory Network</a>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">OD Consulting</a></li>
+      <li><a class="on" href="#">Interventions</a></li>
+      <li><a href="#">International</a></li>
+      <li><a href="#">For the Record</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+    <a class="btn" href="#contact">Book a call</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">A strategic leadership intervention</div>
+      <h1>Self. Role. <span>System.</span></h1>
+      <p>An advanced experiential framework for executives steering organisations through high stakes uncertainty and systemic ambiguity.</p>
+    </div>
+    <div class="photo" role="img" aria-label="Black and white photograph of a vase with flowers casting a shadow on a wall">
+      <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice">
+        <defs><linearGradient id="w" x1="0" x2="1"><stop offset="0" stop-color="#d9d9d9"/><stop offset="1" stop-color="#8d8d8d"/></linearGradient>
+        <linearGradient id="v" x1="0" x2="1"><stop offset="0" stop-color="#cfcfcf"/><stop offset="1" stop-color="#4a4a4a"/></linearGradient></defs>
+        <rect width="400" height="320" fill="#0d0d0d"/>
+        <polygon points="205,0 400,0 400,320 205,320 205,0" fill="url(#w)"/>
+        <polygon points="205,0 205,320 150,320 150,60" fill="#111" opacity=".5"/>
+        <path d="M340 200 q40 -30 60 10 v110 h-70 q-10 -60 10 -120z" fill="#0d0d0d"/>
+        <path d="M95 320 v-120 a45 45 0 0 1 90 0 v120z" fill="url(#v)"/>
+        <g fill="#bdbdbd" opacity=".9"><circle cx="105" cy="118" r="20"/><circle cx="135" cy="95" r="16"/><circle cx="85" cy="70" r="18"/><circle cx="120" cy="52" r="14"/><circle cx="70" cy="110" r="12"/></g>
+        <path d="M140 200 q-10 -60 -30 -100" stroke="#888" stroke-width="3" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="arch">
+      <div class="eyebrow light center">The architecture of awareness</div>
+      <h2>Beneath the surface is where agility lives.</h2>
+      <p>Traditional frameworks prioritize structure, strategies, and KPIs. True organizational agility, however, operates beneath the surface — driven by human behavior, deep-seated corporate reflexes, and structural demands. This architecture shifts leadership from blind reaction to conscious choice.</p>
+      <blockquote>“Self-awareness is the first intervention. Understanding your own reflex allows you to choose response over reaction.”</blockquote>
+    </div>
+  </section>
+
+  <section class="grey">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow center">Three core realities</div>
+        <h2>Self. Role. System.</h2>
+        <p>A multidimensional framework mapping how individuals, mandates, and operational conditions intersect to build high-performance cultures.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><span class="num">01</span><h3>The Self</h3><div class="sub">Dynamic and reflex</div>
+          <ul><li>Examine deep-set personal behavioral tendencies under high-stakes ambiguity.</li><li>Discover instinctive baselines: stepping forward, observing, controlling, or rescuing.</li><li>Deconstruct responses to power, structural boundaries, and authority.</li></ul></article>
+        <article class="card"><span class="num">02</span><h3>The Role</h3><div class="sub">The invisible contract</div>
+          <ul><li><b>“Organizations do not behave. Roles do.”</b> Mandates carry systemic history and weight.</li><li>Manage the delicate boundary between formal structures and informal rules.</li><li>Analyze <i>Role Biography</i> to understand inherited behavioral patterns.</li></ul></article>
+        <article class="card"><span class="num">03</span><h3>The System</h3><div class="sub">Patterns vs. personalities</div>
+          <ul><li>Shift lenses from fixing individual personalities to transforming systemic patterns.</li><li>Uncover repeating institutional loops to neutralize blame and polarization.</li><li>Optimize the critical links between authority, boundaries, and tasks.</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="outcomes">
+    <div class="in">
+      <div class="head" style="margin-bottom:40px">
+        <div class="eyebrow center">Strategic outcomes</div>
+        <h2>What changes for leaders.</h2>
+        <p>Moving beyond localised symptoms to implement systemic, sustainable transformation.</p>
+      </div>
+      <div class="acc">
+        <details open><summary>Clarity and Agency<i></i></summary><div class="body">Leaders execute complex mandates with minimized personalization and enhanced intentional posture.</div></details>
+        <details><summary>Reduced Interpersonal Friction<i></i></summary><div class="body"></div></details>
+        <details><summary>Boundary Collaboration<i></i></summary><div class="body"></div></details>
+        <details><summary>Strategic Decision-Making<i></i></summary><div class="body"></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band quote">
+    <div class="wrap">
+      <div class="eyebrow light center">Our belief</div>
+      <h2>“We don’t fix people. We enable systems to notice and learn from its patterns.”</h2>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="banner">
+      <div class="t">
+        <h3>Take the first step toward lasting organisational change</h3>
+        <p>Get a personalised look at how Celebratory Network can work for your organisation.</p>
+        <a class="btn" href="#">Talk to us</a>
+      </div>
+      <div class="stripes" aria-hidden="true"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="logo" href="#"><b>CN</b>Celebratory Network</a>
+  <span>Copyrights © 2026 All Rights Reserved by Celebratory Network</span>
+  <span class="soc"><a href="#" aria-label="X">X</a><a href="#" aria-label="LinkedIn">in</a></span>
+</footer>
+
+</body>
+</html>

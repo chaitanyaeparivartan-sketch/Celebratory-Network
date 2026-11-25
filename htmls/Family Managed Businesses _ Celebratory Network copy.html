@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Family Managed Businesses | Celebratory Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Schibsted+Grotesk:wght@500;600;700&family=Geist:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#FF5E14;--blue:#205A9D;--grey:#F4F4F4;--peach:#FFF1EA;--ink:#1a1a1a;--muted:#555}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.5}
+h1,h2,h3,.num{font-family:"Schibsted Grotesk",Inter,sans-serif}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* nav */
+.nav{position:sticky;top:12px;z-index:50;max-width:1180px;width:calc(100% - 32px);margin:12px auto 0;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--orange)}
+.logo b{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;background:var(--blue);color:var(--orange);font-size:10px}
+.nav ul{display:flex;gap:28px;list-style:none;font-size:14px}
+.nav ul a:hover,.nav ul a.on{color:var(--orange)}
+.btn{display:inline-block;background:var(--orange);color:#fff;font-weight:600;font-size:14px;padding:10px 20px;border-radius:8px}
+@media(max-width:1000px){.nav ul{display:none}}
+
+/* eyebrow */
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.eyebrow::before{content:"";width:6px;height:6px;background:var(--orange)}
+.eyebrow.center{justify-content:center}
+.eyebrow.light{color:#fff}.eyebrow.light::before{background:#fff}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:64px 24px 80px;max-width:1180px;margin:0 auto}
+.hero h1{font-size:clamp(40px,6vw,64px);line-height:.98;letter-spacing:-.02em;margin:16px 0 24px}
+.hero p{max-width:440px;font-size:13px;color:#444;line-height:1.65;margin-bottom:14px}
+.hero p.lead{font-size:15px;font-weight:500;color:#222}
+.hero .accent{color:var(--orange);font-weight:600}
+@media(max-width:47.99rem){.hero{grid-template-columns:1fr}}
+
+/* orange bands */
+.band{background:var(--orange);color:#fff;padding:96px 24px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.band h2{font-size:clamp(32px,5vw,48px);font-weight:600;line-height:1.1;margin:16px 0 24px}
+.split p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.92);margin-bottom:14px}
+.split p.big{font-size:18px;font-weight:600;line-height:1.4;color:#fff;margin-top:24px}
+.band h1{font-size:clamp(38px,5.5vw,58px);font-weight:600;line-height:1.02;letter-spacing:-.02em;margin:16px 0 24px}
+.split p.lead{font-size:18px;font-weight:600;line-height:1.45;color:#fff}
+.treebox svg{display:block;width:100%;max-width:460px;height:auto;margin:0 auto}
+.band.hero-white{background:#fff;color:var(--ink)}
+.band.hero-white h1{font-family:"PP Mori",Geist,"Geist Fallback",sans-serif;font-size:52px;font-weight:600;line-height:48px;color:rgb(20,20,20)}
+.band.hero-white p{color:#444}
+.band.hero-white p.lead{color:#222}
+.band.hero-white .treebox{box-shadow:0 20px 50px rgba(0,0,0,.08)}
+.treebox{background:#FDEEE8;border-radius:24px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.treebox img{width:100%;max-width:420px;margin:0 auto;aspect-ratio:1;object-fit:contain}
+@media(max-width:47.99rem){.split{grid-template-columns:1fr}}
+
+/* services */
+.grey{background:var(--grey);padding:96px 24px}
+.grey h2{text-align:center;font-size:clamp(32px,5vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin:16px auto 56px;max-width:760px}
+/* service cards: plain by default, photo revealed on hover */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;gap:24px;min-height:290px;padding:32px;border-radius:24px;background:linear-gradient(115deg,#fff 62%,var(--peach) 100%);outline-offset:3px}
+.card:focus-visible{outline:2px solid var(--orange)}
+.card .bg{position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(20,20,20,.66),rgba(20,20,20,.66)),var(--img) center/cover no-repeat;opacity:0;transform:scale(1.06);transition:opacity .45s ease,transform .9s ease}
+.num{flex:0 0 170px;font-size:136px;font-weight:700;line-height:1;letter-spacing:-.03em;color:var(--orange);transition:transform .5s cubic-bezier(.2,.7,.2,1),color .35s ease}
+.card h3{font-size:22px;font-weight:600;line-height:1.25;transition:color .35s ease}
+.card p{font-size:14px;color:var(--muted);line-height:1.6;margin-top:8px;transition:color .35s ease}
+.card:hover .bg,.card:focus-visible .bg{opacity:1;transform:scale(1)}
+.card:hover .num,.card:focus-visible .num{color:#fff;transform:translateY(46%)}
+.card:hover h3,.card:hover p,.card:focus-visible h3,.card:focus-visible p{color:#fff}
+@media(max-width:47.99rem){.cards{grid-template-columns:1fr}}
+@media(max-width:480px){.card{padding:24px;gap:16px;min-height:240px}.num{flex-basis:110px;font-size:88px}.card h3{font-size:19px}}
+@media(prefers-reduced-motion:reduce){.card .bg,.num,.card h3,.card p{transition:none}}
+
+/* accordion */
+.outcomes{--navy:#1d2870;--navy-soft:#5a6180;padding:96px 24px;background:#F2F7FB}
+.outcomes .in{max-width:820px;margin:0 auto}
+.outcomes h2{text-align:center;font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:-.02em;margin:16px 0 48px}
+.acc{display:flex;flex-direction:column;gap:12px}
+.acc details{background:#fff;border-radius:20px;box-shadow:0 2px 8px rgba(29,40,112,.04)}
+.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:26px 28px;font-family:"Schibsted Grotesk",Inter,sans-serif;font-weight:500;font-size:clamp(17px,2.2vw,21px);color:var(--navy);border-radius:20px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.acc summary i{flex:0 0 34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-style:normal;transition:transform .3s ease}
+.acc summary i::before{content:"+";font-size:24px;font-weight:500;line-height:1;margin-top:-2px}
+.acc details[open] summary i{transform:rotate(45deg)}
+.acc details[open] summary{padding-bottom:12px}
+.acc .body{padding:0 28px 28px;max-width:640px;font-size:16px;color:var(--navy-soft);line-height:1.65}
+@media(prefers-reduced-motion:reduce){.acc summary i{transition:none}}
+
+/* different */
+.band.diff{text-align:center}
+.diff h2{max-width:680px;margin:16px auto 56px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left}
+.trio p{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:28px;font-size:15px;line-height:1.65}
+@media(max-width:47.99rem){.trio{grid-template-columns:1fr}}
+
+/* CTA */
+.cta{background:var(--orange);padding:96px 24px}
+.banner{position:relative;max-width:860px;margin:0 auto;display:flex;overflow:hidden;border-radius:16px;background:var(--blue);box-shadow:0 20px 50px rgba(0,0,0,.25);color:#fff}
+.banner img{width:40%;object-fit:cover}
+.banner .t{position:relative;z-index:1;padding:32px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.banner h3{font-size:24px;font-weight:500;line-height:1.3;max-width:320px}
+.banner p{font-size:12px;color:rgba(255,255,255,.8);max-width:320px}
+.banner .btn{font-size:12px;padding:10px 20px;border-radius:6px;width:fit-content;margin-top:8px}
+.stripes{position:absolute;inset:0 0 0 auto;width:128px;opacity:.7;background:repeating-linear-gradient(115deg,var(--orange) 0 7px,transparent 7px 17px);clip-path:polygon(35% 0,100% 0,100% 100%,0 100%)}
+@media(max-width:47.99rem){.banner{flex-direction:column}.banner img{width:100%;height:190px}.stripes{display:none}}
+
+/* footer */
+footer{background:var(--orange);color:#fff;font-size:12px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;padding:24px 32px}
+footer .logo{color:#fff;font-size:18px;font-weight:500}
+footer .soc{display:flex;gap:8px}
+footer .soc a{width:32px;height:32px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-weight:700;font-size:11px}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="/"><b>CN</b>Celebratory Network</a>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a class="on" href="#">OD Consulting</a></li>
+      <li><a href="#">Interventions</a></li>
+      <li><a href="#">International</a></li>
+      <li><a href="#">For the Record</a></li>
+    </ul>
+    <a class="btn" href="#contact">Book a call</a>
+  </nav>
+</header>
+
+<main>
+  <section class="band hero-white">
+    <div class="wrap split">
+    <div>
+      <div class="eyebrow">Family managed businesses</div>
+      <h1>Growing Family Businesses Together</h1>
+      <p class="lead">Transforming Family Managed Businesses into Future-Ready Organizations.</p>
+      <p>Family businesses carry extraordinary strengths — deep commitment, long-term vision and entrepreneurial resilience. They also carry invisible dynamics that can either accelerate growth or quietly limit it.</p>
+      <p>At <strong style="color:var(--orange)">Celebratory Network</strong> we work at the intersection of <strong>Family</strong>, <strong>Business</strong> and <strong>Organization Development</strong>, helping family managed businesses strengthen relationships, professionalize leadership and prepare for sustainable growth across generations.</p>
+    </div>
+    <div class="treebox"><svg viewBox="60 0 600 500" role="img" aria-label="Family, Businesses and Ownership overlapping around Growth">
+      <defs>
+        <radialGradient id="gFam" cx="50%" cy="35%" r="70%"><stop offset="0" stop-color="#f4fcf5"/><stop offset="1" stop-color="#c9f0d3"/></radialGradient>
+        <radialGradient id="gBus" cx="40%" cy="55%" r="70%"><stop offset="0" stop-color="#f3f9ff"/><stop offset="1" stop-color="#bfe0fb"/></radialGradient>
+        <radialGradient id="gOwn" cx="60%" cy="55%" r="70%"><stop offset="0" stop-color="#f1fffc"/><stop offset="1" stop-color="#c0f0e6"/></radialGradient>
+        <radialGradient id="gGro" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="#74c86f"/><stop offset="1" stop-color="#4aaa55"/></radialGradient>
+        <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+      </defs>
+
+      <!-- decorative arcs -->
+      <g fill="none" stroke-width="3" stroke-linecap="round">
+        <path d="M203 97 Q160 150 155 198" stroke="#bfeccb"/>
+        <path d="M519 97 Q562 150 567 198" stroke="#b6ece0"/>
+        <path d="M293 472 Q361 490 429 472" stroke="#a9def2"/>
+      </g>
+
+      <!-- soft shadow under circles -->
+      <g filter="url(#soft)" opacity=".18">
+        <circle cx="246" cy="338" r="140" fill="#4B8DE8"/><circle cx="478" cy="338" r="138" fill="#3DB8A5"/><circle cx="361" cy="158" r="138" fill="#4CBF6B"/>
+      </g>
+
+      <!-- three overlapping circles -->
+      <circle cx="246" cy="325" r="145" fill="url(#gBus)" fill-opacity=".8" stroke="#4B8DE8" stroke-width="2.5"/>
+      <circle cx="478" cy="325" r="143" fill="url(#gOwn)" fill-opacity=".8" stroke="#3DB8A5" stroke-width="2.5"/>
+      <circle cx="361" cy="146" r="143" fill="url(#gFam)" fill-opacity=".78" stroke="#4CBF6B" stroke-width="2.5"/>
+
+      <!-- growth core -->
+      <circle cx="362" cy="256" r="86" fill="#7fe0c4" opacity=".35" filter="url(#soft)"/>
+      <circle cx="362" cy="256" r="77" fill="url(#gGro)" stroke="#8fd88f" stroke-width="2"/>
+      <g fill="#fff">
+        <rect x="339" y="233" width="9" height="12" rx="1.5"/><rect x="352" y="226" width="9" height="19" rx="1.5"/><rect x="365" y="219" width="9" height="26" rx="1.5"/><rect x="378" y="211" width="9" height="34" rx="1.5"/>
+      </g>
+      <path d="M337 224 L352 210 L362 217 L383 198" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M373 196 L385 195 L384 207" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- family icon -->
+      <path d="M322 62 Q361 28 400 62" fill="none" stroke="#2e6b3f" stroke-width="3" stroke-linecap="round"/>
+      <g fill="#2e6b3f">
+        <circle cx="339" cy="76" r="8"/><circle cx="385" cy="76" r="8"/><circle cx="362" cy="97" r="6"/>
+        <path d="M327 90 h24 a5 5 0 0 1 5 5 v18 h-5 v14 h-8 v-12 h-4 v12 h-8 v-14 h-5 v-18 a5 5 0 0 1 1 -5z"/>
+        <path d="M373 90 h24 a5 5 0 0 1 5 5 l4 32 h-8 v0 h-4 v-10 h-5 v10 h-12 l3 -32 a5 5 0 0 1 -7 -5z" transform="translate(-4 0)"/>
+        <rect x="351" y="104" width="22" height="13" rx="5"/><rect x="354" y="114" width="6" height="11"/><rect x="364" y="114" width="6" height="11"/>
+      </g>
+
+      <!-- handshake icon -->
+      <g fill="#1d3f9e">
+        <rect x="186" y="312" width="15" height="30" rx="3" transform="rotate(-28 193 327)"/>
+        <rect x="236" y="312" width="15" height="30" rx="3" transform="rotate(28 243 327)"/>
+      </g>
+      <path d="M201 316 L220 307 L236 315 L243 326 L228 346 L214 343 L203 331 Z" fill="#2f64d6"/>
+      <path d="M214 328 L224 320 L238 326 L226 338 Z" fill="#1d3f9e"/>
+      <g fill="none" stroke="#1d3f9e" stroke-width="3" stroke-linecap="round">
+        <path d="M200 292 l-5 -7"/><path d="M218 288 v-10"/><path d="M236 292 l5 -7"/>
+      </g>
+
+      <!-- owner icon -->
+      <circle cx="482" cy="301" r="17" fill="#2f7f87"/>
+      <path d="M456 352 v-16 a14 14 0 0 1 14 -14 h26 a14 14 0 0 1 14 14 v16 z" fill="#2f7f87"/>
+      <path d="M482 324 l-5 6 l5 18 l5 -18 z" fill="#e8fbf6"/>
+      <g transform="translate(546 332)">
+        <circle r="17" fill="none" stroke="#2f7f87" stroke-width="8" stroke-dasharray="6 7.35"/>
+        <circle r="13" fill="#2f7f87"/><circle r="6" fill="#e8fbf6"/>
+      </g>
+
+      <!-- labels -->
+      <g font-family="Inter,sans-serif" font-weight="700" text-anchor="middle">
+        <text x="361" y="160" fill="#2e6b3f" font-size="25">FAMILY</text>
+        <text x="362" y="274" fill="#fff" font-size="26">GROWTH</text>
+        <text x="226" y="395" fill="#1b2a6b" font-size="25">BUSINESSES</text>
+        <text x="506" y="395" fill="#1f5a66" font-size="25">OWNERSHIP</text>
+      </g>
+    </svg></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split">
+      <div class="treebox"><img src="images/family-tree.png" alt="A tree whose crown and roots are two halves of one system"></div>
+      <div>
+        <div class="eyebrow light">Family businesses are different</div>
+        <h2>Two systems. One future.</h2>
+        <p>Every family business operates through two interconnected systems. One is the business. The other is the family.</p>
+        <p>While the business seeks efficiency, accountability and growth, the family operates through relationships, history, emotions, identity and shared values. Growth becomes difficult when these two systems pull in different directions.</p>
+        <p class="big">Our work helps both systems evolve together — creating businesses that are stronger because of the family, not constrained by it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="grey">
+    <div class="wrap">
+      <div class="eyebrow center">Where we create impact</div>
+      <h2>Our services for family managed businesses.</h2>
+      <div class="cards">
+        <article class="card" tabindex="0" style="--img:url('images/services/family-business-health-check.jpg')"><div class="bg" aria-hidden="true"></div><span class="num">01</span><div><h3>Family Business Health Check</h3><p>Understand the underlying patterns influencing business performance, leadership effectiveness, relationships and organizational culture before deciding where change is required.</p></div></article>
+        <article class="card" tabindex="0" style="--img:url('images/services/familyness-in-business.jpg')"><div class="bg" aria-hidden="true"></div><span class="num">02</span><div><h3>Familyness in Business</h3><p>Help family strengths become organisational strengths while reducing patterns that unintentionally limit growth.</p></div></article>
+        <article class="card" tabindex="0" style="--img:url('images/services/professionalizing-the-organization.jpg')"><div class="bg" aria-hidden="true"></div><span class="num">03</span><div><h3>Professionalizing the Organization</h3><p>Support the transition from founder-led, person-dependent ways of working to role clarity, accountability, systems and professional management.</p></div></article>
+        <article class="card" tabindex="0" style="--img:url('images/services/leadership-alignment.jpg')"><div class="bg" aria-hidden="true"></div><span class="num">04</span><div><h3>Leadership Alignment</h3><p>Create shared understanding between family members, professionals and key leaders around purpose, decisions and direction.</p></div></article>
+        <article class="card" tabindex="0" style="--img:url('images/services/next-generation-leadership.jpg')"><div class="bg" aria-hidden="true"></div><span class="num">05</span><div><h3>Next Generation Leadership</h3><p>Prepare future leaders to develop self-worth, business capability and leadership identity before they inherit responsibility.</p></div></article>
+        <article class="card" tabindex="0" style="--img:url('images/services/succession-planning.jpg')"><div class="bg" aria-hidden="true"></div><span class="num">06</span><div><h3>Succession Planning</h3><p>Facilitate thoughtful, fair and sustainable succession processes that preserve both business continuity and family relationships.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band diff">
+    <div class="wrap">
+      <div class="eyebrow light center">What makes our work different</div>
+      <h2>We see what the family sees, and what it doesn’t.</h2>
+      <div class="trio">
+        <p>We work with the dynamics of the family and organization that impact perpetuity of the business – not just the visible structures and processes.</p>
+        <p>Our Organization Development lens addresses relationships, leadership, culture and decision-making.</p>
+        <p>Our consultants have firsthand experience of family businesses, understanding both the visible and invisible realities.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="outcomes">
+    <div class="in">
+      <div class="eyebrow center">Outcomes we help create</div>
+      <h2>What changes for you.</h2>
+      <div class="acc">
+        <!-- Add the body text for each outcome inside the .body divs -->
+        <details><summary>Familyness of the family business<i></i></summary><div class="body">Every family business has a special bond and set of values that standard companies just don’t have. We help you figure out what makes your family’s story unique and turn those strengths into your biggest advantage—building deep trust with your customers, team, and community.</div></details>
+        <details open><summary>Family Dialogues<i></i></summary><div class="body">Talking about business with family can get complicated. We create a safe, supportive space for open and honest conversations where everyone feels heard. By clearing up misunderstandings and aligning your goals, we help your family make clear, confident decisions together without harming personal relationships.</div></details>
+        <details><summary>Generational Transition<i></i></summary><div class="body">Passing the torch to the next generation is one of the biggest milestones a business will ever face. We help you build a smooth succession plan that honors the wisdom of the founders while giving new leaders the freedom to innovate, ensuring your business stays strong and stable for years to come.</div></details>
+        <details><summary>Owing the Family Business identity<i></i></summary><div class="body">It takes work to help every family member feel genuinely connected to the company’s mission. We help build a sense of pride and shared purpose across all generations, turning family members into passionate, responsible stewards who are proud to carry the business forward.</div></details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <a class="logo" href="/"><b>CN</b>Celebratory Network</a>
+  <span>Copyrights © 2026 All Rights Reserved by Celebratory Network</span>
+  <span class="soc"><a href="#" aria-label="X">X</a><a href="#" aria-label="LinkedIn">in</a></span>
+</footer>
+
+</body>
+</html>

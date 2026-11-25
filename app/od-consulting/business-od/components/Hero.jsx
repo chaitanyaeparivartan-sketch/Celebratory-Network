@@ -1,106 +1,174 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useEffect, useRef } from "react";
+import Header from "@/app/components/Common/Header";
 
-export default function BusinessODHero({ className = "" }) {
-  const [isMounted, setIsMounted] = useState(false);
+export default function Hero() {
+  const secRef = useRef(null);
+  const bgRef = useRef(null);
+  const imgRef = useRef(null);
+  const bodyRef = useRef(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsMounted(true), 50);
-    return () => clearTimeout(timer);
+    const sec = secRef.current;
+    const bg = bgRef.current;
+    const img = imgRef.current;
+    const body = bodyRef.current;
+
+    if (!sec || !bg || !img || !body) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      bg.style.opacity = "1";
+      body.style.setProperty("--c", "255, 255, 255");
+      body.style.color = "rgb(255, 255, 255)";
+      return;
+    }
+
+    function clamp(v) {
+      return Math.max(0, Math.min(1, v));
+    }
+
+    /* smootherstep */
+    function ease(a, b, v) {
+      const x = clamp((v - a) / (b - a));
+      return x * x * x * (x * (x * 6 - 15) + 10);
+    }
+
+    let target = 0;
+    let current = 0;
+    let last = 0;
+    let running = false;
+    let rafId = null;
+
+    function readTarget() {
+      if (!sec) return;
+      const r = sec.getBoundingClientRect();
+      const vh = window.innerHeight;
+      target = clamp(-r.top / (r.height - vh));
+    }
+
+    function paint(t) {
+      if (!bg || !img || !body) return;
+      const show = ease(0.08, 0.6, t);
+      const ink = ease(0.3, 0.62, t);
+
+      bg.style.opacity = show.toFixed(4);
+      img.style.transform = `translate3d(0, ${((0.5 - t) * 120).toFixed(2)}px, 0) scale(1.2)`;
+
+      const c = Math.round(13 + 242 * ink);
+      const c2 = Math.round(15 + 240 * ink);
+      body.style.setProperty("--c", `${c}, ${c}, ${c2}`);
+      body.style.color = `rgb(${c}, ${c}, ${c2})`;
+    }
+
+    function frame(now) {
+      const dt = Math.min(0.05, (now - last) / 1000 || 0.016);
+      last = now;
+      current += (target - current) * (1 - Math.exp(-dt * 5));
+
+      if (Math.abs(target - current) < 0.0003) {
+        current = target;
+        paint(current);
+        running = false;
+        return;
+      }
+
+      paint(current);
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function kick() {
+      readTarget();
+      if (!running) {
+        running = true;
+        last = performance.now();
+        rafId = requestAnimationFrame(frame);
+      }
+    }
+
+    window.addEventListener("scroll", kick, { passive: true });
+    window.addEventListener("resize", kick);
+
+    readTarget();
+    current = target;
+    paint(current);
+
+    return () => {
+      window.removeEventListener("scroll", kick);
+      window.removeEventListener("resize", kick);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   return (
     <section
-      className={`relative w-full min-h-screen min-h-[100dvh] overflow-hidden font-ppmori flex items-center ${className}`}
-      style={{
-        background:
-          "linear-gradient(180deg, hsl(209.1177deg 93.8045% 45%) 0%, hsl(209.1177deg 82.4294% 100%) 148.67%)",
-      }}
+      ref={secRef}
+      id="intro"
+      aria-labelledby="intro-title"
+      className="relative bg-white text-center"
+      style={{ height: "280vh" }}
     >
-      {/* Background Architectural Building Layer (Right-aligned) */}
-      <div
-        className="absolute right-0 bottom-0 pointer-events-none select-none z-0 w-[54vw] max-w-[960px] min-w-[360px] aspect-[1062/945] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
-        style={{
-          opacity: isMounted ? 1 : 0,
-          transform: isMounted ? "none" : "translate3d(24px, 20px, 0)",
-        }}
-        aria-hidden="true"
-      >
-        <Image
-          src="/business-od/hero-image-2.webp"
-          alt="Modern Organization Development Architecture"
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, 55vw"
-          className="object-contain object-right-bottom block"
-        />
-      </div>
-
-      {/* Subtle top gradient overlay to provide contrast for the floating header */}
-      <div className="absolute inset-x-0 top-0 h-28 sm:h-36 bg-gradient-to-b from-black/25 via-black/10 to-transparent pointer-events-none z-10" />
-
-      {/* Soft ambient wash on mobile/tablet so text remains crystal clear */}
-      <div
-        className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent md:hidden pointer-events-none z-10"
-        aria-hidden="true"
-      />
-
-      {/* Bottom edge feather into the orange Statement section */}
-      <div
-        className="absolute bottom-0 inset-x-0 h-3 sm:h-4 md:h-5 bg-gradient-to-b from-transparent to-[#FF5E14] pointer-events-none z-15"
-        aria-hidden="true"
-      />
-
-      {/* Main Content */}
-      <div className="relative z-20 w-full max-w-[1520px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-32 sm:pt-36 md:pt-38 lg:pt-36 pb-16 sm:pb-20">
-        <div className="w-full max-w-[480px] sm:max-w-[560px] md:max-w-[640px] lg:max-w-[700px]">
-          {/* Eyebrow Tag */}
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col isolate">
+        {/* Background photo & overlay */}
+        <div
+          ref={bgRef}
+          className="absolute inset-0 -z-10 opacity-0 pointer-events-none will-change-[opacity]"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            ref={imgRef}
+            src="/business-od/hero-team-hands.jpg"
+            alt="Business OD Team Collaboration"
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover will-change-transform"
+            style={{
+              objectPosition: "50% 50%",
+              transform: "translate3d(0, 0, 0) scale(1.2)",
+            }}
+          />
           <div
-            className="flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="absolute inset-0 pointer-events-none"
             style={{
-              opacity: isMounted ? 1 : 0,
-              transform: isMounted ? "none" : "translate3d(0, 16px, 0)",
-              transitionDelay: "100ms",
+              background:
+                "linear-gradient(0deg, rgba(0, 0, 0, .35), rgba(0, 0, 0, 0) 50%), rgba(0, 0, 0, .55)",
             }}
-          >
-            <span
-              className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#FF5E14] inline-block rounded-[1px] shrink-0"
-              aria-hidden="true"
-            />
-            <span
-              className="text-white font-semibold text-[12px] sm:text-[13px] md:text-[14px] tracking-[0.2em] uppercase select-none"
-              style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
-            >
-              Our Perspective
-            </span>
-          </div>
+          />
+        </div>
 
-          {/* Heading - Toward Organizational Development */}
-          <h1
-            className="text-white font-semibold text-[clamp(32px,4.5vw,56px)] leading-[1.08] tracking-[-0.8px] mb-4 sm:mb-6 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-            style={{
-              fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
-              opacity: isMounted ? 1 : 0,
-              transform: isMounted ? "none" : "translate3d(0, 24px, 0)",
-              transitionDelay: "180ms",
-            }}
+        {/* Pinned Header throughout the entire Hero section */}
+        <div className="w-full shrink-0 z-50 text-left">
+          <Header isFloating={false} />
+        </div>
+
+        {/* Text body */}
+        <div
+          ref={bodyRef}
+          className="flex-1 flex flex-col items-center justify-center px-6 sm:px-8 pb-10 transition-colors duration-75"
+          style={{
+            color: "rgb(var(--c, 13, 13, 15))",
+          }}
+        >
+          <p className="inline-flex items-center gap-3 text-[14px] sm:text-[15px] font-medium tracking-[0.02em] uppercase font-ppmori">
+            <span
+              className="w-3 h-3 rounded-[3px] shrink-0"
+              style={{ backgroundColor: "#FF5A1F" }}
+            />
+            Our Perspective
+          </p>
+
+          <h2
+            id="intro-title"
+            className="font-ppmori font-medium text-[34px] sm:text-[46px] md:text-[58px] lg:text-[76px] leading-[1.08] tracking-[-0.035em] max-w-[15em] mx-auto my-[24px] sm:my-[30px] text-balance"
           >
             Toward Organizational Development
-          </h1>
+          </h2>
 
-          {/* Description */}
-          <p
-            className="text-white/90 text-[16px] sm:text-[17px] md:text-[18px] lg:text-[19px] leading-[1.6] font-normal max-w-[560px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              opacity: isMounted ? 1 : 0,
-              transform: isMounted ? "none" : "translate3d(0, 20px, 0)",
-              transitionDelay: "260ms",
-            }}
-          >
-            We help organizations grow by understanding their structures, culture, relationships, leadership, and the invisible dynamics that shape how people work together.
+          <p className="text-[16px] sm:text-[18px] md:text-[20px] leading-[1.6] max-w-[44em] mx-auto opacity-90 font-ppmori">
+            We help organizations grow by understanding their structures, culture,
+            relationships, leadership, and the invisible dynamics that shape how
+            people work together.
           </p>
         </div>
       </div>

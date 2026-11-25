@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Beyond Borders | Celebratory Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Schibsted+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens ===== */
+:root{--orange:#FF5E14;--blue:#205A9D;--grey:#F4F4F4;--peach:#FFF1EA;--ink:#1a1a1a;--muted:#555;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.5}
+h1,h2,h3{font-family:"Schibsted Grotesk",Inter,sans-serif}
+a{color:inherit;text-decoration:none}
+
+/* ===== Reusable: layout ===== */
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.section{padding:96px 24px}
+.section.grey{background:var(--grey)}
+.section.orange{background:var(--orange);color:#fff}
+.section.peach{background:var(--peach)}
+.accent{color:var(--orange)}
+
+/* ===== Reusable: nav / button ===== */
+.nav{position:sticky;top:12px;z-index:50;max-width:1180px;width:calc(100% - 32px);margin:12px auto 0;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--orange)}
+.logo b{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;background:var(--blue);color:var(--orange);font-size:10px}
+.nav ul{display:flex;gap:26px;list-style:none;font-size:14px}
+.nav ul a:hover,.nav ul a.on{color:var(--orange)}
+.btn{display:inline-block;background:var(--orange);color:#fff;font-weight:600;font-size:14px;padding:10px 20px;border-radius:8px}
+@media(max-width:1050px){.nav ul{display:none}}
+
+/* ===== Reusable: eyebrow + section head ===== */
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.eyebrow::before{content:"";width:6px;height:6px;background:var(--orange)}
+.eyebrow.center{justify-content:center}
+.orange .eyebrow::before{background:#fff}
+.head{text-align:center;max-width:760px;margin:0 auto 56px}
+.head h2{font-size:clamp(32px,5vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin:16px 0 0}
+
+/* ===== Reusable: intro hero ===== */
+.intro{max-width:1180px;margin:0 auto;padding:72px 24px 80px}
+.intro h1{font-size:clamp(44px,7vw,76px);line-height:.98;letter-spacing:-.02em;margin:18px 0 24px}
+.intro p{max-width:760px;font-size:16px;color:#444;line-height:1.7;margin-bottom:12px}
+
+/* ===== Reusable: split row (media + copy). Add .rev to flip ===== */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1080px;margin:0 auto}
+.split + .split{margin-top:88px}
+.split.rev .media{order:2}
+.media{border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.15);aspect-ratio:1/1.05;background:#ddd}
+.media svg{width:100%;height:100%;display:block}
+.copy h2{font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin:14px 0 20px}
+.copy p{font-size:16px;color:#333;line-height:1.65;margin-bottom:14px}
+.ticks{list-style:none;display:grid;gap:10px}
+.ticks li{position:relative;padding-left:20px;font-size:15px;color:var(--muted);line-height:1.5}
+.ticks li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;background:var(--orange)}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:32px}.split.rev .media{order:0}}
+
+/* ===== Reusable: feature cards (4-up) ===== */
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1080px;margin:0 auto}
+.feature{border-radius:20px;padding:28px 24px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25)}
+.feature h3{font-size:18px;font-weight:600;line-height:1.25;text-transform:uppercase;letter-spacing:.02em;margin-bottom:10px}
+.feature p{font-size:14px;line-height:1.6;color:rgba(255,255,255,.9)}
+@media(max-width:960px){.features{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.features{grid-template-columns:1fr}}
+
+/* ===== Reusable: side-title + prose ===== */
+.prose-row{display:grid;grid-template-columns:.8fr 1.4fr;gap:56px;max-width:1080px;margin:0 auto;align-items:start}
+.prose-row h2{font-size:clamp(30px,4.4vw,44px);font-weight:700;line-height:1.08;letter-spacing:-.02em;margin-top:14px}
+.prose-row p{font-size:16px;line-height:1.75;color:#333;margin-bottom:18px}
+@media(max-width:860px){.prose-row{grid-template-columns:1fr;gap:28px}}
+
+/* ===== Reusable: gallery grid ===== */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:1080px;margin:0 auto}
+.tile{aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:end center;box-shadow:0 10px 26px rgba(0,0,0,.1)}
+.tile svg{width:78%;height:78%}
+@media(max-width:700px){.gallery{grid-template-columns:1fr 1fr}}
+
+/* ===== Reusable: CTA banner + footer ===== */
+.banner{position:relative;max-width:860px;margin:0 auto;display:flex;overflow:hidden;border-radius:16px;background:var(--blue);box-shadow:0 20px 50px rgba(0,0,0,.25);color:#fff}
+.banner .t{position:relative;z-index:1;padding:44px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.banner h3{font-size:26px;font-weight:500;line-height:1.3;max-width:400px}
+.banner p{font-size:13px;color:rgba(255,255,255,.82);max-width:360px}
+.banner .btn{font-size:12px;padding:10px 20px;border-radius:6px;width:fit-content;margin-top:8px}
+.stripes{position:absolute;inset:0 0 0 auto;width:150px;opacity:.7;background:repeating-linear-gradient(115deg,var(--orange) 0 7px,transparent 7px 17px);clip-path:polygon(35% 0,100% 0,100% 100%,0 100%)}
+@media(max-width:700px){.stripes{display:none}.banner .t{padding:32px 24px}}
+footer{background:var(--orange);color:#fff;font-size:12px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;padding:24px 32px}
+footer .logo{color:#fff;font-size:18px;font-weight:500}
+footer .soc{display:flex;gap:8px}
+footer .soc a{width:32px;height:32px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-weight:700;font-size:11px}
+</style>
+</head>
+<body>
+
+<!-- reusable icon for gallery tiles -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="crowd" viewBox="0 0 120 90"><g fill="#fff" opacity=".9"><circle cx="30" cy="30" r="9"/><circle cx="60" cy="24" r="10"/><circle cx="90" cy="30" r="9"/><path d="M12 90 q0 -42 18 -42 q18 0 18 42z"/><path d="M42 90 q0 -48 18 -48 q18 0 18 48z"/><path d="M72 90 q0 -42 18 -42 q18 0 18 42z"/></g></symbol></svg>
+
+<header>
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#"><b>CN</b>Celebratory Network</a>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">OD Consulting</a></li>
+      <li><a href="#">Interventions</a></li>
+      <li><a class="on" href="#">International</a></li>
+      <li><a href="#">For the Record</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+    <a class="btn" href="#contact">Book a call</a>
+  </nav>
+</header>
+
+<main>
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="eyebrow">OD and Leadership</div>
+    <h1>Beyond <span class="accent">Borders.</span></h1>
+    <p>Our work internationally has been designed for leaders to work with the business realties of navigating complexity, uncertainty, and change.</p>
+    <p>Work with the dynamics of leadership team that impact businesses to realise its full potential. Celebratory Network has partnered with leaders to with its work in Personal Power in Leadership and Organization Development in UK, US, Brazil, Berlin, Thailand, Malaysia, Vietnam…</p>
+  </section>
+
+  <!-- EXPERIENCES (two split rows) -->
+  <section class="section grey">
+    <div class="head">
+      <div class="eyebrow center">International</div>
+      <h2>Our international leadership experiences.</h2>
+    </div>
+
+    <div class="split">
+      <div class="media" role="img" aria-label="Black and white photograph of a church tower">
+        <svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="420" fill="#cfcfcf"/><rect width="400" height="200" fill="#e4e4e4"/>
+          <path d="M330 0 q70 40 70 160 v260 h-90 q10 -150 -40 -260 q-20 -90 60 -160z" fill="#5c5c5c" opacity=".75"/>
+          <path d="M110 420 V190 l22 -60 l22 -110 l22 110 l22 60 V420z" fill="#7d7d7d"/>
+          <path d="M80 420 V300 h40 V420z M200 420 V300 h40 V420z" fill="#666"/>
+          <circle cx="154" cy="250" r="22" fill="#e9e9e9" stroke="#444" stroke-width="3"/><path d="M154 250 v-14 M154 250 l10 6" stroke="#222" stroke-width="3"/>
+          <g fill="#2f2f2f"><rect x="140" y="170" width="10" height="26" rx="5"/><rect x="160" y="170" width="10" height="26" rx="5"/><rect x="140" y="100" width="8" height="22" rx="4"/><rect x="160" y="100" width="8" height="22" rx="4"/></g>
+        </svg>
+      </div>
+      <div class="copy">
+        <div class="eyebrow">Personal Power</div>
+        <h2 class="accent">In Leadership</h2>
+        <p>An Experiential session for senior women leaders to pause, reflect and reconnect with their inner authority and authentic power.</p>
+        <ul class="ticks"><li>Beyond roles and identities</li><li>Self-awareness and self-authority</li><li>Courage, voice, and leadership presence</li><li>Influence that creates ripple effects</li></ul>
+      </div>
+    </div>
+
+    <div class="split rev">
+      <div class="media" role="img" aria-label="Black and white photograph of a group seated in a circle workshop">
+        <svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="420" fill="#d6d6d6"/><rect width="400" height="130" fill="#bdbdbd"/>
+          <g fill="#8a8a8a"><rect y="40" width="400" height="14"/><rect y="70" width="400" height="12"/></g>
+          <ellipse cx="200" cy="290" rx="170" ry="110" fill="#c4c4c4"/>
+          <g fill="#2a2a2a"><circle cx="90" cy="250" r="14"/><circle cx="140" cy="215" r="14"/><circle cx="200" cy="200" r="14"/><circle cx="260" cy="215" r="14"/><circle cx="310" cy="250" r="14"/><circle cx="300" cy="320" r="14"/><circle cx="250" cy="355" r="14"/><circle cx="150" cy="355" r="14"/><circle cx="100" cy="320" r="14"/></g>
+          <g fill="#555"><rect x="76" y="262" width="28" height="46" rx="10"/><rect x="126" y="228" width="28" height="46" rx="10"/><rect x="186" y="213" width="28" height="46" rx="10"/><rect x="246" y="228" width="28" height="46" rx="10"/><rect x="296" y="262" width="28" height="46" rx="10"/></g>
+        </svg>
+      </div>
+      <div class="copy">
+        <div class="eyebrow">Leading with Shakti</div>
+        <h2>In Complex Adaptive System</h2>
+        <p>An immersive workshop for leaders to explore leadership through the lens of Human Process and Complex Adaptive Systems.</p>
+        <ul class="ticks"><li>Awareness of self and systems</li><li>Navigating uncertainty with presence</li><li>Group dynamics and emergence</li><li>Authenticity, trust, and collective intelligence</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR FOCUS (orange band + feature cards) -->
+  <section class="section orange">
+    <div class="head">
+      <div class="eyebrow center" style="color:#fff">Our focus</div>
+      <h2>What guides our work.</h2>
+    </div>
+    <div class="features">
+      <div class="feature"><h3>Human Centered</h3><p>Leadership begins with self-awareness and inner alignment.</p></div>
+      <div class="feature"><h3>Human Process</h3><p>Real learning happens through experience, not instruction.</p></div>
+      <div class="feature"><h3>Complex Adaptive Systems</h3><p>Groups are living systems that continuously evolve and reorganize.</p></div>
+      <div class="feature"><h3>Applied Behavioural Science</h3><p>Evidence-informed approaches that create insight and enable lasting change.</p></div>
+    </div>
+  </section>
+
+  <!-- WHAT GROUPS TEACH US -->
+  <section class="section">
+    <div class="prose-row">
+      <div>
+        <div class="eyebrow">What groups teach us</div>
+        <h2>About <span class="accent">leadership.</span></h2>
+      </div>
+      <div>
+        <p>Leadership comes alive in groups. Every group is a living system where each interaction influences the whole, shaping relationships, decisions, and collective outcomes.</p>
+        <p>As people and contexts evolve, alignment cannot be assumed — it is a continuous practice of rediscovering shared purpose and renewing commitment.</p>
+        <p>Resistance is not something to overcome, but valuable information that reveals tensions, unmet needs, and possibilities for growth. Equally, when marginalised voices are invited into the conversation, the system gains access to perspectives that fuel innovation, resilience, and wiser decisions.</p>
+        <p>At the heart of every thriving community lies authenticity. When people feel safe to show up as themselves, trust deepens, belonging grows, and leadership becomes a shared capacity rather than the responsibility of a few.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section grey">
+    <div class="head">
+      <div class="eyebrow center">Gallery</div>
+      <h2>Leadership around the world.</h2>
+    </div>
+    <div class="gallery">
+      <div class="tile" style="--a:#f7c9a8;--b:#e6894f"><svg><use href="#crowd"/></svg></div>
+      <div class="tile" style="--a:#7fa6d6;--b:#205A9D"><svg><use href="#crowd"/></svg></div>
+      <div class="tile" style="--a:#b9c9bd;--b:#5d7a66"><svg><use href="#crowd"/></svg></div>
+      <div class="tile" style="--a:#ffd7b8;--b:#FF5E14"><svg><use href="#crowd"/></svg></div>
+      <div class="tile" style="--a:#c9c9d6;--b:#6f6f8a"><svg><use href="#crowd"/></svg></div>
+      <div class="tile" style="--a:#f4d9c6;--b:#c98a63"><svg><use href="#crowd"/></svg></div>
+      <div class="tile" style="--a:#a9c4e6;--b:#4b7cb8"><svg><use href="#crowd"/></svg></div>
+      <div class="tile" style="--a:#e2c7bd;--b:#9a5b49"><svg><use href="#crowd"/></svg></div>
+      <div class="tile" style="--a:#ffe0c4;--b:#f08a4b"><svg><use href="#crowd"/></svg></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section peach" id="contact">
+    <div class="banner">
+      <div class="t">
+        <h3>Take the first step toward lasting organisational change</h3>
+        <p>Get a personalised look at how Celebratory Network can work for your organisation.</p>
+        <a class="btn" href="#">Talk to us</a>
+      </div>
+      <div class="stripes" aria-hidden="true"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="logo" href="#"><b>CN</b>Celebratory Network</a>
+  <span>Copyrights © 2026 All Rights Reserved by Celebratory Network</span>
+  <span class="soc"><a href="#" aria-label="X">X</a><a href="#" aria-label="LinkedIn">in</a></span>
+</footer>
+
+</body>
+</html>

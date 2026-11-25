@@ -12,6 +12,14 @@ const nextConfig = {
       },
     },
   },
+  async rewrites() {
+    return [
+      {
+        source: "/od-consulting/family-businesses",
+        destination: "/od-consulting/family-bussinesses",
+      },
+    ];
+  },
   async redirects() {
     return [
       {

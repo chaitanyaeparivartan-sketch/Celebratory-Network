@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Personal Power in Leadership for Women | Celebratory Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Schibsted+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#FF5E14;--blue:#205A9D;--grey:#F4F4F4;--peach:#FFF1EA;--ink:#1a1a1a;--muted:#555;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.5}
+h1,h2,h3,.num{font-family:"Schibsted Grotesk",Inter,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+.nav{position:sticky;top:12px;z-index:50;max-width:1180px;width:calc(100% - 32px);margin:12px auto 0;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--orange)}
+.logo b{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;background:var(--blue);color:var(--orange);font-size:10px}
+.nav ul{display:flex;gap:26px;list-style:none;font-size:14px}
+.nav ul a:hover,.nav ul a.on{color:var(--orange)}
+.btn{display:inline-block;background:var(--orange);color:#fff;font-weight:600;font-size:14px;padding:10px 20px;border-radius:8px}
+@media(max-width:1050px){.nav ul{display:none}}
+
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.eyebrow::before{content:"";width:6px;height:6px;background:var(--orange)}
+.eyebrow.center{justify-content:center}
+.eyebrow.light{color:#fff}.eyebrow.light::before{background:#fff}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center;padding:64px 24px 88px;max-width:1180px;margin:0 auto}
+.hero h1{font-size:clamp(44px,7vw,76px);line-height:.98;letter-spacing:-.02em;margin:18px 0 20px}
+.hero h1 span{color:var(--orange)}
+.hero .lead{font-family:"Schibsted Grotesk",Inter,sans-serif;font-size:22px;font-weight:600;margin-bottom:14px}
+.hero p{max-width:480px;font-size:15px;color:#444;line-height:1.7;margin-bottom:12px}
+.hero .accent{color:var(--orange);font-weight:600}
+.photo{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.18);aspect-ratio:4/3.4}
+.photo svg{width:100%;height:100%;display:block}
+.photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:48px 28px 24px;color:#fff;font-family:"Schibsted Grotesk",Inter,sans-serif;font-weight:600;font-size:clamp(18px,2.4vw,26px);line-height:1.2;text-transform:uppercase;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+
+/* cornerstones */
+.grey{background:var(--grey);padding:96px 24px}
+.head{text-align:center;max-width:720px;margin:0 auto 56px}
+.head h2{font-size:clamp(32px,5vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin:16px 0 0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{border-radius:24px;padding:36px 32px;background:linear-gradient(115deg,#fff 60%,var(--peach) 100%)}
+.num{display:block;font-size:96px;font-weight:700;line-height:1;letter-spacing:-.03em;color:var(--orange)}
+.card h3{font-size:24px;font-weight:600;margin:18px 0 12px}
+.card p{font-size:14px;color:var(--muted);line-height:1.7}
+@media(max-width:900px){.cards{grid-template-columns:1fr}}
+
+/* bands */
+.band{background:var(--orange);color:#fff;padding:96px 24px}
+.band h2{font-size:clamp(32px,5vw,48px);font-weight:600;line-height:1.1;margin:16px 0 24px}
+.why{max-width:780px;margin:0 auto;text-align:center}
+.why p{font-size:18px;line-height:1.7;color:rgba(255,255,255,.95);margin-bottom:14px}
+.why p.big{font-family:"Schibsted Grotesk",Inter,sans-serif;font-size:22px;font-weight:600;color:#fff}
+.why .trio{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px;text-align:left}
+.why .trio div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:24px;font-size:15px;line-height:1.6}
+@media(max-width:700px){.why .trio{grid-template-columns:1fr}}
+
+/* quote */
+.quote{padding:96px 24px;text-align:center;background:#fff}
+.quote h2{font-size:clamp(28px,4.6vw,48px);font-weight:600;line-height:1.2;max-width:860px;margin:18px auto 0;letter-spacing:-.01em}
+.quote h2 em{font-style:normal;color:var(--orange)}
+
+/* CTA */
+.cta{background:var(--peach);padding:96px 24px}
+.banner{position:relative;max-width:860px;margin:0 auto;display:flex;overflow:hidden;border-radius:16px;background:var(--blue);box-shadow:0 20px 50px rgba(0,0,0,.25);color:#fff}
+.banner .t{position:relative;z-index:1;padding:44px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.banner h3{font-size:26px;font-weight:500;line-height:1.3;max-width:400px}
+.banner p{font-size:13px;color:rgba(255,255,255,.82);max-width:360px}
+.banner .btn{font-size:12px;padding:10px 20px;border-radius:6px;width:fit-content;margin-top:8px}
+.stripes{position:absolute;inset:0 0 0 auto;width:150px;opacity:.7;background:repeating-linear-gradient(115deg,var(--orange) 0 7px,transparent 7px 17px);clip-path:polygon(35% 0,100% 0,100% 100%,0 100%)}
+@media(max-width:700px){.stripes{display:none}.banner .t{padding:32px 24px}}
+
+footer{background:var(--orange);color:#fff;font-size:12px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;padding:24px 32px}
+footer .logo{color:#fff;font-size:18px;font-weight:500}
+footer .soc{display:flex;gap:8px}
+footer .soc a{width:32px;height:32px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-weight:700;font-size:11px}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#"><b>CN</b>Celebratory Network</a>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">OD Consulting</a></li>
+      <li><a class="on" href="#">Interventions</a></li>
+      <li><a href="#">International</a></li>
+      <li><a href="#">For the Record</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+    <a class="btn" href="#contact">Book a call</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Personal Power in Leadership</div>
+      <h1>For <span>Women.</span></h1>
+      <p class="lead">Lead from Within. Lead with Power.</p>
+      <p>Personal Power in Leadership (PPL) is Celebratory Network’s signature, research-based leadership journey that helps women discover the inner capacities that shape authentic leadership.</p>
+      <p>We focus on the <span class="accent">Being</span> that transforms the <span class="accent">Doing</span> — empowering women to lead with clarity, confidence and purpose in every aspect of life.</p>
+    </div>
+    <figure class="photo">
+      <svg viewBox="0 0 440 374" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of a group of women seated together">
+        <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1ea"/><stop offset="1" stop-color="#f6b98d"/></linearGradient></defs>
+        <rect width="440" height="374" fill="url(#bg)"/>
+        <circle cx="330" cy="90" r="70" fill="#ff5e14" opacity=".15"/>
+        <path d="M0 374 V250 q30 -60 70 -20 q20 40 0 90 z" fill="#4f7a3a"/>
+        <path d="M0 330 q60 -40 120 -10" stroke="#3b6129" stroke-width="10" fill="none" opacity=".6"/>
+        <rect y="270" width="440" height="104" fill="#a8693a" opacity=".75"/>
+        <g>
+          <g fill="#2b2a2e"><circle cx="110" cy="170" r="20"/><circle cx="170" cy="160" r="20"/><circle cx="230" cy="168" r="20"/><circle cx="290" cy="158" r="20"/><circle cx="350" cy="168" r="20"/></g>
+          <g fill="#e7b48f"><circle cx="110" cy="174" r="15"/><circle cx="170" cy="164" r="15"/><circle cx="230" cy="172" r="15"/><circle cx="290" cy="162" r="15"/><circle cx="350" cy="172" r="15"/></g>
+          <path d="M82 290 q0 -85 28 -85 q28 0 28 85z" fill="#3d5a99"/>
+          <path d="M142 290 q0 -85 28 -85 q28 0 28 85z" fill="#1f2a44"/>
+          <path d="M202 290 q0 -85 28 -85 q28 0 28 85z" fill="#d89b2b"/>
+          <path d="M262 290 q0 -85 28 -85 q28 0 28 85z" fill="#2f6b4a"/>
+          <path d="M322 290 q0 -85 28 -85 q28 0 28 85z" fill="#e0508a"/>
+        </g>
+        <g stroke="#e9d9a8" stroke-width="2" fill="none"><path d="M410 374 V250"/><path d="M410 270 l-14 -16 M410 290 l16 -14 M410 310 l-16 -14"/></g>
+      </svg>
+      <figcaption>Personal Power in Leadership for Women</figcaption>
+    </figure>
+  </section>
+
+  <section class="grey">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow center">Three cornerstones</div>
+        <h2>Of personal power.</h2>
+      </div>
+      <div class="cards">
+        <article class="card"><span class="num">01</span><h3>Trust in Self</h3><p>The confidence to trust one’s own competence, intuition and inner voice — especially during uncertainty.</p></article>
+        <article class="card"><span class="num">02</span><h3>Self Authority</h3><p>The innate ability to take ownership of our choices, exercise agency and lead without seeking external validation.</p></article>
+        <article class="card"><span class="num">03</span><h3>Courage</h3><p>The willingness to challenge limiting beliefs, embrace uncertainty and step forward despite fear.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="why">
+      <div class="eyebrow light center">Why this work matters</div>
+      <h2>Rarely about capability.</h2>
+      <p class="big">Leadership challenges for women are rarely about capability.</p>
+      <p>Personal Power in Leadership addresses the invisible barriers so women can lead authentically and create impact that lasts.</p>
+      <div class="trio">
+        <div>Self-doubt</div><div>Limited visibility</div><div>Internalised expectations</div><div>Lack of self-authority</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <div class="wrap">
+      <div class="eyebrow center">Our belief</div>
+      <h2>“When women strengthen within, they <em>transform everything</em> around them.”</h2>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="banner">
+      <div class="t">
+        <h3>Take the first step toward lasting organisational change</h3>
+        <p>Get a personalised look at how Celebratory Network can work for your organisation.</p>
+        <a class="btn" href="#">Talk to us</a>
+      </div>
+      <div class="stripes" aria-hidden="true"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="logo" href="#"><b>CN</b>Celebratory Network</a>
+  <span>Copyrights © 2026 All Rights Reserved by Celebratory Network</span>
+  <span class="soc"><a href="#" aria-label="X">X</a><a href="#" aria-label="LinkedIn">in</a></span>
+</footer>
+
+</body>
+</html>

@@ -1,81 +1,174 @@
 "use client";
 
-import teamHuddle from "./assets/team-huddle.jpg";
+import { useEffect, useRef } from "react";
+import Header from "@/app/components/Common/Header";
 
 export default function Hero() {
-  const imgSrc = teamHuddle?.src || teamHuddle || "/diversity-inclusion/team-huddle.png";
+  const secRef = useRef(null);
+  const bgRef = useRef(null);
+  const imgRef = useRef(null);
+  const bodyRef = useRef(null);
+
+  useEffect(() => {
+    const sec = secRef.current;
+    const bg = bgRef.current;
+    const img = imgRef.current;
+    const body = bodyRef.current;
+
+    if (!sec || !bg || !img || !body) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      bg.style.opacity = "1";
+      body.style.setProperty("--c", "255, 255, 255");
+      body.style.color = "rgb(255, 255, 255)";
+      return;
+    }
+
+    function clamp(v) {
+      return Math.max(0, Math.min(1, v));
+    }
+
+    /* smootherstep */
+    function ease(a, b, v) {
+      const x = clamp((v - a) / (b - a));
+      return x * x * x * (x * (x * 6 - 15) + 10);
+    }
+
+    let target = 0;
+    let current = 0;
+    let last = 0;
+    let running = false;
+    let rafId = null;
+
+    function readTarget() {
+      if (!sec) return;
+      const r = sec.getBoundingClientRect();
+      const vh = window.innerHeight;
+      target = clamp(-r.top / (r.height - vh));
+    }
+
+    function paint(t) {
+      if (!bg || !img || !body) return;
+      const show = ease(0.08, 0.6, t);
+      const ink = ease(0.3, 0.62, t);
+
+      bg.style.opacity = show.toFixed(4);
+      img.style.transform = `translate3d(0, ${((0.5 - t) * 120).toFixed(2)}px, 0) scale(1.2)`;
+
+      const c = Math.round(13 + 242 * ink);
+      const c2 = Math.round(15 + 240 * ink);
+      body.style.setProperty("--c", `${c}, ${c}, ${c2}`);
+      body.style.color = `rgb(${c}, ${c}, ${c2})`;
+    }
+
+    function frame(now) {
+      const dt = Math.min(0.05, (now - last) / 1000 || 0.016);
+      last = now;
+      current += (target - current) * (1 - Math.exp(-dt * 5));
+
+      if (Math.abs(target - current) < 0.0003) {
+        current = target;
+        paint(current);
+        running = false;
+        return;
+      }
+
+      paint(current);
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function kick() {
+      readTarget();
+      if (!running) {
+        running = true;
+        last = performance.now();
+        rafId = requestAnimationFrame(frame);
+      }
+    }
+
+    window.addEventListener("scroll", kick, { passive: true });
+    window.addEventListener("resize", kick);
+
+    readTarget();
+    current = target;
+    paint(current);
+
+    return () => {
+      window.removeEventListener("scroll", kick);
+      window.removeEventListener("resize", kick);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }, []);
 
   return (
     <section
-      className="relative flex min-h-[85vh] lg:min-h-[88vh] flex-col text-black md:flex-row md:items-center overflow-hidden pt-20 pb-6 md:pt-24 md:pb-8"
-      style={{
-        background:
-          "linear-gradient(270deg, rgba(255, 94, 20, 0.24) 0%, rgba(255, 138, 77, 0.14) 34%, rgba(255, 238, 228, 0.05) 68%, #FFFFFF 100%)",
-      }}
+      ref={secRef}
+      id="intro"
+      aria-labelledby="intro-title"
+      className="relative bg-white text-center"
+      style={{ height: "280vh" }}
     >
-      {/* Ambient warm orange glow concentrated behind the team circle */}
-      <div
-        className="pointer-events-none absolute right-[-5%] top-1/2 -translate-y-1/2 w-[55vw] h-[55vw] max-w-[760px] max-h-[760px] rounded-full blur-3xl opacity-75"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(255, 94, 20, 0.35) 0%, rgba(255, 155, 100, 0.18) 45%, transparent 72%)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Centered container with standard page width */}
-      <div className="relative z-10 mx-auto flex w-full max-w-[1783px] flex-col md:flex-row md:items-center px-5 sm:px-8 md:px-[6vw] justify-between">
-        {/* Text: left */}
-        <div className="w-full md:w-1/2 pt-6 pb-4 md:py-0 pr-0 md:pr-8 lg:pr-12">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col isolate">
+        {/* Background photo & overlay */}
+        <div
+          ref={bgRef}
+          className="absolute inset-0 -z-10 opacity-0 pointer-events-none will-change-[opacity]"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            ref={imgRef}
+            src="/diversity-inclusion/hero-skyscrapers.jpg"
+            alt="Modern architectural skyscrapers perspective"
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover will-change-transform"
+            style={{
+              objectPosition: "50% 50%",
+              transform: "translate3d(0, 0, 0) scale(1.2)",
+            }}
+          />
           <div
-            className="mb-5 flex items-center gap-3.5 text-[0.8rem] font-semibold uppercase tracking-[0.28em] text-[#171717]"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            <span className="h-3 w-3 flex-none bg-[#FF5E14]" aria-hidden="true" />
-            Our DEIB Practice
-          </div>
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(0deg, rgba(0, 0, 0, .35), rgba(0, 0, 0, 0) 50%), rgba(0, 0, 0, .55)",
+            }}
+          />
+        </div>
 
-          <h1
-            className="mb-6 text-[clamp(2.2rem,4.4vw,4rem)] font-bold leading-[1.05] tracking-tight text-[#171717]"
-            style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
+        {/* Pinned Header throughout the entire Hero section */}
+        <div className="w-full shrink-0 z-50 text-left">
+          <Header isFloating={false} />
+        </div>
+
+        {/* Text body */}
+        <div
+          ref={bodyRef}
+          className="flex-1 flex flex-col items-center justify-center px-6 sm:px-8 pb-10 transition-colors duration-75"
+          style={{
+            color: "rgb(var(--c, 13, 13, 15))",
+          }}
+        >
+          <p className="inline-flex items-center gap-3 text-[14px] sm:text-[15px] font-medium tracking-[0.02em] uppercase font-ppmori">
+            <span
+              className="w-3 h-3 rounded-[3px] shrink-0"
+              style={{ backgroundColor: "#FF5A1F" }}
+            />
+            Our DEIB Practice
+          </p>
+
+          <h2
+            id="intro-title"
+            className="font-ppmori font-medium text-[34px] sm:text-[46px] md:text-[58px] lg:text-[76px] leading-[1.08] tracking-[-0.035em] max-w-[16em] mx-auto my-[24px] sm:my-[30px] text-balance"
           >
             Diversity, Equity, Inclusion &amp; Belonging
-          </h1>
+          </h2>
 
-          <p
-            className="max-w-[30em] text-[clamp(1rem,1.25vw,1.2rem)] font-normal text-[#525252] leading-relaxed"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
+          <p className="text-[16px] sm:text-[18px] md:text-[20px] leading-[1.6] max-w-[44em] mx-auto opacity-90 font-ppmori">
             Building workplaces where every voice is heard, every difference is
             valued and everyone can do their best work.
           </p>
-        </div>
-
-        {/* Image: right */}
-        <div className="flex w-full items-center justify-center py-4 md:w-1/2 md:py-4 md:justify-end">
-          <div className="relative flex items-center justify-center w-full max-w-[540px] lg:max-w-[600px] xl:max-w-[640px] aspect-square">
-            {/* Ambient ground contact shadow directly under the standing circle */}
-            <div
-              className="pointer-events-none absolute -bottom-2 w-[84%] aspect-[1/0.85] rounded-full blur-[28px] opacity-75 select-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse at 52% 56%, rgba(35, 15, 5, 0.45) 0%, rgba(60, 25, 10, 0.28) 36%, rgba(100, 45, 18, 0.12) 60%, transparent 75%)",
-                transform: "translateY(24px) rotate(-2deg)",
-              }}
-              aria-hidden="true"
-            />
-
-            {/* Cut-out image with multi-layered directional shadows (top-left light source casting downwards-right) */}
-            <img
-              src={imgSrc}
-              alt="Colleagues with hands joined in a circle"
-              className="relative z-10 h-full w-full object-contain"
-              style={{
-                filter:
-                  "drop-shadow(3px 8px 12px rgba(30, 15, 5, 0.32)) drop-shadow(8px 22px 32px rgba(45, 20, 10, 0.22)) drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.15))",
-              }}
-            />
-          </div>
         </div>
       </div>
     </section>

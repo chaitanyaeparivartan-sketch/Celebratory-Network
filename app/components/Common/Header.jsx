@@ -73,6 +73,13 @@ export default function Header({
     return pathname === item.href || pathname.startsWith(item.href + "/");
   };
 
+  const isSubLinkActive = (sub) => {
+    if (!pathname) return false;
+    if (pathname === sub.href) return true;
+    if (sub.href.includes("family-businesses") && pathname.includes("family")) return true;
+    return false;
+  };
+
   const toggleMobileSubmenu = (label) => {
     setOpenMobileSubmenu((prev) => (prev === label ? null : label));
   };
@@ -137,17 +144,24 @@ export default function Header({
 
                   {/* Dropdown Menu */}
                   {isHovered && item.children && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-60">
-                      <div className="bg-white rounded-[8px] border border-[#F4F4F4] shadow-[0_8px_24px_rgba(0,0,0,0.12)] py-1.5">
-                        {item.children.map((sub) => (
-                          <Link
-                            key={sub.href}
-                            href={sub.href}
-                            className="block px-4 py-2 font-['PP_Mori',sans-serif] text-[14px] font-medium text-[#0A0A0A] hover:text-[#FF5E14] hover:bg-[#FFF8F3] transition-colors"
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-60 text-left">
+                      <div className="bg-white rounded-[8px] border border-[#F4F4F4] shadow-[0_8px_24px_rgba(0,0,0,0.12)] py-1.5 text-left">
+                        {item.children.map((sub) => {
+                          const active = isSubLinkActive(sub);
+                          return (
+                            <Link
+                              key={sub.href}
+                              href={sub.href}
+                              className={`block px-4 py-2 font-['PP_Mori',sans-serif] text-[14px] font-medium text-left transition-colors ${
+                                active
+                                  ? "text-[#FF5E14] bg-[#FFF8F3]"
+                                  : "text-[#0A0A0A] hover:text-[#FF5E14] hover:bg-[#FFF8F3]"
+                              }`}
+                            >
+                              {sub.label}
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   )}

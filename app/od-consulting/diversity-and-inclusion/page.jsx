@@ -1,4 +1,3 @@
-import Header from "@/app/components/Common/Header";
 import Footer from "@/app/components/Common/Footer";
 import CTA from "@/app/components/Common/CTA";
 import Hero from "./components/Hero";
@@ -14,7 +13,6 @@ export const metadata = {
 export default function DiversityAndInclusionPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Header />
       <main className="flex-1">
         <Hero />
         <Services />
