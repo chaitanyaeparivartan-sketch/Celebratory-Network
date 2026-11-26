@@ -1,6 +1,7 @@
 import Footer from "@/app/components/Common/Footer";
 import CTA from "@/app/components/Common/CTA";
 import Hero from "./components/Hero";
+import NewHero from "./components/NewHero";
 import Statement from "./components/Statement";
 import Challenges from "./components/Challenges";
 import Symptoms from "./components/Symptoms";
@@ -17,7 +18,7 @@ export default function BusinessODPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <main className="flex-1">
-        <Hero />
+        <NewHero />
         <Statement />
         <Challenges />
         <Symptoms />

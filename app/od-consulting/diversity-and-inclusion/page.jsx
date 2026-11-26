@@ -16,6 +16,7 @@ export default function DiversityAndInclusionPage() {
       <main className="flex-1">
         <Hero />
         <Services />
+        <div className="h-10 sm:h-16 md:h-20 w-full bg-white" aria-hidden="true" />
         <CTA
           title="Ready to build an inclusive, high-performing workplace?"
           text="Get a personalised look at how Celebratory Network can help align your leadership and transform your diversity and inclusion strategy."

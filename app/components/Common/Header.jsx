@@ -76,8 +76,15 @@ export default function Header({
   const isSubLinkActive = (sub) => {
     if (!pathname) return false;
     if (pathname === sub.href) return true;
-    if (sub.href.includes("family-businesses") && pathname.includes("family")) return true;
+    if (sub.href.includes("family-businesses") && (pathname.includes("family-businesses") || pathname.includes("family-bussinesses"))) return true;
+    if (sub.href.includes("business-od") && pathname.includes("business-od")) return true;
+    if (sub.href.includes("diversity-and-inclusion") && (pathname.includes("diversity-and-inclusion") || pathname.includes("diversity-inclusion"))) return true;
     return false;
+  };
+
+  const hasActiveChild = (item) => {
+    if (!item.children) return false;
+    return item.children.some((child) => isSubLinkActive(child));
   };
 
   const toggleMobileSubmenu = (label) => {
@@ -118,6 +125,7 @@ export default function Header({
           {navLinks.map((item) => {
             if (item.hasDropdown) {
               const isHovered = activeDropdown === item.label;
+              const isParentActive = hasActiveChild(item);
               return (
                 <li
                   key={item.label}
@@ -128,7 +136,7 @@ export default function Header({
                   <button
                     type="button"
                     className={`flex items-center justify-center gap-1.5 font-['PP_Mori',sans-serif] text-[16px] sm:text-[17px] font-medium leading-[20px] text-center transition-colors py-2 cursor-pointer focus:outline-none ${
-                      isHovered
+                      isHovered || isParentActive
                         ? "text-[#FF5E14]"
                         : "text-[#0A0A0A] hover:text-[#FF5E14]"
                     }`}
@@ -137,7 +145,11 @@ export default function Header({
                     <span>{item.label}</span>
                     <DropdownIcon
                       className={`w-[11px] h-[11px] transition-transform duration-200 ${
-                        isHovered ? "rotate-180 text-[#FF5E14]" : "text-[#0A0A0A] group-hover:text-[#FF5E14]"
+                        isHovered
+                          ? "rotate-180 text-[#FF5E14]"
+                          : isParentActive
+                          ? "text-[#FF5E14]"
+                          : "text-[#0A0A0A] group-hover:text-[#FF5E14]"
                       }`}
                     />
                   </button>
@@ -236,32 +248,42 @@ export default function Header({
             {navLinks.map((item) => {
               if (item.hasDropdown) {
                 const isSubOpen = openMobileSubmenu === item.label;
+                const isParentActive = hasActiveChild(item);
                 return (
                   <li key={item.label} className="border-b border-gray-50 pb-1">
                     <button
                       type="button"
                       onClick={() => toggleMobileSubmenu(item.label)}
-                      className="w-full flex items-center justify-between py-2 font-['PP_Mori',sans-serif] text-[15px] font-medium leading-[18px] text-[#0A0A0A] hover:text-[#FF5E14] transition-colors"
+                      className={`w-full flex items-center justify-between py-2 font-['PP_Mori',sans-serif] text-[15px] font-medium leading-[18px] transition-colors ${
+                        isParentActive ? "text-[#FF5E14]" : "text-[#0A0A0A] hover:text-[#FF5E14]"
+                      }`}
                     >
                       <span>{item.label}</span>
                       <DropdownIcon
                         className={`w-[11px] h-[11px] transition-transform duration-200 ${
-                          isSubOpen ? "rotate-180 text-[#FF5E14]" : "text-[#0A0A0A]"
+                          isSubOpen ? "rotate-180 text-[#FF5E14]" : isParentActive ? "text-[#FF5E14]" : "text-[#0A0A0A]"
                         }`}
                       />
                     </button>
                     {isSubOpen && item.children && (
                       <div className="pl-4 py-1 flex flex-col gap-1.5">
-                        {item.children.map((sub) => (
-                          <Link
-                            key={sub.href}
-                            href={sub.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="block py-1 font-['PP_Mori',sans-serif] text-[13.5px] font-medium text-[#4B5563] hover:text-[#FF5E14]"
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
+                        {item.children.map((sub) => {
+                          const active = isSubLinkActive(sub);
+                          return (
+                            <Link
+                              key={sub.href}
+                              href={sub.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className={`block py-1 font-['PP_Mori',sans-serif] text-[13.5px] font-medium transition-colors ${
+                                active
+                                  ? "text-[#FF5E14] font-semibold"
+                                  : "text-[#4B5563] hover:text-[#FF5E14]"
+                              }`}
+                            >
+                              {sub.label}
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </li>
