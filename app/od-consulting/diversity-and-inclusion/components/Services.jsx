@@ -107,11 +107,11 @@ const CARD_STYLES = {
 
 function PhotoStack({ image = "/diversity-inclusion/pexels-werner-pfennig-6949925.jpg" }) {
   return (
-    <div className="relative mt-1.5 mr-auto mb-[26px] ml-1.5 aspect-[475/580] w-[76%]">
-      <i className="absolute inset-0 rounded-[22px] bg-[#d9d6d2] opacity-50 [transform:rotate(-5deg)_translate(-6px,4px)]" />
-      <i className="absolute inset-0 rounded-[22px] bg-[#d9d6d2] opacity-75 [transform:rotate(3deg)_translate(8px,2px)]" />
+    <div className="relative my-4 mr-auto ml-1 aspect-[16/10] sm:aspect-[475/580] w-full max-w-[340px]">
+      <i className="absolute inset-0 rounded-[8px] bg-[#d9d6d2] opacity-50 [transform:rotate(-4deg)_translate(-4px,3px)]" />
+      <i className="absolute inset-0 rounded-[8px] bg-[#d9d6d2] opacity-75 [transform:rotate(2deg)_translate(6px,2px)]" />
       <div
-        className="absolute inset-0 -rotate-1 rounded-[22px] bg-cover bg-center shadow-[0_14px_30px_-12px_rgba(0,0,0,0.35)]"
+        className="absolute inset-0 -rotate-1 rounded-[8px] bg-cover bg-center shadow-[0_12px_28px_-10px_rgba(0,0,0,0.3)]"
         style={{ backgroundImage: `url(${image})` }}
       />
     </div>
@@ -134,9 +134,9 @@ export default function Services() {
 
   const toggleAccordion = (i) => setOpenIndex((cur) => (cur === i ? null : i));
 
-  // Desktop / phone switch
+  // Desktop / mobile switch (activate pinned 3-column scroll on laptops and desktop screens)
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 640px)");
+    const mq = window.matchMedia("(min-width: 1024px)");
     const update = () => setPinned(mq.matches);
     update();
     mq.addEventListener("change", update);
@@ -239,20 +239,21 @@ export default function Services() {
   const current = SERVICES[shown];
 
   return (
-    <section aria-label="DEIB Services" className="w-full bg-white pb-14 sm:pb-16 md:pb-20">
-      {/* ---------- Mobile Accordion View ---------- */}
-      <div className="sm:hidden w-full bg-white px-5 pt-8 pb-14 font-['Inter',system-ui,-apple-system,'Segoe_UI',sans-serif] text-[#1a1a1a]">
-        <div className="mx-auto max-w-[560px]">
+    <section aria-label="DEIB Services" className="w-full bg-white pb-4 sm:pb-6 md:pb-8">
+      {/* ---------- Mobile & Tablet Accordion View (< 1024px) ---------- */}
+      <div className="lg:hidden w-full bg-white px-4 sm:px-6 pt-4 pb-8 font-inter text-[#1a1a1a]">
+        <div className="mx-auto max-w-[680px]">
           <Reveal direction="up" duration={700}>
-            <div className="flex items-center gap-2 text-[11px] font-medium tracking-[0.06em] uppercase before:h-1.5 before:w-1.5 before:rounded-[1px] before:bg-[#FF5E14] before:content-['']">
+            <div className="inline-flex items-center gap-2 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424] mb-2 sm:mb-2.5">
+              <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
               DEIB Services
             </div>
 
-            <h2 className="mt-2.5 mb-4 text-[34px] leading-[1.08] font-semibold tracking-[-0.035em] font-ppmori text-[#1c1c1c]">
+            <h2 className="mt-1 mb-3 font-ppmori text-3xl sm:text-4xl md:text-[46px] font-semibold leading-[1.12] tracking-[-0.8px] text-[#1c1c1c]">
               Building inclusive workplaces.
             </h2>
 
-            <p className="mb-8 text-[15px] leading-[1.6] text-[#4a4a4a]">
+            <p className="mb-6 sm:mb-8 font-inter text-[15px] sm:text-[16px] leading-[1.65] text-[#555555]">
               We design, facilitate and implement systemic DEIB solutions that connect
               organizational culture, leadership altitude, and diversity to build
               thriving workplaces where everyone can do their best work.
@@ -277,21 +278,35 @@ export default function Services() {
                     aria-expanded={isOpen}
                     aria-controls={`mobile-panel-${i}`}
                     onClick={() => toggleAccordion(i)}
-                    className="flex w-full cursor-pointer items-start gap-3 border-0 bg-transparent py-[18px] text-left [-webkit-tap-highlight-color:transparent] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5E14]"
+                    className="flex w-full cursor-pointer items-center justify-between gap-3 border-0 bg-transparent py-4 sm:py-5 text-left [-webkit-tap-highlight-color:transparent] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5E14]"
                   >
+                    <span className="flex items-center gap-3 min-w-0 pr-2">
+                      <span
+                        className={`h-2 w-2 flex-none rounded-[1px] transition-colors duration-200 motion-reduce:transition-none ${
+                          isOpen ? "bg-[#FF5E14]" : "bg-[#dedede]"
+                        }`}
+                      />
+                      <span
+                        className={`text-[18px] sm:text-[21px] leading-[1.25] tracking-[-0.02em] font-ppmori transition-colors duration-200 motion-reduce:transition-none ${
+                          isOpen
+                            ? "font-semibold text-[#1a1a1a]"
+                            : "font-normal text-[#666666]"
+                        }`}
+                      >
+                        {item.title}
+                      </span>
+                    </span>
+
+                    {/* Expand/Collapse pill indicator */}
                     <span
-                      className={`mt-[9px] h-2 w-2 flex-none rounded-[1px] transition-colors duration-200 motion-reduce:transition-none ${
-                        isOpen ? "bg-[#FF5E14]" : "bg-transparent"
-                      }`}
-                    />
-                    <span
-                      className={`text-[20px] leading-[1.25] tracking-[-0.02em] transition-colors duration-200 motion-reduce:transition-none ${
+                      aria-hidden="true"
+                      className={`grid h-8 w-8 sm:h-9 sm:w-9 flex-none place-items-center rounded-full font-ppmori text-lg font-medium transition-all duration-300 ${
                         isOpen
-                          ? "font-medium text-[#1a1a1a]"
-                          : "font-light text-[#8a8a8a]"
+                          ? "bg-[#FF5E14] text-white rotate-180 shadow-[0_4px_12px_rgba(255,94,20,0.3)]"
+                          : "bg-[#FFF1EA] text-[#FF5E14] hover:bg-[#ffe2d3]"
                       }`}
                     >
-                      {item.title}
+                      {isOpen ? "–" : "+"}
                     </span>
                   </button>
 
@@ -302,17 +317,17 @@ export default function Services() {
                       isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     }`}
                   >
-                    <div className="min-h-0 overflow-hidden pl-5">
+                    <div className="min-h-0 overflow-hidden pl-5 pr-1">
                       <PhotoStack image={item.image} />
-                      <p className="mb-4 text-[15px] leading-[1.6] text-[#4a4a4a]">
+                      <p className="mb-4 font-inter text-[14.5px] sm:text-[15px] leading-[1.65] text-[#525252]">
                         {item.text}
                       </p>
                       {item.items && item.items.length > 0 && (
-                        <ul className="mb-5 space-y-2 list-none p-0">
+                        <ul className="mb-5 space-y-2.5 list-none p-0">
                           {item.items.map((subItem, idx) => (
                             <li
                               key={idx}
-                              className="flex items-center gap-2 text-[14px] text-[#333333]"
+                              className="flex items-center gap-2.5 font-inter text-[13.5px] sm:text-[14.5px] text-[#333333] font-medium leading-[1.5]"
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E14] shrink-0" />
                               <span>{subItem}</span>
@@ -323,9 +338,24 @@ export default function Services() {
                       <Link
                         href="/contact"
                         tabIndex={isOpen ? 0 : -1}
-                        className="mb-[22px] inline-block rounded-lg bg-[#FF5E14] px-5 py-3 text-sm font-medium text-white no-underline transition-all duration-300 hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(255,94,20,0.35)] active:scale-[0.98]"
+                        className="group mb-5 sm:mb-6 inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-2.5 py-2 font-['PP_Mori',sans-serif] text-[14.5px] sm:text-[15px] font-semibold leading-[20px] text-white no-underline transition-all duration-300 hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] shadow-sm cursor-pointer"
                       >
-                        Contact us
+                        <span>Contact us</span>
+                        <span className="grid h-[28px] w-[28px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
+                          <svg
+                            width="13"
+                            height="13"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                          </svg>
+                        </span>
                       </Link>
                     </div>
                   </div>
@@ -336,39 +366,30 @@ export default function Services() {
         </div>
       </div>
 
-      {/* Title Section (Split Header for Desktop/Tablet) */}
-      <div className="hidden sm:block w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-12">
+      {/* Title Section (Split Header for Desktop/Tablet >= 1024px) */}
+      <div className="hidden lg:block w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-6 sm:pt-8 md:pt-10 pb-3 sm:pb-4">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 sm:gap-8">
           {/* Left Column: Eyebrow + Main Title */}
           <Reveal direction="up" duration={750} className="flex flex-col items-start text-left max-w-[620px]">
             {/* Section Chip */}
             <div className="inline-flex items-center gap-2 mb-2 sm:mb-2.5">
-              <span className="w-2 h-2 rounded-[2px] bg-[#FF5E14] shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
               <span
-                className="text-[#242424] font-medium text-[12.5px] sm:text-[13.5px] leading-none uppercase tracking-[0.06em]"
-                style={{ fontFamily: "Inter, sans-serif" }}
+                className="text-[#242424] font-medium font-inter text-[12px] sm:text-[13px] md:text-[14px] uppercase leading-[18px] tracking-[0.24px]"
               >
                 DEIB Services
               </span>
             </div>
 
             {/* Section Title */}
-            <h2
-              className="text-[#1c1c1c] font-semibold text-3xl sm:text-4xl md:text-[46px] lg:text-[52px] leading-[1.08] tracking-[-0.03em] mt-1"
-              style={{
-                fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
-              }}
-            >
+            <h2 className="text-[#1c1c1c] font-semibold font-ppmori text-3xl sm:text-4xl md:text-[48px] lg:text-[52px] leading-[1.12] tracking-[-0.8px] mt-1">
               Building inclusive workplaces.
             </h2>
           </Reveal>
 
           {/* Right Column: Paragraph */}
           <Reveal direction="up" duration={750} delay={120} className="max-w-[480px] md:text-right">
-            <p
-              className="text-[#555555] text-[13.5px] sm:text-[14.5px] leading-[1.65] font-normal"
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
+            <p className="text-[#555555] font-inter text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] font-normal">
               We design, facilitate and implement systemic DEIB solutions that connect
               organizational culture, leadership altitude, and diversity to build
               thriving workplaces where everyone can do their best work.
@@ -377,11 +398,11 @@ export default function Services() {
         </div>
       </div>
 
-      {/* Interactive Scroll-Driven Section (Desktop/Tablet) */}
+      {/* Interactive Scroll-Driven Section (Desktop/Tablet >= 1024px) */}
       <div
         ref={trackRef}
         style={{ height: trackHeight }}
-        className="hidden sm:block relative w-full"
+        className="hidden lg:block relative w-full"
       >
         <div
           aria-label="DEIB services interactive list"
@@ -454,7 +475,7 @@ export default function Services() {
               <div
                 key={t.title}
                 style={style}
-                className="pointer-events-none absolute inset-0 origin-[50%_60%] overflow-hidden rounded-[clamp(20px,2vw,44px)] border-[clamp(4px,.4vw,10px)] border-white bg-neutral-300 shadow-[0_30px_60px_-18px_rgba(0,0,0,.35),0_6px_14px_rgba(0,0,0,.12)] transition-[transform,opacity,filter] duration-700 ease-[cubic-bezier(.22,.8,.24,1)] motion-reduce:transition-none"
+                className="pointer-events-none absolute inset-0 origin-[50%_60%] overflow-hidden rounded-[8px] border-[clamp(4px,.4vw,10px)] border-white bg-neutral-300 shadow-[0_30px_60px_-18px_rgba(0,0,0,.35),0_6px_14px_rgba(0,0,0,.12)] transition-[transform,opacity,filter] duration-700 ease-[cubic-bezier(.22,.8,.24,1)] motion-reduce:transition-none"
               >
                 {t.image ? (
                   <Image
@@ -488,7 +509,7 @@ export default function Services() {
               fading ? "translate-y-2.5 opacity-0" : "translate-y-0 opacity-100"
             }`}
           >
-            <h3 className="mb-[0.65em] flex items-start gap-3.5 font-['PP_Mori',sans-serif] text-[clamp(22px,1.8vw,34px)] leading-[1.2] font-semibold tracking-[-0.015em] text-[#1c1c1c]">
+            <h3 className="mb-[0.65em] flex items-start gap-3.5 font-ppmori text-2xl sm:text-3xl md:text-[32px] leading-[1.2] font-semibold tracking-[-0.015em] text-[#1c1c1c]">
               <span
                 aria-hidden="true"
                 className="mt-[0.22em] h-[clamp(12px,0.9vw,18px)] w-[clamp(12px,0.9vw,18px)] shrink-0 rounded-[3px] bg-[#FF5E14]"
@@ -496,7 +517,7 @@ export default function Services() {
               <span>{current.title}</span>
             </h3>
 
-            <p className="mb-[1.2em] text-[clamp(14px,1.05vw,17px)] leading-[1.65] text-[#555555]">
+            <p className="mb-[1.2em] font-inter text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] text-[#555555]">
               {current.text}
             </p>
 
@@ -505,8 +526,7 @@ export default function Services() {
                 {current.items.map((item, idx) => (
                   <li
                     key={idx}
-                    className="flex items-center gap-2.5 text-[clamp(13.5px,0.95vw,15.5px)] text-[#333333] font-medium leading-[1.4]"
-                    style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
+                    className="flex items-center gap-2.5 font-inter text-[14px] sm:text-[14.5px] md:text-[15px] text-[#333333] font-medium leading-[1.5]"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E14] shrink-0" />
                     <span>{item}</span>
@@ -517,9 +537,24 @@ export default function Services() {
 
             <Link
               href="/contact"
-              className="inline-block rounded-lg bg-[#FF5E14] px-[1.8em] py-[.85em] font-['PP_Mori',sans-serif] text-[clamp(14px,1vw,17px)] font-medium text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E04F0D] hover:shadow-[0_6px_18px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#1c1c1c] cursor-pointer"
+              className="group inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-2.5 py-2 font-['PP_Mori',sans-serif] text-[15px] font-semibold leading-[20px] text-white no-underline transition-all duration-300 hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#1c1c1c] shadow-sm cursor-pointer"
             >
-              Contact us
+              <span>Contact us</span>
+              <span className="grid h-[28px] w-[28px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </span>
             </Link>
           </div>
         </div>

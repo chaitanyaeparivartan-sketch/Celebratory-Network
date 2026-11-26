@@ -5,7 +5,7 @@ import ODHero from "@/app/od-consulting/components/ODHero";
 const SELF_ROLE_SYSTEM_CARDS = [
   {
     id: 1,
-    avatar: "/images/mirror.jpg",
+    avatar: "/interventions/the-self.jpg",
     line1: "The Self: instinct &",
     line2: "reflex under ambiguity",
     bg: "bg-[#E5F2FF]",
@@ -34,7 +34,7 @@ const SELF_ROLE_SYSTEM_CARDS = [
   },
   {
     id: 3,
-    avatar: "/images/chessboard.jpg",
+    avatar: "/interventions/the-role.jpg",
     line1: "The Role: invisible",
     line2: "mandates & contracts",
     bg: "bg-[#F5EBFF]",
@@ -48,7 +48,7 @@ const SELF_ROLE_SYSTEM_CARDS = [
   },
   {
     id: 4,
-    avatar: "/images/pyramid.jpg",
+    avatar: "/interventions/the-system.jpg",
     line1: "The System: patterns",
     line2: "over personalities",
     bg: "bg-[#FFF0E6]",

@@ -47,14 +47,14 @@ function ArrowIcon({ className = "" }) {
 export default function DeiResources() {
   return (
     <section className="bg-[#f6f6f6] font-['Inter',system-ui,sans-serif] text-[#242424] antialiased">
-      <div className="mx-auto max-w-[1783px] px-5 sm:px-8 md:px-[6vw] pb-[72px] pt-12 md:pb-24 md:pt-[72px]">
+      <div className="mx-auto max-w-[1783px] px-4 sm:px-6 md:px-8 xl:px-[6vw] pb-14 sm:pb-20 md:pb-24 pt-10 sm:pt-14 md:pt-[72px]">
         {/* Header */}
-        <header className="mb-12 text-center md:mb-[72px]">
-          <div className="mb-4 inline-flex items-center gap-2 text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
-            <span className="h-2 w-2 flex-none bg-[#ee6c3a]" aria-hidden="true" />
+        <header className="mb-8 sm:mb-12 md:mb-[72px] text-center">
+          <div className="mb-3 sm:mb-4 inline-flex items-center gap-2 text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
+            <span className="h-2 w-2 flex-none bg-[#FF5E14] rounded-[1px]" aria-hidden="true" />
             Resources
           </div>
-          <h2 className="font-['PP_Mori','Inter',system-ui,sans-serif] text-[clamp(34px,9vw,52px)] font-semibold leading-[1.08] tracking-[-0.8px] text-[#242424] md:text-[52px] md:leading-[48px]">
+          <h2 className="font-ppmori text-3xl sm:text-4xl md:text-[48px] lg:text-[52px] font-semibold leading-[1.12] tracking-[-0.8px] text-[#242424] max-w-[840px] mx-auto px-2">
             Ideas for building inclusive workplaces.
           </h2>
         </header>
@@ -64,18 +64,20 @@ export default function DeiResources() {
           {items.map(({ title, href }) => (
             <li
               key={title}
-              className="group grid grid-cols-1 items-center gap-y-2.5 border-b border-[#e4e4e4] py-6 md:grid-cols-[1fr_auto] md:gap-x-8 md:py-[34px]"
+              className="group border-b border-[#e4e4e4] transition-colors hover:bg-black/[0.02]"
             >
-              <h3 className="text-[20px] font-semibold leading-[26px] tracking-[-0.24px] text-[#111] transition-colors duration-200 motion-reduce:transition-none group-hover:text-[#ee6c3a] group-focus-within:text-[#ee6c3a] md:text-[24px] md:leading-[30px]">
-                {title}
-              </h3>
-
               <Link
                 href={href}
-                className="inline-flex items-center gap-2.5 text-base font-medium text-[#242424] no-underline transition-colors duration-200 motion-reduce:transition-none group-hover:text-[#ee6c3a] focus-visible:text-[#ee6c3a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#242424] md:min-w-[128px] md:justify-end"
+                className="flex items-center justify-between gap-3 sm:gap-4 py-4 sm:py-5 md:py-6 no-underline text-[#111] group-hover:text-[#FF5E14] transition-colors"
               >
-                Read More
-                <ArrowIcon className="transition-transform duration-200 motion-reduce:transition-none group-hover:rotate-45 group-focus-within:rotate-45" />
+                <h3 className="font-ppmori text-[16.5px] sm:text-[20px] md:text-[22px] font-semibold leading-[1.3] tracking-[-0.24px] text-inherit transition-colors">
+                  {title}
+                </h3>
+
+                <span className="inline-flex items-center gap-2 text-sm sm:text-base font-medium shrink-0 text-[#242424] group-hover:text-[#FF5E14] transition-colors pl-2">
+                  <span className="hidden sm:inline">Read More</span>
+                  <ArrowIcon className="transition-transform duration-200 group-hover:rotate-45" />
+                </span>
               </Link>
             </li>
           ))}
