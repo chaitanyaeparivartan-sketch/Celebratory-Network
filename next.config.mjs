@@ -15,6 +15,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: "/international",
+        destination: "/International",
+      },
+      {
         source: "/od-consulting/family-businesses",
         destination: "/od-consulting/family-bussinesses",
       },

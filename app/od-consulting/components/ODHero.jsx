@@ -136,11 +136,11 @@ export default function ODHero({
   const runningRef = useRef(false);
   const startAnimRef = useRef(null);
 
-  // Compute active cards list, ensuring growing card thumbnail matches the target background photo
+  // Compute active cards list, ensuring growing card thumbnail matches the target background photo unless custom cards provide an explicit avatar
   const activeCards = useMemo(() => {
     const list = cards || DEFAULT_CHIPS;
     return list.map((card) => {
-      if (card.grow) {
+      if (card.grow && !cards) {
         return {
           ...card,
           avatar: bgImage,
@@ -248,6 +248,11 @@ export default function ODHero({
       const c2 = Math.round(15 + 240 * ink);
       body.style.setProperty("--c", `${c},${c},${c2}`);
       body.style.color = `rgb(${c},${c},${c2})`;
+
+      const rAcc = 255;
+      const gAcc = Math.round(94 + (255 - 94) * ink);
+      const bAcc = Math.round(20 + (255 - 20) * ink);
+      body.style.setProperty("--accent-color", `rgb(${rAcc},${gAcc},${bAcc})`);
 
       // Smoothly move content towards bottom as hero section image expands
       const maxShift = sr.width < 640 ? Math.min(85, H * 0.12) : Math.min(160, Math.max(70, H * 0.17));
@@ -539,7 +544,7 @@ export default function ODHero({
         {/* Copy */}
         <div
           ref={bodyRef}
-          className="relative z-[2] flex flex-1 flex-col items-center justify-center px-8 pb-10 text-[rgb(var(--c))] [--c:13,13,15] max-[560px]:px-5 motion-reduce:[--c:255,255,255] will-change-transform"
+          className="relative z-[2] flex flex-1 flex-col items-center justify-center px-8 pb-10 text-[rgb(var(--c))] [--c:13,13,15] [--accent-color:#FF5E14] max-[560px]:px-5 motion-reduce:[--c:255,255,255] motion-reduce:[--accent-color:#ffffff] will-change-transform"
         >
           <p className="inline-flex items-center gap-2.5 text-[13px] sm:text-[14px] font-semibold tracking-[0.04em] uppercase font-['PP_Mori',sans-serif] mb-2 sm:mb-3 opacity-80">
             <span className="w-2 h-2 rounded-[2px] bg-[#FF5E14] shrink-0" />
@@ -547,7 +552,7 @@ export default function ODHero({
           </p>
           <h2
             id="intro-title"
-            className="mx-auto mb-[22px] max-w-[16em] text-balance font-['PP_Mori',sans-serif] text-[clamp(34px,5.2vw,74px)] font-medium leading-[1.08] tracking-[-.035em]"
+            className="mx-auto mb-[22px] max-w-[16em] text-balance font-['PP_Mori',sans-serif] text-[clamp(34px,5.2vw,74px)] font-medium leading-[1.08] tracking-[-.035em] [&_span]:!text-[var(--accent-color)]"
           >
             {title}
           </h2>

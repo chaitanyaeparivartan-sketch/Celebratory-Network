@@ -51,6 +51,7 @@ export default function Header({
     { label: "For the Record", href: "/for-the-record" },
   ],
   buttonText = "Book a call",
+  buttonLink = "/contact",
   onButtonClick,
   isFloating = true,
   className = "",
@@ -200,13 +201,22 @@ export default function Header({
 
         {/* Action Button */}
         <div className="hidden lg:flex items-center">
-          <button
-            type="button"
-            onClick={onButtonClick}
-            className="flex items-center justify-center gap-[10px] px-5 sm:px-6 py-2.5 sm:py-3 rounded-[8px] bg-[#FF5E14] text-white text-center font-['PP_Mori',sans-serif] text-[15px] sm:text-[16px] font-semibold leading-[20px] hover:bg-[#e0500d] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
-          >
-            <span>{buttonText}</span>
-          </button>
+          {onButtonClick ? (
+            <button
+              type="button"
+              onClick={onButtonClick}
+              className="flex items-center justify-center gap-[10px] px-5 sm:px-6 py-2.5 sm:py-3 rounded-[8px] bg-[#FF5E14] text-white text-center font-['PP_Mori',sans-serif] text-[15px] sm:text-[16px] font-semibold leading-[20px] hover:bg-[#e0500d] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
+            >
+              <span>{buttonText}</span>
+            </button>
+          ) : (
+            <Link
+              href={buttonLink || "/contact"}
+              className="flex items-center justify-center gap-[10px] px-5 sm:px-6 py-2.5 sm:py-3 rounded-[8px] bg-[#FF5E14] text-white text-center font-['PP_Mori',sans-serif] text-[15px] sm:text-[16px] font-semibold leading-[20px] hover:bg-[#e0500d] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
+            >
+              <span>{buttonText}</span>
+            </Link>
+          )}
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -309,16 +319,26 @@ export default function Header({
           </ul>
 
           <div className="pt-2">
-            <button
-              type="button"
-              onClick={(e) => {
-                setMobileMenuOpen(false);
-                if (onButtonClick) onButtonClick(e);
-              }}
-              className="w-full flex items-center justify-center px-5 py-2.5 rounded-[8px] bg-[#FF5E14] text-white text-center font-['PP_Mori',sans-serif] text-[15px] font-semibold leading-[20px] hover:bg-[#e0500d] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
-            >
-              <span>{buttonText}</span>
-            </button>
+            {onButtonClick ? (
+              <button
+                type="button"
+                onClick={(e) => {
+                  setMobileMenuOpen(false);
+                  onButtonClick(e);
+                }}
+                className="w-full flex items-center justify-center px-5 py-2.5 rounded-[8px] bg-[#FF5E14] text-white text-center font-['PP_Mori',sans-serif] text-[15px] font-semibold leading-[20px] hover:bg-[#e0500d] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
+              >
+                <span>{buttonText}</span>
+              </button>
+            ) : (
+              <Link
+                href={buttonLink || "/contact"}
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center px-5 py-2.5 rounded-[8px] bg-[#FF5E14] text-white text-center font-['PP_Mori',sans-serif] text-[15px] font-semibold leading-[20px] hover:bg-[#e0500d] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
+              >
+                <span>{buttonText}</span>
+              </Link>
+            )}
           </div>
         </div>
       )}
