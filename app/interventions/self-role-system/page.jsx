@@ -4,6 +4,7 @@ import Architecture from "./components/Architecture";
 import CoreRealities from "./components/CoreRealities";
 import BeliefQuote from "./components/BeliefQuote";
 import Outcomes from "./components/Outcomes";
+import CTA from "@/app/components/Common/CTA";
 
 export const metadata = {
   title: "Self. Role. System | Celebratory Network",
@@ -20,6 +21,7 @@ export default function SelfRoleSystemPage() {
         <CoreRealities />
         <BeliefQuote />
         <Outcomes />
+        <CTA />
       </main>
       <Footer />
     </div>

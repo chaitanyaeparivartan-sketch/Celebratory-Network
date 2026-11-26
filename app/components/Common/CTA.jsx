@@ -104,16 +104,46 @@ export default function CTA({
               <a
                 href={href}
                 onClick={handleClick}
-                className="inline-block rounded-[.45em] bg-[#FF5E14] px-[1.5em] py-[.8em] font-['Figtree',sans-serif] text-[clamp(13px,.9vw,16px)] font-medium text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e04e0a] hover:shadow-[0_6px_18px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-white cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-3 py-2.5 font-['PP_Mori',sans-serif] text-[clamp(14px,.9vw,16px)] font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e04e0a] hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-white cursor-pointer"
               >
-                {buttonLabel}
+                <span>{buttonLabel}</span>
+                <span className="grid h-[28px] w-[28px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
               </a>
             ) : (
               <Link
                 href={href}
-                className="inline-block rounded-[.45em] bg-[#FF5E14] px-[1.5em] py-[.8em] font-['Figtree',sans-serif] text-[clamp(13px,.9vw,16px)] font-medium text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e04e0a] hover:shadow-[0_6px_18px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-white cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-3 py-2.5 font-['PP_Mori',sans-serif] text-[clamp(14px,.9vw,16px)] font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e04e0a] hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-white cursor-pointer"
               >
-                {buttonLabel}
+                <span>{buttonLabel}</span>
+                <span className="grid h-[28px] w-[28px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
               </Link>
             )}
           </div>

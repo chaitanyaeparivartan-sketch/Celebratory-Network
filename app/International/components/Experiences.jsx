@@ -56,7 +56,7 @@ export default function Experiences() {
           <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
             <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
             <span
-              className="text-[#242424] font-medium text-[14px] leading-[18px] tracking-[0.24px]"
+              className="text-[#242424] font-medium text-[13px] sm:text-[14px] leading-[18px] tracking-[0.24px] uppercase"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               What we do
@@ -65,7 +65,7 @@ export default function Experiences() {
 
           {/* Section Title */}
           <h2
-            className="text-[#242424] font-semibold text-3xl sm:text-4xl md:text-[52px] leading-[1.15] tracking-[-0.8px]"
+            className="text-[#242424] font-semibold text-3xl sm:text-4xl md:text-[52px] leading-[1.05] sm:leading-[1.12] tracking-[-0.8px]"
             style={{
               fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
             }}
@@ -91,7 +91,7 @@ export default function Experiences() {
                   duration={750}
                   delay={60}
                   distance={36}
-                  className={`relative w-full h-full rounded-[8px] border border-[#EAEAEA] bg-white p-6 sm:p-10 md:p-12 xl:px-[99px] xl:py-[74px] flex flex-col justify-between items-start overflow-hidden group hover:border-[#FF5E14]/40 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.07)] transition-all duration-300 ${
+                  className={`relative w-full h-full rounded-[8px] border border-[#EAEAEA] bg-white p-5 sm:p-8 md:p-12 xl:px-[99px] xl:py-[74px] flex flex-col justify-between items-start overflow-hidden group hover:border-[#FF5E14]/40 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.07)] transition-all duration-300 ${
                     item.reverse ? "lg:order-2" : "lg:order-1"
                   }`}
                 >
@@ -104,7 +104,7 @@ export default function Experiences() {
                   />
 
                   {/* Content Block */}
-                  <div className="flex flex-col items-start gap-2.5 relative z-10 w-full">
+                  <div className="flex flex-col items-start gap-2 sm:gap-2.5 relative z-10 w-full">
                     {/* Category Chip */}
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] transition-transform duration-300 group-hover:scale-125" />
@@ -118,7 +118,7 @@ export default function Experiences() {
 
                     {/* Title */}
                     <h3
-                      className="text-[#171717] font-semibold text-2xl sm:text-3xl md:text-[36px] xl:text-[42px] leading-[1.12] tracking-tight mt-1 sm:mt-2 transition-colors duration-300 group-hover:text-[#0f0f0f]"
+                      className="text-[#171717] font-semibold text-[22px] sm:text-3xl md:text-[36px] xl:text-[42px] leading-[1.15] sm:leading-[1.12] tracking-tight mt-1 sm:mt-2 transition-colors duration-300 group-hover:text-[#0f0f0f]"
                       style={{
                         fontFamily:
                           '"PP Mori", var(--font-geist-sans), sans-serif',
@@ -130,20 +130,21 @@ export default function Experiences() {
 
                     {/* Description */}
                     <p
-                      className="text-[#525252] text-[14px] sm:text-[15px] xl:text-[17px] leading-[1.6] max-w-[540px] mt-2 sm:mt-3"
+                      className="text-[#525252] text-[13.5px] sm:text-[15px] xl:text-[16px] leading-[1.55] sm:leading-[1.6] max-w-[540px] mt-1.5 sm:mt-3"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       {item.description}
                     </p>
 
-                    {/* Bullet Points */}
-                    <ul className="space-y-2 mt-4 max-w-[540px]">
+                    {/* Bullet Points with interactive hover micro-interaction */}
+                    <ul className="space-y-2 mt-3.5 sm:mt-4 max-w-[540px]">
                       {item.bullets.map((bullet) => (
                         <li
                           key={bullet}
-                          className="flex items-start gap-2.5 text-[14px] sm:text-[15px] text-[#4a4a4a] leading-[1.5]"
+                          className="group/bullet flex items-start gap-2.5 text-[13.5px] sm:text-[15px] text-[#4a4a4a] leading-[1.5] transition-all duration-200 hover:translate-x-1 hover:text-[#171717] cursor-default"
+                          style={{ fontFamily: "Inter, sans-serif" }}
                         >
-                          <span className="mt-2 h-1.5 w-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
+                          <span className="mt-1.5 sm:mt-2 h-1.5 w-1.5 rounded-[1px] bg-[#FF5E14] shrink-0 transition-transform duration-200 group-hover/bullet:scale-125" />
                           <span>{bullet}</span>
                         </li>
                       ))}
@@ -151,7 +152,7 @@ export default function Experiences() {
                   </div>
 
                   {/* Mobile Image (inside the card) */}
-                  <div className="lg:hidden mt-6 sm:mt-8 relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[8px] overflow-hidden bg-gray-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+                  <div className="lg:hidden mt-5 sm:mt-8 relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[8px] overflow-hidden bg-gray-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
                     <Image
                       src={item.image}
                       alt={item.imageAlt}

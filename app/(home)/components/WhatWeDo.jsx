@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "@/app/components/Common/Reveal";
 
 const SERVICES = [
@@ -14,6 +15,7 @@ const SERVICES = [
     image: "/home/whatwedo-image-1.webp",
     imageAlt: "Executive leading strategic organizational agenda",
     reverse: false,
+    link: "/od-consulting/business-od",
   },
   {
     id: 2,
@@ -25,6 +27,7 @@ const SERVICES = [
     image: "/home/whatwedo-image-2.webp",
     imageAlt: "Family business partners collaborating at desk",
     reverse: true,
+    link: "/od-consulting/family-bussinesses",
   },
   {
     id: 3,
@@ -36,6 +39,7 @@ const SERVICES = [
     image: "/home/whatwedo-image-3.webp",
     imageAlt: "Cross-functional team collaborating on blueprint diagram",
     reverse: false,
+    link: "/interventions/large-group-intervention",
   },
   {
     id: 4,
@@ -47,6 +51,7 @@ const SERVICES = [
     image: "/home/whatwedo-image-4.webp",
     imageAlt: "Diverse team connecting and celebrating together",
     reverse: true,
+    link: "/about",
   },
 ];
 
@@ -139,6 +144,52 @@ export default function WhatWeDo() {
                     >
                       {item.description}
                     </p>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="mt-7 sm:mt-9 flex flex-wrap items-center gap-3 sm:gap-3.5 relative z-10">
+                    <Link
+                      href="/contact"
+                      className="group inline-flex items-center justify-center gap-2 pl-4 sm:pl-5 pr-2 sm:pr-2.5 py-2 sm:py-2.5 rounded-[8px] bg-[#FF5E14] text-white font-['PP_Mori',sans-serif] text-[13px] sm:text-[14px] font-semibold shadow-sm hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] transition-all cursor-pointer"
+                    >
+                      <span>Book a call</span>
+                      <span className="grid h-[26px] w-[26px] sm:h-[28px] sm:w-[28px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
+                        <svg
+                          width="13"
+                          height="13"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                      </span>
+                    </Link>
+                    <Link
+                      href={item.link || "/about"}
+                      className="group inline-flex items-center justify-center gap-2 pl-4 sm:pl-5 pr-2 sm:pr-2.5 py-2 sm:py-2.5 rounded-[8px] bg-white border border-[#EAEAEA] text-[#171717] font-['PP_Mori',sans-serif] text-[13px] sm:text-[14px] font-semibold shadow-sm hover:bg-gray-50 hover:border-gray-300 hover:-translate-y-0.5 hover:shadow-sm active:scale-[0.98] transition-all cursor-pointer"
+                    >
+                      <span>Know More</span>
+                      <span className="grid h-[26px] w-[26px] sm:h-[28px] sm:w-[28px] place-items-center rounded-[6px] bg-[#171717]/8 text-[#171717] transition-transform duration-200 group-hover:translate-x-1">
+                        <svg
+                          width="13"
+                          height="13"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                      </span>
+                    </Link>
                   </div>
 
                   {/* Mobile Image (inside the card) */}

@@ -5,9 +5,9 @@ import ODHero from "@/app/od-consulting/components/ODHero";
 const INTERNATIONAL_CARDS = [
   {
     id: 1,
-    avatar: "/international/uk.jpg",
-    line1: "Navigating complexity &",
-    line2: "uncertainty in the UK",
+    avatar: "/international/personal-power-bulb.jpg",
+    line1: "Personal Power in",
+    line2: "Leadership for women leaders",
     bg: "bg-[#E5F2FF]",
     bullet: "bg-[#0284C7]",
     pos: "left-[2%] sm:left-[3%] xl:left-[4%] top-[195px] xl:top-[215px] max-[700px]:left-[4%] max-[700px]:top-[104px]",
@@ -19,9 +19,9 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 2,
-    avatar: "/international/us.webp",
-    line1: "Strategic leadership &",
-    line2: "business impact across US",
+    avatar: "/international/international-hero.jpg",
+    line1: "Leading with Shakti in",
+    line2: "complex adaptive systems",
     bg: "bg-[#E6FAE1]",
     bullet: "bg-[#16A34A]",
     pos: "left-[18%] xl:left-[22%] top-[120px] sm:top-[126px] xl:top-[134px] max-[700px]:hidden",
@@ -34,9 +34,9 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 3,
-    avatar: "/international/brazil.webp",
-    line1: "Empowering leadership",
-    line2: "teams in Brazil",
+    avatar: "/international/focus/focus-1.jpg",
+    line1: "Human-centered inner",
+    line2: "alignment & self-awareness",
     bg: "bg-[#F5EBFF]",
     bullet: "bg-[#C026D3]",
     pos: "left-[54%] xl:left-[56%] top-[120px] sm:top-[126px] xl:top-[134px] max-[700px]:hidden",
@@ -48,9 +48,9 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 4,
-    avatar: "/international/berlin.webp",
-    line1: "Organization development",
-    line2: "initiatives in Berlin",
+    avatar: "/international/focus/focus-2.jpg",
+    line1: "Human process & real",
+    line2: "experiential learning labs",
     bg: "bg-[#FFF0E6]",
     bullet: "bg-[#EA580C]",
     pos: "right-[2%] sm:right-[3%] xl:right-[4%] top-[195px] xl:top-[215px] max-[700px]:hidden",
@@ -62,9 +62,9 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 5,
-    avatar: "/international/thailand.webp",
-    line1: "Personal Power in",
-    line2: "Leadership in Thailand",
+    avatar: "/international/focus/focus-3.jpg",
+    line1: "Navigating uncertainty &",
+    line2: "complexity beyond borders",
     bg: "bg-[#FFF7ED]",
     bullet: "bg-[#D97706]",
     pos: "left-[3%] sm:left-[4%] xl:left-[5%] bottom-[48px] xl:bottom-[56px] max-[700px]:left-[3%] max-[700px]:bottom-[40px]",
@@ -76,9 +76,9 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 6,
-    avatar: "/international/malaysia.webp",
-    line1: "Cross-border adaptive",
-    line2: "systems in Malaysia",
+    avatar: "/international/focus/focus-4.jpg",
+    line1: "Applied behavioural science",
+    line2: "for lasting system change",
     bg: "bg-[#EFF6FF]",
     bullet: "bg-[#2563EB]",
     pos: "left-[26%] xl:left-[28%] bottom-[32px] xl:bottom-[40px] max-[700px]:hidden",
@@ -90,9 +90,9 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 7,
-    avatar: "/international/vietnam.webp",
-    line1: "Transforming leadership",
-    line2: "culture in Vietnam",
+    avatar: "/international/leading-with-shakti.jpg",
+    line1: "Collective intelligence &",
+    line2: "authentic group emergence",
     bg: "bg-[#E6FAE1]",
     bullet: "bg-[#16A34A]",
     pos: "right-[3%] sm:right-[4%] xl:right-[5%] bottom-[48px] xl:bottom-[56px] max-[700px]:right-[3%] max-[700px]:bottom-[40px]",
@@ -115,6 +115,7 @@ export default function Hero(props) {
       }
       lead="Our work internationally has been designed for leaders to work with the business realities of navigating complexity, uncertainty, and change. We work with leadership teams whose impact helps businesses realise their full potential. Celebratory Network has partnered with leaders on Personal Power in Leadership and Organization Development in the UK, US, Brazil, Berlin, Thailand, Malaysia, Vietnam…"
       bgImage="/international/international-hero.jpg"
+      mobileBgImage="/international/international-hero-mobile.jpg"
       cards={INTERNATIONAL_CARDS}
       {...props}
     />

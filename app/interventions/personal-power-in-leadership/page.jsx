@@ -3,7 +3,7 @@ import Hero from "./components/Hero";
 import Cornerstones from "./components/Cornerstones";
 import WhyItMatters from "./components/WhyItMatters";
 import BeliefQuote from "./components/BeliefQuote";
-import CtaBanner from "./components/CtaBanner";
+import CTA from "@/app/components/Common/CTA";
 
 export const metadata = {
   title: "Personal Power in Leadership for Women | Celebratory Network",
@@ -19,6 +19,7 @@ export default function PersonalPowerInLeadershipPage() {
         <Cornerstones />
         <WhyItMatters />
         <BeliefQuote />
+        <CTA />
       </main>
       <Footer />
     </div>

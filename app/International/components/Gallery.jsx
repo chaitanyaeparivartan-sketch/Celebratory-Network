@@ -87,6 +87,12 @@ export default function Gallery({
     return () => cancelAnimationFrame(animId);
   }, [isPaused]);
 
+  const scrollManual = (dir) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * 340, behavior: "smooth" });
+  };
+
   return (
     <section className="overflow-hidden pt-8 sm:pt-10 md:pt-12 pb-14 sm:pb-18 md:pb-20 select-none relative bg-white">
       {/* Heading Container */}
@@ -99,7 +105,7 @@ export default function Gallery({
         <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
           <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
           <span
-            className="text-[#242424] font-medium text-[14px] leading-[18px] tracking-[0.24px]"
+            className="text-[#242424] font-medium text-[13px] sm:text-[14px] leading-[18px] tracking-[0.24px] uppercase"
             style={{ fontFamily: "Inter, sans-serif" }}
           >
             {eyebrow}
@@ -108,7 +114,7 @@ export default function Gallery({
 
         {/* Section Title */}
         <h2
-          className="text-[#242424] font-semibold text-3xl sm:text-4xl md:text-[52px] leading-[1.15] tracking-[-0.8px]"
+          className="text-[#242424] font-semibold text-3xl sm:text-4xl md:text-[52px] leading-[1.05] sm:leading-[1.12] tracking-[-0.8px]"
           style={{
             fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif',
           }}
@@ -117,54 +123,90 @@ export default function Gallery({
         </h2>
       </Reveal>
 
-      {/* Card Window Viewport with Auto-Scroll */}
+      {/* Card Window Viewport with Auto-Scroll & Edge Fades */}
       <Reveal
         direction="up"
         duration={750}
         delay={120}
-        className="mx-auto w-full max-w-[1600px] px-4 sm:px-6"
+        className="relative mx-auto w-full max-w-[1600px] px-4 sm:px-6"
       >
+        {/* Left and Right Gradient Fades */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-20 md:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-20 md:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10"
+        />
+
         <div
           ref={trackRef}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
-          className="flex w-full items-center overflow-x-auto pt-8 pb-12 sm:pt-10 sm:pb-14 md:pt-12 md:pb-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
+          className="flex w-full items-center overflow-x-auto pt-8 pb-10 sm:pt-10 sm:pb-12 md:pt-12 md:pb-14 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing touch-pan-x"
         >
-          <div className="flex items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 shrink-0 py-3">
+          <div className="flex items-center gap-4 sm:gap-7 md:gap-10 lg:gap-12 shrink-0 py-4 px-2 sm:px-4">
             {items.map((item, i) => (
               <div
                 key={i}
                 className={`
+                  group/photo
                   relative
-                  w-[200px] h-[270px]
-                  sm:w-[220px] sm:h-[295px]
+                  w-[170px] h-[230px]
+                  sm:w-[210px] sm:h-[280px]
                   md:w-[240px] md:h-[320px]
                   lg:w-[260px] lg:h-[340px]
                   flex-shrink-0
-                  rounded-[12px]
+                  rounded-[14px]
                   overflow-hidden
                   bg-white
-                  shadow-[0_4px_20px_rgba(0,0,0,0.08)]
-                  transition-all duration-300 ease-out
-                  hover:z-30 hover:scale-[1.04] hover:-translate-y-1.5 hover:shadow-2xl
+                  shadow-[0_4px_24px_rgba(0,0,0,0.06)]
+                  border border-black/[0.04]
+                  transition-all duration-500 ease-out
+                  hover:z-30 hover:scale-[1.08] hover:-translate-y-3 hover:rotate-0 hover:shadow-[0_24px_50px_rgba(0,0,0,0.18)]
                   cursor-pointer
                   ${item.rotate}
                 `}
-                style={{ borderRadius: "12px" }}
+                style={{ borderRadius: "14px" }}
               >
                 <Image
                   src={item.image}
                   alt={item.alt || `International moment ${(i % GALLERY_ITEMS.length) + 1}`}
                   fill
                   sizes="(max-width: 640px) 220px, (max-width: 1024px) 240px, 260px"
-                  className="object-cover object-center rounded-[12px]"
-                  style={{ borderRadius: "12px" }}
+                  className="object-cover object-center rounded-[14px] transition-transform duration-700 ease-out group-hover/photo:scale-108"
+                  style={{ borderRadius: "14px" }}
                 />
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Interactive Navigation Controls */}
+        <div className="mt-2 flex items-center justify-center gap-3 relative z-20">
+          <button
+            type="button"
+            onClick={() => scrollManual(-1)}
+            aria-label="Scroll left"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EAEAEA] bg-white text-[#171717] shadow-sm transition-all duration-300 hover:border-[#FF5E14] hover:bg-[#FFEAE0] hover:text-[#FF5E14] hover:scale-110 active:scale-95 cursor-pointer"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.4} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollManual(1)}
+            aria-label="Scroll right"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EAEAEA] bg-white text-[#171717] shadow-sm transition-all duration-300 hover:border-[#FF5E14] hover:bg-[#FFEAE0] hover:text-[#FF5E14] hover:scale-110 active:scale-95 cursor-pointer"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.4} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </Reveal>
     </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import Reveal from "@/app/components/Common/Reveal";
 
 const slides = [
   {
@@ -79,18 +80,39 @@ export default function ConversationsSection() {
   };
 
   return (
-    <section className="overflow-hidden bg-[#1d56a8] pt-10 sm:pt-12 md:pt-14 pb-8 sm:pb-10 text-center text-white relative">
-      <div className="mx-auto max-w-[1080px] px-5">
-        <p className="inline-flex items-center gap-2 text-[12px] sm:text-[13px] font-semibold uppercase tracking-wide text-white/90 mb-1">
-          <span className="h-2 w-2 rounded-sm bg-white" />
-          The Conversations
-        </p>
+    <section className="overflow-hidden bg-[#1d56a8] pt-16 sm:pt-20 md:pt-24 pb-14 sm:pb-18 md:pb-20 text-center text-white relative">
+      {/* Background ambient lighting glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-white/10 blur-[120px] rounded-full"
+      />
 
-        <h2 className="mb-2 whitespace-nowrap text-[clamp(22px,4vw,46px)] font-bold leading-[1.1] tracking-tight">
+      {/* Header with scroll reveal */}
+      <Reveal direction="up" duration={750} distance={24} className="mx-auto max-w-[1080px] px-5 sm:px-8 mb-8 sm:mb-12 md:mb-14 relative z-10">
+        {/* Eyebrow Chip */}
+        <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
+          <span className="w-2 h-2 rounded-[1px] bg-white inline-block shadow-sm" />
+          <span
+            className="text-white/95 font-medium text-[12px] sm:text-[13px] leading-[18px] tracking-[0.2em] uppercase"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            The Conversations
+          </span>
+        </div>
+
+        {/* Section Title */}
+        <h2
+          className="text-white font-semibold text-3xl sm:text-4xl md:text-[52px] leading-[1.15] tracking-[-0.8px] mb-3 sm:mb-4 drop-shadow-sm"
+          style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
+        >
           Underneath the conversation
         </h2>
 
-        <p className="text-sm sm:text-[15px] leading-relaxed text-white/90 max-w-[820px] mx-auto font-['Inter',sans-serif]">
+        {/* Lede Paragraph */}
+        <p
+          className="text-sm sm:text-base leading-relaxed text-white/90 max-w-[820px] mx-auto font-normal"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
           When challenges persist despite new processes and revised frameworks,
           the issue is rarely a lack of knowledge.
           <br className="hidden min-[1100px]:inline" /> It is often what remains
@@ -98,48 +120,50 @@ export default function ConversationsSection() {
           <br className="hidden min-[1100px]:inline" /> helps uncover, and solve,
           the conversation underneath the conversation.
         </p>
-      </div>
+      </Reveal>
 
-      {/* Carousel */}
-      <div
-        ref={rail}
-        onScroll={updateActive}
-        tabIndex={0}
-        aria-label="Carousel"
-        className="relative flex snap-x snap-mandatory gap-5 sm:gap-6 overflow-x-auto px-[10%] pt-5 pb-3 sm:pt-6 sm:pb-4 text-left [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
-      >
-        {slides.map((s, i) => (
-          <figure
-            key={s.src}
-            onClick={() => goTo(i)}
-            className={`m-0 w-[min(680px,80%)] sm:w-[min(700px,75%)] md:w-[min(720px,68%)] flex-none snap-center overflow-hidden rounded-xl shadow-2xl transition-all duration-300 cursor-pointer ${
-              i === active
-                ? "scale-100 opacity-100 ring-2 ring-white/30"
-                : "scale-[.94] opacity-45 hover:opacity-70"
-            }`}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={s.src}
-              alt={s.alt}
-              className="block h-auto w-full rounded-xl select-none"
-              draggable={false}
-            />
-          </figure>
-        ))}
-      </div>
+      {/* Carousel with scroll reveal entrance */}
+      <Reveal direction="up" duration={850} delay={120} distance={32}>
+        <div
+          ref={rail}
+          onScroll={updateActive}
+          tabIndex={0}
+          aria-label="Carousel"
+          className="relative flex items-center snap-x snap-mandatory gap-5 sm:gap-6 overflow-x-auto px-[10%] pt-6 pb-28 sm:pt-8 sm:pb-32 text-left [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
+        >
+          {slides.map((s, i) => (
+            <figure
+              key={s.src}
+              onClick={() => goTo(i)}
+              className={`group/slide my-2 w-[min(680px,80%)] sm:w-[min(700px,75%)] md:w-[min(720px,68%)] flex-none snap-center overflow-hidden rounded-xl transition-all duration-500 ease-out cursor-pointer ${
+                i === active
+                  ? "scale-100 opacity-100 shadow-[0_24px_50px_rgba(0,0,0,0.45)] ring-2 ring-white/40"
+                  : "scale-[.93] opacity-45 hover:opacity-75 hover:scale-[.96] shadow-xl"
+              }`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={s.src}
+                alt={s.alt}
+                className="block h-auto w-full rounded-xl select-none transition-transform duration-700 ease-out group-hover/slide:scale-[1.02]"
+                draggable={false}
+              />
+            </figure>
+          ))}
+        </div>
+      </Reveal>
 
       {/* Navigation Controls: Backward and Forward Icons Only */}
-      <div className="mt-4 sm:mt-5 flex items-center justify-center gap-4">
+      <Reveal direction="up" duration={700} delay={180} distance={16} className="-mt-16 sm:-mt-20 flex items-center justify-center gap-4 relative z-10">
         {/* Backward / Previous Button */}
         <button
           type="button"
           onClick={goPrev}
           disabled={active === 0}
           aria-label="Previous slide"
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-all hover:bg-white/30 hover:scale-105 active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer shadow-md"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/30 hover:scale-110 active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer shadow-lg hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)]"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -150,13 +174,13 @@ export default function ConversationsSection() {
           onClick={goNext}
           disabled={active === slides.length - 1}
           aria-label="Next slide"
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-all hover:bg-white/30 hover:scale-105 active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer shadow-md"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/30 hover:scale-110 active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer shadow-lg hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)]"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
           </svg>
         </button>
-      </div>
+      </Reveal>
     </section>
   );
 }

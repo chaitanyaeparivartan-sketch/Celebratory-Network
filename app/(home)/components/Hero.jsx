@@ -237,14 +237,29 @@ export default function Hero() {
                   <div className="mt-6 sm:mt-7 flex items-center justify-center md:justify-start gap-3.5 sm:gap-4 w-full md:w-auto">
                     <Link
                       href={slide.primaryBtn.href}
-                      className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-[#FF5E14] text-white font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] transition-all cursor-pointer"
+                      className="group inline-flex items-center justify-center gap-2.5 pl-6 pr-3.5 py-3 rounded-[14px] sm:rounded-2xl bg-[#FF5E14] text-white font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] transition-all cursor-pointer"
                     >
-                      {slide.primaryBtn.label}
+                      <span>{slide.primaryBtn.label}</span>
+                      <span className="grid h-[28px] w-[28px] place-items-center rounded-[8px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                      </span>
                     </Link>
 
                     <Link
                       href={slide.secondaryBtn.href}
-                      className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-[8px] bg-white text-[#171717] font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,255,255,0.25)] active:scale-[0.98] transition-all cursor-pointer"
+                      className="group inline-flex items-center justify-center px-7 py-3 rounded-[14px] sm:rounded-2xl bg-white text-[#171717] font-ppmori text-[14px] sm:text-[15px] font-semibold shadow-sm hover:bg-white/95 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,255,255,0.25)] active:scale-[0.98] transition-all cursor-pointer"
                     >
                       {slide.secondaryBtn.label}
                     </Link>

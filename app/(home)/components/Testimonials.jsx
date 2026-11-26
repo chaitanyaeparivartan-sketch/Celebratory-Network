@@ -206,7 +206,7 @@ function Tail() {
 
 function TestimonialItem({ title, role, initials, text, statement }) {
   return (
-    <div className="flex w-[min(540px,85vw)] flex-none snap-start flex-col group">
+    <div className="flex w-[min(540px,85vw)] flex-none snap-start flex-col group py-3">
       {/* Profile Header */}
       <div className="mb-6 flex items-center gap-3.5">
         <div className="grid h-[52px] w-[52px] flex-none place-items-center rounded-full bg-[#FFEAE0] font-['Inter',sans-serif] text-[15px] font-semibold text-[#FF5E14] shadow-sm transition-transform duration-300 group-hover:scale-105">
@@ -264,7 +264,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="overflow-x-hidden bg-[#f5f5f5] pb-14 pt-10 md:pb-20 md:pt-16">
+    <section className="overflow-x-hidden bg-[#f5f5f5] pb-12 pt-10 md:pb-16 md:pt-16">
       {/* Section Heading */}
       <Reveal direction="up" duration={700} className="mb-8 px-4 text-center md:mb-12">
         <div className="inline-flex items-center gap-1.5 font-['Inter',sans-serif] text-sm font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
@@ -280,7 +280,7 @@ export default function Testimonials() {
       <Reveal direction="up" duration={750} delay={100}>
         <div
           ref={trackRef}
-          className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-[max(16px,calc((100vw-1342px)/2))] pb-4 [scroll-padding-inline:max(16px,calc((100vw-1342px)/2))] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-[max(16px,calc((100vw-1342px)/2))] pt-2 pb-12 sm:pb-16 [scroll-padding-inline:max(16px,calc((100vw-1342px)/2))] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {TESTIMONIALS.map((item) => (
             <TestimonialItem key={item.id} {...item} />
@@ -289,7 +289,7 @@ export default function Testimonials() {
       </Reveal>
 
       {/* Navigation Arrows */}
-      <Reveal direction="up" duration={700} delay={180} className="mx-auto mt-6 flex max-w-[1342px] items-center justify-center px-4 sm:px-6">
+      <Reveal direction="up" duration={700} delay={180} className="mx-auto mt-2 sm:mt-4 flex max-w-[1342px] items-center justify-center px-4 sm:px-6">
         <div className="flex gap-2.5">
           {[
             { label: "Previous", dir: -1, d: "M15 18l-6-6 6-6" },

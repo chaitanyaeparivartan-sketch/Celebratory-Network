@@ -4,6 +4,7 @@ import Experiences from "./components/Experiences";
 import Focus from "./components/Focus";
 import WhatGroupsTeachUs from "./components/WhatGroupsTeachUs";
 import Gallery from "./components/Gallery";
+import CTA from "@/app/components/Common/CTA";
 
 export const metadata = {
   title: "Beyond Borders — OD and Leadership Internationally | Celebratory Network",
@@ -20,6 +21,7 @@ export default function InternationalPage() {
         <Focus />
         <WhatGroupsTeachUs />
         <Gallery />
+        <CTA />
       </main>
       <Footer />
     </div>

@@ -1,127 +1,262 @@
 "use client";
 
+import Reveal from "@/app/components/Common/Reveal";
+
 const OFFERINGS = [
   {
-    num: "01",
+    no: "01",
     title: "World Cafe",
     desc: "A simple, effective way to engage medium to large groups in focused discussion. Shared conversations surface the group’s collective intelligence and lead to creative solutions for complex topics.",
-    img: "/interventions/world-cafe.jpg",
-    pos: "object-center",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        className="w-6 h-6 stroke-[#FF5E14] group-hover:stroke-white transition-colors duration-400 fill-none stroke-[1.8] [stroke-linecap:round] [stroke-linejoin:round]"
-      >
-        <circle cx="12" cy="12" r="9" />
-        <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" />
-      </svg>
-    ),
+    image: "/interventions/world-cafe.jpg",
   },
   {
-    num: "02",
+    no: "02",
     title: "Appreciative Inquiry Summit",
     desc: "Brings the whole system into one room to explore what works, from the self and history to the future. Runs about 2 days with 50 to 1,000 people, shaping a new culture or strategic goals.",
-    img: "/interventions/ai-summit.jpg",
-    pos: "object-center",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        className="w-6 h-6 stroke-[#FF5E14] group-hover:stroke-white transition-colors duration-400 fill-none stroke-[1.8] [stroke-linecap:round] [stroke-linejoin:round]"
-      >
-        <rect x="4" y="4" width="16" height="16" rx="2" />
-        <path d="M8 9h8M8 13h8M8 17h5" />
-      </svg>
-    ),
+    image: "/interventions/ai-summit.jpg",
   },
   {
-    num: "03",
+    no: "03",
     title: "Future Search Conference",
     desc: "A 2.5-day conference designed in 1982 by Marvin Weisbord and Sandra Janoff. Up to 70 diverse people explore their shared past and present, then build a common vision.",
-    img: "/interventions/future-search.jpg",
-    pos: "object-center",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        className="w-6 h-6 stroke-[#FF5E14] group-hover:stroke-white transition-colors duration-400 fill-none stroke-[1.8] [stroke-linecap:round] [stroke-linejoin:round]"
-      >
-        <circle cx="10" cy="10" r="6" />
-        <path d="M15 15l5 5" />
-      </svg>
-    ),
+    image: "/interventions/future-search.jpg",
   },
   {
-    num: "04",
+    no: "04",
     title: "Open Space",
     desc: "Develops innovative solutions on a chosen subject with 30 to 1,000 people in 1 to 3 days, backed by thorough preparation and a strong post-event implementation process.",
-    img: "/interventions/open-space.jpg",
-    pos: "object-center",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        className="w-6 h-6 stroke-[#FF5E14] group-hover:stroke-white transition-colors duration-400 fill-none stroke-[1.8] [stroke-linecap:round] [stroke-linejoin:round]"
-      >
-        <circle cx="12" cy="6" r="3" />
-        <path d="M4 20v-4a8 8 0 0 1 16 0v4z" />
-      </svg>
-    ),
+    image: "/interventions/open-space.jpg",
   },
 ];
 
+const FALLBACK = "linear-gradient(135deg,#1d4a5c,#0f2f3d)";
+
+function OfferingCard({ no, title, desc, image }) {
+  const bg = `linear-gradient(rgba(18,18,18,.68),rgba(18,18,18,.68)), ${
+    image ? `url(${image})` : FALLBACK
+  }`;
+
+  return (
+    <article
+      tabIndex={0}
+      className="group relative isolate aspect-auto min-h-[160px] sm:min-h-[175px] md:aspect-[663/292] w-full cursor-pointer overflow-hidden rounded-[18px] sm:rounded-2xl bg-[#242424] md:bg-white [container-type:inline-size] border border-black/[0.04] shadow-[0_4px_24px_rgba(0,0,0,0.04)] outline-none transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_48px_rgba(0,0,0,0.12)] hover:border-[#FF5E14]/30"
+    >
+      {/* photo + dark overlay (visible on mobile, hover on desktop) */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-cover bg-center opacity-100 md:opacity-0 transition-opacity duration-700 md:group-hover:opacity-100 md:group-active:opacity-100 scale-100 md:group-hover:scale-105 transition-transform duration-700 ease-out"
+        style={{ backgroundImage: bg }}
+      />
+
+      {/* blurred orange shade (hidden on mobile, visible on desktop until hover) */}
+      <span
+        aria-hidden
+        className="hidden md:block pointer-events-none absolute -z-10 right-[4.5cqw] top-[-18cqw] h-[79.8cqw] w-[3.1cqw] rotate-[12.566deg] bg-[#FF5E14] opacity-30 blur-[6cqw] transition-opacity duration-500 group-hover:opacity-0"
+      />
+
+      {/* content: centered horizontally + vertically with fixed number column for rock-solid consistent alignment */}
+      <div className="relative md:absolute md:inset-0 flex items-center gap-4 sm:gap-6 md:gap-[5cqw] p-5 sm:p-6 md:px-[4cqw] md:py-0 w-full h-full">
+        {/* number column: fixed width so all card titles line up perfectly */}
+        <div className="flex-none shrink-0 w-[70px] sm:w-[88px] md:w-[33cqw] flex items-center justify-start">
+          <span
+            className="offering-card-no inline-block font-ppmori tabular-nums text-[48px] sm:text-[62px] md:text-[length:26.9cqw] font-semibold leading-[1.1] text-white md:text-[#FF5E14] will-change-transform"
+          >
+            {no}
+          </span>
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <h3 className="offering-card-title font-ppmori text-[17px] sm:text-[19px] md:text-[length:clamp(17px,3.7cqw,24px)] font-semibold leading-tight tracking-[-0.6px] sm:tracking-[-0.8px] text-white md:text-[#242424] transition-colors duration-300">
+            {title}
+          </h3>
+          <p className="offering-card-desc mt-1.5 sm:mt-[0.5em] font-inter text-[13px] sm:text-[13.5px] md:text-[length:clamp(13px,2.4cqw,16px)] font-normal leading-[1.5] sm:leading-[1.55] tracking-[-0.3px] text-white/95 md:text-[#525252] transition-colors duration-300">
+            {desc}
+          </p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default function Offerings() {
   return (
-    <section className="bg-[#F4F4F4] text-[#1a1a1a] px-6 py-24">
-      <div className="mx-auto max-w-[1240px]">
-        {/* Head */}
-        <div className="mx-auto mb-14 max-w-[720px] text-center">
-          <div className="flex items-center justify-center gap-2 text-[11px] font-semibold uppercase tracking-[.18em] text-[#1a1a1a]">
-            <span className="h-1.5 w-1.5 bg-[#FF5E14]" />
-            Our offerings
-          </div>
-          <h2 className="mt-4 font-['Schibsted_Grotesk',Inter,sans-serif] text-[clamp(32px,5vw,48px)] font-bold leading-[1.1] tracking-[-0.02em] text-[#1a1a1a]">
-            Four ways to bring the whole system into the room.
-          </h2>
+    <section className="bg-[#f5f5f5] text-[#1a1a1a] px-4 pb-16 pt-10 sm:px-6 md:pb-24 md:pt-16">
+      {/* Figma Animations Style Block */}
+      <style>{`
+        @property --offering-motion-translate-y {
+          syntax: '<number>';
+          initial-value: 0;
+          inherits: false;
+        }
+
+        @media (min-width: 768px) {
+          .offering-card-no {
+            --offering-motion-translate-y: 0;
+            transform: translate(0px, calc(var(--offering-motion-translate-y, 0) * 1px));
+            transform-origin: 0 0;
+            transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.2, 1), color 0.6s cubic-bezier(0.22, 0.8, 0.2, 1);
+          }
+
+          .group:hover .offering-card-no {
+            animation: kf_offering_motion_y 1.250123s linear forwards,
+                       kf_offering_color_num 1.250123s linear forwards;
+          }
+
+          .offering-card-title {
+            transition: color 0.6s cubic-bezier(0.22, 0.8, 0.2, 1);
+          }
+
+          .group:hover .offering-card-title {
+            animation: kf_offering_color_text 1.250123s linear forwards;
+          }
+
+          .offering-card-desc {
+            transition: color 0.6s cubic-bezier(0.22, 0.8, 0.2, 1);
+          }
+
+          .group:hover .offering-card-desc {
+            animation: kf_offering_color_text 1.250123s linear forwards;
+          }
+        }
+
+        @keyframes kf_offering_motion_y {
+          0% { --offering-motion-translate-y: 0; }
+          2.666% { --offering-motion-translate-y: 4.273274; }
+          5.333% { --offering-motion-translate-y: 14.119276; }
+          7.999% { --offering-motion-translate-y: 26.380674; }
+          10.666% { --offering-motion-translate-y: 39.1577; }
+          13.332% { --offering-motion-translate-y: 51.369572; }
+          15.998% { --offering-motion-translate-y: 62.458492; }
+          18.665% { --offering-motion-translate-y: 72.191849; }
+          21.331% { --offering-motion-translate-y: 80.531586; }
+          23.997% { --offering-motion-translate-y: 87.549355; }
+          26.664% { --offering-motion-translate-y: 93.37249; }
+          29.33% { --offering-motion-translate-y: 98.150543; }
+          31.997% { --offering-motion-translate-y: 102.035339; }
+          34.663% { --offering-motion-translate-y: 105.169891; }
+          37.329% { --offering-motion-translate-y: 107.682831; }
+          39.996% { --offering-motion-translate-y: 109.68634; }
+          42.662% { --offering-motion-translate-y: 111.27607; }
+          45.328% { --offering-motion-translate-y: 112.532211; }
+          47.995% { --offering-motion-translate-y: 113.521103; }
+          50.661% { --offering-motion-translate-y: 114.29705; }
+          53.328% { --offering-motion-translate-y: 114.904137; }
+          55.994% { --offering-motion-translate-y: 115.377853; }
+          58.66% { --offering-motion-translate-y: 115.746613; }
+          61.327% { --offering-motion-translate-y: 116.033043; }
+          63.993% { --offering-motion-translate-y: 116.255096; }
+          66.659% { --offering-motion-translate-y: 116.426918; }
+          69.326% { --offering-motion-translate-y: 116.559662; }
+          71.992% { --offering-motion-translate-y: 116.662048; }
+          74.659% { --offering-motion-translate-y: 116.740913; }
+          77.325% { --offering-motion-translate-y: 116.801567; }
+          79.991% { --offering-motion-translate-y: 116.848175; }
+          82.658% { --offering-motion-translate-y: 116.883934; }
+          85.324% { --offering-motion-translate-y: 116.911346; }
+          87.99% { --offering-motion-translate-y: 116.932343; }
+          90.657% { --offering-motion-translate-y: 116.948402; }
+          93.323% { --offering-motion-translate-y: 116.960686; }
+          95.99% { --offering-motion-translate-y: 116.970055; }
+          98.656% { --offering-motion-translate-y: 116.977211; }
+          100% { --offering-motion-translate-y: 117; }
+        }
+
+        @keyframes kf_offering_color_num {
+          0% { color: #FF5E14; }
+          2.666% { color: #FF641D; }
+          5.333% { color: #FF7130; }
+          7.999% { color: #FF8249; }
+          10.666% { color: #FF9463; }
+          13.332% { color: #FFA57B; }
+          15.998% { color: #FFB491; }
+          18.665% { color: #FFC1A5; }
+          21.331% { color: #FFCDB6; }
+          23.997% { color: #FFD6C4; }
+          26.664% { color: #FFDED0; }
+          29.33% { color: #FFE5D9; }
+          31.997% { color: #FFEAE1; }
+          34.663% { color: #FFEFE7; }
+          37.329% { color: #FFF2EC; }
+          39.996% { color: #FFF5F0; }
+          42.662% { color: #FFF7F4; }
+          45.328% { color: #FFF9F6; }
+          47.995% { color: #FFFAF8; }
+          50.661% { color: #FFFBFA; }
+          53.328% { color: #FFFCFB; }
+          55.994% { color: #FFFDFC; }
+          58.66% { color: #FFFDFC; }
+          61.327% { color: #FFFEFD; }
+          63.993% { color: #FFFEFE; }
+          66.659% { color: #FFFEFE; }
+          69.326% { color: #FFFEFE; }
+          71.992% { color: #FFFFFE; }
+          74.659% { color: #FFFFFE; }
+          77.325% { color: #FFF; }
+          100% { color: #FFF; }
+        }
+
+        @keyframes kf_offering_color_text {
+          0% { color: #242424; }
+          2.666% { color: #2C2C2C; }
+          5.333% { color: #3E3E3E; }
+          7.999% { color: #555; }
+          10.666% { color: #6D6D6D; }
+          13.332% { color: #848484; }
+          15.998% { color: #999; }
+          18.665% { color: #ABABAB; }
+          21.331% { color: #BBB; }
+          23.997% { color: #C8C8C8; }
+          26.664% { color: #D3D3D3; }
+          29.33% { color: #DCDCDC; }
+          31.997% { color: #E3E3E3; }
+          34.663% { color: #E9E9E9; }
+          37.329% { color: #EEE; }
+          39.996% { color: #F1F1F1; }
+          42.662% { color: #F4F4F4; }
+          45.328% { color: #F7F7F7; }
+          47.995% { color: #F8F8F8; }
+          50.661% { color: #FAFAFA; }
+          53.328% { color: #FBFBFB; }
+          55.994% { color: #FCFCFC; }
+          58.66% { color: #FDFDFD; }
+          61.327% { color: #FDFDFD; }
+          63.993% { color: #FEFEFE; }
+          66.659% { color: #FEFEFE; }
+          71.992% { color: #FEFEFE; }
+          74.659% { color: #FFF; }
+          100% { color: #FFF; }
+        }
+      `}</style>
+
+      {/* Head */}
+      <Reveal
+        direction="up"
+        duration={700}
+        className="mx-auto mb-10 sm:mb-14 max-w-[820px] text-center px-4"
+      >
+        <div className="inline-flex items-center gap-1.5 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
+          <span className="h-1.5 w-1.5 rounded-[1px] bg-[#FF5E14]" />
+          Our offerings
         </div>
+        <h2 className="mt-3.5 font-ppmori text-[clamp(30px,4.6vw,52px)] font-semibold leading-[1.05] sm:leading-[1.12] tracking-[-0.8px] text-[#242424]">
+          Four ways to bring the whole system into the room.
+        </h2>
+      </Reveal>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {OFFERINGS.map((item) => (
-            <article
-              key={item.num}
-              tabIndex={0}
-              className="group relative isolate overflow-hidden rounded-[24px] bg-[linear-gradient(115deg,#fff_60%,#FFF1EA_100%)] p-8 sm:p-10 min-h-[360px] flex flex-col justify-between border border-black/[0.04] shadow-[0_4px_20px_rgba(0,0,0,0.03)] outline-none transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#205A9D]"
-            >
-              {/* background image, shown on hover */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={item.img}
-                alt={item.title}
-                className={`absolute inset-0 -z-20 h-full w-full scale-[1.08] object-cover opacity-0 transition duration-[800ms] ease-out group-hover:scale-100 group-hover:opacity-100 group-focus-within:scale-100 group-focus-within:opacity-100 ${item.pos}`}
-              />
-
-              {/* dark overlay so text stays crisp and readable on hover */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0a1428]/55 via-[#0a1428]/75 to-[#0a1428]/92 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
-
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-['Schibsted_Grotesk',Inter,sans-serif] text-[72px] sm:text-[84px] font-bold leading-none tracking-[-0.03em] text-[#FF5E14] transition-colors duration-400 group-hover:text-white group-focus-within:text-white">
-                    {item.num}
-                  </span>
-                  <div className="w-12 h-12 rounded-[14px] bg-[#FFF1EA] group-hover:bg-white/15 transition-colors duration-400 flex items-center justify-center">
-                    {item.icon}
-                  </div>
-                </div>
-
-                <h3 className="mt-6 mb-3.5 font-['Schibsted_Grotesk',Inter,sans-serif] text-[22px] sm:text-[24px] font-semibold leading-[1.25] text-[#1a1a1a] transition-colors duration-400 group-hover:text-white group-focus-within:text-white">
-                  {item.title}
-                </h3>
-              </div>
-
-              <p className="mt-2 text-[14.5px] leading-[1.75] text-[#555555] transition-colors duration-400 group-hover:text-white/95 group-focus-within:text-white/95">
-                {item.desc}
-              </p>
-            </article>
-          ))}
-        </div>
+      {/* Cards Grid */}
+      <div className="mx-auto grid max-w-[1342px] grid-cols-1 justify-center gap-4 min-[861px]:grid-cols-2 max-[860px]:max-w-[663px]">
+        {OFFERINGS.map((item, index) => (
+          <Reveal
+            key={item.no}
+            direction="up"
+            delay={index * 70}
+            duration={650}
+            distance={24}
+            className="w-full"
+          >
+            <OfferingCard {...item} />
+          </Reveal>
+        ))}
       </div>
     </section>
   );

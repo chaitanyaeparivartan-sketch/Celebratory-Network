@@ -117,6 +117,7 @@ export default function ODHero({
   title = "Toward Organizational Development",
   lead = "We help organizations grow by understanding their structures, culture, relationships, leadership, and the invisible dynamics that shape how people work together.",
   bgImage = "/home/stats-image-2.webp",
+  mobileBgImage = null,
   cards = null,
 }) {
   const [chipsIn, setChipsIn] = useState(false);
@@ -160,7 +161,7 @@ export default function ODHero({
     }
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => setChipsIn(e.isIntersecting)),
-      { threshold: 0.45 }
+      { threshold: 0.1 }
     );
     io.observe(sticky);
     return () => io.disconnect();
@@ -168,6 +169,7 @@ export default function ODHero({
 
   /* Mouse parallax interaction */
   const handleMouseMove = (e) => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
     if (pRef.current > 0.05 || !stickyRef.current) return;
     const rect = stickyRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -181,13 +183,7 @@ export default function ODHero({
 
   /* Lock page scroll until bg image is fully added and expanded */
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      pRef.current = 1;
-      const sr = sticky.getBoundingClientRect();
-      const maxShift = sr.width < 640 ? Math.min(85, sr.height * 0.12) : Math.min(160, Math.max(70, sr.height * 0.17));
-      body.style.transform = `translate3d(0, ${maxShift}px, 0)`;
-      return;
-    }
+    const checkMobile = () => typeof window !== "undefined" && window.innerWidth < 768;
 
     const sec = secRef.current;
     const sticky = stickyRef.current;
@@ -198,6 +194,35 @@ export default function ODHero({
     const gThumb = thumbRefs.current[growIdx];
     const gPill = pillRefs.current[growIdx];
     if (!sec || !sticky || !grow || !veil || !body || !gThumb || !gPill) return;
+
+    const applyMobileState = () => {
+      pRef.current = 1;
+      goalRef.current = 1;
+      runningRef.current = false;
+      grow.style.left = "0px";
+      grow.style.top = "0px";
+      grow.style.width = "100%";
+      grow.style.height = "100%";
+      grow.style.borderRadius = "0px";
+      grow.style.opacity = "1";
+      veil.style.opacity = "0.75";
+      body.style.setProperty("--c", "255,255,255");
+      body.style.color = "rgb(255,255,255)";
+      body.style.setProperty("--accent-color", "rgb(255,255,255)");
+      body.style.transform = "none";
+    };
+
+    if (checkMobile()) {
+      applyMobileState();
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      pRef.current = 1;
+      const sr = sticky.getBoundingClientRect();
+      const maxShift = sr.width < 640 ? Math.min(85, sr.height * 0.12) : Math.min(160, Math.max(70, sr.height * 0.17));
+      body.style.transform = `translate3d(0, ${maxShift}px, 0)`;
+      return;
+    }
 
     const DUR = 0.85; // 850ms smooth transition
     let last = 0;
@@ -221,6 +246,11 @@ export default function ODHero({
     };
 
     const paint = (p) => {
+      if (checkMobile()) {
+        applyMobileState();
+        return;
+      }
+
       const e = ease(0, 1, p);
       const sr = sticky.getBoundingClientRect();
       const W = sr.width;
@@ -292,6 +322,7 @@ export default function ODHero({
     };
 
     const startAnim = (newGoal) => {
+      if (checkMobile()) return;
       goalRef.current = newGoal;
       if (pRef.current !== newGoal && !runningRef.current) {
         runningRef.current = true;
@@ -302,7 +333,9 @@ export default function ODHero({
     startAnimRef.current = startAnim;
 
     // Check initial scroll position
-    if (window.scrollY > 50) {
+    if (checkMobile()) {
+      applyMobileState();
+    } else if (window.scrollY > 50) {
       pRef.current = 1;
       goalRef.current = 1;
       paint(1);
@@ -312,8 +345,9 @@ export default function ODHero({
       paint(0);
     }
 
-    /* Wheel interception: NO page scroll until bg image is fully added */
+    /* Wheel interception: NO page scroll until bg image is fully added (Desktop only) */
     const onWheel = (e) => {
+      if (checkMobile()) return;
       const scrollY = window.scrollY;
 
       // When at top of page and background is NOT yet added
@@ -342,10 +376,12 @@ export default function ODHero({
     /* Touch interception for mobile */
     let touchStartY = 0;
     const onTouchStart = (e) => {
+      if (checkMobile()) return;
       touchStartY = e.touches[0].clientY;
     };
 
     const onTouchMove = (e) => {
+      if (checkMobile()) return;
       const scrollY = window.scrollY;
       const touchY = e.touches[0].clientY;
       const deltaY = touchStartY - touchY;
@@ -363,6 +399,7 @@ export default function ODHero({
 
     /* Keyboard navigation guard */
     const onKeyDown = (e) => {
+      if (checkMobile()) return;
       if (window.scrollY <= 5 && pRef.current < 1) {
         if (["ArrowDown", "PageDown", " "].includes(e.key)) {
           e.preventDefault();
@@ -373,6 +410,7 @@ export default function ODHero({
 
     /* Hard scroll guard: do not allow page to scroll away before bg is added */
     const onScroll = () => {
+      if (checkMobile()) return;
       if (pRef.current < 1 && window.scrollY > 0) {
         window.scrollTo(0, 0);
         startAnim(1);
@@ -380,8 +418,12 @@ export default function ODHero({
     };
 
     const handleResize = () => {
-      initialThumbRect = null;
-      paint(pRef.current);
+      if (checkMobile()) {
+        applyMobileState();
+      } else {
+        initialThumbRect = null;
+        paint(pRef.current);
+      }
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
@@ -407,7 +449,7 @@ export default function ODHero({
       id="intro"
       ref={secRef}
       aria-labelledby="intro-title"
-      className="relative h-screen bg-white text-center font-sans overflow-hidden motion-reduce:h-auto"
+      className="relative h-screen bg-white text-center font-sans overflow-hidden motion-reduce:h-auto max-md:h-[100dvh] max-md:min-h-0"
     >
       {/* Floating Keyframes Definition — subtle & organic floating physics */}
       <style>{`
@@ -451,18 +493,23 @@ export default function ODHero({
         {/* Background that the thumbnail grows into */}
         <div
           ref={growRef}
-          className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full overflow-hidden opacity-0 motion-reduce:opacity-100"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-hidden max-md:!opacity-100 max-md:!inset-0 max-md:!w-full max-md:!h-full max-md:!rounded-none opacity-0 motion-reduce:opacity-100"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={bgImage}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover object-center"
-          />
+          <picture className="absolute inset-0 h-full w-full">
+            {mobileBgImage && (
+              <source media="(max-width: 767px)" srcSet={mobileBgImage} />
+            )}
+            <img
+              src={bgImage}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover object-center max-md:object-top"
+            />
+          </picture>
           <div
             ref={veilRef}
-            className="absolute inset-0 opacity-0 [background:linear-gradient(0deg,rgba(0,0,0,.68)_0%,rgba(0,0,0,.25)_50%,rgba(0,0,0,.5)_100%)] motion-reduce:opacity-100"
+            className="absolute inset-0 max-md:!opacity-90 opacity-0 [background:linear-gradient(0deg,rgba(0,0,0,.85)_0%,rgba(0,0,0,.45)_55%,rgba(0,0,0,.35)_100%)] motion-reduce:opacity-100"
           />
         </div>
 
@@ -472,7 +519,7 @@ export default function ODHero({
         </div>
 
         {/* Floating cards around the screen matching Home Page */}
-        <div className="pointer-events-none absolute inset-0 max-w-[1783px] mx-auto z-[1] motion-reduce:hidden">
+        <div className="pointer-events-none absolute inset-0 max-w-[1783px] mx-auto z-[1] motion-reduce:hidden max-md:hidden">
           {activeCards.map((card, index) => {
             const parallaxX = mousePos.x * card.parallax.x;
             const parallaxY = mousePos.y * card.parallax.y;
@@ -544,19 +591,19 @@ export default function ODHero({
         {/* Copy */}
         <div
           ref={bodyRef}
-          className="relative z-[2] flex flex-1 flex-col items-center justify-center px-8 pb-10 text-[rgb(var(--c))] [--c:13,13,15] [--accent-color:#FF5E14] max-[560px]:px-5 motion-reduce:[--c:255,255,255] motion-reduce:[--accent-color:#ffffff] will-change-transform"
+          className="relative z-[2] flex flex-1 flex-col items-center justify-center max-md:justify-end px-4 sm:px-8 pb-12 sm:pb-10 max-md:pb-8 max-md:pt-16 text-center text-[rgb(var(--c))] [--c:13,13,15] [--accent-color:#FF5E14] max-md:!text-white max-md:[--c:255,255,255] max-md:[--accent-color:#ffffff] motion-reduce:[--c:255,255,255] motion-reduce:[--accent-color:#ffffff] will-change-transform"
         >
-          <p className="inline-flex items-center gap-2.5 text-[13px] sm:text-[14px] font-semibold tracking-[0.04em] uppercase font-['PP_Mori',sans-serif] mb-2 sm:mb-3 opacity-80">
-            <span className="w-2 h-2 rounded-[2px] bg-[#FF5E14] shrink-0" />
+          <p className="inline-flex items-center gap-2 text-[13px] sm:text-[14px] font-medium tracking-[0.24px] uppercase font-['Inter',sans-serif] mb-2 sm:mb-3 opacity-90 max-md:text-white/90">
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
             {badge}
           </p>
           <h2
             id="intro-title"
-            className="mx-auto mb-[22px] max-w-[16em] text-balance font-['PP_Mori',sans-serif] text-[clamp(34px,5.2vw,74px)] font-medium leading-[1.08] tracking-[-.035em] [&_span]:!text-[var(--accent-color)]"
+            className="mx-auto mb-3 sm:mb-[22px] max-w-[16em] text-balance font-['PP_Mori',sans-serif] text-[clamp(28px,6.8vw,44px)] sm:text-[clamp(34px,5.2vw,74px)] font-semibold leading-[1.08] tracking-[-.035em] text-center [&_span]:!text-[var(--accent-color)]"
           >
             {title}
           </h2>
-          <p className="mx-auto max-w-[44em] text-[clamp(15px,1.3vw,19px)] font-['PP_Mori',sans-serif] leading-[1.6] opacity-[.92]">
+          <p className="mx-auto max-w-[44em] text-[14px] sm:text-[15.5px] md:text-[16.5px] font-['Inter',sans-serif] font-normal leading-[1.6] opacity-[.92] max-md:text-white/90 text-center">
             {lead}
           </p>
         </div>

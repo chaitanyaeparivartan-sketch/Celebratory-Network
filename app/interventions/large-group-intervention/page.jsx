@@ -2,7 +2,7 @@ import Footer from "@/app/components/Common/Footer";
 import Hero from "./components/Hero";
 import WhereTheyHelp from "./components/WhereTheyHelp";
 import Offerings from "./components/Offerings";
-import CtaBanner from "./components/CtaBanner";
+import CTA from "@/app/components/Common/CTA";
 
 export const metadata = {
   title: "Large Group Interventions | Celebratory Network",
@@ -17,6 +17,7 @@ export default function LargeGroupInterventionPage() {
         <Hero />
         <WhereTheyHelp />
         <Offerings />
+        <CTA />
       </main>
       <Footer />
     </div>

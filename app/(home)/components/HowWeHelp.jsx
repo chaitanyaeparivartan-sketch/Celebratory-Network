@@ -106,10 +106,10 @@ const CARD_STYLES = {
 function PhotoStack({ image = "/home/howwehelp-image-1.webp" }) {
   return (
     <div className="relative mt-1.5 mr-auto mb-[26px] ml-1.5 aspect-[475/580] w-[76%]">
-      <i className="absolute inset-0 rounded-[22px] bg-[#d9d6d2] opacity-50 [transform:rotate(-5deg)_translate(-6px,4px)]" />
-      <i className="absolute inset-0 rounded-[22px] bg-[#d9d6d2] opacity-75 [transform:rotate(3deg)_translate(8px,2px)]" />
+      <i className="absolute inset-0 rounded-[8px] bg-[#d9d6d2] opacity-50 [transform:rotate(-5deg)_translate(-6px,4px)]" />
+      <i className="absolute inset-0 rounded-[8px] bg-[#d9d6d2] opacity-75 [transform:rotate(3deg)_translate(8px,2px)]" />
       <div
-        className="absolute inset-0 -rotate-1 rounded-[22px] bg-cover bg-center shadow-[0_14px_30px_-12px_rgba(0,0,0,0.35)]"
+        className="absolute inset-0 -rotate-1 rounded-[8px] bg-cover bg-center shadow-[0_14px_30px_-12px_rgba(0,0,0,0.35)]"
         style={{ backgroundImage: `url(${image})` }}
       />
     </div>
@@ -310,9 +310,24 @@ export default function HowWeHelp() {
                       <Link
                         href="/contact"
                         tabIndex={isOpen ? 0 : -1}
-                        className="mb-[22px] inline-block rounded-lg bg-[#FF5E14] px-5 py-3 text-sm font-medium text-white no-underline transition-all duration-300 hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(255,94,20,0.35)] active:scale-[0.98]"
+                        className="group mb-[22px] inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-3 py-2.5 font-ppmori text-[14px] sm:text-[15px] font-semibold text-white no-underline transition-all duration-300 hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98]"
                       >
-                        Contact us
+                        <span>Contact us</span>
+                        <span className="grid h-[28px] w-[28px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                          </svg>
+                        </span>
                       </Link>
                     </div>
                   </div>
@@ -443,7 +458,7 @@ export default function HowWeHelp() {
               <div
                 key={t.title}
                 style={style}
-                className="pointer-events-none absolute inset-0 origin-[50%_60%] overflow-hidden rounded-[clamp(20px,2vw,44px)] border-[clamp(4px,.4vw,10px)] border-white bg-neutral-300 shadow-[0_30px_60px_-18px_rgba(0,0,0,.35),0_6px_14px_rgba(0,0,0,.12)] transition-[transform,opacity,filter] duration-700 ease-[cubic-bezier(.22,.8,.24,1)] motion-reduce:transition-none"
+                className="pointer-events-none absolute inset-0 origin-[50%_60%] overflow-hidden rounded-[8px] border-[clamp(4px,.4vw,10px)] border-white bg-neutral-300 shadow-[0_30px_60px_-18px_rgba(0,0,0,.35),0_6px_14px_rgba(0,0,0,.12)] transition-[transform,opacity,filter] duration-700 ease-[cubic-bezier(.22,.8,.24,1)] motion-reduce:transition-none"
               >
                 {t.image ? (
                   <Image
@@ -489,9 +504,24 @@ export default function HowWeHelp() {
             </p>
             <Link
               href="/contact"
-              className="inline-block rounded-lg bg-[#FF5E14] px-[1.8em] py-[.85em] font-['Figtree',sans-serif] text-[clamp(14px,1vw,17px)] font-medium text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E04F0D] hover:shadow-[0_6px_18px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#1c1c1c] cursor-pointer"
+              className="group inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-6 pr-3.5 py-3 font-ppmori text-[14px] sm:text-[15px] xl:text-[16px] font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E04F0D] hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#1c1c1c] cursor-pointer"
             >
-              Contact us
+              <span>Contact us</span>
+              <span className="grid h-[28px] w-[28px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </span>
             </Link>
           </div>
         </div>
