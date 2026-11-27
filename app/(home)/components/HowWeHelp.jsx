@@ -120,6 +120,7 @@ export default function HowWeHelp() {
   const trackRef = useRef(null);
   const stackRef = useRef(null);
   const btnRefs = useRef([]);
+  const isHoveredRef = useRef(false);
 
   const [active, setActive] = useState(0); // drives list + cards
   const [shown, setShown] = useState(0); // drives right-hand text (fades between)
@@ -169,7 +170,9 @@ export default function HowWeHelp() {
         stepPx * (TOPICS.length - 1)
       );
       const raw = y / stepPx;
-      setActive(Math.min(TOPICS.length - 1, Math.round(raw)));
+      if (!isHoveredRef.current) {
+        setActive(Math.min(TOPICS.length - 1, Math.round(raw)));
+      }
       stackRef.current?.style.setProperty(
         "--t",
         (raw - Math.floor(raw)).toFixed(3)
@@ -397,6 +400,9 @@ export default function HowWeHelp() {
           role="tablist"
           aria-orientation="vertical"
           onKeyDown={onKeyDown}
+          onMouseLeave={() => {
+            isHoveredRef.current = false;
+          }}
           className="hidden sm:flex list-none flex-col items-start gap-2.5 sm:gap-3 md:gap-3.5 lg:gap-4 my-auto w-full"
         >
           {TOPICS.map((t, i) => {
@@ -409,7 +415,24 @@ export default function HowWeHelp() {
                   role="tab"
                   aria-selected={on}
                   tabIndex={on ? 0 : -1}
-                  onClick={() => goTo(i)}
+                  onMouseEnter={() => {
+                    isHoveredRef.current = true;
+                    setActive(i);
+                    if (pinned && trackRef.current) {
+                      const rect = trackRef.current.getBoundingClientRect();
+                      if (rect.top <= 2 || i === TOPICS.length - 1) {
+                        const top = rect.top + window.scrollY;
+                        window.scrollTo({
+                          top: top + i * window.innerHeight * STEP,
+                          behavior: "auto",
+                        });
+                      }
+                    }
+                  }}
+                  onClick={() => {
+                    isHoveredRef.current = false;
+                    goTo(i);
+                  }}
                   className={`group flex items-start gap-2.5 sm:gap-3 text-left cursor-pointer bg-transparent p-0 font-ppmori text-[18px] sm:text-[clamp(17px,1.35vw,23px)] xl:text-[25px] leading-[1.2] tracking-[-0.015em] transition-colors duration-300 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[6px] focus-visible:outline-[#FF5E14] ${
                     on
                       ? "font-semibold text-[#1c1c1c]"
