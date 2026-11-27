@@ -198,13 +198,6 @@ export default function WeGrow({ items = DEFAULT_ITEMS, buttonHref = "#network",
             journeys of organisations, communities and individuals.
           </span>
         </p>
-
-        <a
-          href={buttonHref}
-          className={`mt-7 inline-flex items-center justify-center gap-[10px] rounded-md bg-white px-[19px] py-[13px] font-ppmori text-[18px] font-semibold leading-5 text-[#FF5E14] no-underline ${focusRing}`}
-        >
-          Meet the network
-        </a>
       </div>
 
       {/* ---------- Carousel ---------- */}
