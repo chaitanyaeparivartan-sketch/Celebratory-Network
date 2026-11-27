@@ -184,30 +184,6 @@ export default function Gallery({
             ))}
           </div>
         </div>
-
-        {/* Interactive Navigation Controls */}
-        <div className="mt-2 flex items-center justify-center gap-3 relative z-20">
-          <button
-            type="button"
-            onClick={() => scrollManual(-1)}
-            aria-label="Scroll left"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EAEAEA] bg-white text-[#171717] shadow-sm transition-all duration-300 hover:border-[#FF5E14] hover:bg-[#FFEAE0] hover:text-[#FF5E14] hover:scale-110 active:scale-95 cursor-pointer"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.4} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollManual(1)}
-            aria-label="Scroll right"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EAEAEA] bg-white text-[#171717] shadow-sm transition-all duration-300 hover:border-[#FF5E14] hover:bg-[#FFEAE0] hover:text-[#FF5E14] hover:scale-110 active:scale-95 cursor-pointer"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.4} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
       </Reveal>
     </section>
   );

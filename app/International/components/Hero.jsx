@@ -113,7 +113,7 @@ export default function Hero(props) {
           Beyond <span className="text-[#FF5E14]">Borders.</span>
         </>
       }
-      lead="Our work internationally has been designed for leaders to work with the business realities of navigating complexity, uncertainty, and change. We work with leadership teams whose impact helps businesses realise their full potential. Celebratory Network has partnered with leaders on Personal Power in Leadership and Organization Development in the UK, US, Brazil, Berlin, Thailand, Malaysia, Vietnam…"
+      lead="Equipping leadership teams to navigate complexity, uncertainty, and change—across the UK, US, Brazil, Berlin, Thailand, Malaysia, and Vietnam."
       bgImage="/international/international-hero.webp"
       mobileBgImage="/international/international-hero-mobile.webp"
       cards={INTERNATIONAL_CARDS}

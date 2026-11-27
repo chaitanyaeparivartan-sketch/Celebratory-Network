@@ -449,7 +449,7 @@ export default function ODHero({
       id="intro"
       ref={secRef}
       aria-labelledby="intro-title"
-      className="relative h-screen bg-white text-center font-sans overflow-hidden motion-reduce:h-auto max-md:h-[100dvh] max-md:min-h-0"
+      className="relative h-screen bg-white text-center font-sans overflow-hidden max-md:overflow-visible max-md:z-30 motion-reduce:h-auto max-md:h-[60vh] max-md:min-h-0"
     >
       {/* Floating Keyframes Definition — subtle & organic floating physics */}
       <style>{`
@@ -488,7 +488,7 @@ export default function ODHero({
         ref={stickyRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="isolate relative flex h-full w-full flex-col overflow-hidden bg-white motion-reduce:min-h-screen"
+        className="isolate relative flex h-full w-full flex-col overflow-hidden max-md:overflow-visible bg-white motion-reduce:min-h-screen"
       >
         {/* Background that the thumbnail grows into */}
         <div
@@ -504,7 +504,7 @@ export default function ODHero({
               src={bgImage}
               alt=""
               aria-hidden="true"
-              className="absolute inset-0 h-full w-full object-cover object-center max-md:object-top"
+              className="absolute inset-0 h-full w-full object-cover object-center max-md:object-bottom"
             />
           </picture>
           <div
@@ -591,7 +591,7 @@ export default function ODHero({
         {/* Copy */}
         <div
           ref={bodyRef}
-          className="relative z-[2] flex flex-1 flex-col items-center justify-center max-md:justify-end px-4 sm:px-8 pb-12 sm:pb-10 max-md:pb-8 max-md:pt-16 text-center text-[rgb(var(--c))] [--c:13,13,15] [--accent-color:#FF5E14] max-md:!text-white max-md:[--c:255,255,255] max-md:[--accent-color:#ffffff] motion-reduce:[--c:255,255,255] motion-reduce:[--accent-color:#ffffff] will-change-transform"
+          className="relative z-[2] flex flex-1 flex-col items-center justify-center max-md:justify-end px-4 sm:px-8 pb-12 sm:pb-10 max-md:pb-6 max-md:pt-4 text-center text-[rgb(var(--c))] [--c:13,13,15] [--accent-color:#FF5E14] max-md:!text-white max-md:[--c:255,255,255] max-md:[--accent-color:#ffffff] motion-reduce:[--c:255,255,255] motion-reduce:[--accent-color:#ffffff] will-change-transform"
         >
           <p className="inline-flex items-center gap-2 text-[12px] sm:text-[13px] md:text-[14px] font-medium tracking-[0.24px] uppercase font-['Inter',sans-serif] mb-2 sm:mb-3 opacity-90 max-md:text-white/90">
             <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
