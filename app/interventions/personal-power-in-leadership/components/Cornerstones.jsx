@@ -7,19 +7,19 @@ const CORNERSTONES = [
     no: "01",
     title: "Trust in Self",
     desc: "The confidence to trust one’s own competence, intuition and inner voice — especially during uncertainty.",
-    image: "/interventions/trust-in-self.jpg",
+    image: "/interventions/trust-in-self.webp",
   },
   {
     no: "02",
     title: "Self Authority",
     desc: "The innate ability to take ownership of our choices, exercise agency and lead without seeking external validation.",
-    image: "/interventions/self-authority.jpg",
+    image: "/interventions/self-authority.webp",
   },
   {
     no: "03",
     title: "Courage",
     desc: "The willingness to challenge limiting beliefs, embrace uncertainty and step forward despite fear.",
-    image: "/interventions/courage.jpg",
+    image: "/interventions/courage.webp",
   },
 ];
 

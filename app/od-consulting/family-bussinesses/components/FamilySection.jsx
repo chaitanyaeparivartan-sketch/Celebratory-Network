@@ -12,8 +12,8 @@ import Reveal from "@/app/components/Common/Reveal";
 const ORANGE = "#FF5E14";
 
 const IMAGES = {
-  office: "/images/family-managed-business-meeting.jpg",
-  family: "/images/family-businesses-are-different.jpg",
+  office: "/images/family-managed-business-meeting.webp",
+  family: "/images/family-businesses-are-different.webp",
 };
 
 function Eyebrow({ children, light = false }) {

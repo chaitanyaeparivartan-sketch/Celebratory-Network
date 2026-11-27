@@ -5,9 +5,25 @@ import Services from "./components/Services";
 import DeiResources from "./components/DeiResources";
 
 export const metadata = {
-  title: "Diversity and Inclusion | Celebratory Network",
+  title: "Diversity, Equity & Inclusion (DEIB)",
   description:
-    "Building inclusive workplaces. We design, facilitate and implement DEIB solutions that connect culture, leadership, and diversity.",
+    "Build inclusive, high-performing workplaces. We design and implement DEIB assessments, leadership journeys, and culture-change programs.",
+  alternates: {
+    canonical: "/od-consulting/diversity-and-inclusion",
+  },
+  openGraph: {
+    title: "Diversity, Equity & Inclusion (DEIB) | Celebratory Network",
+    description:
+      "Build inclusive, high-performing workplaces. We design and implement DEIB assessments, leadership journeys, and culture-change programs.",
+    url: "/od-consulting/diversity-and-inclusion",
+    images: [{ url: "/diversity-inclusion/hero-banner.webp", alt: "Diversity, Equity & Inclusion" }],
+  },
+  twitter: {
+    title: "Diversity, Equity & Inclusion (DEIB) | Celebratory Network",
+    description:
+      "Build inclusive, high-performing workplaces. We design and implement DEIB assessments, leadership journeys, and culture-change programs.",
+    images: ["/diversity-inclusion/hero-banner.webp"],
+  },
 };
 
 export default function DiversityAndInclusionPage() {

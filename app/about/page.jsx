@@ -11,9 +11,25 @@ import Research from "./components/Research";
 import Gallery from "./components/Gallery";
 
 export const metadata = {
-  title: "About Us | Celebratory Network",
+  title: "About Us",
   description:
-    "Celebratory is about celebrating all moments of life. Every experience, every encounter, every challenge and every achievement shapes who we are today.",
+    "Discover Celebratory Network’s purpose, DNA, research, and team—helping leaders and organizations celebrate growth, resilience, and lasting cultural change.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Us | Celebratory Network",
+    description:
+      "Discover Celebratory Network’s purpose, DNA, research, and team—helping leaders and organizations celebrate growth, resilience, and lasting cultural change.",
+    url: "/about",
+    images: [{ url: "/about/hero-image-1.webp", alt: "About Celebratory Network" }],
+  },
+  twitter: {
+    title: "About Us | Celebratory Network",
+    description:
+      "Discover Celebratory Network’s purpose, DNA, research, and team—helping leaders and organizations celebrate growth, resilience, and lasting cultural change.",
+    images: ["/about/hero-image-1.webp"],
+  },
 };
 
 export default function AboutPage() {

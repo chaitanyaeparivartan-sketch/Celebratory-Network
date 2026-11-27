@@ -7,7 +7,7 @@ const cards = [
     num: "01",
     title: "The Self",
     sub: "Dynamic and reflex",
-    image: "/interventions/the-self.jpg",
+    image: "/interventions/the-self.webp",
     alt: "Young executive reflecting in an office glass window",
     pos: "object-[center_35%]",
     items: [
@@ -20,7 +20,7 @@ const cards = [
     num: "02",
     title: "The Role",
     sub: "The invisible contract",
-    image: "/interventions/the-role.jpg",
+    image: "/interventions/the-role.webp",
     alt: "Professional team collaborating in modern glass conference room",
     pos: "object-[center_45%]",
     items: [
@@ -40,7 +40,7 @@ const cards = [
     num: "03",
     title: "The System",
     sub: "Patterns vs. personalities",
-    image: "/interventions/the-system.jpg",
+    image: "/interventions/the-system.webp",
     alt: "Backlit executive boardroom meeting through glass partition",
     pos: "object-center",
     items: [
@@ -53,9 +53,9 @@ const cards = [
 
 export default function CoreRealities({ images }) {
   const imgFor = {
-    "01": images?.self || "/interventions/the-self.jpg",
-    "02": images?.role || "/interventions/the-role.jpg",
-    "03": images?.system || "/interventions/the-system.jpg",
+    "01": images?.self || "/interventions/the-self.webp",
+    "02": images?.role || "/interventions/the-role.webp",
+    "03": images?.system || "/interventions/the-system.webp",
   };
 
   return (

@@ -2,6 +2,16 @@ import Link from "next/link";
 import Header from "@/app/components/Common/Header";
 import Footer from "@/app/components/Common/Footer";
 
+export const metadata = {
+  title: "404 — Page Not Found",
+  description:
+    "The page you are looking for could not be found. Return to the Celebratory Network homepage or contact our team.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#141414] font-['Inter',system-ui,sans-serif]">

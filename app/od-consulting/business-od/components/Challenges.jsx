@@ -9,7 +9,7 @@ const SECTIONS_DATA = [
     tag: "WHAT WE SEE",
     title: "Across Organizations",
     reverse: false,
-    image: "/business-od/what-we-see.jpg",
+    image: "/business-od/what-we-see.webp",
     imageAlt: "Senior leader presenting strategy on a whiteboard to a cross-functional team in a meeting room",
     type: "points",
     points: [
@@ -40,7 +40,7 @@ const SECTIONS_DATA = [
     tag: "IMPACT OF SYMPTOMS",
     title: "On The System",
     reverse: true,
-    image: "/business-od/impact-of-symptoms.jpg",
+    image: "/business-od/impact-of-symptoms.webp",
     imageAlt: "Close-up of hands reviewing performance bar charts and organizational diagnostic reports",
     type: "bullets",
     bullets: [

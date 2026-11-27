@@ -17,8 +17,43 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Celebratory Network",
-  description: "Celebratory Network specializes in organization and leadership development, business transformation, family business consulting, and large group interventions. Led by CEO Payal Gupta, the firm offers customized culture-building initiatives—such as Happy Workplace Cultures (HWC) and women's leadership programs—to help organizations foster inclusive, high-performing, and sustainable workplace ecosystems.",
+  metadataBase: new URL("https://celebratorynetwork.com"),
+  title: {
+    default: "Celebratory Network | Organization Development & Culture Consulting",
+    template: "%s | Celebratory Network",
+  },
+  description:
+    "Celebratory Network specializes in organization and leadership development, business transformation, family business consulting, and large group interventions led by Payal Gupta.",
+  keywords: [
+    "Organization Development",
+    "OD Consulting",
+    "Leadership Development",
+    "Culture Transformation",
+    "Family Business Consulting",
+    "Diversity and Inclusion",
+    "Large Group Interventions",
+    "Celebratory Network",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Celebratory Network",
+    images: [
+      {
+        url: "/home/hero-image-1.webp",
+        width: 1200,
+        height: 630,
+        alt: "Celebratory Network",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {

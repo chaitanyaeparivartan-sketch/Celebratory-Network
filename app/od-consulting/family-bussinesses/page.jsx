@@ -6,9 +6,25 @@ import DifferenceSection from "./components/DifferenceSection";
 import OutcomesSection from "./components/OutcomesSection";
 
 export const metadata = {
-  title: "Family Businesses | Celebratory Network",
+  title: "Family Business Consulting",
   description:
-    "Transforming Family Managed Businesses into Future-Ready Organizations. We work at the intersection of Family, Business and Organization Development.",
+    "Transforming family-managed businesses into future-ready organizations through succession planning, leadership alignment, and professionalization.",
+  alternates: {
+    canonical: "/od-consulting/family-bussinesses",
+  },
+  openGraph: {
+    title: "Family Business Consulting | Celebratory Network",
+    description:
+      "Transforming family-managed businesses into future-ready organizations through succession planning, leadership alignment, and professionalization.",
+    url: "/od-consulting/family-bussinesses",
+    images: [{ url: "/family-businesses/hero-meeting.webp", alt: "Family Business Consulting" }],
+  },
+  twitter: {
+    title: "Family Business Consulting | Celebratory Network",
+    description:
+      "Transforming family-managed businesses into future-ready organizations through succession planning, leadership alignment, and professionalization.",
+    images: ["/family-businesses/hero-meeting.webp"],
+  },
 };
 
 export default function FamilyBusinessesPage() {

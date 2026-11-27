@@ -7,25 +7,25 @@ const FOCUS_ITEMS = [
     no: "01",
     title: "Human Centered",
     desc: "Leadership begins with self-awareness and inner alignment.",
-    image: "/international/focus/focus-1.jpg",
+    image: "/international/focus/focus-1.webp",
   },
   {
     no: "02",
     title: "Human Process",
     desc: "Real learning happens through experience, not instruction.",
-    image: "/international/focus/focus-2.jpg",
+    image: "/international/focus/focus-2.webp",
   },
   {
     no: "03",
     title: "Complex Adaptive Systems",
     desc: "Groups are living systems that continuously evolve and reorganize.",
-    image: "/international/focus/focus-3.jpg",
+    image: "/international/focus/focus-3.webp",
   },
   {
     no: "04",
     title: "Applied Behavioural Science",
     desc: "Evidence-informed approaches that create insight and enable lasting change.",
-    image: "/international/focus/focus-4.jpg",
+    image: "/international/focus/focus-4.webp",
   },
 ];
 

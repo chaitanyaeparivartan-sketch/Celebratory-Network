@@ -5,7 +5,7 @@ import ODHero from "@/app/od-consulting/components/ODHero";
 const DEIB_HERO_CARDS = [
   {
     id: 1,
-    avatar: "/diversity-inclusion/dei-leadership.jpg",
+    avatar: "/diversity-inclusion/dei-leadership.webp",
     line1: "Leadership & Sponsors: DEI",
     line2: "councils, vision & governance",
     bg: "bg-[#E5F2FF]",
@@ -19,7 +19,7 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 2,
-    avatar: "/diversity-inclusion/hero-banner.jpg",
+    avatar: "/diversity-inclusion/hero-banner.webp",
     line1: "Diversity Champions: active",
     line2: "internal inclusion networks",
     bg: "bg-[#E6FAE1]",
@@ -34,7 +34,7 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 3,
-    avatar: "/diversity-inclusion/dei-game-changer.jpg",
+    avatar: "/diversity-inclusion/dei-game-changer.webp",
     line1: "Empathy circles: structured",
     line2: "transformative dialogue",
     bg: "bg-[#F5EBFF]",
@@ -48,7 +48,7 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 4,
-    avatar: "/diversity-inclusion/dei-assessment.jpg",
+    avatar: "/diversity-inclusion/dei-assessment.webp",
     line1: "DEI Assessment: index,",
     line2: "audits & cultural diagnostics",
     bg: "bg-[#FFF0E6]",
@@ -62,7 +62,7 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 5,
-    avatar: "/diversity-inclusion/learning-journey.jpg",
+    avatar: "/diversity-inclusion/learning-journey.webp",
     line1: "Employee Resource Groups:",
     line2: "Gender, Generations & Pride",
     bg: "bg-[#FFF7ED]",
@@ -76,7 +76,7 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 6,
-    avatar: "/diversity-inclusion/learning-journey.jpg",
+    avatar: "/diversity-inclusion/learning-journey.webp",
     line1: "Inclusive Learning Journeys:",
     line2: "unconscious bias & allyship",
     bg: "bg-[#EFF6FF]",
@@ -90,7 +90,7 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 7,
-    avatar: "/diversity-inclusion/diversity-champions.jpg",
+    avatar: "/diversity-inclusion/diversity-champions.webp",
     line1: "Returntships & second careers:",
     line2: "intergenerational workplaces",
     bg: "bg-[#E6FAE1]",
@@ -115,8 +115,8 @@ export default function Hero(props) {
         </>
       }
       lead="Building workplaces where every voice is heard, every difference is valued and everyone can do their best work."
-      bgImage="/diversity-inclusion/hero-banner.jpg"
-      mobileBgImage="/diversity-inclusion/hero-banner-mobile.jpg"
+      bgImage="/diversity-inclusion/hero-banner.webp"
+      mobileBgImage="/diversity-inclusion/hero-banner-mobile.webp"
       cards={DEIB_HERO_CARDS}
       {...props}
     />

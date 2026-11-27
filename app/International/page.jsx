@@ -7,9 +7,25 @@ import Gallery from "./components/Gallery";
 import CTA from "@/app/components/Common/CTA";
 
 export const metadata = {
-  title: "Beyond Borders — OD and Leadership Internationally | Celebratory Network",
+  title: "Beyond Borders — International OD & Leadership",
   description:
-    "Our work internationally has been designed for leaders to work with the business realities of navigating complexity, uncertainty, and change in the UK, US, Brazil, Berlin, Thailand, Malaysia, Vietnam.",
+    "Cross-border leadership and organization development programs across the UK, US, Brazil, Germany, Thailand, Malaysia, and Vietnam.",
+  alternates: {
+    canonical: "/International",
+  },
+  openGraph: {
+    title: "Beyond Borders — International OD & Leadership | Celebratory Network",
+    description:
+      "Cross-border leadership and organization development programs across the UK, US, Brazil, Germany, Thailand, Malaysia, and Vietnam.",
+    url: "/International",
+    images: [{ url: "/international/international-hero.webp", alt: "Beyond Borders — International OD & Leadership" }],
+  },
+  twitter: {
+    title: "Beyond Borders — International OD & Leadership | Celebratory Network",
+    description:
+      "Cross-border leadership and organization development programs across the UK, US, Brazil, Germany, Thailand, Malaysia, and Vietnam.",
+    images: ["/international/international-hero.webp"],
+  },
 };
 
 export default function InternationalPage() {

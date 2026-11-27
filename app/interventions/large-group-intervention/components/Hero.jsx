@@ -5,7 +5,7 @@ import ODHero from "@/app/od-consulting/components/ODHero";
 const LARGE_GROUP_CARDS = [
   {
     id: 1,
-    avatar: "/interventions/world-cafe.jpg",
+    avatar: "/interventions/world-cafe.webp",
     line1: "World Cafe dialogue &",
     line2: "collective intelligence",
     bg: "bg-[#E5F2FF]",
@@ -19,7 +19,7 @@ const LARGE_GROUP_CARDS = [
   },
   {
     id: 2,
-    avatar: "/interventions/large-group-intervention-hero.jpg",
+    avatar: "/interventions/large-group-intervention-hero.webp",
     line1: "Bringing the whole system",
     line2: "together into the room",
     bg: "bg-[#E6FAE1]",
@@ -34,7 +34,7 @@ const LARGE_GROUP_CARDS = [
   },
   {
     id: 3,
-    avatar: "/interventions/ai-summit.jpg",
+    avatar: "/interventions/ai-summit.webp",
     line1: "Appreciative Inquiry Summit",
     line2: "discovering what works",
     bg: "bg-[#F5EBFF]",
@@ -48,7 +48,7 @@ const LARGE_GROUP_CARDS = [
   },
   {
     id: 4,
-    avatar: "/interventions/future-search.jpg",
+    avatar: "/interventions/future-search.webp",
     line1: "Future Search Conference",
     line2: "building a common vision",
     bg: "bg-[#FFF0E6]",
@@ -62,7 +62,7 @@ const LARGE_GROUP_CARDS = [
   },
   {
     id: 5,
-    avatar: "/interventions/open-space.jpg",
+    avatar: "/interventions/open-space.webp",
     line1: "Open Space Technology",
     line2: "self-managed innovation",
     bg: "bg-[#FFF7ED]",
@@ -76,7 +76,7 @@ const LARGE_GROUP_CARDS = [
   },
   {
     id: 6,
-    avatar: "/about/gallery-image-1.jpg",
+    avatar: "/about/gallery-image-1.webp",
     line1: "Inclusiveness & widespread",
     line2: "participation in change",
     bg: "bg-[#EFF6FF]",
@@ -90,7 +90,7 @@ const LARGE_GROUP_CARDS = [
   },
   {
     id: 7,
-    avatar: "/interventions/large-group-intervention-hero.jpg",
+    avatar: "/interventions/large-group-intervention-hero.webp",
     line1: "50 to 1,000+ participants",
     line2: "across OD initiatives",
     bg: "bg-[#E6FAE1]",
@@ -114,8 +114,8 @@ export default function Hero(props) {
         </>
       }
       lead="Large Group Interventions have been helpful to our clients when they wish to bring in inclusiveness and widespread participation in a change process. They have been an integral component in numerous organizational change efforts we have worked with, across a variety of organization development initiatives."
-      bgImage="/interventions/large-group-intervention-hero.jpg"
-      mobileBgImage="/interventions/large-group-intervention-hero-mobile.jpg"
+      bgImage="/interventions/large-group-intervention-hero.webp"
+      mobileBgImage="/interventions/large-group-intervention-hero-mobile.webp"
       cards={LARGE_GROUP_CARDS}
       {...props}
     />

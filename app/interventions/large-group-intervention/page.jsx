@@ -5,9 +5,25 @@ import Offerings from "./components/Offerings";
 import CTA from "@/app/components/Common/CTA";
 
 export const metadata = {
-  title: "Large Group Interventions | Celebratory Network",
+  title: "Large Group Interventions",
   description:
-    "Large Group Interventions bring inclusiveness and widespread participation into change processes across organizational development initiatives.",
+    "Drive organization-wide alignment and inclusive change through World Café, AI Summit, Future Search, and Open Space large group interventions.",
+  alternates: {
+    canonical: "/interventions/large-group-intervention",
+  },
+  openGraph: {
+    title: "Large Group Interventions | Celebratory Network",
+    description:
+      "Drive organization-wide alignment and inclusive change through World Café, AI Summit, Future Search, and Open Space large group interventions.",
+    url: "/interventions/large-group-intervention",
+    images: [{ url: "/interventions/large-group-intervention-hero.webp", alt: "Large Group Interventions" }],
+  },
+  twitter: {
+    title: "Large Group Interventions | Celebratory Network",
+    description:
+      "Drive organization-wide alignment and inclusive change through World Café, AI Summit, Future Search, and Open Space large group interventions.",
+    images: ["/interventions/large-group-intervention-hero.webp"],
+  },
 };
 
 export default function LargeGroupInterventionPage() {

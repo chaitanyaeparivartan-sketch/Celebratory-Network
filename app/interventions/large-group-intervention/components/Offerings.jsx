@@ -7,25 +7,25 @@ const OFFERINGS = [
     no: "01",
     title: "World Cafe",
     desc: "A simple, effective way to engage medium to large groups in focused discussion. Shared conversations surface the group’s collective intelligence and lead to creative solutions for complex topics.",
-    image: "/interventions/world-cafe.jpg",
+    image: "/interventions/world-cafe.webp",
   },
   {
     no: "02",
     title: "Appreciative Inquiry Summit",
     desc: "Brings the whole system into one room to explore what works, from the self and history to the future. Runs about 2 days with 50 to 1,000 people, shaping a new culture or strategic goals.",
-    image: "/interventions/ai-summit.jpg",
+    image: "/interventions/ai-summit.webp",
   },
   {
     no: "03",
     title: "Future Search Conference",
     desc: "A 2.5-day conference designed in 1982 by Marvin Weisbord and Sandra Janoff. Up to 70 diverse people explore their shared past and present, then build a common vision.",
-    image: "/interventions/future-search.jpg",
+    image: "/interventions/future-search.webp",
   },
   {
     no: "04",
     title: "Open Space",
     desc: "Develops innovative solutions on a chosen subject with 30 to 1,000 people in 1 to 3 days, backed by thorough preparation and a strong post-event implementation process.",
-    image: "/interventions/open-space.jpg",
+    image: "/interventions/open-space.webp",
   },
 ];
 

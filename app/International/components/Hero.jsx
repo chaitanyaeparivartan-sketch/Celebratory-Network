@@ -5,7 +5,7 @@ import ODHero from "@/app/od-consulting/components/ODHero";
 const INTERNATIONAL_CARDS = [
   {
     id: 1,
-    avatar: "/international/personal-power-bulb.jpg",
+    avatar: "/international/personal-power-bulb.webp",
     line1: "Personal Power in",
     line2: "Leadership for women leaders",
     bg: "bg-[#E5F2FF]",
@@ -19,7 +19,7 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 2,
-    avatar: "/international/international-hero.jpg",
+    avatar: "/international/international-hero.webp",
     line1: "Leading with Shakti in",
     line2: "complex adaptive systems",
     bg: "bg-[#E6FAE1]",
@@ -34,7 +34,7 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 3,
-    avatar: "/international/focus/focus-1.jpg",
+    avatar: "/international/focus/focus-1.webp",
     line1: "Human-centered inner",
     line2: "alignment & self-awareness",
     bg: "bg-[#F5EBFF]",
@@ -48,7 +48,7 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 4,
-    avatar: "/international/focus/focus-2.jpg",
+    avatar: "/international/focus/focus-2.webp",
     line1: "Human process & real",
     line2: "experiential learning labs",
     bg: "bg-[#FFF0E6]",
@@ -62,7 +62,7 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 5,
-    avatar: "/international/focus/focus-3.jpg",
+    avatar: "/international/focus/focus-3.webp",
     line1: "Navigating uncertainty &",
     line2: "complexity beyond borders",
     bg: "bg-[#FFF7ED]",
@@ -76,7 +76,7 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 6,
-    avatar: "/international/focus/focus-4.jpg",
+    avatar: "/international/focus/focus-4.webp",
     line1: "Applied behavioural science",
     line2: "for lasting system change",
     bg: "bg-[#EFF6FF]",
@@ -90,7 +90,7 @@ const INTERNATIONAL_CARDS = [
   },
   {
     id: 7,
-    avatar: "/international/leading-with-shakti.jpg",
+    avatar: "/international/leading-with-shakti.webp",
     line1: "Collective intelligence &",
     line2: "authentic group emergence",
     bg: "bg-[#E6FAE1]",
@@ -114,8 +114,8 @@ export default function Hero(props) {
         </>
       }
       lead="Our work internationally has been designed for leaders to work with the business realities of navigating complexity, uncertainty, and change. We work with leadership teams whose impact helps businesses realise their full potential. Celebratory Network has partnered with leaders on Personal Power in Leadership and Organization Development in the UK, US, Brazil, Berlin, Thailand, Malaysia, Vietnam…"
-      bgImage="/international/international-hero.jpg"
-      mobileBgImage="/international/international-hero-mobile.jpg"
+      bgImage="/international/international-hero.webp"
+      mobileBgImage="/international/international-hero-mobile.webp"
       cards={INTERNATIONAL_CARDS}
       {...props}
     />

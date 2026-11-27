@@ -22,7 +22,7 @@ const SERVICES = [
       "Cultural Assessment",
       "Leadership Readiness Dialogues",
     ],
-    image: "/diversity-inclusion/dei-assessment.jpg",
+    image: "/diversity-inclusion/dei-assessment.webp",
   },
   {
     title: "DEI for Leadership and Sponsors",
@@ -34,7 +34,7 @@ const SERVICES = [
       "DEI Strategy",
       "Setting up DEI Council",
     ],
-    image: "/diversity-inclusion/dei-leadership.jpg",
+    image: "/diversity-inclusion/dei-leadership.webp",
   },
   {
     title: "Diversity Champions",
@@ -46,7 +46,7 @@ const SERVICES = [
       "Skill building",
       "Actioning DEI Pillars",
     ],
-    image: "/diversity-inclusion/diversity-champions.jpg",
+    image: "/diversity-inclusion/diversity-champions.webp",
   },
   {
     title: "Learning Journey",
@@ -61,7 +61,7 @@ const SERVICES = [
       "Gender - Dialogues",
       "Generational Dialogues - Ageism",
     ],
-    image: "/diversity-inclusion/learning-journey.jpg",
+    image: "/diversity-inclusion/learning-journey.webp",
   },
   {
     title: "DEI Game Changer",
@@ -71,7 +71,7 @@ const SERVICES = [
       "ERG Design and Implementation - Gender, Generations etc.",
       "Empathy Circles",
     ],
-    image: "/diversity-inclusion/dei-game-changer.jpg",
+    image: "/diversity-inclusion/dei-game-changer.webp",
   },
 ];
 
@@ -105,7 +105,7 @@ const CARD_STYLES = {
   },
 };
 
-function PhotoStack({ image = "/diversity-inclusion/dei-assessment.jpg" }) {
+function PhotoStack({ image = "/diversity-inclusion/dei-assessment.webp" }) {
   return (
     <div className="relative my-5 mx-auto sm:mr-auto sm:ml-2 aspect-[4/5] sm:aspect-[475/580] w-[calc(100%-16px)] max-w-[320px] sm:max-w-[340px]">
       <i className="absolute inset-0 rounded-[8px] bg-[#d9d6d2] opacity-50 [transform:rotate(-4deg)_translate(-4px,3px)]" />

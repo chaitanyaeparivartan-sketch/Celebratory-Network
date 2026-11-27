@@ -9,9 +9,27 @@ import HowWeHelp from "./components/HowWeHelp";
 import Testimonials from "./components/Testimonials";
 
 export const metadata = {
-  title: "Celebratory Network | Organization Development & Culture Consulting",
+  title: {
+    absolute: "Celebratory Network | Organization Development & Culture Consulting",
+  },
   description:
-    "We design, facilitate and implement solutions to achieve desired Organizational Culture, aligning leadership and transformation.",
+    "We design, facilitate, and implement organization development and culture transformation solutions that align leadership, people, and strategy.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Celebratory Network | Organization Development & Culture Consulting",
+    description:
+      "We design, facilitate, and implement organization development and culture transformation solutions that align leadership, people, and strategy.",
+    url: "/",
+    images: [{ url: "/home/hero-image-1.webp", alt: "Celebratory Network" }],
+  },
+  twitter: {
+    title: "Celebratory Network | Organization Development & Culture Consulting",
+    description:
+      "We design, facilitate, and implement organization development and culture transformation solutions that align leadership, people, and strategy.",
+    images: ["/home/hero-image-1.webp"],
+  },
 };
 
 export default function Home() {

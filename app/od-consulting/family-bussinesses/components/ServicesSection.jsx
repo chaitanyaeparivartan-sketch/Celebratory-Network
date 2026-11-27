@@ -17,37 +17,37 @@ const DEFAULT_SERVICES = [
     title: "Family Business Health Check",
     description:
       "Understand the underlying patterns influencing business performance, leadership effectiveness, relationships and organizational culture before deciding where change is required.",
-    image: "/images/services/family-business-health-check.jpg",
+    image: "/images/services/family-business-health-check.webp",
   },
   {
     title: "Familyness in Business",
     description:
       "Help family strengths become organisational strengths while reducing patterns that unintentionally limit growth.",
-    image: "/images/services/familyness-in-business.jpg",
+    image: "/images/services/familyness-in-business.webp",
   },
   {
     title: "Professionalizing the Organization",
     description:
       "Support the transition from founder-led, person-dependent ways of working to role clarity, accountability, systems and professional management.",
-    image: "/images/services/professionalizing-the-organization.jpg",
+    image: "/images/services/professionalizing-the-organization.webp",
   },
   {
     title: "Leadership Alignment",
     description:
       "Create shared understanding between family members, professionals and key leaders around purpose, decisions and direction.",
-    image: "/images/services/leadership-alignment.jpg",
+    image: "/images/services/leadership-alignment.webp",
   },
   {
     title: "Next Generation Leadership",
     description:
       "Prepare future leaders to develop self-worth, business capability and leadership identity before they inherit responsibility.",
-    image: "/images/services/next-generation-leadership.jpg",
+    image: "/images/services/next-generation-leadership.webp",
   },
   {
     title: "Succession Planning",
     description:
       "Facilitate thoughtful, fair and sustainable succession processes that preserve both business continuity and family relationships.",
-    image: "/images/services/succession-planning.jpg",
+    image: "/images/services/succession-planning.webp",
   },
 ];
 

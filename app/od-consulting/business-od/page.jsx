@@ -9,9 +9,25 @@ import Info from "./components/Info";
 import Impact from "./components/Impact";
 
 export const metadata = {
-  title: "Business OD | Celebratory Network",
+  title: "Business OD Consulting",
   description:
-    "We design, facilitate and implement solutions to achieve the desired Organizational Culture. Aligning strategy, people, and culture for lasting transformation.",
+    "Align strategy, leadership, and culture for lasting business transformation. Explore our Business OD consulting, diagnostics, and culture-building approach.",
+  alternates: {
+    canonical: "/od-consulting/business-od",
+  },
+  openGraph: {
+    title: "Business OD Consulting | Celebratory Network",
+    description:
+      "Align strategy, leadership, and culture for lasting business transformation. Explore our Business OD consulting, diagnostics, and culture-building approach.",
+    url: "/od-consulting/business-od",
+    images: [{ url: "/business-od/hero-banner.webp", alt: "Business OD Consulting" }],
+  },
+  twitter: {
+    title: "Business OD Consulting | Celebratory Network",
+    description:
+      "Align strategy, leadership, and culture for lasting business transformation. Explore our Business OD consulting, diagnostics, and culture-building approach.",
+    images: ["/business-od/hero-banner.webp"],
+  },
 };
 
 export default function BusinessODPage() {

@@ -5,7 +5,7 @@ import ODHero from "@/app/od-consulting/components/ODHero";
 const PERSONAL_POWER_CARDS = [
   {
     id: 1,
-    avatar: "/interventions/trust-in-self.jpg",
+    avatar: "/interventions/trust-in-self.webp",
     line1: "Trust in Self &",
     line2: "inner competence",
     bg: "bg-[#E5F2FF]",
@@ -19,7 +19,7 @@ const PERSONAL_POWER_CARDS = [
   },
   {
     id: 2,
-    avatar: "/interventions/personal-power-in-leadership-hero.jpg",
+    avatar: "/interventions/personal-power-in-leadership-hero.webp",
     line1: "Lead from Within &",
     line2: "lead with authentic power",
     bg: "bg-[#E6FAE1]",
@@ -34,7 +34,7 @@ const PERSONAL_POWER_CARDS = [
   },
   {
     id: 3,
-    avatar: "/interventions/self-authority.jpg",
+    avatar: "/interventions/self-authority.webp",
     line1: "Self Authority &",
     line2: "agency without validation",
     bg: "bg-[#F5EBFF]",
@@ -48,7 +48,7 @@ const PERSONAL_POWER_CARDS = [
   },
   {
     id: 4,
-    avatar: "/interventions/courage.jpg",
+    avatar: "/interventions/courage.webp",
     line1: "Courage to step forward",
     line2: "and challenge limiting beliefs",
     bg: "bg-[#FFF0E6]",
@@ -62,7 +62,7 @@ const PERSONAL_POWER_CARDS = [
   },
   {
     id: 5,
-    avatar: "/international/personal-power-bulb.jpg",
+    avatar: "/international/personal-power-bulb.webp",
     line1: "Overcoming self-doubt &",
     line2: "invisible leadership barriers",
     bg: "bg-[#FFF7ED]",
@@ -76,7 +76,7 @@ const PERSONAL_POWER_CARDS = [
   },
   {
     id: 6,
-    avatar: "/home/client-woman-smile.jpg",
+    avatar: "/home/client-woman-smile.webp",
     line1: "Strengthen within to",
     line2: "transform everything around",
     bg: "bg-[#EFF6FF]",
@@ -90,7 +90,7 @@ const PERSONAL_POWER_CARDS = [
   },
   {
     id: 7,
-    avatar: "/interventions/personal-power-in-leadership-hero.jpg",
+    avatar: "/interventions/personal-power-in-leadership-hero.webp",
     line1: "Signature research-based",
     line2: "journey for women leaders",
     bg: "bg-[#E6FAE1]",
@@ -114,8 +114,8 @@ export default function Hero(props) {
         </>
       }
       lead="Lead from Within. Lead with Power. Personal Power in Leadership (PPL) is Celebratory Network’s signature, research-based leadership journey that helps women discover the inner capacities that shape authentic leadership."
-      bgImage="/interventions/personal-power-in-leadership-hero.jpg"
-      mobileBgImage="/interventions/personal-power-in-leadership-hero-mobile.jpg"
+      bgImage="/interventions/personal-power-in-leadership-hero.webp"
+      mobileBgImage="/interventions/personal-power-in-leadership-hero-mobile.webp"
       cards={PERSONAL_POWER_CARDS}
       {...props}
     />

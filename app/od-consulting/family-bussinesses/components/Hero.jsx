@@ -5,7 +5,7 @@ import ODHero from "@/app/od-consulting/components/ODHero";
 const FAMILY_BUSINESS_CARDS = [
   {
     id: 1,
-    avatar: "/images/family-managed-business-meeting.jpg",
+    avatar: "/images/family-managed-business-meeting.webp",
     line1: "Two systems. One future:",
     line2: "aligning family & business",
     bg: "bg-[#E5F2FF]",
@@ -19,7 +19,7 @@ const FAMILY_BUSINESS_CARDS = [
   },
   {
     id: 2,
-    avatar: "/family-businesses/hero-meeting.jpg",
+    avatar: "/family-businesses/hero-meeting.webp",
     line1: "Family Business Health Check:",
     line2: "culture, roles & dynamics",
     bg: "bg-[#E6FAE1]",
@@ -34,7 +34,7 @@ const FAMILY_BUSINESS_CARDS = [
   },
   {
     id: 3,
-    avatar: "/images/services/professionalizing-the-organization.jpg",
+    avatar: "/images/services/professionalizing-the-organization.webp",
     line1: "Professionalizing operations:",
     line2: "role clarity & accountability",
     bg: "bg-[#F5EBFF]",
@@ -48,7 +48,7 @@ const FAMILY_BUSINESS_CARDS = [
   },
   {
     id: 4,
-    avatar: "/images/services/leadership-alignment.jpg",
+    avatar: "/images/services/leadership-alignment.webp",
     line1: "Leadership Alignment: uniting",
     line2: "family & professional leaders",
     bg: "bg-[#FFF0E6]",
@@ -62,7 +62,7 @@ const FAMILY_BUSINESS_CARDS = [
   },
   {
     id: 5,
-    avatar: "/images/services/next-generation-leadership.jpg",
+    avatar: "/images/services/next-generation-leadership.webp",
     line1: "Next Generation Leadership:",
     line2: "capability & steward identity",
     bg: "bg-[#FFF7ED]",
@@ -76,7 +76,7 @@ const FAMILY_BUSINESS_CARDS = [
   },
   {
     id: 6,
-    avatar: "/images/services/succession-planning.jpg",
+    avatar: "/images/services/succession-planning.webp",
     line1: "Succession Planning: fair",
     line2: "generational transitions",
     bg: "bg-[#EFF6FF]",
@@ -90,7 +90,7 @@ const FAMILY_BUSINESS_CARDS = [
   },
   {
     id: 7,
-    avatar: "/images/services/familyness-in-business.jpg",
+    avatar: "/images/services/familyness-in-business.webp",
     line1: "Familyness in Business:",
     line2: "turning heritage into strength",
     bg: "bg-[#E6FAE1]",
@@ -115,8 +115,8 @@ export default function Hero(props) {
         </>
       }
       lead="Working at the intersection of Family, Business and Organization Development to build future-ready organizations across generations."
-      bgImage="/family-businesses/hero-meeting.jpg"
-      mobileBgImage="/family-businesses/hero-meeting.jpg"
+      bgImage="/family-businesses/hero-meeting.webp"
+      mobileBgImage="/family-businesses/hero-meeting.webp"
       cards={FAMILY_BUSINESS_CARDS}
       {...props}
     />

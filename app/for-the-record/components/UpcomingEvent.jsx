@@ -27,7 +27,7 @@ const EVENT = {
 const fontMori = "font-['PP_Mori',var(--font-geist-sans),sans-serif]";
 const fontInter = "font-['Inter',var(--font-geist-sans),sans-serif]";
 
-export default function UpcomingEvent({ poster = "/event-poster.jpg" }) {
+export default function UpcomingEvent({ poster = "/event-poster.webp" }) {
   return (
     <section
       aria-labelledby="ev-title"

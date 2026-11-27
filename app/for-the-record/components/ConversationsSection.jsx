@@ -5,31 +5,31 @@ import Reveal from "@/app/components/Common/Reveal";
 
 const slides = [
   {
-    src: "/images/conversations/01-cover.jpg",
+    src: "/images/conversations/01-cover.webp",
     alt: "The conversations underneath the conversation",
   },
   {
-    src: "/images/conversations/02-two-conversations.jpg",
+    src: "/images/conversations/02-two-conversations.webp",
     alt: "There are often two conversations happening at the same time in an organization",
   },
   {
-    src: "/images/conversations/03-we-can-hear.jpg",
+    src: "/images/conversations/03-we-can-hear.webp",
     alt: "The conversation we can hear",
   },
   {
-    src: "/images/conversations/04-underneath.jpg",
+    src: "/images/conversations/04-underneath.webp",
     alt: "And then there is the conversation underneath",
   },
   {
-    src: "/images/conversations/05-two-levels.jpg",
+    src: "/images/conversations/05-two-levels.webp",
     alt: "Two different levels of conversation",
   },
   {
-    src: "/images/conversations/06-real-work.jpg",
+    src: "/images/conversations/06-real-work.webp",
     alt: "Sometimes that is where real work begins",
   },
   {
-    src: "/images/conversations/07-contact.jpg",
+    src: "/images/conversations/07-contact.webp",
     alt: "Contact Celebratory Network",
   },
 ];

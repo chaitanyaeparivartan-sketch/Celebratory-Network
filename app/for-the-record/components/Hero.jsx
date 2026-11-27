@@ -19,7 +19,7 @@ const RECORD_CARDS = [
   },
   {
     id: 2,
-    avatar: "/for-the-record/for-the-record-hero.jpg",
+    avatar: "/for-the-record/for-the-record-hero.webp",
     line1: "Client Reflections",
     line2: "Lessons from field engagements",
     bg: "bg-[#E6FAE1]",
@@ -34,7 +34,7 @@ const RECORD_CARDS = [
   },
   {
     id: 3,
-    avatar: "/images/family-managed-business-meeting.jpg",
+    avatar: "/images/family-managed-business-meeting.webp",
     line1: "Family Business & Legacy",
     line2: "Continuity across generations",
     bg: "bg-[#F5EBFF]",
@@ -114,8 +114,8 @@ export default function Hero(props) {
         </>
       }
       lead="A curated library of honest perspectives, timeless lessons, and deeper insights drawn from our client engagements - exploring the human dynamics that shape lasting change."
-      bgImage="/for-the-record/for-the-record-hero.jpg"
-      mobileBgImage="/for-the-record/for-the-record-hero-mobile.jpg"
+      bgImage="/for-the-record/for-the-record-hero.webp"
+      mobileBgImage="/for-the-record/for-the-record-hero-mobile.webp"
       cards={RECORD_CARDS}
       {...props}
     />

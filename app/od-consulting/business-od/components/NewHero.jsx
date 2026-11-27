@@ -19,7 +19,7 @@ const BUSINESS_OD_CARDS = [
   },
   {
     id: 2,
-    avatar: "/business-od/hero-banner.jpg",
+    avatar: "/business-od/hero-banner.webp",
     line1: "Culture Transformation:",
     line2: "aligning strategy & behaviour",
     bg: "bg-[#E6FAE1]",
@@ -48,7 +48,7 @@ const BUSINESS_OD_CARDS = [
   },
   {
     id: 4,
-    avatar: "/business-od/hero-team-hands.jpg",
+    avatar: "/business-od/hero-team-hands.webp",
     line1: "Cross-Functional Silos",
     line2: "to enterprise collaboration",
     bg: "bg-[#FFF0E6]",
@@ -62,7 +62,7 @@ const BUSINESS_OD_CARDS = [
   },
   {
     id: 5,
-    avatar: "/business-od/hero-building.jpg",
+    avatar: "/business-od/hero-building.webp",
     line1: "Leadership Effectiveness:",
     line2: "navigating scale & complexity",
     bg: "bg-[#FFF7ED]",
@@ -76,7 +76,7 @@ const BUSINESS_OD_CARDS = [
   },
   {
     id: 6,
-    avatar: "/business-od/newhero-image-1.jpg",
+    avatar: "/business-od/newhero-image-1.webp",
     line1: "Evidence-Based Culture",
     line2: "diagnostics & performance",
     bg: "bg-[#EFF6FF]",
@@ -90,7 +90,7 @@ const BUSINESS_OD_CARDS = [
   },
   {
     id: 7,
-    avatar: "/business-od/business-od-cityscape-4k.jpg",
+    avatar: "/business-od/business-od-cityscape-4k.webp",
     line1: "Succession & Transitions:",
     line2: "continuity & sustainability",
     bg: "bg-[#E6FAE1]",
@@ -110,8 +110,8 @@ export default function NewHero(props) {
       badge="Our Perspective"
       title="Toward Organizational Development"
       lead="We help organizations grow by understanding their structures, culture, relationships, leadership, and the invisible dynamics that shape how people work together."
-      bgImage="/business-od/hero-banner.jpg"
-      mobileBgImage="/business-od/hero-banner-mobile.jpg"
+      bgImage="/business-od/hero-banner.webp"
+      mobileBgImage="/business-od/hero-banner-mobile.webp"
       cards={BUSINESS_OD_CARDS}
       {...props}
     />

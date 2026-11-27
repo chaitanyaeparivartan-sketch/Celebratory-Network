@@ -5,7 +5,7 @@ import ODHero from "@/app/od-consulting/components/ODHero";
 const SELF_ROLE_SYSTEM_CARDS = [
   {
     id: 1,
-    avatar: "/interventions/the-self.jpg",
+    avatar: "/interventions/the-self.webp",
     line1: "The Self: instinct &",
     line2: "reflex under ambiguity",
     bg: "bg-[#E5F2FF]",
@@ -19,7 +19,7 @@ const SELF_ROLE_SYSTEM_CARDS = [
   },
   {
     id: 2,
-    avatar: "/interventions/self-role-system-hero.jpg",
+    avatar: "/interventions/self-role-system-hero.webp",
     line1: "Framework for executives",
     line2: "steering high-stakes change",
     bg: "bg-[#E6FAE1]",
@@ -34,7 +34,7 @@ const SELF_ROLE_SYSTEM_CARDS = [
   },
   {
     id: 3,
-    avatar: "/interventions/the-role.jpg",
+    avatar: "/interventions/the-role.webp",
     line1: "The Role: invisible",
     line2: "mandates & contracts",
     bg: "bg-[#F5EBFF]",
@@ -48,7 +48,7 @@ const SELF_ROLE_SYSTEM_CARDS = [
   },
   {
     id: 4,
-    avatar: "/interventions/the-system.jpg",
+    avatar: "/interventions/the-system.webp",
     line1: "The System: patterns",
     line2: "over personalities",
     bg: "bg-[#FFF0E6]",
@@ -62,7 +62,7 @@ const SELF_ROLE_SYSTEM_CARDS = [
   },
   {
     id: 5,
-    avatar: "/images/wheel.jpg",
+    avatar: "/interventions/self-role-system-hero.webp",
     line1: "Choice over reaction:",
     line2: "awareness as intervention",
     bg: "bg-[#FFF7ED]",
@@ -76,7 +76,7 @@ const SELF_ROLE_SYSTEM_CARDS = [
   },
   {
     id: 6,
-    avatar: "/about/gallery-image-1.jpg",
+    avatar: "/about/gallery-image-1.webp",
     line1: "Boundary collaboration",
     line2: "eliminating functional silos",
     bg: "bg-[#EFF6FF]",
@@ -90,7 +90,7 @@ const SELF_ROLE_SYSTEM_CARDS = [
   },
   {
     id: 7,
-    avatar: "/interventions/self-role-system-hero.jpg",
+    avatar: "/interventions/self-role-system-hero.webp",
     line1: "Enabling systems to notice",
     line2: "and learn from patterns",
     bg: "bg-[#E6FAE1]",
@@ -114,8 +114,8 @@ export default function Hero(props) {
         </>
       }
       lead="An advanced experiential framework for executives steering organisations through high-stakes uncertainty and systemic ambiguity."
-      bgImage="/interventions/self-role-system-hero.jpg"
-      mobileBgImage="/interventions/self-role-system-hero-mobile.jpg"
+      bgImage="/interventions/self-role-system-hero.webp"
+      mobileBgImage="/interventions/self-role-system-hero-mobile.webp"
       cards={SELF_ROLE_SYSTEM_CARDS}
       {...props}
     />

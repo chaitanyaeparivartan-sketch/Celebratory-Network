@@ -6,47 +6,47 @@ import Reveal from "@/app/components/Common/Reveal";
 
 const GALLERY_ITEMS = [
   {
-    image: "/international/gallery/gallery-1.jpg",
+    image: "/international/gallery/gallery-1.webp",
     alt: "Global leadership summit circle gathering",
     rotate: "-rotate-[5deg]",
   },
   {
-    image: "/international/gallery/gallery-2.jpg",
+    image: "/international/gallery/gallery-2.webp",
     alt: "Women in leadership experiential cohort",
     rotate: "rotate-[3.8deg]",
   },
   {
-    image: "/international/gallery/gallery-3.jpg",
+    image: "/international/gallery/gallery-3.webp",
     alt: "Experiential systemic process exercise",
     rotate: "-rotate-[4.5deg]",
   },
   {
-    image: "/international/gallery/gallery-4.jpg",
+    image: "/international/gallery/gallery-4.webp",
     alt: "Leadership presence and trust exercise",
     rotate: "rotate-[4.2deg]",
   },
   {
-    image: "/international/gallery/gallery-5.jpg",
+    image: "/international/gallery/gallery-5.webp",
     alt: "Cross-cultural leadership team selfie celebration",
     rotate: "-rotate-[4deg]",
   },
   {
-    image: "/international/gallery/gallery-6.jpg",
+    image: "/international/gallery/gallery-6.webp",
     alt: "Deep dialogue and coaching circle",
     rotate: "rotate-[3.6deg]",
   },
   {
-    image: "/international/gallery/gallery-7.jpg",
+    image: "/international/gallery/gallery-7.webp",
     alt: "International cohort gathering",
     rotate: "-rotate-[4.8deg]",
   },
   {
-    image: "/international/gallery/gallery-8.jpg",
+    image: "/international/gallery/gallery-8.webp",
     alt: "Collaborative inquiry and reflection",
     rotate: "rotate-[3.9deg]",
   },
   {
-    image: "/international/gallery/gallery-9.jpg",
+    image: "/international/gallery/gallery-9.webp",
     alt: "Grounding and emergence breakout session",
     rotate: "-rotate-[4.2deg]",
   },
