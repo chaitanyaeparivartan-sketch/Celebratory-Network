@@ -5,9 +5,9 @@ import ODHero from "@/app/od-consulting/components/ODHero";
 const DEIB_HERO_CARDS = [
   {
     id: 1,
-    avatar: "/diversity-inclusion/pexels-ivan-s-8117475.jpg",
-    line1: "Inclusive leadership: building",
-    line2: "psychological safety & empathy",
+    avatar: "/diversity-inclusion/dei-leadership.jpg",
+    line1: "Leadership & Sponsors: DEI",
+    line2: "councils, vision & governance",
     bg: "bg-[#E5F2FF]",
     bullet: "bg-[#0284C7]",
     pos: "left-[2%] sm:left-[3%] xl:left-[4%] top-[195px] xl:top-[215px] max-[700px]:left-[4%] max-[700px]:top-[104px]",
@@ -19,7 +19,7 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 2,
-    avatar: "/diversity-inclusion/hero-skyscrapers.jpg",
+    avatar: "/diversity-inclusion/hero-banner.jpg",
     line1: "Diversity Champions: active",
     line2: "internal inclusion networks",
     bg: "bg-[#E6FAE1]",
@@ -34,7 +34,7 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 3,
-    avatar: "/diversity-inclusion/pexels-werner-pfennig-6949925.jpg",
+    avatar: "/diversity-inclusion/dei-game-changer.jpg",
     line1: "Empathy circles: structured",
     line2: "transformative dialogue",
     bg: "bg-[#F5EBFF]",
@@ -48,9 +48,9 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 4,
-    avatar: "/diversity-inclusion/team-huddle.png",
-    line1: "From unconscious bias",
-    line2: "to conscious inclusion",
+    avatar: "/diversity-inclusion/dei-assessment.jpg",
+    line1: "DEI Assessment: index,",
+    line2: "audits & cultural diagnostics",
     bg: "bg-[#FFF0E6]",
     bullet: "bg-[#EA580C]",
     pos: "right-[2%] sm:right-[3%] xl:right-[4%] top-[195px] xl:top-[215px] max-[700px]:hidden",
@@ -62,7 +62,7 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 5,
-    avatar: "/for-the-record/Smiling Women’s Corporate Office Team.png",
+    avatar: "/diversity-inclusion/learning-journey.jpg",
     line1: "Employee Resource Groups:",
     line2: "Gender, Generations & Pride",
     bg: "bg-[#FFF7ED]",
@@ -76,9 +76,9 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 6,
-    avatar: "/home/howwehelp-image-8.webp",
-    line1: "Cross-generational dialogue",
-    line2: "& second career Returntships",
+    avatar: "/diversity-inclusion/learning-journey.jpg",
+    line1: "Inclusive Learning Journeys:",
+    line2: "unconscious bias & allyship",
     bg: "bg-[#EFF6FF]",
     bullet: "bg-[#2563EB]",
     pos: "left-[26%] xl:left-[28%] bottom-[32px] xl:bottom-[40px] max-[700px]:hidden",
@@ -90,9 +90,9 @@ const DEIB_HERO_CARDS = [
   },
   {
     id: 7,
-    avatar: "/diversity-inclusion/hero-team-huddle.jpg",
-    line1: "DEIB Strategy & maturity:",
-    line2: "systemic cultural alignment",
+    avatar: "/diversity-inclusion/diversity-champions.jpg",
+    line1: "Returntships & second careers:",
+    line2: "intergenerational workplaces",
     bg: "bg-[#E6FAE1]",
     bullet: "bg-[#16A34A]",
     pos: "right-[3%] sm:right-[4%] xl:right-[5%] bottom-[48px] xl:bottom-[56px] max-[700px]:right-[3%] max-[700px]:bottom-[40px]",
@@ -115,8 +115,8 @@ export default function Hero(props) {
         </>
       }
       lead="Building workplaces where every voice is heard, every difference is valued and everyone can do their best work."
-      bgImage="/diversity-inclusion/hero-skyscrapers.jpg"
-      mobileBgImage="/diversity-inclusion/hero-skyscrapers.jpg"
+      bgImage="/diversity-inclusion/hero-banner.jpg"
+      mobileBgImage="/diversity-inclusion/hero-banner-mobile.jpg"
       cards={DEIB_HERO_CARDS}
       {...props}
     />

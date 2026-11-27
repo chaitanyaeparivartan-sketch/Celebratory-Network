@@ -146,10 +146,10 @@ export default function UpcomingEvent({ poster = "/event-poster.jpg" }) {
               href={EVENT.link}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group inline-flex items-center justify-center gap-3.5 rounded-[14px] bg-[#FF5E14] py-3.5 pl-6 pr-3 text-[15px] sm:text-[16px] font-semibold text-white no-underline transition-all duration-300 hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(255,94,20,0.38)] active:scale-[0.98] focus-visible:outline focus-visible:outline-[2px] focus-visible:outline-offset-[3px] focus-visible:outline-[#FF5E14] max-sm:w-full ${fontMori}`}
+              className={`group inline-flex items-center justify-center gap-3.5 rounded-[8px] bg-[#FF5E14] py-3.5 pl-6 pr-3 text-[15px] sm:text-[16px] font-semibold text-white no-underline transition-all duration-300 hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(255,94,20,0.38)] active:scale-[0.98] focus-visible:outline focus-visible:outline-[2px] focus-visible:outline-offset-[3px] focus-visible:outline-[#FF5E14] max-sm:w-full ${fontMori}`}
             >
               <span>{EVENT.cta}</span>
-              <span className="grid h-[32px] w-[32px] place-items-center rounded-[10px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
+              <span className="grid h-[32px] w-[32px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
                 <svg
                   width="15"
                   height="15"

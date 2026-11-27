@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import Reveal from "@/app/components/Common/Reveal";
 
 const IMPACT_ITEMS = [
   {
@@ -39,10 +40,12 @@ export default function Impact({ className = "" }) {
   const trackRef = useRef(null);
   const [active, setActive] = useState(0);
   const isLockedRef = useRef(false);
+  const isHoveredRef = useRef(false);
   const lockTimeoutRef = useRef(null);
 
   const handleScroll = useCallback(() => {
-    if (isLockedRef.current) return;
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
+    if (isLockedRef.current || isHoveredRef.current) return;
     if (!trackRef.current) return;
     const r = trackRef.current.getBoundingClientRect();
     const total = trackRef.current.offsetHeight - window.innerHeight;
@@ -72,6 +75,16 @@ export default function Impact({ className = "" }) {
     lockTimeoutRef.current = setTimeout(() => {
       isLockedRef.current = false;
     }, 800);
+  }, []);
+
+  const handleItemHover = useCallback((i) => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
+    isHoveredRef.current = true;
+    setActive(i);
+  }, []);
+
+  const handleListLeave = useCallback(() => {
+    isHoveredRef.current = false;
   }, []);
 
   return (
@@ -109,7 +122,7 @@ export default function Impact({ className = "" }) {
           }
         }
         .office-rule {
-          border-top: 1.5px solid var(--accent);
+          border-top: 1px solid #dedede;
           cursor: pointer;
           transition: background-color 0.2s ease;
         }
@@ -183,7 +196,24 @@ export default function Impact({ className = "" }) {
           padding-top: 0.2em;
           color: #4A4A4A;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
+          .office-rules-track {
+            height: auto;
+            padding: 3.5rem 0;
+          }
+          .office-rules-pin {
+            position: static;
+            height: auto;
+            padding-top: 0;
+            padding-bottom: 0;
+          }
+          .office-rule-label {
+            padding: 13px 0;
+            font-size: 0.9rem;
+          }
+          .office-rule-title {
+            font-size: clamp(1.25rem, 5vw, 1.75rem);
+          }
           .office-rule-row {
             grid-template-columns: 1fr;
             gap: 0.75rem;
@@ -200,18 +230,19 @@ export default function Impact({ className = "" }) {
       <div ref={trackRef} className="office-rules-track">
         <div className="office-rules-pin max-w-[1783px] mx-auto w-full px-5 sm:px-8 md:px-[6vw]">
           {/* Section Eyebrow & Title matching Home Page style */}
-          <div className="mb-4 sm:mb-6 md:mb-8">
-            <div className="inline-flex items-center gap-1.5 font-['Inter',sans-serif] text-sm font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
+          <Reveal direction="up" duration={650} distance={20} className="mb-4 sm:mb-6 md:mb-8">
+            <div className="inline-flex items-center gap-2 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
               <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
               Areas of Focus
             </div>
-            <h2 className="mt-2.5 font-ppmori text-3xl sm:text-4xl md:text-[46px] lg:text-[52px] font-semibold tracking-[-0.8px] leading-[1.08] text-black">
+            <h2 className="mt-2.5 font-ppmori text-3xl sm:text-4xl md:text-[48px] lg:text-[52px] font-semibold tracking-[-0.8px] leading-[1.12] text-black">
               Where We Create Impact
             </h2>
-          </div>
+          </Reveal>
 
           {/* Accordion Impact Items */}
-          <div className="w-full">
+          <Reveal direction="up" duration={700} delay={100} distance={24} className="w-full">
+            <div onMouseLeave={handleListLeave}>
             {IMPACT_ITEMS.map((item, idx) => {
               const isOpen = active === idx;
               return (
@@ -220,6 +251,7 @@ export default function Impact({ className = "" }) {
                   className={`office-rule ${isOpen ? "open" : ""} ${idx === 0 ? "!border-t-0" : ""}`}
                   style={idx === 0 ? { borderTop: "none" } : undefined}
                   onClick={() => handleItemClick(idx)}
+                  onMouseEnter={() => handleItemHover(idx)}
                 >
                   <div className="office-rule-label">
                     <span className="text-[#FF5E14] font-semibold">{item.num}</span>
@@ -236,7 +268,8 @@ export default function Impact({ className = "" }) {
                 </div>
               );
             })}
-          </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

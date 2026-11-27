@@ -575,7 +575,7 @@ export default function ODHero({
                       <span
                         className={`w-2 h-2 rounded-[2px] ${card.bullet} shrink-0`}
                       />
-                      <span className="text-[11.5px] xl:text-[13px] font-medium text-[#1E293B] leading-[1.3] whitespace-nowrap block text-left">
+                      <span className="font-['Inter',sans-serif] text-[11.5px] xl:text-[13px] font-medium text-[#1E293B] leading-[1.3] whitespace-nowrap block text-left">
                         <span>{card.line1}</span>
                         <br />
                         <span>{card.line2}</span>
@@ -593,17 +593,17 @@ export default function ODHero({
           ref={bodyRef}
           className="relative z-[2] flex flex-1 flex-col items-center justify-center max-md:justify-end px-4 sm:px-8 pb-12 sm:pb-10 max-md:pb-8 max-md:pt-16 text-center text-[rgb(var(--c))] [--c:13,13,15] [--accent-color:#FF5E14] max-md:!text-white max-md:[--c:255,255,255] max-md:[--accent-color:#ffffff] motion-reduce:[--c:255,255,255] motion-reduce:[--accent-color:#ffffff] will-change-transform"
         >
-          <p className="inline-flex items-center gap-2 text-[13px] sm:text-[14px] font-medium tracking-[0.24px] uppercase font-['Inter',sans-serif] mb-2 sm:mb-3 opacity-90 max-md:text-white/90">
+          <p className="inline-flex items-center gap-2 text-[12px] sm:text-[13px] md:text-[14px] font-medium tracking-[0.24px] uppercase font-['Inter',sans-serif] mb-2 sm:mb-3 opacity-90 max-md:text-white/90">
             <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
             {badge}
           </p>
           <h2
             id="intro-title"
-            className="mx-auto mb-3 sm:mb-[22px] max-w-[16em] text-balance font-['PP_Mori',sans-serif] text-[clamp(28px,6.8vw,44px)] sm:text-[clamp(34px,5.2vw,74px)] font-semibold leading-[1.08] tracking-[-.035em] text-center [&_span]:!text-[var(--accent-color)]"
+            className="mx-auto mb-3 sm:mb-[22px] max-w-[16em] text-balance font-['PP_Mori',sans-serif] text-3xl sm:text-4xl md:text-[48px] lg:text-[54px] font-semibold leading-[1.08] tracking-[-.035em] text-center [&_span]:!text-[var(--accent-color)]"
           >
             {title}
           </h2>
-          <p className="mx-auto max-w-[44em] text-[14px] sm:text-[15.5px] md:text-[16.5px] font-['Inter',sans-serif] font-normal leading-[1.6] opacity-[.92] max-md:text-white/90 text-center">
+          <p className="mx-auto max-w-[44em] text-[14.5px] sm:text-[15.5px] md:text-[16.5px] font-['Inter',sans-serif] font-normal leading-[1.6] opacity-[.92] max-md:text-white/90 text-center">
             {lead}
           </p>
         </div>

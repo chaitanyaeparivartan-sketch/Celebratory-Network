@@ -9,8 +9,8 @@ const SECTIONS_DATA = [
     tag: "WHAT WE SEE",
     title: "Across Organizations",
     reverse: false,
-    image: "/business-od/challenges-image-1.webp",
-    imageAlt: "Lighthouse on coastal breakwater representing navigation through organizational complexity",
+    image: "/business-od/what-we-see.jpg",
+    imageAlt: "Senior leader presenting strategy on a whiteboard to a cross-functional team in a meeting room",
     type: "points",
     points: [
       {
@@ -40,8 +40,8 @@ const SECTIONS_DATA = [
     tag: "IMPACT OF SYMPTOMS",
     title: "On The System",
     reverse: true,
-    image: "/business-od/challenges-image-2.webp",
-    imageAlt: "Executive boardroom circle representing interconnected systemic organizational challenges",
+    image: "/business-od/impact-of-symptoms.jpg",
+    imageAlt: "Close-up of hands reviewing performance bar charts and organizational diagnostic reports",
     type: "bullets",
     bullets: [
       "Misalignment between strategy and execution",
@@ -78,7 +78,7 @@ export default function Challenges() {
                   duration={750}
                   delay={60}
                   distance={36}
-                  className={`relative w-full h-full rounded-[8px] border border-[#EAEAEA] bg-white p-6 sm:p-10 md:p-12 xl:px-[80px] xl:py-[64px] flex flex-col justify-between items-start overflow-hidden group hover:border-[#FF5E14]/40 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.07)] transition-all duration-300 ${
+                  className={`relative w-full h-full rounded-[8px] border border-[#EAEAEA] bg-white p-5 sm:p-10 md:p-12 xl:px-[80px] xl:py-[64px] flex flex-col justify-between items-start overflow-hidden group hover:border-[#FF5E14]/40 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.07)] transition-all duration-300 ${
                     item.reverse ? "lg:order-2" : "lg:order-1"
                   }`}
                 >
@@ -96,22 +96,13 @@ export default function Challenges() {
                     {/* Category Chip */}
                     <div className="flex items-center gap-2 mb-2 sm:mb-3">
                       <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] transition-transform duration-300 group-hover:scale-125" />
-                      <span
-                        className="text-[#64748B] font-semibold text-[11px] sm:text-[12px] tracking-[0.08em] uppercase"
-                        style={{ fontFamily: "Inter, sans-serif" }}
-                      >
+                      <span className="font-inter text-[#242424] font-medium text-[12px] sm:text-[13px] md:text-[14px] leading-[18px] tracking-[0.24px] uppercase">
                         {item.tag}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3
-                      className="text-[#171717] font-semibold text-2xl sm:text-3xl md:text-[36px] xl:text-[42px] leading-[1.12] tracking-tight transition-colors duration-300 group-hover:text-[#0f0f0f]"
-                      style={{
-                        fontFamily:
-                          '"PP Mori", var(--font-geist-sans), sans-serif',
-                      }}
-                    >
+                    <h3 className="font-ppmori text-[#171717] font-semibold text-2xl sm:text-3xl md:text-[36px] xl:text-[42px] leading-[1.12] tracking-[-0.02em] transition-colors duration-300 group-hover:text-[#0f0f0f]">
                       {item.title}
                     </h3>
 
@@ -122,19 +113,10 @@ export default function Challenges() {
                           <div key={idx} className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] mt-2 shrink-0 transition-transform duration-300 group-hover:scale-125" />
                             <div className="flex flex-col">
-                              <h4
-                                className="text-[#171717] font-semibold text-[15px] sm:text-[16px] xl:text-[17px] leading-[1.4]"
-                                style={{
-                                  fontFamily:
-                                    '"PP Mori", var(--font-geist-sans), sans-serif',
-                                }}
-                              >
+                              <h4 className="font-ppmori text-[#171717] font-semibold text-[16px] sm:text-[17px] md:text-[18px] leading-[1.4]">
                                 {pt.title}
                               </h4>
-                              <p
-                                className="text-[#525252] text-[13px] sm:text-[14px] xl:text-[15px] leading-[1.6] mt-0.5"
-                                style={{ fontFamily: "Inter, sans-serif" }}
-                              >
+                              <p className="font-inter text-[#525252] text-[15px] sm:text-[16px] leading-[1.65] mt-0.5">
                                 {pt.description}
                               </p>
                             </div>
@@ -147,11 +129,8 @@ export default function Challenges() {
                       <ul className="flex flex-col gap-2.5 sm:gap-3 mt-5 sm:mt-6 w-full">
                         {item.bullets.map((bullet, idx) => (
                           <li key={idx} className="flex items-start gap-3">
-                            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] mt-2 shrink-0 transition-transform duration-300 group-hover:scale-125" />
-                            <span
-                              className="text-[#404040] text-[14px] sm:text-[15px] xl:text-[16px] leading-[1.5]"
-                              style={{ fontFamily: "Inter, sans-serif" }}
-                            >
+                            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] mt-2.5 shrink-0 transition-transform duration-300 group-hover:scale-125" />
+                            <span className="font-inter text-[#404040] text-[15px] sm:text-[16px] leading-[1.6]">
                               {bullet}
                             </span>
                           </li>
@@ -161,7 +140,7 @@ export default function Challenges() {
                   </div>
 
                   {/* Mobile Image (inside the card) */}
-                  <div className="lg:hidden mt-6 sm:mt-8 relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[8px] overflow-hidden bg-gray-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+                  <div className="lg:hidden mt-6 sm:mt-8 relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-[8px] overflow-hidden bg-gray-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
                     <Image
                       src={item.image}
                       alt={item.imageAlt}

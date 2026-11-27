@@ -22,7 +22,7 @@ const SERVICES = [
       "Cultural Assessment",
       "Leadership Readiness Dialogues",
     ],
-    image: "/diversity-inclusion/pexels-werner-pfennig-6949925.jpg",
+    image: "/diversity-inclusion/dei-assessment.jpg",
   },
   {
     title: "DEI for Leadership and Sponsors",
@@ -34,7 +34,7 @@ const SERVICES = [
       "DEI Strategy",
       "Setting up DEI Council",
     ],
-    image: "/diversity-inclusion/pexels-ivan-s-8117475.jpg",
+    image: "/diversity-inclusion/dei-leadership.jpg",
   },
   {
     title: "Diversity Champions",
@@ -46,7 +46,7 @@ const SERVICES = [
       "Skill building",
       "Actioning DEI Pillars",
     ],
-    image: "/diversity-inclusion/hero-team-huddle.jpg",
+    image: "/diversity-inclusion/diversity-champions.jpg",
   },
   {
     title: "Learning Journey",
@@ -61,7 +61,7 @@ const SERVICES = [
       "Gender - Dialogues",
       "Generational Dialogues - Ageism",
     ],
-    image: "/diversity-inclusion/team-huddle.png",
+    image: "/diversity-inclusion/learning-journey.jpg",
   },
   {
     title: "DEI Game Changer",
@@ -71,7 +71,7 @@ const SERVICES = [
       "ERG Design and Implementation - Gender, Generations etc.",
       "Empathy Circles",
     ],
-    image: "/diversity-inclusion/hero-skyscrapers.jpg",
+    image: "/diversity-inclusion/dei-game-changer.jpg",
   },
 ];
 
@@ -105,13 +105,13 @@ const CARD_STYLES = {
   },
 };
 
-function PhotoStack({ image = "/diversity-inclusion/pexels-werner-pfennig-6949925.jpg" }) {
+function PhotoStack({ image = "/diversity-inclusion/dei-assessment.jpg" }) {
   return (
-    <div className="relative my-4 mr-auto ml-1 aspect-[16/10] sm:aspect-[475/580] w-full max-w-[340px]">
+    <div className="relative my-5 mx-auto sm:mr-auto sm:ml-2 aspect-[4/5] sm:aspect-[475/580] w-[calc(100%-16px)] max-w-[320px] sm:max-w-[340px]">
       <i className="absolute inset-0 rounded-[8px] bg-[#d9d6d2] opacity-50 [transform:rotate(-4deg)_translate(-4px,3px)]" />
       <i className="absolute inset-0 rounded-[8px] bg-[#d9d6d2] opacity-75 [transform:rotate(2deg)_translate(6px,2px)]" />
       <div
-        className="absolute inset-0 -rotate-1 rounded-[8px] bg-cover bg-center shadow-[0_12px_28px_-10px_rgba(0,0,0,0.3)]"
+        className="absolute inset-0 -rotate-1 rounded-[8px] bg-cover bg-[center_20%] shadow-[0_12px_28px_-10px_rgba(0,0,0,0.3)]"
         style={{ backgroundImage: `url(${image})` }}
       />
     </div>
@@ -239,9 +239,9 @@ export default function Services() {
   const current = SERVICES[shown];
 
   return (
-    <section aria-label="DEIB Services" className="w-full bg-white pb-4 sm:pb-6 md:pb-8">
+    <section aria-label="DEIB Services" className="w-full bg-white pb-0">
       {/* ---------- Mobile & Tablet Accordion View (< 1024px) ---------- */}
-      <div className="lg:hidden w-full bg-white px-4 sm:px-6 pt-4 pb-8 font-inter text-[#1a1a1a]">
+      <div className="lg:hidden w-full bg-white px-4 sm:px-6 pt-10 sm:pt-12 pb-8 font-inter text-[#1a1a1a]">
         <div className="mx-auto max-w-[680px]">
           <Reveal direction="up" duration={700}>
             <div className="inline-flex items-center gap-2 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424] mb-2 sm:mb-2.5">
@@ -317,7 +317,7 @@ export default function Services() {
                       isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     }`}
                   >
-                    <div className="min-h-0 overflow-hidden pl-5 pr-1">
+                    <div className="min-h-0 overflow-hidden pl-0 sm:pl-5 pr-0 sm:pr-1">
                       <PhotoStack image={item.image} />
                       <p className="mb-4 font-inter text-[14.5px] sm:text-[15px] leading-[1.65] text-[#525252]">
                         {item.text}
@@ -329,7 +329,7 @@ export default function Services() {
                               key={idx}
                               className="flex items-center gap-2.5 font-inter text-[13.5px] sm:text-[14.5px] text-[#333333] font-medium leading-[1.5]"
                             >
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E14] shrink-0" />
+                              <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
                               <span>{subItem}</span>
                             </li>
                           ))}
@@ -338,7 +338,7 @@ export default function Services() {
                       <Link
                         href="/contact"
                         tabIndex={isOpen ? 0 : -1}
-                        className="group mb-5 sm:mb-6 inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-2.5 py-2 font-['PP_Mori',sans-serif] text-[14.5px] sm:text-[15px] font-semibold leading-[20px] text-white no-underline transition-all duration-300 hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] shadow-sm cursor-pointer"
+                        className="group mb-5 sm:mb-6 inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-2.5 py-2.5 sm:py-2 font-['PP_Mori',sans-serif] text-[14.5px] sm:text-[15px] font-semibold leading-[20px] text-white no-underline transition-all duration-300 hover:bg-[#e0500d] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] shadow-sm cursor-pointer"
                       >
                         <span>Contact us</span>
                         <span className="grid h-[28px] w-[28px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
@@ -367,7 +367,7 @@ export default function Services() {
       </div>
 
       {/* Title Section (Split Header for Desktop/Tablet >= 1024px) */}
-      <div className="hidden lg:block w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-6 sm:pt-8 md:pt-10 pb-3 sm:pb-4">
+      <div className="hidden lg:block w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-12 sm:pt-14 pb-0">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 sm:gap-8">
           {/* Left Column: Eyebrow + Main Title */}
           <Reveal direction="up" duration={750} className="flex flex-col items-start text-left max-w-[620px]">
@@ -410,11 +410,12 @@ export default function Services() {
         >
 
         {/* ---------- Left: titles (Tablet/Desktop) ---------- */}
+        <Reveal direction="right" duration={700} distance={24} className="hidden sm:flex my-auto w-full">
         <ul
           role="tablist"
           aria-orientation="vertical"
           onKeyDown={onKeyDown}
-          className="hidden sm:flex list-none flex-col items-start gap-3 sm:gap-3.5 md:gap-4 lg:gap-5 my-auto w-full"
+          className="flex list-none flex-col items-start gap-3 sm:gap-3.5 md:gap-4 lg:gap-5 w-full"
         >
           {SERVICES.map((t, i) => {
             const on = i === active;
@@ -460,8 +461,10 @@ export default function Services() {
             );
           })}
         </ul>
+        </Reveal>
 
         {/* ---------- Centre: stacked cards ---------- */}
+        <Reveal direction="scale" duration={750} delay={100} distance={20} className="mx-auto">
         <div
           ref={stackRef}
           aria-hidden="true"
@@ -497,12 +500,14 @@ export default function Services() {
             );
           })}
         </div>
+        </Reveal>
 
         {/* ---------- Right: details ---------- */}
+        <Reveal direction="left" duration={700} delay={180} distance={24} className="w-full max-w-[480px] self-center justify-self-start sm:translate-y-[4%]">
         <div
           role="tabpanel"
           aria-live="polite"
-          className="w-full max-w-[480px] self-center justify-self-start sm:translate-y-[4%]"
+          className="w-full"
         >
           <div
             className={`transition duration-300 motion-reduce:transition-none ${
@@ -528,7 +533,7 @@ export default function Services() {
                     key={idx}
                     className="flex items-center gap-2.5 font-inter text-[14px] sm:text-[14.5px] md:text-[15px] text-[#333333] font-medium leading-[1.5]"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E14] shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -558,6 +563,7 @@ export default function Services() {
             </Link>
           </div>
         </div>
+        </Reveal>
         </div>
       </div>
     </section>

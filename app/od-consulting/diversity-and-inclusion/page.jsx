@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function DiversityAndInclusionPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-clip">
       <main className="flex-1">
         <Hero />
         <Services />

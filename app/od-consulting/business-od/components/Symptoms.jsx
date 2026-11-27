@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Reveal from "@/app/components/Common/Reveal";
 
 const ORANGE = "#FF5E14";
 
@@ -79,6 +80,7 @@ function Card({ item, lead, active, onActivate, onDeactivate }) {
     <li
       ref={ref}
       tabIndex={0}
+      onClick={onActivate}
       onMouseEnter={onActivate}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
@@ -116,10 +118,10 @@ function Card({ item, lead, active, onActivate, onDeactivate }) {
         }}
       />
 
-      <div className={`relative flex h-full flex-col justify-between ${lead ? "p-3.5 sm:p-4" : "p-2.5 sm:p-3"}`}>
+      <div className={`relative flex h-full flex-col justify-between gap-2 ${lead ? "p-3.5 sm:p-4" : "p-3 sm:p-3.5"}`}>
         <b
           className={`font-semibold leading-none transition-colors duration-300 ease-in ${
-            lead ? "text-[64px] sm:text-[72px] tracking-[-0.03em]" : "text-[28px] sm:text-[30px]"
+            lead ? "text-[46px] sm:text-[64px] md:text-[72px] tracking-[-0.03em]" : "text-[24px] sm:text-[30px]"
           } ${active ? "text-white" : "text-[#003D7A]"}`}
           style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
         >
@@ -127,7 +129,7 @@ function Card({ item, lead, active, onActivate, onDeactivate }) {
         </b>
         <span
           className={`font-medium sm:font-semibold leading-[1.3] transition-colors duration-300 ease-in ${
-            lead ? "text-lg sm:text-[19px]" : "text-[12px] sm:text-[13px]"
+            lead ? "text-[16px] sm:text-[19px]" : "text-[12px] sm:text-[13px]"
           } ${active ? "text-white" : "text-[#1C1C1C]"}`}
           style={{ fontFamily: "Inter, sans-serif" }}
         >
@@ -150,36 +152,34 @@ export default function Symptoms({ className = "" }) {
       <style>{WAVE_CSS}</style>
 
       <div className="mx-auto grid w-full max-w-[1240px] items-center gap-7 lg:grid-cols-[330px_1fr] lg:gap-12">
-        <header>
-          <p
-            className="mb-3.5 flex items-center gap-2.5 text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.12em] text-white/90"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            <i className="block h-[7px] w-[7px] rounded-full" style={{ background: ORANGE }} />
-            Symptoms of
-          </p>
-          <h2
-            className="text-[32px] sm:text-[40px] lg:text-[46px] font-semibold leading-[1.08] tracking-tight"
-            style={{ fontFamily: '"PP Mori", var(--font-geist-sans), sans-serif' }}
-          >
-            Organization
-            <br />
-            Challenges
-          </h2>
-        </header>
+        <Reveal direction="up" duration={650} distance={24}>
+          <header>
+            <p className="mb-3 flex items-center gap-2 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-white/95">
+              <i className="block h-1.5 w-1.5 rounded-[1px]" style={{ background: ORANGE }} />
+              Symptoms of
+            </p>
+            <h2 className="font-ppmori text-3xl sm:text-4xl md:text-[48px] lg:text-[52px] font-semibold leading-[1.12] tracking-[-0.8px]">
+              Organization
+              <br />
+              Challenges
+            </h2>
+          </header>
+        </Reveal>
 
-        <ul className="grid auto-rows-[140px] sm:auto-rows-[150px] grid-cols-2 gap-3 lg:auto-rows-auto lg:grid-cols-[1.3fr_1fr_1fr_1fr] lg:grid-rows-[repeat(2,180px)]">
-          {ITEMS.map((item, i) => (
-            <Card
-              key={item.label}
-              item={item}
-              lead={i === 0}
-              active={activeIndex === i}
-              onActivate={() => setHovered(i)}
-              onDeactivate={() => setHovered(null)}
-            />
-          ))}
-        </ul>
+        <Reveal direction="up" duration={700} delay={100} distance={24}>
+          <ul className="grid auto-rows-[minmax(125px,auto)] sm:auto-rows-[150px] grid-cols-2 gap-2.5 sm:gap-3 lg:auto-rows-auto lg:grid-cols-[1.3fr_1fr_1fr_1fr] lg:grid-rows-[repeat(2,180px)]">
+            {ITEMS.map((item, i) => (
+              <Card
+                key={item.label}
+                item={item}
+                lead={i === 0}
+                active={activeIndex === i}
+                onActivate={() => setHovered(i)}
+                onDeactivate={() => setHovered(null)}
+              />
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

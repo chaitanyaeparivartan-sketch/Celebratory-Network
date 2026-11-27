@@ -1,5 +1,6 @@
 'use client'; // needed in Next.js App Router; harmless elsewhere
 import { useEffect, useRef } from 'react';
+import Reveal from '@/app/components/Common/Reveal';
 
 const PARAGRAPHS = [
   'In today’s world, where markets and organizations are evolving more rapidly than ever before, alertness, awareness, and agile responsiveness are paramount to success. While most business leaders know the importance of organizational culture, many still struggle to grasp how to use culture as a key driver of performance.',
@@ -72,22 +73,22 @@ export default function Info({ className = '' }) {
   let wordIndex = 0;
 
   return (
-    <section ref={sectionRef} className={`relative min-h-[260vh] bg-white ${className}`}>
+    <section ref={sectionRef} className={`relative min-h-[180vh] sm:min-h-[220vh] md:min-h-[260vh] bg-white ${className}`}>
       {/* Sticky viewport container */}
-      <div className="sticky top-0 flex min-h-screen flex-col justify-center gap-6 sm:gap-8 md:gap-10 px-5 sm:px-8 md:px-[6vw] max-w-[1783px] mx-auto pt-16 sm:pt-20 pb-10">
+      <div className="sticky top-0 flex min-h-screen flex-col justify-center gap-4 sm:gap-8 md:gap-10 px-4 sm:px-8 md:px-[6vw] max-w-[1783px] mx-auto pt-10 sm:pt-20 pb-8 sm:pb-10">
         {/* Header with Chip & Heading */}
-        <div>
-          <div className="mb-2 sm:mb-2.5 inline-flex items-center gap-1.5 font-['Inter',sans-serif] text-sm font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
+        <Reveal direction="up" duration={650} distance={20}>
+          <div className="mb-2 sm:mb-2.5 inline-flex items-center gap-2 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424]">
             <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14]" />
             Culture &amp; Performance
           </div>
-          <h2 className="font-ppmori text-3xl sm:text-4xl md:text-[46px] lg:text-[52px] font-semibold tracking-[-0.8px] leading-[1.08] text-black">
+          <h2 className="font-ppmori text-3xl sm:text-4xl md:text-[48px] lg:text-[52px] font-semibold tracking-[-0.8px] leading-[1.12] text-black">
             Culture Drives Performance
           </h2>
-        </div>
+        </Reveal>
 
         {/* Highlightable Paragraphs Stack */}
-        <div className="grid w-full gap-3 sm:gap-4 md:gap-5 text-[clamp(15px,1.25vw,21px)] leading-[1.46] font-medium font-ppmori">
+        <div className="grid w-full gap-3 sm:gap-4 md:gap-5 text-[14px] sm:text-[clamp(15px,1.25vw,21px)] leading-[1.48] font-medium font-ppmori">
           {PARAGRAPHS.map((para, pi) => (
             <p key={pi}>
               {para.split(' ').map((word, wi, arr) => {

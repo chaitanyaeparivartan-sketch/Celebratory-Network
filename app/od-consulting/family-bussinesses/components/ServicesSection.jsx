@@ -10,6 +10,8 @@
 //
 // Needs Tailwind v3+ and the Inter + Schibsted Grotesk Google Fonts.
 
+import Reveal from "@/app/components/Common/Reveal";
+
 const DEFAULT_SERVICES = [
   {
     title: "Family Business Health Check",
@@ -55,14 +57,14 @@ function ServiceCard({ index, title, description, image }) {
   return (
     <article
       tabIndex={0}
-      className="group relative isolate flex min-h-[290px] items-center gap-6 overflow-hidden rounded-3xl bg-[linear-gradient(115deg,#fff_62%,#FFF1EA_100%)] p-8 outline-offset-[3px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FF5E14] max-[480px]:min-h-[240px] max-[480px]:gap-4 max-[480px]:p-6 cursor-pointer"
+      className="group relative isolate flex h-full w-full flex-col items-start gap-3 sm:min-h-[260px] md:min-h-[290px] sm:flex-row sm:items-center sm:gap-6 overflow-hidden rounded-[16px] sm:rounded-3xl bg-[#1e1e1e] md:bg-[linear-gradient(115deg,#fff_62%,#FFF1EA_100%)] p-6 sm:p-8 outline-offset-[3px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_rgba(0,0,0,0.08)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FF5E14] cursor-pointer"
     >
-      {/* photo revealed on hover / focus */}
+      {/* photo shown by default on mobile/tablet, revealed on hover/focus on desktop */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 scale-[1.06] opacity-0 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 motion-reduce:transition-none"
+        className="absolute inset-0 -z-10 scale-100 md:scale-[1.06] opacity-100 md:opacity-0 md:group-hover:scale-100 md:group-hover:opacity-100 md:group-focus-visible:scale-100 md:group-focus-visible:opacity-100 motion-reduce:transition-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(20,20,20,.66),rgba(20,20,20,.66)), url("${image}")`,
+          backgroundImage: `linear-gradient(rgba(16,16,16,.72),rgba(16,16,16,.78)), url("${image}")`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -70,15 +72,15 @@ function ServiceCard({ index, title, description, image }) {
         }}
       />
 
-      <span className="service-card-no flex-none basis-[170px] font-ppmori text-[136px] font-bold leading-none tracking-[-.03em] text-[#FF5E14] will-change-transform max-[480px]:basis-[110px] max-[480px]:text-[88px]">
+      <span className="service-card-no flex-none basis-auto sm:basis-[130px] md:basis-[170px] font-ppmori text-[56px] sm:text-[96px] md:text-[136px] font-bold leading-none tracking-[-.03em] text-white md:text-[#FF5E14] will-change-transform">
         {number}
       </span>
 
       <div>
-        <h3 className="font-['Schibsted_Grotesk',Inter,sans-serif] text-[22px] font-semibold leading-[1.25] transition-colors duration-300 group-hover:text-white group-focus-visible:text-white motion-reduce:transition-none max-[480px]:text-[19px]">
+        <h3 className="font-ppmori text-xl sm:text-[22px] md:text-[24px] font-semibold leading-[1.25] tracking-[-0.015em] text-white md:text-[#1a1a1a] transition-colors duration-300 md:group-hover:text-white md:group-focus-visible:text-white motion-reduce:transition-none">
           {title}
         </h3>
-        <p className="mt-2 text-sm leading-[1.6] text-[#555] transition-colors duration-300 group-hover:text-white group-focus-visible:text-white motion-reduce:transition-none">
+        <p className="mt-2 font-inter text-[14.5px] sm:text-[15px] leading-[1.65] text-white/90 md:text-[#555] transition-colors duration-300 md:group-hover:text-white md:group-focus-visible:text-white motion-reduce:transition-none">
           {description}
         </p>
       </div>
@@ -92,7 +94,7 @@ export default function ServicesSection({
   services = DEFAULT_SERVICES,
 }) {
   return (
-    <section className="bg-[#F4F4F4] px-6 py-24 font-['Inter',system-ui,sans-serif] text-[#1a1a1a] antialiased">
+    <section className="bg-[#F4F4F4] px-4 sm:px-6 py-14 sm:py-20 md:py-24 font-['Inter',system-ui,sans-serif] text-[#1a1a1a] antialiased">
       {/* Our DNA matching animation style block */}
       <style>{`
         @property --motion-translate-y {
@@ -196,18 +198,29 @@ export default function ServicesSection({
         }
       `}</style>
 
-      <div className="mx-auto max-w-[1783px] px-5 sm:px-8 md:px-[6vw]">
-        <div className="flex items-center justify-center gap-2 text-[11px] font-medium uppercase tracking-[.18em] before:block before:h-1.5 before:w-1.5 before:bg-[#FF5E14] before:content-['']">
-          {eyebrow}
-        </div>
+      <div className="mx-auto max-w-[1783px] px-0 sm:px-8 md:px-[6vw]">
+        <Reveal direction="up" duration={650} distance={20} className="text-center">
+          <div className="inline-flex items-center justify-center gap-2 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424] before:block before:h-1.5 before:w-1.5 before:rounded-[1px] before:bg-[#FF5E14] before:content-['']">
+            {eyebrow}
+          </div>
 
-        <h2 className="mx-auto mb-14 mt-4 max-w-[760px] text-center font-['Schibsted_Grotesk',Inter,sans-serif] text-[clamp(32px,5vw,48px)] font-bold leading-[1.1] tracking-[-.02em]">
-          {heading}
-        </h2>
+          <h2 className="mx-auto mb-8 sm:mb-12 md:mb-14 mt-2 sm:mt-3 max-w-[760px] text-center font-ppmori text-3xl sm:text-4xl md:text-[48px] lg:text-[52px] font-semibold leading-[1.12] tracking-[-0.8px] text-[#1c1c1c]">
+            {heading}
+          </h2>
+        </Reveal>
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {services.map((service, i) => (
-            <ServiceCard key={service.title} index={i} {...service} />
+            <Reveal
+              key={service.title}
+              direction="up"
+              duration={600}
+              delay={i * 75}
+              distance={22}
+              className="flex h-full"
+            >
+              <ServiceCard index={i} {...service} />
+            </Reveal>
           ))}
         </div>
       </div>

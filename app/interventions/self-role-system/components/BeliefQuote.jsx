@@ -33,14 +33,11 @@ export default function BeliefQuote() {
           distance={28}
           className="flex flex-col items-center justify-center text-center w-full"
         >
-          {/* Centered Eyebrow chip with live radar beacon */}
-          <div className="inline-flex items-center justify-center gap-2.5 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-white/95 mb-6 sm:mb-8 bg-white/10 px-4 py-1.5 rounded-full border border-white/20 backdrop-blur-sm shadow-sm transition-all duration-300 hover:bg-white/15">
-            <span className="relative flex h-2 w-2 flex-none">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
-            </span>
+          {/* Centered Eyebrow tag matching Hero UI */}
+          <p className="inline-flex items-center justify-center gap-2 text-[13px] sm:text-[14px] font-medium tracking-[0.24px] uppercase font-inter text-white/95 mb-5 sm:mb-7 opacity-90">
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-white shrink-0" />
             Our belief
-          </div>
+          </p>
 
           {/* Quote container with floating quote decoration */}
           <div className="relative w-full max-w-[920px] mx-auto flex flex-col items-center justify-center text-center">
@@ -55,7 +52,7 @@ export default function BeliefQuote() {
               “We don’t fix people. We enable systems to{" "}
               <span className="relative inline-block text-white">
                 notice and learn
-                <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-white/50 rounded-full animate-pulse" />
+                <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-white/50 rounded-[1px] animate-pulse" />
               </span>{" "}
               from their patterns.”
             </h2>

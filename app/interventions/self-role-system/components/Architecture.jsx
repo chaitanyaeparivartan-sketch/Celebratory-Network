@@ -38,13 +38,10 @@ export default function Architecture() {
       <div className="mx-auto max-w-[960px] text-center relative z-10">
         {/* Eyebrow Chip with live beacon */}
         <Reveal direction="up" duration={700} distance={24}>
-          <div className="inline-flex items-center justify-center gap-2.5 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-white/95 mb-4 bg-white/10 px-4 py-1.5 rounded-full border border-white/20 backdrop-blur-sm shadow-sm transition-all duration-300 hover:bg-white/15">
-            <span className="relative flex h-2 w-2 flex-none">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
-            </span>
+          <p className="inline-flex items-center justify-center gap-2 text-[13px] sm:text-[14px] font-medium tracking-[0.24px] uppercase font-inter text-white/90 mb-3 sm:mb-4 opacity-90">
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
             The architecture of awareness
-          </div>
+          </p>
 
           <h2 className="mb-5 mt-2 font-ppmori text-3xl sm:text-4xl md:text-[52px] font-semibold leading-[1.12] tracking-[-0.8px] text-white">
             Beneath the surface is where agility lives.
@@ -74,7 +71,7 @@ export default function Architecture() {
                   <span className="font-ppmori text-[24px] sm:text-[28px] font-bold text-white/40 group-hover:text-[#FF5E14] transition-colors duration-300">
                     {tier.num}
                   </span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-white/40 group-hover:bg-[#FF5E14] group-hover:scale-125 transition-all duration-300" />
+                  <span className="h-1.5 w-1.5 rounded-[1px] bg-white/40 group-hover:bg-[#FF5E14] group-hover:scale-125 transition-all duration-300" />
                 </div>
                 <h3 className="font-ppmori text-[18px] sm:text-[19px] font-semibold text-white mb-1.5 group-hover:text-white transition-colors">
                   {tier.label}
@@ -91,8 +88,8 @@ export default function Architecture() {
         <Reveal direction="up" delay={320} duration={750} distance={24}>
           <blockquote className="group mx-auto mt-10 rounded-2xl border border-white/20 bg-white/10 px-7 sm:px-9 py-6 sm:py-7 font-ppmori text-[16px] sm:text-[18px] md:text-[19px] font-medium leading-[1.5] text-white shadow-sm backdrop-blur-md transition-all duration-500 hover:border-white/40 hover:bg-white/[0.15] hover:shadow-[0_16px_40px_rgba(0,0,0,0.22)] hover:-translate-y-0.5">
             <span className="relative flex h-2 w-2 inline-flex mr-2.5 -translate-y-0.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5E14] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF5E14]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-[1px] bg-[#FF5E14] opacity-75" />
+              <span className="relative inline-flex rounded-[1px] h-2 w-2 bg-[#FF5E14]" />
             </span>
             “Self-awareness is the first intervention. Understanding your own reflex allows you to
             choose response over reaction.”

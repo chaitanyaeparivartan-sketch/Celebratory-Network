@@ -46,13 +46,10 @@ export default function Outcomes() {
           duration={700}
           className="mx-auto mb-12 sm:mb-16 max-w-[760px] text-center px-4"
         >
-          <div className="inline-flex items-center justify-center gap-2.5 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424] mb-3 bg-[#F4F4F4] px-4 py-1.5 rounded-full border border-black/[0.05] shadow-sm transition-all duration-300 hover:bg-[#eaeaea]">
-            <span className="relative flex h-2 w-2 flex-none">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5E14] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF5E14]" />
-            </span>
+          <p className="inline-flex items-center justify-center gap-2 text-[13px] sm:text-[14px] font-medium tracking-[0.24px] uppercase font-inter text-[#242424] mb-2 sm:mb-3 opacity-90">
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
             Strategic outcomes
-          </div>
+          </p>
           <h2 className="mt-2 font-ppmori text-3xl sm:text-4xl md:text-[52px] font-semibold leading-[1.12] tracking-[-0.8px] text-[#242424]">
             What changes for leaders.
           </h2>
@@ -63,13 +60,13 @@ export default function Outcomes() {
 
         {/* accordion */}
         <Reveal direction="up" duration={750} delay={100} distance={24}>
-          <div className="border-b border-[#dedede]">
+          <div className="border-y border-[#dedede] divide-y divide-[#dedede]">
             {OUTCOMES.map((o, i) => {
               const isOpen = open === i;
               return (
                 <div
                   key={o.title}
-                  className={`border-t border-[#dedede] transition-colors duration-300 rounded-xl px-3 sm:px-5 -mx-3 sm:-mx-5 ${
+                  className={`transition-colors duration-300 px-4 sm:px-6 ${
                     isOpen ? "bg-[#FFF9F6]/80" : "hover:bg-[#FAFAFA]"
                   }`}
                 >
@@ -85,7 +82,7 @@ export default function Outcomes() {
                     >
                       <span className="flex items-center gap-3">
                         <span
-                          className={`w-1.5 h-6 rounded-full bg-[#FF5E14] transition-all duration-300 ${
+                          className={`w-1.5 h-6 rounded-[1px] bg-[#FF5E14] transition-all duration-300 ${
                             isOpen ? "opacity-100 scale-100" : "opacity-0 scale-50"
                           }`}
                         />

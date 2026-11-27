@@ -79,13 +79,10 @@ export default function CoreRealities({ images }) {
           duration={700}
           className="mx-auto mb-12 sm:mb-16 max-w-[760px] text-center px-4"
         >
-          <div className="inline-flex items-center gap-2 font-inter text-[12px] sm:text-[13px] md:text-[14px] font-medium uppercase leading-[18px] tracking-[0.24px] text-[#242424] bg-white px-4 py-1.5 rounded-full border border-black/[0.06] shadow-sm mb-2 sm:mb-3">
-            <span className="relative flex h-2 w-2 flex-none">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5E14] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF5E14]" />
-            </span>
+          <p className="inline-flex items-center justify-center gap-2 text-[13px] sm:text-[14px] font-medium tracking-[0.24px] uppercase font-inter text-[#242424] mb-2 sm:mb-3 opacity-90">
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
             Three core realities
-          </div>
+          </p>
           <h2 className="mt-2 font-ppmori text-3xl sm:text-4xl md:text-[52px] font-semibold leading-[1.12] tracking-[-0.8px] text-[#1a1a1a]">
             Self. Role. System.
           </h2>

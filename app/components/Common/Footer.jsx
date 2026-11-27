@@ -33,12 +33,12 @@ function LinkedInSocialIcon() {
 const SOCIAL_LINKS = [
   {
     name: "X",
-    href: "https://x.com",
+    href: "https://x.com/CelebratoryNet1",
     icon: XSocialIcon,
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/company/celebratory-network",
+    href: "https://www.linkedin.com/company/celebratory-network/",
     icon: LinkedInSocialIcon,
   },
 ];

@@ -16,6 +16,7 @@
 // Schibsted Grotesk Google Fonts.
 
 import { useState } from "react";
+import Reveal from "@/app/components/Common/Reveal";
 
 const DEFAULT_ITEMS = [
   {
@@ -38,31 +39,45 @@ const DEFAULT_ITEMS = [
 
 function AccordionItem({ id, title, body, open, onToggle }) {
   return (
-    <div className="rounded-[20px] bg-white shadow-[0_2px_8px_rgba(29,40,112,.04)]">
-      <button
-        type="button"
-        id={`${id}-button`}
-        aria-expanded={open}
-        aria-controls={`${id}-panel`}
-        onClick={onToggle}
-        className={[
-          "flex w-full cursor-pointer items-center justify-between gap-4 rounded-[20px] px-7 text-left font-['Schibsted_Grotesk',Inter,sans-serif] text-[clamp(17px,2.2vw,21px)] font-medium text-[#1d2870] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1d2870]",
-          open ? "pt-6 pb-2" : "py-6",
-        ].join(" ")}
-      >
-        <span>{title}</span>
+    <div
+      className={`transition-colors duration-300 px-3 sm:px-6 ${
+        open ? "bg-[#FFF9F6]/80" : "hover:bg-[#FAFAFA]"
+      }`}
+    >
+      <h3>
+        <button
+          type="button"
+          id={`${id}-button`}
+          aria-expanded={open}
+          aria-controls={`${id}-panel`}
+          onClick={onToggle}
+          className={`group flex w-full items-center justify-between gap-3 sm:gap-4 py-5 sm:py-7 md:py-9 text-left font-ppmori text-[18px] sm:text-2xl md:text-[28px] font-semibold leading-[1.25] tracking-tight transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#FF5E14] cursor-pointer ${
+            open ? "text-[#FF5E14]" : "text-[#1a1a1a] hover:text-[#FF5E14]"
+          }`}
+        >
+          <span className="flex items-center gap-2.5 sm:gap-3">
+            <span
+              className={`w-1.5 h-5 sm:h-6 rounded-[1px] bg-[#FF5E14] transition-all duration-300 shrink-0 ${
+                open ? "opacity-100 scale-100" : "opacity-0 scale-50"
+              }`}
+            />
+            <span className="group-hover:translate-x-0.5 transition-transform duration-300">
+              {title}
+            </span>
+          </span>
 
-        {/* + that turns into × */}
-        <span
-          aria-hidden="true"
-          className={[
-            "relative h-10 w-10 flex-none rounded-full bg-[#1d2870] transition-transform duration-[380ms] ease-[cubic-bezier(.4,0,.2,1)] motion-reduce:transition-none",
-            "before:absolute before:left-1/2 before:top-1/2 before:h-[3px] before:w-4 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-sm before:bg-white before:content-['']",
-            "after:absolute after:left-1/2 after:top-1/2 after:h-4 after:w-[3px] after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-sm after:bg-white after:content-['']",
-            open ? "rotate-45" : "rotate-0",
-          ].join(" ")}
-        />
-      </button>
+          <span
+            aria-hidden="true"
+            className={`grid h-9 w-9 sm:h-11 sm:w-11 shrink-0 place-items-center rounded-full font-ppmori text-lg sm:text-xl font-medium transition-all duration-300 ${
+              open
+                ? "bg-[#FF5E14] text-white rotate-180 shadow-[0_4px_16px_rgba(255,94,20,0.35)]"
+                : "bg-[#FFF1EA] text-[#FF5E14] hover:bg-[#ffe2d3] group-hover:scale-105"
+            }`}
+          >
+            {open ? "–" : "+"}
+          </span>
+        </button>
+      </h3>
 
       {/* height animates between 0fr and 1fr */}
       <div
@@ -70,18 +85,12 @@ function AccordionItem({ id, title, body, open, onToggle }) {
         role="region"
         aria-labelledby={`${id}-button`}
         aria-hidden={!open}
-        className={[
-          "grid transition-[grid-template-rows] duration-[380ms] ease-[cubic-bezier(.4,0,.2,1)] motion-reduce:transition-none",
-          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
-        ].join(" ")}
+        className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
       >
-        <div className="min-h-0 overflow-hidden">
-          <p
-            className={[
-              "px-7 pb-6 pt-1 text-base leading-[1.65] text-[#5a6180] transition-[opacity,transform] duration-[380ms] ease-[cubic-bezier(.4,0,.2,1)] motion-reduce:transition-none",
-              open ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0",
-            ].join(" ")}
-          >
+        <div className="overflow-hidden">
+          <p className="max-w-[780px] pb-6 sm:pb-8 md:pb-9 pl-4 sm:pl-5 pr-2 sm:pr-[72px] font-inter text-[14.5px] sm:text-[15.5px] md:text-[16px] leading-[1.65] text-[#525252]">
             {body}
           </p>
         </div>
@@ -94,33 +103,55 @@ export default function OutcomesSection({
   eyebrow = "Outcomes we help create",
   heading = "What changes for you.",
   items = DEFAULT_ITEMS,
-  defaultOpen = 1,
+  defaultOpen = 0,
 }) {
   const [openIndex, setOpenIndex] = useState(defaultOpen);
 
   return (
-    <section className="bg-[#F2F7FB] px-6 py-24 font-['Inter',system-ui,sans-serif] text-[#1a1a1a] antialiased">
-      <div className="mx-auto max-w-[1783px] px-5 sm:px-8 md:px-[6vw]">
-        <div className="flex items-center justify-center gap-2 text-[11px] font-medium uppercase tracking-[.18em] before:block before:h-1.5 before:w-1.5 before:bg-[#FF5E14] before:content-['']">
-          {eyebrow}
-        </div>
+    <section className="bg-white text-[#1a1a1a] px-4 sm:px-6 py-14 sm:py-20 md:py-28 relative overflow-hidden">
+      {/* Ambient warm background accent lights */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-40 -left-40 w-[440px] h-[440px] rounded-full bg-[#FF5E14]/[0.05] blur-[130px] animate-pulse"
+        style={{ animationDuration: "9s" }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-40 -right-40 w-[440px] h-[440px] rounded-full bg-[#205A9D]/[0.04] blur-[130px] animate-pulse"
+        style={{ animationDuration: "11s" }}
+      />
 
-        <h2 className="mb-12 mt-4 text-center font-['Schibsted_Grotesk',Inter,sans-serif] text-[clamp(32px,5vw,48px)] font-bold tracking-[-.02em]">
-          {heading}
-        </h2>
+      <div className="mx-auto max-w-[1080px] relative z-10">
+        {/* heading */}
+        <Reveal
+          direction="up"
+          duration={700}
+          className="mx-auto mb-8 sm:mb-12 md:mb-16 max-w-[760px] text-center px-2 sm:px-4"
+        >
+          <p className="inline-flex items-center justify-center gap-2 text-[12px] sm:text-[13px] md:text-[14px] font-medium tracking-[0.24px] uppercase font-inter text-[#242424] mb-2 sm:mb-3 opacity-90">
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#FF5E14] shrink-0" />
+            {eyebrow}
+          </p>
+          <h2 className="mt-2 font-ppmori text-3xl sm:text-4xl md:text-[48px] lg:text-[52px] font-semibold leading-[1.12] tracking-[-0.8px] text-[#242424]">
+            {heading}
+          </h2>
+        </Reveal>
 
-        <div className="flex flex-col gap-3">
-          {items.map((item, i) => (
-            <AccordionItem
-              key={item.title}
-              id={`outcome-${i}`}
-              title={item.title}
-              body={item.body}
-              open={openIndex === i}
-              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-            />
-          ))}
-        </div>
+        {/* accordion */}
+        <Reveal direction="up" duration={750} delay={100} distance={24}>
+          <div className="border-y border-[#dedede] divide-y divide-[#dedede]">
+            {items.map((item, i) => (
+              <AccordionItem
+                key={item.title}
+                id={`outcome-${i}`}
+                title={item.title}
+                body={item.body}
+                open={openIndex === i}
+                onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+              />
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

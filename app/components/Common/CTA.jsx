@@ -89,13 +89,13 @@ export default function CTA({
         <div className="relative z-[2] px-3 text-white md:px-0 md:pr-[clamp(16px,2vw,60px)]">
           <h2
             style={{ transitionDelay: "140ms" }}
-            className={`mb-[.55em] max-w-[14em] font-['Figtree',sans-serif] text-[clamp(22px,2vw,38px)] font-medium leading-[1.15] tracking-[-0.02em] ${reveal(inView, 20)}`}
+            className={`mb-[.55em] max-w-[14em] font-ppmori text-2xl sm:text-3xl md:text-[34px] lg:text-[38px] font-semibold leading-[1.15] tracking-[-0.02em] ${reveal(inView, 20)}`}
           >
             {title}
           </h2>
           <p
             style={{ transitionDelay: "220ms" }}
-            className={`mb-[1.7em] max-w-[36em] text-[clamp(12.5px,.85vw,17px)] leading-[1.5] text-white/95 ${reveal(inView, 16)}`}
+            className={`mb-[1.7em] max-w-[36em] font-inter text-[14px] sm:text-[15px] md:text-[16px] leading-[1.6] text-white/95 ${reveal(inView, 16)}`}
           >
             {text}
           </p>
@@ -104,7 +104,7 @@ export default function CTA({
               <a
                 href={href}
                 onClick={handleClick}
-                className="group inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-3 py-2.5 font-['PP_Mori',sans-serif] text-[clamp(14px,.9vw,16px)] font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e04e0a] hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-white cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-3 py-2.5 font-ppmori text-[14px] sm:text-[15px] font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e04e0a] hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-white cursor-pointer"
               >
                 <span>{buttonLabel}</span>
                 <span className="grid h-[28px] w-[28px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
@@ -126,7 +126,7 @@ export default function CTA({
             ) : (
               <Link
                 href={href}
-                className="group inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-3 py-2.5 font-['PP_Mori',sans-serif] text-[clamp(14px,.9vw,16px)] font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e04e0a] hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-white cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-[#FF5E14] pl-5 pr-3 py-2.5 font-ppmori text-[14px] sm:text-[15px] font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e04e0a] hover:shadow-[0_8px_20px_rgba(255,94,20,0.35)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-white cursor-pointer"
               >
                 <span>{buttonLabel}</span>
                 <span className="grid h-[28px] w-[28px] place-items-center rounded-[6px] bg-white/20 transition-transform duration-200 group-hover:translate-x-1">
